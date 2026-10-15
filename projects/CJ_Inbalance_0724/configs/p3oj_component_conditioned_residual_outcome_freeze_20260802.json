@@ -1,0 +1,15 @@
+{
+  "experiment": "P3o-J posterior-component-conditioned bounded parameter residual",
+  "status": "stopped_execution_contract_mismatch_before_training",
+  "reason": "Seed 2091 rejected the changed MATLAB generator hash before any checkpoint, prediction, or development metric was produced.",
+  "seed_2091_exception_receipt": "outputs/p3oj_component_conditioned_residual_development_20260802/seed_2091/exception_receipt.json",
+  "forbidden": [
+    "update the freeze hash and retry seed 2091",
+    "run seeds 2092 or 2093 on 1450M/1460M identities",
+    "reuse 1450M/1460M for method selection, confirmation, test, or locked test",
+    "claim a performance result for P3o-J"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

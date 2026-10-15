@@ -1,0 +1,74 @@
+{
+  "experiment": "P2y frozen shared U-Net ISRJ phase-reset isolation transfer",
+  "registration_date": "2026-08-01",
+  "single_hypothesis": "The already-frozen shared swept-component U-Net preserves enough ISRJ phase-reset structure for the P2x zero-trainable-parameter width estimator to generalize across ID and OOD width intervals.",
+  "evidence_role": "fresh_identity_safe_development",
+  "reference_only": {
+    "P2x": "outputs/p2x_isrj_phase_reset_ood_development_20260801/summary.json",
+    "P2x_result": "exact-component phase-reset estimator passed every preregistered physical-sufficiency gate",
+    "P2x_raw_boundary": "the same estimator on compound raw I/Q failed; component isolation is the unresolved mechanism",
+    "historical_test_reuse_allowed": false,
+    "locked_test_use_allowed": false
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p2w_isrj_width_ood_data.m called with a P2y prefix",
+    "identity_seed": 4150000000,
+    "powers_db": [25, 35, 50],
+    "regimes_us": {
+      "ID_control": [5, 20],
+      "near_low": [2, 5],
+      "near_high": [20, 30],
+      "far_low": [1, 2],
+      "far_high": [30, 50]
+    },
+    "identities_per_regime": 630,
+    "ISRJ_positive_identities_per_regime": 320,
+    "all_63_combinations": true,
+    "paired_identity_key": "receiver_noise_seed",
+    "required_overlap_with_original_P2w_P2x_and_P2a": 0,
+    "split": "train only; no test split is generated or opened"
+  },
+  "frozen_components": {
+    "separator_architecture": "ConditionalComplexUNetSeparator width=12 classifier_width=12 condition=false",
+    "separator_profile": "unet_wave",
+    "separator_model_seeds": [2041, 2042, 2043],
+    "separator_checkpoints": "outputs/conditional_unet_separator_full_20260725/unet_wave/seed_{seed}/best.pt",
+    "separator_trainable_parameters_in_P2y": 0,
+    "width_estimator": "P2x phase-reset adjacent-cluster-gap mode",
+    "width_estimator_trainable_parameters": 0,
+    "threshold_or_hyperparameter_tuning_on_P2y": false
+  },
+  "variants": {
+    "C0_constant": "12.5 microseconds",
+    "C1_raw_phase_reset": "P2x estimator on compound raw I/Q",
+    "C2_shared_unet_phase_reset": "P2x estimator on frozen shared U-Net normalized estimate",
+    "C3_exact_phase_reset": "P2x exact-component oracle upper bound",
+    "C4_time_shuffled_shared_unet": "deterministic time shuffle of C2 output"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "each_model_seed_each_regime_C2_mae_reduction_vs_constant_min": 0.10,
+    "each_model_seed_each_regime_C2_pearson_min": 0.30,
+    "each_model_seed_each_regime_C2_catastrophic_fraction_max": 0.10,
+    "each_model_seed_each_regime_compound_C2_mae_reduction_vs_constant_min": 0.10,
+    "each_model_seed_each_regime_compound_C2_pearson_min": 0.30,
+    "each_model_seed_mean_C2_mae_reduction_vs_C1_min": 0.20,
+    "each_model_seed_ID_control_C2_mae_reduction_vs_C1_min": 0.20,
+    "each_model_seed_each_regime_C2_better_than_C4": true,
+    "each_model_seed_mean_waveform_cosine_with_exact_min": 0.30,
+    "positive_model_seeds": "3/3"
+  },
+  "stop_rule": "If any physical-sufficiency gate fails, do not attach the shared U-Net width estimate and do not enter a router. The exact P2x oracle permits one separately preregistered dedicated lightweight ISRJ separator on a new identity seed.",
+  "next_if_pass": "Freeze P2y and evaluate a separately preregistered full 12-parameter predicted-gate attachment on fresh development identities.",
+  "pre_generation_amendment": {
+    "old_seed": 4300000000,
+    "new_seed": 4150000000,
+    "reason": "The upstream MATLAB manifest builder requires a nonnegative uint32 seed; the old value exceeded 4294967295.",
+    "boundary": "The generator stopped during seed validation before waveform or MAT generation. Only an empty 34-byte manifest header was created and removed.",
+    "data_or_predictions_read": false,
+    "method_or_gate_changed": false
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

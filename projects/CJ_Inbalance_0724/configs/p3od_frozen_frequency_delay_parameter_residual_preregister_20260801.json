@@ -1,0 +1,39 @@
+{
+  "experiment": "P3o-D frozen frequency recognition with posterior-conditioned delay parameter residual",
+  "research_question": "With a local time-frequency recognition backbone, can a delay-peak residual parameter side branch improve twelve-parameter sensing without changing any recognition logit, safe threshold, low-power recognition metric, or worst-combination parameter risk?",
+  "hypothesis": "A posterior-conditioned delay residual can add parameter information only where the frozen frequency backbone has class evidence, avoiding the early-fusion trade-off that degraded 25 dB recognition in P3o-C.",
+  "identity_protocol": {
+    "train_seed": 1070000000,
+    "development_seed": 1080000000,
+    "reserved_confirmation_seeds": [1090000000, 1100000000],
+    "samples_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_pairing": "receiver_noise_seed grouped across regimes and power views",
+    "forbidden": ["test generation", "test opening", "locked test", "1050M/1060M confirmation data"]
+  },
+  "methods": {
+    "F_frozen_base": "P3o-C local STFT plus adjacent-frame phase-increment backbone, trained with BCEWithLogits + 0.1 masked SmoothL1.",
+    "F_delay_parameter_residual": "The selected F_frozen_base is entirely frozen. Its logits, classifier and base parameter prediction are copied exactly. A delay-peak encoder predicts a classwise residual, multiplied by detached sigmoid(logit) and added only to the parameter prediction."
+  },
+  "training": {
+    "base": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "parameter_weight": 0.1, "gradient_clip_norm": 5.0, "checkpoint": "C_joint: maximum early macro-AUPR among epochs with oracle parameter NMAE <= 1.01 times minimum"},
+    "residual": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "parameter_weight": 0.1, "gradient_clip_norm": 5.0, "checkpoint": "minimum early oracle parameter NMAE; classification path is fixed"},
+    "calibration": "Reuse each selected frozen-base threshold vector verbatim. The residual method must not recalibrate or select from development."
+  },
+  "model_seeds": [2041, 2042, 2043],
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "classification_logits_bitwise_equal_to_base": true,
+    "all_seeds_base_safe_calibration_feasible_and_development_maximum_cell_fpr_at_most_0p10": true,
+    "all_seeds_frequency_base_overall_isrj_recall_at_least_0p85": true,
+    "all_seeds_frequency_base_25db_isrj_recall_at_least_0p78": true,
+    "all_seeds_residual_oracle_and_predicted_gate_parameter_nmae_ratio_vs_base_at_most_0p98": true,
+    "all_seeds_residual_miss_penalty_and_worst_combination_nonworse_vs_base": true,
+    "all_seeds_residual_mft_and_isrj_oracle_nmae_ratio_vs_base_at_most_0p99": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "decision_rule": "Only if every gate passes may 1090M/1100M be generated for confirmation. Otherwise freeze failure, do not use confirmation identities, and do not tune 1080M."
+}

@@ -1,0 +1,20 @@
+{
+  "experiment": "P8c VFT hard-negative logit-cap development",
+  "frozen_before_generation": true,
+  "preregister": "configs/p8c_vft_hard_negative_logit_cap_preregister_20260803.json",
+  "preregister_sha256": "b486976e02eee0604a968b653615e5f4114b751b1b707eb93d1b094db02e283e",
+  "runner": "cj0724/p8c_vft_hard_negative_logit_cap.py",
+  "runner_sha256": "0ff8baf5bbb310339c075bebcc55436898128bff74763abae3d40bdc142e832f",
+  "audit_runner": "cj0724/audit_p8c_vft_hard_negative_logit_cap.py",
+  "audit_runner_sha256": "c34e3a785bad589c1d223fb6afacda38dc39a666700004b3b8e01b95118cf15c",
+  "generator": "matlab/generate_p8c_vft_hard_negative_logit_cap_data.m",
+  "generator_sha256": "6b5cf1e59cefbc22a9480f0a9394bd885d1e50ad4387c2a71f970714d5ebeeb7",
+  "tests": {
+    "cap_loss": {"path": "tests/test_p8c_vft_hard_negative_logit_cap.py", "sha256": "7744c67288f5a5ce0478075fb0ac0e891d8f1fcb805404dffb3e0175176bbbdc"},
+    "identity_audit": {"path": "tests/test_audit_p8c_vft_hard_negative_logit_cap.py", "sha256": "caa2ee36b39168ad79a486c4d8c3c75f5ab09d406338950505975f58c5170a21"}
+  },
+  "immutability": "Any source, loss coefficient, cap, hard-negative definition, training budget, seed, selection rule, threshold rule or gate change requires a new preregistration and a new identity pool.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

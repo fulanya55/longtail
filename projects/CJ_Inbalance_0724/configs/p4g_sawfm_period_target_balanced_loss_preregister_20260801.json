@@ -1,0 +1,79 @@
+{
+  "experiment": "P4g zero-inference-cost SawFM-period target-balanced loss",
+  "research_question": "Can a frozen 2x training weight on the valid SawFM sweep-period regression term remove its replicated negative transfer while preserving the heterogeneous route's other 11 parameter gains and classification behavior?",
+  "evidence_role": "fresh_identity_single_mechanism_development",
+  "mechanism": {
+    "baseline_model": "mlcnn_iq_grouped_task_routed",
+    "candidate_model": "mlcnn_iq_grouped_task_routed_saw_loss2",
+    "architecture_difference": "none",
+    "inference_difference": "none",
+    "single_training_change": "SawFM sweep-period valid SmoothL1 term weight is 2.0 instead of 1.0",
+    "other_target_weights": 1.0,
+    "weighted_loss_normalization": "sum(weighted valid element losses) divided by sum(valid element weights)",
+    "fixed_weight_selection": "chosen before reading any P4g sample or result; no weight sweep is permitted"
+  },
+  "prior_evidence_boundary": {
+    "p4c_p4d": "frozen positive aggregate evidence and SawFM failure attribution only",
+    "p4e_p4f": "frozen failed fallback evidence only",
+    "sample_level_predictions_reused": false,
+    "prior_checkpoints_reused": false
+  },
+  "data": {
+    "generator_seed": 710000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "identity_key": "receiver_noise_seed",
+    "split_seed": 20260801,
+    "role_counts_per_combination": {
+      "train": 75,
+      "early": 10,
+      "calibration": 5,
+      "tune": 5,
+      "confirm": 5
+    },
+    "required_overlap_with_root_and_all_p4b_through_p4f": 0,
+    "test_generation": "train split only"
+  },
+  "training": {
+    "model_seeds": [6041, 6042, 6043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter",
+    "paired_batch_order": "same model seed and independently seeded DataLoader generator"
+  },
+  "validity_gates": {
+    "baseline_and_candidate_state_dict_schema_identical": true,
+    "baseline_and_candidate_parameter_count_identical": true,
+    "baseline_and_candidate_inference_graph_identical": true,
+    "all_12_confirm_targets_finite_and_variable": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true
+  },
+  "promotion_gates": {
+    "each_seed_sawfm_period_absolute_nmae_improvement_vs_baseline_at_least": 0.015,
+    "mean_sawfm_period_absolute_nmae_improvement_vs_baseline_at_least": 0.025,
+    "each_seed_sawfm_period_pearson_not_lower_than_baseline": true,
+    "each_seed_full12_macro_nmae_worsening_at_most": 0.003,
+    "mean_full12_macro_nmae_not_worse": true,
+    "each_seed_macro_aupr_drop_at_most": 0.003,
+    "each_seed_subset_accuracy_drop_at_most": 0.03,
+    "no_other_target_worse_in_3_of_3_seeds_by_more_than_absolute_nmae": 0.02,
+    "parameter_count_difference": 0,
+    "inference_graph_difference": 0
+  },
+  "stop_rule": "Do not tune the multiplier on seed710000000. If any primary SawFM-period gate fails, stop supervised target-reweighting for this target and retain P4c/P4d as the aggregate heterogeneous-route result with an explicit SawFM limitation.",
+  "next_if_pass": "Freeze the 2x loss method and run two new generator seeds without training, calibration, or threshold changes; then perform five-seed and strict equal-compute confirmation.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,24 @@
+{
+  "experiment": "P3o-O adjacent-peak relation ordinal MFT-count screen",
+  "outcome_date": "2026-08-03",
+  "summary": "outputs/p3oo_adjacent_peak_relation_development_20260803/summary.json",
+  "summary_sha256": "0fa343a312f1b3555756f8fc942f484cb7873c440217c11c3a4782ac1692a435",
+  "development_passed": false,
+  "verdict": "stop_no_confirmation_data",
+  "failed_gates": [
+    "each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least_0p05",
+    "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least_0p03",
+    "each_seed_C1_ID_control_and_low_count_pearson_at_least_0p30",
+    "each_seed_C1_ultra_close_mae_not_worse_than_C0"
+  ],
+  "confirmation_generated": false,
+  "confirmation_opened": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false,
+  "forbidden_follow_up": [
+    "tune adjacent relation channels", "tune peak rule", "tune network width",
+    "tune loss or training schedule on 1760M/1770M", "generate P3o-O confirmation",
+    "attach a P3o-O expert"
+  ]
+}

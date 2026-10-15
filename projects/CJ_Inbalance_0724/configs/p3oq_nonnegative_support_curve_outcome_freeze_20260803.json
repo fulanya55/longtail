@@ -1,0 +1,15 @@
+{
+  "experiment": "P3o-Q global nonnegative in-phase support-curve MFT-count screen",
+  "outcome_date": "2026-08-03",
+  "summary": "outputs/p3oq_nonnegative_support_curve_development_20260803/summary.json",
+  "summary_sha256": "a591923813a60d85d70416b59fcb3486f7f549786e2aa099cc6588f91117203f",
+  "development_passed": false,
+  "verdict": "stop_no_confirmation_data",
+  "failed_gates": ["each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least_0p05", "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least_0p03"],
+  "confirmation_generated": false,
+  "confirmation_opened": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false,
+  "forbidden_follow_up": ["tune support curve", "tune support selection", "tune peak rule/width/loss/schedule on 1840M/1850M", "generate P3o-Q confirmation", "attach a P3o-Q expert"]
+}

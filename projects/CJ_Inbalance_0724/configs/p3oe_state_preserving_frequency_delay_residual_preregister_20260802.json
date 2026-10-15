@@ -1,0 +1,38 @@
+{
+  "experiment": "P3o-E state-preserving frozen frequency delay parameter residual",
+  "research_question": "Can a delay-peak parameter residual improve full twelve-parameter sensing while preserving every selected local time-frequency recognition logit and BatchNorm buffer exactly throughout residual training?",
+  "hypothesis": "Keeping the complete F backbone in evaluation state during residual optimization prevents the P3o-D normalization-state leak, so any parameter change is causally confined to the posterior-conditioned delay residual.",
+  "identity_protocol": {
+    "train_seed": 1180000000,
+    "development_seed": 1190000000,
+    "reserved_confirmation_seeds": [1200000000, 1210000000],
+    "samples_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_pairing": "receiver_noise_seed grouped across regime and power views",
+    "forbidden": ["P3o-D 1070M/1080M/1090M/1100M identities", "test generation", "test opening", "locked test"]
+  },
+  "methods": {
+    "F_base": "Local STFT plus adjacent-frame phase-increment backbone, trained with BCEWithLogits plus 0.1 masked SmoothL1 and selected solely on early identities.",
+    "E_state_preserving_residual": "Freeze every F parameter and force the whole F module to eval whenever the side branch enters train mode. A delay-peak encoder predicts a classwise residual, multiplied by detached sigmoid(F logits), and adds it only to F parameter prediction. No recognition logit, recognition threshold, F BatchNorm buffer, or F parameter is trainable or mutable during side training."
+  },
+  "training": {
+    "base": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "parameter_weight": 0.1, "gradient_clip_norm": 5.0, "checkpoint": "C_joint: maximum early macro-AUPR among epochs with oracle parameter NMAE <= 1.01 times minimum"},
+    "residual": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "parameter_weight": 0.1, "gradient_clip_norm": 5.0, "checkpoint": "minimum early oracle parameter NMAE; recognition path is fixed"},
+    "calibration": "Fit each F threshold vector only on its calibration identities, then reuse that vector verbatim for E. No development selection or recalibration is permitted."
+  },
+  "model_seeds": [2051, 2052, 2053],
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "post_optimizer_step_F_logits_bitwise_equal_to_base_and_F_buffers_bitwise_unchanged": true,
+    "all_seeds_base_safe_calibration_feasible_and_development_maximum_cell_fpr_at_most_0p10": true,
+    "all_seeds_base_overall_isrj_recall_at_least_0p85_and_25db_recall_at_least_0p78": true,
+    "all_seeds_residual_oracle_and_predicted_gate_parameter_nmae_ratio_vs_base_at_most_0p98": true,
+    "all_seeds_residual_miss_penalty_and_worst_combination_nonworse_vs_base": true,
+    "all_seeds_residual_mft_and_isrj_oracle_nmae_ratio_vs_base_at_most_0p99": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "decision_rule": "Only if every gate passes may 1200M and 1210M be generated for two fresh confirmations. Any failure permanently stops this exact side-residual variant; no loss, width, residual scale, checkpoint, threshold, base architecture, or 1190M result may be tuned."
+}

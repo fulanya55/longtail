@@ -1,0 +1,8 @@
+{
+  "access_authorized": false,
+  "authorized_only_after_all_development_gates": true,
+  "failure_still_consumes_test": true,
+  "required_started_guard": "test_v3_execution_started.json",
+  "sealed_at_utc": "2026-07-31T14:35:09.485027+00:00",
+  "test_v3_sha256": "81e6e6eee295d7c36bdc7e84327189e496cfa489cf9c81199b40d37be22eb5f2"
+}

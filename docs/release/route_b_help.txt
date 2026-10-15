@@ -1,0 +1,38 @@
+usage: train.py [-h] [--data-file DATA_FILE] --model
+                {complex1d,iq_grouped,efficientnet_b0_1d,efficientnet_b1_1d,efficientnet_b1_moe3_1d,efficientnet_b1_vft_residual_moe_1d,convnext_tiny_1d,legacy_mlcnn,legacy_resnet34,legacy_shufflenetv2,legacy_mobilenetv2,legacy_effnet_v1,legacy_effnet_v2,legacy_effnet_v3,legacy_effnet_2d_iqm}
+                [--output-root OUTPUT_ROOT] [--epochs EPOCHS]
+                [--batch-size BATCH_SIZE] [--workers WORKERS] [--width WIDTH]
+                [--dropout DROPOUT] [--head-mode {unified,native}]
+                [--head-dim HEAD_DIM]
+                [--legacy-attention {se,eca,cbam,coordatt,sk,sk_eca,pcaf,gc,none}]
+                [--learning-rate LEARNING_RATE] [--weight-decay WEIGHT_DECAY]
+                [--validation-fraction VALIDATION_FRACTION]
+                [--threshold THRESHOLD] [--seed SEED] [--device DEVICE]
+                [--max-train-samples MAX_TRAIN_SAMPLES]
+                [--max-val-samples MAX_VAL_SAMPLES]
+
+Reproducible supervised training for the two controlled I/Q interface models.
+
+options:
+  -h, --help            show this help message and exit
+  --data-file DATA_FILE
+  --model {complex1d,iq_grouped,efficientnet_b0_1d,efficientnet_b1_1d,efficientnet_b1_moe3_1d,efficientnet_b1_vft_residual_moe_1d,convnext_tiny_1d,legacy_mlcnn,legacy_resnet34,legacy_shufflenetv2,legacy_mobilenetv2,legacy_effnet_v1,legacy_effnet_v2,legacy_effnet_v3,legacy_effnet_2d_iqm}
+  --output-root OUTPUT_ROOT
+  --epochs EPOCHS
+  --batch-size BATCH_SIZE
+  --workers WORKERS
+  --width WIDTH
+  --dropout DROPOUT
+  --head-mode {unified,native}
+  --head-dim HEAD_DIM
+  --legacy-attention {se,eca,cbam,coordatt,sk,sk_eca,pcaf,gc,none}
+                        Attention used only by legacy_effnet_v3; other
+                        backbones ignore it.
+  --learning-rate LEARNING_RATE
+  --weight-decay WEIGHT_DECAY
+  --validation-fraction VALIDATION_FRACTION
+  --threshold THRESHOLD
+  --seed SEED
+  --device DEVICE
+  --max-train-samples MAX_TRAIN_SAMPLES
+  --max-val-samples MAX_VAL_SAMPLES

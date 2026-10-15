@@ -1,0 +1,62 @@
+{
+  "experiment": "P4b fresh-identity heterogeneous task-route confirmation",
+  "research_question": "Does the frozen MLCNN classification plus IQ-Grouped parameter route retain its full-12-parameter advantage over MLCNN-global on entirely new receiver-noise identities?",
+  "evidence_role": "fresh_identity_mechanism_confirmation_development",
+  "single_changed_axis": "receiver_noise_seed identities; model structure, optimizer, losses, checkpoint rule and thresholds procedure remain frozen from P4a",
+  "data": {
+    "generator_seed": 510000000,
+    "power_db": 30,
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "split_seed": 20260801,
+    "role_counts_per_combination": {
+      "train": 75,
+      "early": 10,
+      "calibration": 5,
+      "tune": 5,
+      "confirm": 5
+    },
+    "identity_key": "receiver_noise_seed",
+    "required_overlap_with_root_and_all_prior_generated_roles": 0,
+    "test_generation": "train split only; no test MAT may be generated or opened"
+  },
+  "models": {
+    "C0_shared": "legacy_mlcnn_global",
+    "C1_heterogeneous": "mlcnn_iq_grouped_task_routed"
+  },
+  "training": {
+    "model_seeds": [3041, 3042, 3043],
+    "profile": "cos_lr1e4_wd1e4",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter",
+    "threshold_calibration": "per-class F1 grid on calibration role only"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "each_seed_route_parameter_macro_nmae_reduction_vs_shared_at_least": 0.04,
+    "three_of_three_parameter_improvement_positive": true,
+    "mean_route_parameter_macro_nmae_reduction_vs_shared_at_least": 0.05,
+    "each_seed_route_macro_aupr_drop_vs_shared_at_most": 0.003,
+    "each_seed_route_subset_accuracy_drop_vs_shared_at_most": 0.03,
+    "each_seed_route_parameter_macro_pearson_not_lower_than_shared": true,
+    "confirm_role_contains_all_63_combinations": true
+  },
+  "stop_rule": "Do not change data size, power, split, model, schedule, checkpoint objective or gates after opening the confirm role. If a critical gate fails, do not tune on seed510000000; retain P4a as optimization-seed evidence only.",
+  "next_if_pass": "Freeze P4b and run two completely new generator seeds as no-tuning confirmation, then add a strictly MAC-matched shared-backbone control.",
+  "evidence_boundary": "Fresh synthetic receiver-noise identities at 30 dB only; not nine-power, parameter OOD, long-tail, composition-disjoint or locked-test evidence.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

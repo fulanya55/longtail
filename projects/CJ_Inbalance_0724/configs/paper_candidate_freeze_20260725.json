@@ -1,0 +1,64 @@
+{
+  "freeze_id": "route_b_task_router_plus_saw_period_20260725",
+  "candidate": {
+    "classification": "MLCNN branch from mlcnn_iq_grouped_task_routed parameter-objective checkpoint",
+    "parameter_base": "IQ-Grouped branch from the same task-routed checkpoint",
+    "promoted_attachment": "SawFM sweep_period sequence specialist replaces parameter [SawFM, sweep_period] only",
+    "rejected_attachments": [
+      "MFT delay-peak ordinal specialist",
+      "VFT instantaneous-frequency specialist"
+    ]
+  },
+  "training": {
+    "seeds": [2041, 2042, 2043],
+    "classification_loss": "BCEWithLogits",
+    "parameter_loss": "positive-label AND parameter-mask gated SmoothL1 on train-fitted z-score targets",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "scheduler": "2-epoch linear warmup then cosine",
+    "parameter_weight": 0.1,
+    "thresholds": "per-class F1 grid 0.05:0.01:0.95 on calibration role only",
+    "checkpoint_objective": "minimum early-stop parameter loss"
+  },
+  "development_roles": {
+    "split_seed": 20260724,
+    "train_samples": 18900,
+    "early_stop_samples": 2520,
+    "calibration_samples": 1260,
+    "tune_samples": 1260,
+    "confirm_samples": 1260,
+    "confirm_indices_sha256": "b28b1a74758aa6aac202790d648605f385fad2708c9e718db9b64d7a34c5a2fc"
+  },
+  "statistics": {
+    "paired_bootstrap_replicates": 2000,
+    "bootstrap_seed": 20260725,
+    "bootstrap_unit": "paired confirm sample within seed; mean delta across three seeds",
+    "confidence_interval": "percentile 95%",
+    "end_to_end_gate": "predicted class threshold",
+    "miss_penalty": "normalized absolute error 1 for missed oracle-valid parameter"
+  },
+  "specialist_promotion_gate": {
+    "relative_mae_reduction_vs_training_median_minimum": 0.1,
+    "pearson_correlation_minimum": 0.3,
+    "same_positive_direction_required": "3/3 seeds"
+  },
+  "identity_safe_power": {
+    "identity_key": "receiver_noise_seed",
+    "evaluation_role": "root confirm identities only",
+    "levels_db": [10, 15, 20, 25, 30, 35, 40, 45, 50]
+  },
+  "locked_test_policy": {
+    "currently_used": false,
+    "authorization_status": "not_requested_due_to_failed_power_robustness_gate",
+    "allowed_uses": 1,
+    "no_post_test_tuning": true,
+    "required_reporting": [
+      "all six label metrics",
+      "oracle and predicted-gate parameter metrics",
+      "miss-penalty parameter NMAE",
+      "per-target metrics",
+      "prediction artifacts and receipt hashes"
+    ]
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "experiment": "P3o-P complex-coherence sparse-event ordinal MFT-count screen",
+  "frozen_at": "2026-08-03",
+  "preregister_sha256": "10e16b6d56298eb4161c388b93a351ca3f7bc18631802ca30067f3f2c808002e",
+  "implementation_sha256": "89d9505ab0be24f52fd9459d5d0f4557b7e89b231270d2e7b25a491b5f42c96c",
+  "audit_implementation_sha256": "fb317c19a146be414f79c2ffb0f2aa306cef0efb429f9ac8f260084f537216ce",
+  "generator_sha256": "3f67089d2592c53e3f314e5022496c62864f2bcb7f096a96259b97e695bf9ae8",
+  "p3om_dependency_sha256": "809cd9446c768ed990595d96d76c2d755a946afd84eea8108969055e9d7f7c6c",
+  "p3oo_model_dependency_sha256": "532474179f627b75d81dfac412a664977b4adc358a386600d62ddad9d2a34f07",
+  "data": {"prefix": "p3op_complex_coherence", "train_seed": 1800000000, "development_seed": 1810000000, "reserved_confirmation_seeds": [1820000000, 1830000000], "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers": [25, 35, 50], "samples_per_pattern": 33, "execution": "one regime-power transaction per MATLAB process"},
+  "model": {"seeds": [2321, 2322, 2323], "C0": "magnitude sparse events plus zero coherence", "C1": "magnitude sparse events plus complex coherence", "parameter_count": "exactly equal", "loss": "ordinal BCE plus 0.05 monotonicity"},
+  "forbidden_post_freeze_changes": ["coherence descriptors", "peak rule", "model width", "loss", "optimizer", "training schedule", "selection", "development identities"],
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

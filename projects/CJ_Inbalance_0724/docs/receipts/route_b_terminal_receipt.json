@@ -1,0 +1,225 @@
+{
+  "stage": "R0",
+  "status": "verified",
+  "project": "E:\\LJQ_code\\CJ_Inbalance_0724",
+  "data_audit": {
+    "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\closedset_6class_train.mat",
+    "sha256": "2e9afdf1999452b6635038c52457f2b44b28f98aec422d87576e5ad76135d50e",
+    "shape": {
+      "data_legacy": [
+        6000,
+        25200
+      ],
+      "label_selected": [
+        6,
+        25200
+      ],
+      "parameter_values": [
+        79,
+        25200
+      ],
+      "parameter_mask": [
+        79,
+        25200
+      ],
+      "receiver_noise_seed": [
+        1,
+        25200
+      ]
+    },
+    "labels": {
+      "class_names": [
+        "FMB",
+        "SawFM",
+        "SinFM",
+        "MFT",
+        "VFT",
+        "ISRJ"
+      ],
+      "sample_count": 25200,
+      "positive_counts": [
+        12800,
+        12800,
+        12800,
+        12800,
+        12800,
+        12800
+      ],
+      "combination_count": 63,
+      "minimum_combination_count": 400,
+      "maximum_combination_count": 400
+    },
+    "identity": {
+      "count": 25200,
+      "unique": 25200,
+      "sha256": "3ddc040acb60074409bcff22d4ab250bf7c1bc4154d021ffb50139fe109dd4d1"
+    },
+    "parameter_contract": {
+      "selected_parameter_count": 12,
+      "valid_rule": "label=1 AND parameter_mask=1 AND target finite",
+      "valid_count": 153600,
+      "negative_mask_count": 0,
+      "all_valid_finite": true,
+      "rows": [
+        {
+          "class_name": "FMB",
+          "parameter": "JNR",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 10.00040686264274,
+          "maximum": 29.99891572644133,
+          "range": 19.99850886379859
+        },
+        {
+          "class_name": "FMB",
+          "parameter": "interference_bandwidth",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 7500000.0,
+          "maximum": 9993333.333333334,
+          "range": 2493333.333333334
+        },
+        {
+          "class_name": "SawFM",
+          "parameter": "JNR",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 10.000789554743715,
+          "maximum": 29.999289051181325,
+          "range": 19.99849949643761
+        },
+        {
+          "class_name": "SawFM",
+          "parameter": "sweep_period",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 2.0003271253239805e-05,
+          "maximum": 7.999339231994719e-05,
+          "range": 5.9990121066707386e-05
+        },
+        {
+          "class_name": "SinFM",
+          "parameter": "JNR",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 10.000428814077436,
+          "maximum": 29.998558269386702,
+          "range": 19.998129455309268
+        },
+        {
+          "class_name": "SinFM",
+          "parameter": "frequency_deviation",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 1000415.3801139089,
+          "maximum": 2999724.561083951,
+          "range": 1999309.180970042
+        },
+        {
+          "class_name": "MFT",
+          "parameter": "JNR",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 10.00050630447239,
+          "maximum": 29.998517195765146,
+          "range": 19.998010891292758
+        },
+        {
+          "class_name": "MFT",
+          "parameter": "num_targets",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 3.0,
+          "maximum": 8.0,
+          "range": 5.0
+        },
+        {
+          "class_name": "VFT",
+          "parameter": "JNR",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 10.003218082303253,
+          "maximum": 29.999216815554423,
+          "range": 19.99599873325117
+        },
+        {
+          "class_name": "VFT",
+          "parameter": "Doppler",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 1000.769121012904,
+          "maximum": 6999.315383360179,
+          "range": 5998.546262347275
+        },
+        {
+          "class_name": "ISRJ",
+          "parameter": "JNR",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 10.002336076439,
+          "maximum": 29.99757702014313,
+          "range": 19.99524094370413
+        },
+        {
+          "class_name": "ISRJ",
+          "parameter": "sample_width",
+          "valid_count": 12800,
+          "finite": true,
+          "minimum": 5e-06,
+          "maximum": 2e-05,
+          "range": 1.5000000000000002e-05
+        }
+      ]
+    },
+    "locked_test_used": false
+  },
+  "commands": [
+    {
+      "command": [
+        "D:\\anaconda3\\envs\\PY10\\python.exe",
+        "-m",
+        "compileall",
+        "-q",
+        "cj0724",
+        "scripts"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "elapsed_seconds": 0.10097949999908451,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "D:\\anaconda3\\envs\\PY10\\python.exe",
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "elapsed_seconds": 37.69926389999455,
+      "stdout_tail": "........................................................................ [ 22%]\n........................................................................ [ 44%]\n........................................................................ [ 66%]\n........................................................................ [ 88%]\n.......................................                                  [100%]\n============================== warnings summary ===============================\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\n  D:\\anaconda3\\envs\\PY10\\lib\\site-packages\\sklearn\\metrics\\_ranking.py:891: UserWarning: No positive class found in y_true, recall is set to one for all thresholds.\n    warnings.warn(\n\ntests/test_p3o_low_power_attribution.py::test_predicted_gate_uses_each_class_threshold_not_isrj_for_all_parameters\n  E:\\LJQ_code\\CJ_Inbalance_0724\\cj0724\\multitask.py:832: RuntimeWarning: Mean of empty slice\n    \"oracle_macro_pearson_r\": float(np.nanmean(correlations)),\n\n-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html\n327 passed, 9 warnings in 36.90s\n",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "D:\\anaconda3\\envs\\PY10\\python.exe",
+        "scripts/smoke_real_data.py"
+      ],
+      "returncode": 0,
+      "passed": true,
+      "elapsed_seconds": 4.853286900004605,
+      "stdout_tail": "device=cuda; iq=(2, 2, 3000); label=(2, 6)\ncomplex1d: logits=(2, 6), loss=0.716267, parameters=5382\niq_grouped: logits=(2, 6), loss=0.701249, parameters=6998\nefficientnet_b0_1d: logits=(2, 6), loss=0.688077, parameters=3872098\nefficientnet_b1_1d: logits=(2, 6), loss=0.687578, parameters=6321094\nefficientnet_b1_moe3_1d: logits=(2, 6), loss=0.647978, parameters=12652498\nefficientnet_b1_vft_residual_moe_1d: logits=(2, 6), loss=0.739969, parameters=6676424\nconvnext_tiny_1d: logits=(2, 6), loss=0.637506, parameters=26768550\nlegacy_mlcnn: logits=(2, 6), loss=0.709462, parameters=12646886\nlegacy_resnet34: logits=(2, 6), loss=0.744188, parameters=7224390\nlegacy_shufflenetv2: logits=(2, 6), loss=0.751317, parameters=1250562\nlegacy_mobilenetv2: logits=(2, 6), loss=0.692313, parameters=2195654\nlegacy_effnet_v1: logits=(2, 6), loss=0.612489, parameters=3616642\nlegacy_effnet_v2: logits=(2, 6), loss=0.579468, parameters=3781122\nlegacy_effnet_v3: logits=(2, 6), loss=0.738009, parameters=3618570\nlegacy_effnet_2d_iqm: logits=(2, 6), loss=0.676702, parameters=4015234\n",
+      "stderr_tail": ""
+    }
+  ],
+  "locked_test_used": false,
+  "test_generated": false,
+  "test_opened": false,
+  "notes": [
+    "No model training or threshold fitting was performed.",
+    "The active default MAT path was repaired from a historical C: path to the E: research root.",
+    "Historical D-drive path tests now construct paths without opening archived files; execution still validates file existence."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "experiment": "P3j multi-teacher consensus distilled ISRJ student",
+  "research_question": "Can consensus supervision from all three frozen P1n teachers remove the seed-specific negative transfer seen in P3i while preserving single-main inference?",
+  "evidence_role": "fresh_identity_safe_consensus_distillation_development",
+  "data": {"training_identity_seed": 590000000, "development_identity_seed": 610000000, "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers_db": [25, 35, 50]},
+  "teacher_target": "mean ISRJ probability of frozen P1n seeds 2041/2042/2043; soft-loss weight decreases with teacher standard deviation",
+  "student_inference": "one seed-matched frozen MLCNN plus one compact shared-feature residual student; no teacher or UNet",
+  "loss": "truth BCE + 0.5 uncertainty-weighted consensus BCE + 0.25 consensus-change BCE",
+  "hyperparameters": {"lr": 0.0003, "weight_decay": 0.0001, "epochs": 20, "patience": 5, "batch_size": 128, "model_seeds": [2041, 2042, 2043]},
+  "promotion_gates": {"each_seed_retain_at_least_90_percent_own_teacher_recall_gain": true, "maximum_cell_fpr_at_most": 0.10, "each_seed_macro_aupr_delta_vs_own_teacher_at_least": -0.005, "three_of_three_positive_gain": true, "identity_overlap_zero": true},
+  "stop_rule": "If consensus distillation fails, freeze the compact-student branch and treat separated-waveform teacher information as not reproducible by the current cheap representation.",
+  "locked_test_used": false
+}

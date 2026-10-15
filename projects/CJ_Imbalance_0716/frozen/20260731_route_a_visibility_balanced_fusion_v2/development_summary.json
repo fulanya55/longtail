@@ -1,0 +1,294 @@
+{
+  "aggregate": {
+    "B0_FrozenC6": {
+      "macro_aupr": {
+        "bootstrap_95_ci": [
+          0.8683760880642615,
+          0.8841829064895608
+        ],
+        "count": 5,
+        "mean": 0.8768070334208049,
+        "std": 0.010178066844966029
+      },
+      "macro_f1": {
+        "bootstrap_95_ci": [
+          0.755759321603318,
+          0.7803186385597961
+        ],
+        "count": 5,
+        "mean": 0.7692815683986598,
+        "std": 0.015864033129665358
+      },
+      "residual_abs_max": {
+        "bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "count": 5,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "residual_abs_mean": {
+        "bootstrap_95_ci": [
+          0.0,
+          0.0
+        ],
+        "count": 5,
+        "mean": 0.0,
+        "std": 0.0
+      },
+      "saw_absent_macro_f1": {
+        "bootstrap_95_ci": [
+          0.812852947308427,
+          0.834843374922459
+        ],
+        "count": 5,
+        "mean": 0.8254144812195208,
+        "std": 0.014402187419631028
+      },
+      "saw_present_macro_f1": {
+        "bootstrap_95_ci": [
+          0.7023124993366131,
+          0.7330220353062751
+        ],
+        "count": 5,
+        "mean": 0.7179562692061088,
+        "std": 0.01967987727341077
+      },
+      "target_negative_fpr": {
+        "bootstrap_95_ci": [
+          0.1865442436448669,
+          0.20524248748885093
+        ],
+        "count": 5,
+        "mean": 0.19622294711111296,
+        "std": 0.012025724885654798
+      },
+      "target_strong_recall": {
+        "bootstrap_95_ci": [
+          0.8255884318964555,
+          0.838489434284211
+        ],
+        "count": 5,
+        "mean": 0.8313600593909245,
+        "std": 0.008409246522231078
+      },
+      "target_weak_auroc": {
+        "bootstrap_95_ci": [
+          0.5916105451393928,
+          0.6297226664687382
+        ],
+        "count": 5,
+        "mean": 0.6106666058040655,
+        "std": 0.024312770401222455
+      },
+      "target_weak_recall": {
+        "bootstrap_95_ci": [
+          0.3068498206260956,
+          0.35910084281073174
+        ],
+        "count": 5,
+        "mean": 0.3317647549611312,
+        "std": 0.03119962488632186
+      }
+    },
+    "E1_VTSE_Bounded": {
+      "macro_aupr": {
+        "bootstrap_95_ci": [
+          0.8742472249227934,
+          0.8907410617468955
+        ],
+        "count": 5,
+        "mean": 0.8831419836329898,
+        "std": 0.010702772700186028
+      },
+      "macro_f1": {
+        "bootstrap_95_ci": [
+          0.7643300321572306,
+          0.792563632334
+        ],
+        "count": 5,
+        "mean": 0.7797625342727635,
+        "std": 0.019004065525420756
+      },
+      "residual_abs_max": {
+        "bootstrap_95_ci": [
+          0.49891088008880613,
+          0.499695748090744
+        ],
+        "count": 5,
+        "mean": 0.4993146061897278,
+        "std": 0.0005036935441025953
+      },
+      "residual_abs_mean": {
+        "bootstrap_95_ci": [
+          0.08243325799703598,
+          0.09572071582078934
+        ],
+        "count": 5,
+        "mean": 0.08857067525386811,
+        "std": 0.008132896352906215
+      },
+      "saw_absent_macro_f1": {
+        "bootstrap_95_ci": [
+          0.818130701133121,
+          0.8461000231103005
+        ],
+        "count": 5,
+        "mean": 0.8341096486357953,
+        "std": 0.017910642144784866
+      },
+      "saw_present_macro_f1": {
+        "bootstrap_95_ci": [
+          0.7111415666691101,
+          0.746428221307484
+        ],
+        "count": 5,
+        "mean": 0.7301787254749218,
+        "std": 0.02215971947324159
+      },
+      "target_negative_fpr": {
+        "bootstrap_95_ci": [
+          0.1855875231575909,
+          0.20371236079237692
+        ],
+        "count": 5,
+        "mean": 0.19570834924035557,
+        "std": 0.011806932313161558
+      },
+      "target_strong_recall": {
+        "bootstrap_95_ci": [
+          0.8464484236475484,
+          0.8631404314782836
+        ],
+        "count": 5,
+        "mean": 0.855796690561297,
+        "std": 0.010743676882550604
+      },
+      "target_weak_auroc": {
+        "bootstrap_95_ci": [
+          0.6135573389386586,
+          0.6582038269017102
+        ],
+        "count": 5,
+        "mean": 0.6358805829201845,
+        "std": 0.028841539229430193
+      },
+      "target_weak_recall": {
+        "bootstrap_95_ci": [
+          0.3358017515856407,
+          0.40800599081870875
+        ],
+        "count": 5,
+        "mean": 0.3722486980896459,
+        "std": 0.04651731302524587
+      }
+    }
+  },
+  "data_path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0731_v2\\closedset_6class_train.mat",
+  "data_sha256": "f05a7e30253b0c0fdf10d5040487cb6a6f089abcd48f9cbd6f9e467624498801",
+  "development_v2_used": true,
+  "experiment": "RouteA_VisibilityBalancedFusion_v2",
+  "locked_test_used": false,
+  "mean_deltas": {
+    "macro_aupr": 0.006334950212184909,
+    "macro_f1": 0.01048096587410372,
+    "residual_abs_max": 0.4993146061897278,
+    "residual_abs_mean": 0.08857067525386811,
+    "saw_absent_macro_f1": 0.008695167416274496,
+    "saw_present_macro_f1": 0.012222456268813131,
+    "target_negative_fpr": -0.0005145978707573606,
+    "target_strong_recall": 0.024436631170372626,
+    "target_weak_auroc": 0.0252139771161189,
+    "target_weak_recall": 0.040483943128514686
+  },
+  "next_action": "freeze_candidate_then_run_test_v2_once",
+  "paired_candidate_minus_c6": [
+    {
+      "macro_aupr": 0.005955088027138844,
+      "macro_f1": 0.009953421396914575,
+      "residual_abs_max": 0.4995918273925781,
+      "residual_abs_mean": 0.08649622648954391,
+      "saw_absent_macro_f1": 0.005029345500916715,
+      "saw_present_macro_f1": 0.014739534990740877,
+      "seed": 2039,
+      "target_negative_fpr": -0.006864098116408146,
+      "target_strong_recall": 0.023692361504227155,
+      "target_weak_auroc": 0.020700165544609628,
+      "target_weak_recall": 0.013344226579520668
+    },
+    {
+      "macro_aupr": 0.006857867048881694,
+      "macro_f1": 0.012948123339855844,
+      "residual_abs_max": 0.4993542730808258,
+      "residual_abs_mean": 0.08806386590003967,
+      "saw_absent_macro_f1": 0.012995291426141642,
+      "saw_present_macro_f1": 0.012840655207091989,
+      "seed": 2040,
+      "target_negative_fpr": -0.009507713495294584,
+      "target_strong_recall": 0.02075336258653193,
+      "target_weak_auroc": 0.029124926439367482,
+      "target_weak_recall": 0.049633739851131176
+    },
+    {
+      "macro_aupr": 0.0070548747501401055,
+      "macro_f1": 0.011966677421092031,
+      "residual_abs_max": 0.49903130531311035,
+      "residual_abs_mean": 0.08867007493972778,
+      "saw_absent_macro_f1": 0.009194434102056337,
+      "saw_present_macro_f1": 0.01468823254081253,
+      "seed": 2041,
+      "target_negative_fpr": 0.015132416603004822,
+      "target_strong_recall": 0.03462177142886669,
+      "target_weak_auroc": 0.02570496375139264,
+      "target_weak_recall": 0.05264210511643763
+    },
+    {
+      "macro_aupr": 0.006559977080885959,
+      "macro_f1": 0.012687650397196326,
+      "residual_abs_max": 0.49995186924934387,
+      "residual_abs_mean": 0.10114575922489166,
+      "saw_absent_macro_f1": 0.012449540654476898,
+      "saw_present_macro_f1": 0.013305042300560066,
+      "seed": 2042,
+      "target_negative_fpr": 0.0009239734361655982,
+      "target_strong_recall": 0.026926254493948587,
+      "target_weak_auroc": 0.030935474111353667,
+      "target_weak_recall": 0.06051592453641108
+    },
+    {
+      "macro_aupr": 0.0052469441538779416,
+      "macro_f1": 0.004848956815459826,
+      "residual_abs_max": 0.49864375591278076,
+      "residual_abs_mean": 0.07847744971513748,
+      "saw_absent_macro_f1": 0.003807225397780889,
+      "saw_present_macro_f1": 0.005538816304860195,
+      "seed": 2043,
+      "target_negative_fpr": -0.0022575677812544936,
+      "target_strong_recall": 0.016189405838288762,
+      "target_weak_auroc": 0.019604355733871093,
+      "target_weak_recall": 0.026283719559072882
+    }
+  ],
+  "promoted": true,
+  "promotion_gates": {
+    "four_of_five_positive_weak_gain": true,
+    "macro_aupr_noninferior": true,
+    "macro_f1_gain": true,
+    "residual_hard_bound": true,
+    "saw_present_noninferior": true,
+    "strong_recall_noninferior": true,
+    "target_fpr_cap": true,
+    "target_weak_auroc_gain": true,
+    "target_weak_recall_gain": true
+  },
+  "seeds": [
+    2039,
+    2040,
+    2041,
+    2042,
+    2043
+  ],
+  "status": "completed",
+  "test_v2_used": false
+}

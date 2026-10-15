@@ -1,0 +1,29 @@
+{
+  "status": "preregistered_waiting_for_explicit_authorization",
+  "candidates": ["E0", "E5", "A_final", "B_final"],
+  "candidate_definitions": {
+    "E0": "EfficientNet-B1 1D plus BCE baseline",
+    "E5": "permanently frozen E0 plus VFT matched-filter specialist",
+    "A_final": "E5 alias because E6 failed the preregistered throughput gate",
+    "B_final": "E5 plus fixed MFT and ISRJ class-specific physical experts"
+  },
+  "necessary_ablations": ["E5_plus_MFT", "E5_plus_ISRJ"],
+  "primary_comparison": "B_final_vs_E5",
+  "primary_metrics": ["macro_AUPR", "Hamming_loss"],
+  "secondary_metrics": ["macro_F1", "subset_accuracy", "per_label_AUPR", "per_label_FPR", "weak_component_recall"],
+  "statistics": {
+    "unit": "paired sample identity",
+    "confidence_interval": "paired identity bootstrap, 10000 replicates",
+    "seed_summary": "mean, population standard deviation, five paired seed deltas",
+    "exact_small_n_test": "two-sided sign-flip test over five seed deltas",
+    "parametric_support": "paired t-test, explicitly secondary"
+  },
+  "cost_audit": ["samples_per_second", "latency_multiplier_vs_E5", "model_bytes"],
+  "locked_test": {
+    "authorized": false,
+    "used": false,
+    "read_count_allowed_after_authorization": 1,
+    "execute_all_candidates_in_same_batch": true,
+    "post_read_tuning_forbidden": true
+  }
+}

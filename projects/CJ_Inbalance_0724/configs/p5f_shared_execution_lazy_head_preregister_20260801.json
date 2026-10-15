@@ -1,0 +1,58 @@
+{
+  "experiment": "P5f shared frozen-forward and lazy bounded-head execution",
+  "research_question": "Can the frozen five-model P5e JNR-only attachment execute the base multi-task forward once and evaluate the small attachment head only for samples with at least one frozen MFT/VFT/ISRJ positive decision, while preserving dense-reference outputs and reducing measured end-to-end latency?",
+  "evidence_role": "new_identity_three_seed_development_then_two_new_identity_confirmation_no_locked_test",
+  "single_changed_axis": "inference scheduling only: one shared frozen base forward plus union-positive lazy head evaluation replaces P5e's dense posterior/base double-forward plus dense head evaluation; weights, heads, thresholds, features, targets and attachment cells are unchanged",
+  "frozen_parent": {
+    "P5e_confirmation_result": "outputs/p5e_five_model_seed_bounded_jnr_20260801/five_model_confirmation/result.json",
+    "P5e_confirmation_result_sha256": "393dbb413f3f00f4d92226258654cf74a6aacdb6238d79561a4563a646b00b33",
+    "P5e_candidate_freeze": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "P5e_candidate_freeze_sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832",
+    "P5e_confirmation_passed": true,
+    "source_model_seeds": [3041, 3042, 3043, 3044, 3045],
+    "forbidden_changes": ["base/head weights", "thresholds", "normalizer", "analytic feature definition", "head width", "loss", "router", "power input", "batch-size selection"]
+  },
+  "dense_reference": {
+    "base_execution": "collect frozen posterior then collect full base parameter output",
+    "head_execution": "evaluate the frozen 64-hidden attachment on every sample",
+    "attachment": "write only frozen positive MFT/VFT/ISRJ JNR cells"
+  },
+  "candidate_execution": {
+    "base_execution": "one frozen model(iq) forward returns logits and normalized all-12 parameters",
+    "head_execution": "evaluate only samples with any frozen positive among MFT/VFT/ISRJ; scatter results only to their corresponding frozen positive cells",
+    "shared_features": "analytic physical features are collected once per identity/power view and reused across all five frozen model evaluations",
+    "not_an_architecture_claim": "this tests execution sharing, not a newly trained shared-backbone architecture"
+  },
+  "development_data": {
+    "generator_seeds": [970000000, 980000000, 990000000],
+    "powers_db": [10, 15, 20, 25, 30],
+    "samples_per_combination": 60,
+    "generated_split": "train only",
+    "paired_identity_key": "receiver_noise_seed",
+    "roles": "evaluation-only; no training, selection, calibration or threshold adjustment"
+  },
+  "development_gates": {
+    "all_five_model_dense_vs_candidate_hard_decisions_exactly_equal": true,
+    "all_five_model_dense_vs_candidate_target_parameter_max_abs_difference_at_most": 1e-06,
+    "all_five_model_dense_vs_candidate_oracle_and_predicted_gated_nmae_abs_difference_at_most": 1e-06,
+    "all_five_model_non_target_parameter_values_exactly_equal": true,
+    "all_three_data_seeds_p50_end_to_end_latency_ratio_candidate_over_dense_at_most": 0.9,
+    "all_three_data_seeds_report_union_positive_head_fraction_and_gpu_synchronized_timings": true
+  },
+  "benchmark": {
+    "device": "same CUDA device, fixed batch size 126, inference_mode",
+    "warmup_runs": 5,
+    "timed_repetitions": 15,
+    "timing": "CUDA synchronize before and after every timed repeat; report median, P10, P90 and dense/candidate ratio",
+    "cost_reporting": ["base forward calls", "head-evaluated rows", "head-union-positive fraction", "end-to-end latency"]
+  },
+  "stop_rule": "If any equivalence or latency gate fails, retain P5e only as dense bounded-attachment evidence. Do not alter batch size, threshold, head, feature, timing loop, or scheduling on P5f development identities, and do not generate/use confirmation identities.",
+  "confirmation_if_and_only_if_development_passes": {
+    "generator_seeds": [1010000000, 1020000000],
+    "same_frozen_execution_and_gates": true,
+    "decision": "Only a pass may support a narrow execution-feasibility claim; it still does not prove a new trained shared-backbone architecture."
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

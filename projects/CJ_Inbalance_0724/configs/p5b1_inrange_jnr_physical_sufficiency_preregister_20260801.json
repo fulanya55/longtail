@@ -1,0 +1,112 @@
+{
+  "experiment": "P5b1 in-range swept-JNR physical-sufficiency oracle",
+  "research_question": "Within the frozen 10-30 dB training range, does the mixed raw I/Q observation contain reproducible target-specific information sufficient to estimate the swept MFT, VFT and ISRJ JNR when the true active composition is supplied as oracle context?",
+  "evidence_role": "diagnostic_physical_sufficiency_only_not_a_deployment_candidate",
+  "parent_failure": {
+    "source": "outputs/p5b_frozen_route_nine_power_20260801/failure_audit.json",
+    "in_range_failures": [
+      "10 dB MFT.JNR",
+      "10 dB ISRJ.JNR"
+    ],
+    "fixed_group_entanglement_controls": [
+      "15-25 dB FMB.JNR",
+      "20 dB SinFM.JNR"
+    ],
+    "excluded_from_this_oracle": "35-50 dB results because they exceed the P4c 10-30 dB JNR training range"
+  },
+  "fresh_data": {
+    "generator_seed": 780000000,
+    "powers_db": [10, 15, 20, 25, 30],
+    "combinations": 63,
+    "identities_per_combination": 60,
+    "identities_per_power": 3780,
+    "paired_identity_key": "receiver_noise_seed",
+    "generated_split": "train only",
+    "required_overlap_with_root_and_all_p4b_through_p5b_identity_pools": 0,
+    "role_split_per_combination": {
+      "train": 36,
+      "early": 12,
+      "confirm": 12
+    },
+    "same_identity_role_at_all_powers": true
+  },
+  "oracle_targets": [
+    "MFT.JNR",
+    "VFT.JNR",
+    "ISRJ.JNR"
+  ],
+  "negative_and_protocol_controls": {
+    "VFT.JNR": "swept target without a P5b low-power systematic failure; detects indiscriminate probe claims",
+    "FMB_SawFM_SinFM_JNR": "fixed at 30 dB in this sweep and therefore evaluated only as generator/entanglement controls, not as variable-JNR sufficiency targets",
+    "constant_baseline": "target-specific train-role median without power input",
+    "power_value_not_provided": true
+  },
+  "probe_hierarchy": [
+    {
+      "name": "O0_constant",
+      "input": "target-specific train-role median",
+      "trainable": false
+    },
+    {
+      "name": "O1_analytic_composition",
+      "input": "fixed time/FFT/autocorrelation feature bank plus oracle six-bit composition",
+      "model": "ridge or one-hidden-layer MLP selected only on early",
+      "purpose": "test low-complexity physical separability"
+    },
+    {
+      "name": "O2_frozen_mlcnn_composition",
+      "input": "frozen P4c MLCNN embedding plus oracle composition",
+      "model": "small scalar heads",
+      "purpose": "test classification-feature sufficiency"
+    },
+    {
+      "name": "O3_frozen_iqgrouped_composition",
+      "input": "frozen P4c IQ-Grouped parameter embedding plus oracle composition",
+      "model": "small scalar heads",
+      "purpose": "test existing parameter-feature sufficiency"
+    },
+    {
+      "name": "O4_target_specific_iqgrouped_oracle",
+      "input": "raw I/Q plus oracle composition and target identity",
+      "model": "one width-24 IQ-Grouped extractor with three target-specific scalar heads",
+      "purpose": "upper-bound learned sufficiency without exceeding the existing parameter-backbone family"
+    }
+  ],
+  "training": {
+    "probe_seeds": [12041, 12042, 12043],
+    "power_balanced_batches": true,
+    "loss": "masked SmoothL1 on active finite target only",
+    "checkpoint_role": "early",
+    "conclusion_role": "confirm",
+    "maximum_epochs": 30,
+    "early_stopping_patience": 5,
+    "hyperparameter_search": "none beyond the preregistered O1 ridge-versus-one-hidden-layer early choice",
+    "classification_or_parameter_threshold_calibration": false
+  },
+  "sufficiency_gates_for_O4": {
+    "each_of_MFT_and_ISRJ_mean_confirm_nmae_reduction_vs_O0_at_least": 0.20,
+    "each_of_MFT_and_ISRJ_three_of_three_probe_seeds_positive": true,
+    "each_of_MFT_and_ISRJ_mean_confirm_pearson_at_least": 0.30,
+    "each_of_MFT_and_ISRJ_10db_confirm_nmae_reduction_vs_O0_at_least": 0.10,
+    "VFT_control_mean_confirm_nmae_not_worse_than_O0": true,
+    "no_target_has_confirm_worst_combination_nmae_worse_than_O0_by_more_than": 0.03,
+    "identity_clustered_bootstrap_gain_ci95_low_greater_than": 0.0
+  },
+  "interpretation_rules": {
+    "O1_passes": "simple physical statistics are sufficient; prefer an interpretable estimator over a deep expert",
+    "O2_or_O3_passes_but_O1_fails": "existing learned representation is sufficient; consider a bounded target head, not a new backbone",
+    "only_O4_passes": "raw signal is sufficient but existing representations are not; a target-specific expert is allowed for a new preregistered round",
+    "O4_fails": "physical sufficiency is not demonstrated; no deeper learned JNR expert may be constructed",
+    "fixed_group_control_failure": "record relative-power entanglement of the frozen multitask model; do not claim fixed 30 dB targets require a physical estimator"
+  },
+  "stop_rules": [
+    "Do not use P5b identities, predictions or target errors to train or select P5b1 probes.",
+    "Do not include 35-50 dB in probe selection or sufficiency claims.",
+    "Do not expose the nominal sweep power to a probe.",
+    "Do not deepen O4 or tune losses if its frozen gates fail.",
+    "A smoke or single seed validates code only and cannot establish sufficiency."
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

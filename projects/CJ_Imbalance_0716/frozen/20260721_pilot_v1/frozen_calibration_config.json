@@ -1,0 +1,5 @@
+{
+  "allow_locked_test": false,
+  "source_role": "calibration",
+  "temperature": "shared_scalar"
+}

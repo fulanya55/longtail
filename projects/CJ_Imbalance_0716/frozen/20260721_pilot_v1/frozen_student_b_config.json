@@ -1,0 +1,19 @@
+{
+  "allow_locked_test": false,
+  "method": "DAPS-CJNet-v2",
+  "supervised_parameter_weight": 0.1,
+  "teacher_momentum": [
+    0.99,
+    0.999
+  ],
+  "unsupervised_parameter_weight": 0.2,
+  "variants": [
+    "B0",
+    "B1",
+    "B2",
+    "B3",
+    "B4",
+    "B5",
+    "B6"
+  ]
+}

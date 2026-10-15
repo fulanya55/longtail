@@ -1,0 +1,15 @@
+{
+  "experiment": "P3o-Q global nonnegative in-phase support-curve MFT-count screen",
+  "frozen_at": "2026-08-03",
+  "preregister_sha256": "f502fab113842561d4bbaa01887749a4ee6d6a3c3628b59adf87ad9bc606f85d",
+  "implementation_sha256": "5757922edac32ee8bb477251a682304eb5959e283ccf70ea87db78f4bd61bbcc",
+  "audit_implementation_sha256": "fb317c19a146be414f79c2ffb0f2aa306cef0efb429f9ac8f260084f537216ce",
+  "generator_sha256": "9d8e7316d05b72ba1f120118dda6ae3f26bd7bc8704825210f7b841276c78f0f",
+  "p3om_dependency_sha256": "809cd9446c768ed990595d96d76c2d755a946afd84eea8108969055e9d7f7c6c",
+  "p3oo_model_dependency_sha256": "532474179f627b75d81dfac412a664977b4adc358a386600d62ddad9d2a34f07",
+  "p3op_raw_iq_dependency_sha256": "89d9505ab0be24f52fd9459d5d0f4557b7e89b231270d2e7b25a491b5f42c96c",
+  "data": {"prefix": "p3oq_nonnegative_support_curve", "train_seed": 1840000000, "development_seed": 1850000000, "reserved_confirmation_seeds": [1860000000, 1870000000], "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers": [25, 35, 50], "samples_per_pattern": 33, "execution": "one regime-power transaction per MATLAB process"},
+  "model": {"seeds": [2331, 2332, 2333], "C0": "sparse magnitude tokens plus zero global curve", "C1": "sparse magnitude tokens plus global nonnegative support curve", "parameter_count": "exactly equal", "loss": "ordinal BCE plus 0.05 monotonicity"},
+  "forbidden_post_freeze_changes": ["support curve", "support selection", "peak rule", "model width", "loss", "optimizer", "training schedule", "selection", "development identities"],
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

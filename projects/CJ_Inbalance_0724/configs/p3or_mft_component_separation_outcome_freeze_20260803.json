@@ -1,0 +1,17 @@
+{
+  "experiment": "P3o-R MFT component separability before count extraction",
+  "method_freeze": "configs/p3or_mft_component_separation_method_freeze_contractfix_20260803.json",
+  "summary": "outputs/p3or_mft_component_separation_development_20260803_contractfix/summary.json",
+  "summary_sha256": "8e3ad08b1b291683996877247730911475441c3455be8a469d305b19c29a89e1",
+  "status": "failed_frozen_development_gates",
+  "verdict": "stop_no_confirmation_data",
+  "decision": [
+    "Do not generate or use 1900000000 or 1910000000 confirmation identities.",
+    "Do not tune the separator width, waveform-loss weights, epoch count, checkpoint, count threshold, inverse filter, or power-specific treatment on 1880M/1890M.",
+    "Do not attach MFT count to C2, P1n, or a predicted-label-gated system."
+  ],
+  "reason": "All three seeds achieved high global waveform cosine but the frozen sparse inverse count output saturated at 8 for every development view, worsening MAE and eliminating correlation. This is not evidence for component-separation-based count extraction.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

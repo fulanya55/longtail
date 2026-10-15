@@ -1,0 +1,49 @@
+{
+  "experiment_id": "P2n-analytic-SawFM-period-full-system-development",
+  "registration_date": "2026-08-01",
+  "conditional_entry": "P2m promotion_passed must be true before any main-system prediction is produced.",
+  "frozen_inputs": {
+    "base_system": "P2a/P2k frozen MLCNN plus IQ-Grouped, lower-confidence ISRJ route and VFT expert",
+    "separator": "P2f S1 seed-matched checkpoint",
+    "analytic_period": "exact P2m FFT-ACF constants and selection rule",
+    "learned_comparator": "P2k frozen calibrated learned period head",
+    "threshold_or_model_refit_allowed": false
+  },
+  "development_data": {
+    "source": "same seed-2700000000 five-regime data used only for the preceding P2m physical gate",
+    "main_system_predictions_read_before_registration": false,
+    "powers_db": [25, 35, 50],
+    "regimes": ["ID_control", "near_low", "near_high", "far_low", "far_high"],
+    "model_seeds": [2041, 2042, 2043]
+  },
+  "variants": {
+    "S0_safe_route": "base IQ-Grouped parameters under frozen routed labels",
+    "S1_old_joint": "old raw-IQ SawFM learned head plus VFT expert",
+    "S2_P2k_learned": "separated learned SawFM head plus fixed affine calibration",
+    "S3_P2n_analytic": "same separated component plus fixed FFT-ACF period estimator"
+  },
+  "promotion_gates": {
+    "all_15_analytic_full_nmae_improvement_vs_safe_min": 0.05,
+    "all_15_analytic_full_nmae_improvement_vs_P2k_positive": true,
+    "each_regime_mean_full_nmae_improvement_vs_P2k_min": 0.002,
+    "each_regime_mean_miss_penalty_delta_vs_P2k_max": 0.0,
+    "each_regime_mean_worst_combo_delta_vs_P2k_max": 0.0,
+    "each_regime_identity_bootstrap_full_delta_vs_P2k_ci95_high_max": 0.0,
+    "classification_arrays_unchanged": true,
+    "other_11_parameter_outputs_unchanged": true
+  },
+  "statistics": {
+    "identity_grouped_bootstrap_replicates_per_regime": 500,
+    "report_per_power": true,
+    "report_per_regime": true,
+    "report_per_parameter": true
+  },
+  "stop_rule": "Failure does not permit changing the P2m peak rule on seed 2700000000. Use a new development seed for any reliability router or estimator change.",
+  "evidence_boundary": {
+    "development_only": true,
+    "confirmation_required_if_passed": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  }
+}

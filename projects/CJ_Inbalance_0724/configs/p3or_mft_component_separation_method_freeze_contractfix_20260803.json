@@ -1,0 +1,13 @@
+{
+  "experiment": "P3o-R MFT component separability before count extraction",
+  "supersedes": "configs/p3or_mft_component_separation_method_freeze_20260803.json",
+  "reason": "The superseded implementation failed before the first training batch and before any development prediction. This freeze changes only the V73IQDataset sample-index access contract.",
+  "preregister_sha256": "2663d5578c66746da3a460580bb42e5a05f076032fd4974c48015fed7720180e",
+  "implementation_sha256": "4fb33358f6f5f5c6c61daf219ac0a4b39c71809da77f5a4d834c1fd244359eec",
+  "generator_sha256": "02719bc5dfddaea23355857f42598debd60d304a8b38a6fe2d5f6d935f2ba3f7",
+  "p3c_oracle_sha256": "ed306490604bb2aeb572a5fc57de1627f30bce7b44a76059809955f40e4e3556",
+  "separator_dependency_sha256": "6f114fe0b3bfcf09672b0515d53e87ec07fb51868aa9841fd08351c41c9f6f27",
+  "frozen_method": "Unchanged from the preregister: RMS-normalized compound-IQ to RMS-normalized exact MFT component STFT-mask separator; waveform-only cosine+L1+multi-resolution spectral loss; frozen P3c inverse count estimator; no classification, ordinal/count, routing, contrast, threshold, or parameter loss.",
+  "data_roles": {"train": 1880000000, "development": 1890000000, "reserved_confirmation": [1900000000, 1910000000]},
+  "locked_test_used": false
+}

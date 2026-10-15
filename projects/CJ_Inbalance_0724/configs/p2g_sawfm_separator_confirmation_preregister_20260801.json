@@ -1,0 +1,43 @@
+{
+  "experiment_id": "P2g-frozen-S1-SawFM-separator-two-seed-confirmation",
+  "evidence_role": "independent development confirmation; not locked test",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "frozen_candidate": {
+    "variant": "P2f S1 waveform-only dedicated separator",
+    "separator_checkpoints": "outputs/p2f_dedicated_sawfm_separator_development_v5_20260801/seed_{2041,2042,2043}/S1_waveform_only/best.pt",
+    "period_experts": "unchanged seed-matched frozen specialists",
+    "P2f_development_reduction_range": [0.2191, 0.3286],
+    "P2f_development_pearson_range": [0.7874, 0.8446]
+  },
+  "data_protocol": {
+    "generator_entrypoint": "matlab/generate_p2g_sawfm_separator_confirmation_data.m",
+    "identity_seeds": [1800000000, 1900000000],
+    "powers_db": [35, 40, 45, 50],
+    "split_generated": "train only",
+    "samples_per_combination": 10,
+    "identities_per_seed_power": 630,
+    "SawFM_positive_identities_per_seed": 320,
+    "required_overlap_between_confirmation_seeds": 0,
+    "required_overlap_with_all_prior_identities": 0,
+    "test_generated": false
+  },
+  "access": {
+    "training": false,
+    "selection": false,
+    "threshold_or_loss_tuning": false,
+    "evaluation": "one pass for every frozen checkpoint x identity seed"
+  },
+  "promotion_gates": {
+    "all_6_checkpoint_by_data_seed_reduction_vs_raw_min": 0.20,
+    "all_6_checkpoint_by_data_seed_pearson_min": 0.60,
+    "all_6_checkpoint_by_data_seed_waveform_cosine_min": 0.50,
+    "mean_reduction_vs_raw_min": 0.25,
+    "data_seed_mean_same_direction": "2/2"
+  },
+  "interpretation_rules": {
+    "pass": "freeze P2g S1 as confirmed SawFM component-separation candidate and preregister end-to-end 12-parameter attachment on another fresh dataset",
+    "fail": "do not attach; return to target-alignment analysis without checkpoint selection",
+    "no_exclusion_or_checkpoint_selection_after_results": true
+  },
+  "locked_test_used": false
+}

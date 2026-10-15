@@ -1,0 +1,14 @@
+{
+  "experiment": "P8a train-only multi-axis long-tail manifest atlas",
+  "preregister": "configs/p8a_multi_axis_longtail_atlas_preregister_20260802.json",
+  "preregister_sha256": "633eeaa231b33cbb7179c64e40c8c2f71dc549597b502d6d612a6214291df372",
+  "atlas_code": "cj0724/p8a_multi_axis_longtail_atlas.py",
+  "atlas_code_sha256": "5f8c99a644f9bc97595d06fc9dd6d6373f4309b06f859b8a1217131979441d52",
+  "unit_test": "tests/test_p8a_multi_axis_longtail_atlas.py",
+  "unit_test_sha256": "80f86ea9993336d42d735254045b19f9638afd23b6b0097ce7a9342f39c85871",
+  "execution": "Run only after the hashes above are verified; the atlas may open only train_path files and writes no model, checkpoint, prediction, calibration, threshold, or test artifact.",
+  "frozen_before_train_metadata_access": true,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

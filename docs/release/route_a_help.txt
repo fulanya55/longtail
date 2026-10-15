@@ -1,0 +1,141 @@
+usage: run_tapc.py [-h] [--config CONFIG]
+                   [--variant {T0,T0P,T1,T2,T2S,T2O_V2,T2D,T2OD_V2,T3,T4,T5}]
+                   [--protocol {balanced,label_lt,combo_lt,power_lt,mixed_lt}]
+                   [--loss {bce,focal,asl,cb_bce,cb_asl,db,asl_db_mix,tail_asl_db}]
+                   [--backbone BACKBONE] [--seed SEED] [--epochs EPOCHS]
+                   [--batch-size BATCH_SIZE] [--workers WORKERS]
+                   [--learning-rate LEARNING_RATE]
+                   [--weight-decay WEIGHT_DECAY] [--patience PATIENCE]
+                   [--gradient-clip GRADIENT_CLIP] [--width WIDTH]
+                   [--dropout DROPOUT] [--relation-dim RELATION_DIM]
+                   [--relation-dropout RELATION_DROPOUT]
+                   [--conditioning-mode {independent,gated}]
+                   [--prototype-weight PROTOTYPE_WEIGHT]
+                   [--power-weight POWER_WEIGHT]
+                   [--stability-weight STABILITY_WEIGHT]
+                   [--parameter-weight PARAMETER_WEIGHT]
+                   [--ordering-margin ORDERING_MARGIN]
+                   [--ordering-mode {bidirectional,strong_only}]
+                   [--ordering-gradient-mode {shared,backbone_stop_gradient}]
+                   [--ordering-start-fraction ORDERING_START_FRACTION]
+                   [--stability-tolerance STABILITY_TOLERANCE]
+                   [--prototype-temperature PROTOTYPE_TEMPERATURE]
+                   [--prototype-momentum PROTOTYPE_MOMENTUM]
+                   [--warmup-fraction WARMUP_FRACTION]
+                   [--ramp-end-fraction RAMP_END_FRACTION]
+                   [--gamma-pos GAMMA_POS] [--gamma-neg GAMMA_NEG]
+                   [--negative-clip NEGATIVE_CLIP]
+                   [--effective-beta EFFECTIVE_BETA]
+                   [--db-mix-weight DB_MIX_WEIGHT]
+                   [--tail-label-index TAIL_LABEL_INDEX]
+                   [--tail-loss-weight TAIL_LOSS_WEIGHT]
+                   [--label-imbalance-factor LABEL_IMBALANCE_FACTOR]
+                   [--combo-imbalance-factor COMBO_IMBALANCE_FACTOR]
+                   [--label-count-tolerance LABEL_COUNT_TOLERANCE]
+                   [--label-tail-count-anchor LABEL_TAIL_COUNT_ANCHOR]
+                   [--label-target-samples LABEL_TARGET_SAMPLES]
+                   [--label-sample-count-tolerance LABEL_SAMPLE_COUNT_TOLERANCE]
+                   [--label-rank-order LABEL_RANK_ORDER [LABEL_RANK_ORDER ...]]
+                   [--weak-threshold-db WEAK_THRESHOLD_DB]
+                   [--power-levels POWER_LEVELS [POWER_LEVELS ...]]
+                   [--reference-level REFERENCE_LEVEL]
+                   [--max-train-samples MAX_TRAIN_SAMPLES]
+                   [--max-eval-samples MAX_EVAL_SAMPLES] [--device DEVICE]
+                   [--output-dir OUTPUT_DIR]
+                   [--initial-checkpoint INITIAL_CHECKPOINT]
+                   [--trainable-scope {all,classifier,last_block_classifier,last_two_blocks_classifier}]
+                   [--representation-learning-rate-scale REPRESENTATION_LEARNING_RATE_SCALE]
+                   [--penultimate-representation-learning-rate-scale PENULTIMATE_REPRESENTATION_LEARNING_RATE_SCALE]
+                   [--starting-point-weight STARTING_POINT_WEIGHT]
+                   [--parameter-stop-gradient]
+                   [--selection-metric {subset_acc,macro_f1,macro_aupr,tail_aupr}]
+                   [--selection-tail-index SELECTION_TAIL_INDEX] [--amp]
+                   [--no-amp] [--dry-run] [--resume]
+
+TAPC-CJNet T0-T5 runner with multi-axis manifests and audit artifacts.
+
+options:
+  -h, --help            show this help message and exit
+  --config CONFIG
+  --variant {T0,T0P,T1,T2,T2S,T2O_V2,T2D,T2OD_V2,T3,T4,T5}
+  --protocol {balanced,label_lt,combo_lt,power_lt,mixed_lt}
+  --loss {bce,focal,asl,cb_bce,cb_asl,db,asl_db_mix,tail_asl_db}
+  --backbone BACKBONE
+  --seed SEED
+  --epochs EPOCHS
+  --batch-size BATCH_SIZE
+  --workers WORKERS
+  --learning-rate LEARNING_RATE
+  --weight-decay WEIGHT_DECAY
+  --patience PATIENCE
+  --gradient-clip GRADIENT_CLIP
+  --width WIDTH
+  --dropout DROPOUT
+  --relation-dim RELATION_DIM
+  --relation-dropout RELATION_DROPOUT
+  --conditioning-mode {independent,gated}
+  --prototype-weight PROTOTYPE_WEIGHT
+  --power-weight POWER_WEIGHT
+  --stability-weight STABILITY_WEIGHT
+  --parameter-weight PARAMETER_WEIGHT
+  --ordering-margin ORDERING_MARGIN
+  --ordering-mode {bidirectional,strong_only}
+  --ordering-gradient-mode {shared,backbone_stop_gradient}
+  --ordering-start-fraction ORDERING_START_FRACTION
+  --stability-tolerance STABILITY_TOLERANCE
+  --prototype-temperature PROTOTYPE_TEMPERATURE
+  --prototype-momentum PROTOTYPE_MOMENTUM
+  --warmup-fraction WARMUP_FRACTION
+  --ramp-end-fraction RAMP_END_FRACTION
+  --gamma-pos GAMMA_POS
+  --gamma-neg GAMMA_NEG
+  --negative-clip NEGATIVE_CLIP
+  --effective-beta EFFECTIVE_BETA
+  --db-mix-weight DB_MIX_WEIGHT
+                        DB coefficient for asl_db_mix; ASL coefficient is one
+                        minus this value.
+  --tail-label-index TAIL_LABEL_INDEX
+                        Registered tail output for tail_asl_db.
+  --tail-loss-weight TAIL_LOSS_WEIGHT
+                        Multiplier on the DB loss column used by tail_asl_db.
+  --label-imbalance-factor LABEL_IMBALANCE_FACTOR
+  --combo-imbalance-factor COMBO_IMBALANCE_FACTOR
+  --label-count-tolerance LABEL_COUNT_TOLERANCE
+  --label-tail-count-anchor LABEL_TAIL_COUNT_ANCHOR
+                        Optional fixed positive count for the tail label in
+                        controlled label_lt.
+  --label-target-samples LABEL_TARGET_SAMPLES
+                        Optional fixed total training sample count for
+                        controlled label_lt.
+  --label-sample-count-tolerance LABEL_SAMPLE_COUNT_TOLERANCE
+                        Relative tolerance for --label-target-samples; zero
+                        enforces an exact total.
+  --label-rank-order LABEL_RANK_ORDER [LABEL_RANK_ORDER ...]
+                        Fixed head-to-tail label index order for label_lt.
+  --weak-threshold-db WEAK_THRESHOLD_DB
+  --power-levels POWER_LEVELS [POWER_LEVELS ...]
+  --reference-level REFERENCE_LEVEL
+  --max-train-samples MAX_TRAIN_SAMPLES
+  --max-eval-samples MAX_EVAL_SAMPLES
+  --device DEVICE
+  --output-dir OUTPUT_DIR
+  --initial-checkpoint INITIAL_CHECKPOINT
+  --trainable-scope {all,classifier,last_block_classifier,last_two_blocks_classifier}
+                        Train all parameters, only the head, or the last
+                        temporal block plus head.
+  --representation-learning-rate-scale REPRESENTATION_LEARNING_RATE_SCALE
+                        Learning-rate multiplier for the final temporal block.
+  --penultimate-representation-learning-rate-scale PENULTIMATE_REPRESENTATION_LEARNING_RATE_SCALE
+                        Learning-rate multiplier for the penultimate temporal
+                        block.
+  --starting-point-weight STARTING_POINT_WEIGHT
+                        L2-SP weight on the adapted final temporal block.
+  --parameter-stop-gradient
+  --selection-metric {subset_acc,macro_f1,macro_aupr,tail_aupr}
+  --selection-tail-index SELECTION_TAIL_INDEX
+                        Tail output used for per-epoch logging and tail_aupr
+                        selection.
+  --amp
+  --no-amp
+  --dry-run
+  --resume

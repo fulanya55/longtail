@@ -1,0 +1,22 @@
+{
+  "experiment": "P3h MLCNN-latent plus shared-physics P1n prefilter sufficiency",
+  "research_question": "Do already-computed MLCNN classification embeddings add enough information beyond probabilities and raw physics to predict P1n decision changes at <=30 percent UNet coverage?",
+  "evidence_role": "fresh_identity_safe_representation_sufficiency_development",
+  "data": {
+    "training_identity_seed": 550000000,
+    "development_identity_seed": 560000000,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50]
+  },
+  "features": ["frozen 256-D MLCNN classification embedding", "shared raw-physics isrj_periodicity", "six main probabilities"],
+  "gate_and_selection": "identical to P3g; balanced leaf7 HGB and >=0.98 changed recall with every cell >=0.90",
+  "promotion_gates": {
+    "each_seed_retain_at_least_90_percent_p1n_recall_gain": true,
+    "each_seed_unet_coverage_at_most": 0.30,
+    "maximum_cell_fpr_at_most": 0.10,
+    "macro_aupr_delta_vs_full_at_least": -0.005,
+    "three_of_three_positive_gain": true
+  },
+  "stop_rule": "If latent-feature sufficiency fails, do not train a deeper probability gate on the same teacher; the next architecture must jointly learn/distill a new shared representation on fresh identities.",
+  "locked_test_used": false
+}

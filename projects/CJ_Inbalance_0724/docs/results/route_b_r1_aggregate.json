@@ -1,0 +1,308 @@
+{
+  "stage": "R1",
+  "status": "verified_development",
+  "run_dir": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\route_b_r1_full_development\\r1_20260826_122730",
+  "seed_counts": {
+    "B0": 5,
+    "B1": 5,
+    "B2": 5,
+    "B3": 5,
+    "B4": 5
+  },
+  "locked_test_used": false,
+  "thresholds": {
+    "max_aupr_drop": 0.005,
+    "max_f1_drop": 0.01,
+    "min_parameter_relative_improvement": 0.05
+  },
+  "aggregate": {
+    "B0": {
+      "macro_aupr": {
+        "n": 5,
+        "mean": 0.9884432541171344,
+        "std": 0.0015184456885035202,
+        "ci95_low": 0.9872520927059283,
+        "ci95_high": 0.989783122719821,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "macro_f1": {
+        "n": 5,
+        "mean": 0.9459294199943542,
+        "std": 0.00399074167712174,
+        "ci95_low": 0.9431065082550049,
+        "ci95_high": 0.9494488716125489,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae": {
+        "n": 0,
+        "mean": NaN,
+        "std": NaN,
+        "ci95_low": NaN,
+        "ci95_high": NaN,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_micro_nmae": {
+        "n": 0,
+        "mean": NaN,
+        "std": NaN,
+        "ci95_low": NaN,
+        "ci95_high": NaN,
+        "ci_method": "deterministic_percentile_bootstrap"
+      }
+    },
+    "B1": {
+      "macro_aupr": {
+        "n": 5,
+        "mean": 0.986966531177929,
+        "std": 0.000902857257062013,
+        "ci95_low": 0.9863390701529692,
+        "ci95_high": 0.9877213607854654,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "macro_f1": {
+        "n": 5,
+        "mean": 0.9421434044837952,
+        "std": 0.004550524831622697,
+        "ci95_low": 0.9385718703269958,
+        "ci95_high": 0.9459359526634217,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae": {
+        "n": 5,
+        "mean": 0.5767991041143735,
+        "std": 0.012494779184861386,
+        "ci95_low": 0.5662880356113116,
+        "ci95_high": 0.5859822059671084,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_micro_nmae": {
+        "n": 5,
+        "mean": 0.5767991028971223,
+        "std": 0.012494780373420115,
+        "ci95_low": 0.5662880349494529,
+        "ci95_high": 0.58598221331787,
+        "ci_method": "deterministic_percentile_bootstrap"
+      }
+    },
+    "B2": {
+      "macro_aupr": {
+        "n": 5,
+        "mean": 0.9873868588710775,
+        "std": 0.0015828534029605017,
+        "ci95_low": 0.9861484269830385,
+        "ci95_high": 0.9886252907591165,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "macro_f1": {
+        "n": 5,
+        "mean": 0.9420428156852723,
+        "std": 0.004753943391628648,
+        "ci95_low": 0.9381280779838562,
+        "ci95_high": 0.9453443884849548,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae": {
+        "n": 5,
+        "mean": 0.6084903414050739,
+        "std": 0.021622865560080574,
+        "ci95_low": 0.5929555699229241,
+        "ci95_high": 0.6266120910644531,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_micro_nmae": {
+        "n": 5,
+        "mean": 0.6084903376903409,
+        "std": 0.021622864501099,
+        "ci95_low": 0.5929555660427663,
+        "ci95_high": 0.6266120884080314,
+        "ci_method": "deterministic_percentile_bootstrap"
+      }
+    },
+    "B3": {
+      "macro_aupr": {
+        "n": 5,
+        "mean": 0.9868943253013519,
+        "std": 0.0014334046711917251,
+        "ci95_low": 0.9857497800900511,
+        "ci95_high": 0.988120160205615,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "macro_f1": {
+        "n": 5,
+        "mean": 0.942449939250946,
+        "std": 0.0045014782445798275,
+        "ci95_low": 0.939565098285675,
+        "ci95_high": 0.9464780688285828,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae": {
+        "n": 5,
+        "mean": 0.6262716541687647,
+        "std": 0.018868969620326612,
+        "ci95_low": 0.612377009789149,
+        "ci95_high": 0.6422996769348781,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_micro_nmae": {
+        "n": 5,
+        "mean": 0.626271656249109,
+        "std": 0.01886897612554336,
+        "ci95_low": 0.6123770077718438,
+        "ci95_high": 0.6422996860731793,
+        "ci_method": "deterministic_percentile_bootstrap"
+      }
+    },
+    "B4": {
+      "macro_aupr": {
+        "n": 5,
+        "mean": 0.9869792055439828,
+        "std": 0.0008567142099332174,
+        "ci95_low": 0.9863766850641795,
+        "ci95_high": 0.9876770040681254,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "macro_f1": {
+        "n": 5,
+        "mean": 0.9430995106697082,
+        "std": 0.004349196398267368,
+        "ci95_low": 0.9407383561134338,
+        "ci95_high": 0.9470253467559815,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae": {
+        "n": 5,
+        "mean": 0.6272164717316627,
+        "std": 0.02607159868107832,
+        "ci95_low": 0.6045726160208383,
+        "ci95_high": 0.6456701094905536,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_micro_nmae": {
+        "n": 5,
+        "mean": 0.6272164776796082,
+        "std": 0.02607160095794,
+        "ci95_low": 0.6045726191838023,
+        "ci95_high": 0.645670117457216,
+        "ci_method": "deterministic_percentile_bootstrap"
+      }
+    }
+  },
+  "pairwise": {
+    "B2": {
+      "seeds": [
+        2041,
+        2042,
+        2043,
+        2044,
+        2045
+      ],
+      "classification_macro_aupr_delta": {
+        "n": 5,
+        "mean": -0.0010563952460569848,
+        "std": 0.0011400051593332189,
+        "ci95_low": -0.0019267034832583852,
+        "ci95_high": -0.00011178218919072336,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "classification_macro_f1_delta": {
+        "n": 5,
+        "mean": -0.0038866043090820313,
+        "std": 0.0034263536364855765,
+        "ci95_low": -0.0065865635871887205,
+        "ci95_high": -0.0011866450309753417,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae_relative_improvement": {
+        "n": 5,
+        "mean": -0.05487436173653485,
+        "std": 0.02636365302758201,
+        "ci95_low": -0.07843156163993945,
+        "ci95_high": -0.03847359962609527,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "each_seed_classification_aupr_safe": true,
+      "each_seed_classification_f1_safe": true,
+      "mean_parameter_relative_improvement_pass": false
+    },
+    "B3": {
+      "seeds": [
+        2041,
+        2042,
+        2043,
+        2044,
+        2045
+      ],
+      "classification_macro_aupr_delta": {
+        "n": 5,
+        "mean": -0.00154892881578248,
+        "std": 0.0002913520430845253,
+        "ci95_low": -0.0017901445739288758,
+        "ci95_high": -0.0013318570628640058,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "classification_macro_f1_delta": {
+        "n": 5,
+        "mean": -0.003479480743408203,
+        "std": 0.0022370256571864204,
+        "ci95_low": -0.005338215827941894,
+        "ci95_high": -0.0018330097198486328,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae_relative_improvement": {
+        "n": 5,
+        "mean": -0.08573222676731689,
+        "std": 0.019942732312461246,
+        "ci95_low": -0.10276586501104767,
+        "ci95_high": -0.07153671533683628,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "each_seed_classification_aupr_safe": true,
+      "each_seed_classification_f1_safe": true,
+      "mean_parameter_relative_improvement_pass": false
+    },
+    "B4": {
+      "seeds": [
+        2041,
+        2042,
+        2043,
+        2044,
+        2045
+      ],
+      "classification_macro_aupr_delta": {
+        "n": 5,
+        "mean": -0.0014640485731518328,
+        "std": 0.0010881694690075521,
+        "ci95_low": -0.002213370664434744,
+        "ci95_high": -0.000533554093591282,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "classification_macro_f1_delta": {
+        "n": 5,
+        "mean": -0.002829909324645996,
+        "std": 0.003245141248421832,
+        "ci95_low": -0.0055541515350341795,
+        "ci95_high": -0.0005089029669761999,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "parameter_macro_nmae_relative_improvement": {
+        "n": 5,
+        "mean": -0.08784440483863609,
+        "std": 0.05257216666692949,
+        "ci95_low": -0.13209532695027207,
+        "ci95_high": -0.05057138341172338,
+        "ci_method": "deterministic_percentile_bootstrap"
+      },
+      "each_seed_classification_aupr_safe": true,
+      "each_seed_classification_f1_safe": true,
+      "mean_parameter_relative_improvement_pass": false
+    }
+  },
+  "gates": {
+    "complete_seed_coverage": true,
+    "locked_test_unused": true,
+    "classification_safety": true,
+    "parameter_improvement": false,
+    "hard_gate_pass": false
+  },
+  "performance_claim": "development_only; no locked-test claim"
+}

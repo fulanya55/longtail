@@ -1,0 +1,37 @@
+{
+  "experiment": "P3o-P complex-coherence sparse-event ordinal MFT-count screen",
+  "registration_date": "2026-08-03",
+  "research_question": "On fresh compound I/Q identities, does retaining template-phase coherence at the unchanged sparse inverse-delay events improve MFT target-count ordinal estimation beyond an identical-capacity magnitude-only control?",
+  "evidence_role": "fresh_identity_oracle_positive_three_seed_development",
+  "prior_boundary": {
+    "physical_basis": "The MFT generator sums real-positive-amplitude circular shifts of one complex LFM reference; phase-coherent deconvolved target peaks are observable while P3o-M/N/O used magnitude-derived features only.",
+    "P3oM": "strict local magnitude/contrast event selection is frozen and cannot be adjusted.",
+    "P3oN_P3oO": "post-hoc geometry rejection and adjacent magnitude geometry failed; neither score nor relation may be reused.",
+    "mechanism_change": "C1 adds phase-coherence values at exactly the C0 sparse-event locations during training, with no count, delay, amplitude, regime or power input.",
+    "forbidden": ["P3o-M/N/O identities for selection", "classification loss", "predicted-label-gated attachment", "locked test"]
+  },
+  "data": {
+    "generator": "matlab/generate_p3op_complex_coherence_level.m",
+    "train_receiver_noise_seed": 1800000000,
+    "development_receiver_noise_seed": 1810000000,
+    "reserved_confirmation_receiver_noise_seeds": [1820000000, 1830000000],
+    "output_root": "D:\\CJ0724_generated_data", "rechunk_root": "D:\\CJ0724_rechunked_data",
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers_db": [25, 35, 50],
+    "samples_per_pattern": 33, "all_63_combinations": true, "identity_key": "receiver_noise_seed", "paired_power_views_are_not_independent": true, "test_generation": "disabled"
+  },
+  "parameter_contract": {"class": "MFT", "class_index_zero_based": 3, "target": "num_targets", "column_zero_based": 28, "valid_samples": "label[MFT]=1 AND parameter_mask[28]=1 AND finite(parameter_values[28])", "classification_loss_used": false, "oracle_positive_only": true},
+  "roles": {"within_train_identity_split_per_combination": {"fit": 25, "selection": 4, "unused": 4}, "split_seed": 20260803, "normalization": "fit only", "selection": "lowest ordinal loss", "development": "all 33 identities per combination; read once after method freeze"},
+  "front_end": {
+    "shared_event_locations": "P3o-M frozen strict local positive-contrast maxima, 16 tokens, temporal order restored",
+    "C0": "four magnitude-derived token channels plus four zero coherence channels",
+    "C1": "the same four magnitude-derived channels plus normalized in-phase value, normalized quadrature value, five-sample complex phasor coherence, and five-sample in-phase coherence",
+    "phase_reference": "known 10 MHz, 100 us complex LFM used by the inverse filter",
+    "forbidden": ["peak-rule change", "phase thresholds", "true count/delay/amplitude", "regime", "power", "post-development feature edits"]
+  },
+  "models": {"C0_magnitude_zero_coherence": "8-channel, 16-token ordinal CNN", "C1_complex_coherence": "identical 8-channel, 16-token ordinal CNN", "ordinal_output": "seven cumulative logits decoded to count 1 through 8", "model_seeds": [2321, 2322, 2323], "parameter_count_contract": "C0 equals C1 exactly"},
+  "training": {"optimizer": "AdamW", "learning_rate": 0.0003, "weight_decay": 0.0001, "epochs": 20, "early_stop_patience": 5, "batch_size": 64, "loss": "ordinal BCE plus 0.05 monotonicity penalty"},
+  "promotion_gates": {"identity_overlap_zero": true, "all_power_and_parameter_contracts_hold": true, "C0_C1_parameter_count_exactly_equal": true, "each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least": 0.05, "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least": 0.03, "each_seed_C1_ID_control_and_low_count_pearson_at_least": 0.3, "no_C1_regime_worse_than_C0_in_all_three_seeds_by_mae_over": 0.02, "each_seed_C1_ultra_close_mae_not_worse_than_C0": true, "test_generated_false": true, "test_opened_false": true, "locked_test_used_false": true},
+  "stop_rule": "If any promotion gate fails, stop P3o-P. Do not tune coherence descriptors, peak rule, model width, loss, training schedule or selection on seeds 1800M/1810M. Do not generate confirmation identities or attach an expert.",
+  "next_if_pass": "Freeze code/checkpoints/normalizers and test two untouched identity confirmations before any predicted-label-gated MFT-only attachment.",
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

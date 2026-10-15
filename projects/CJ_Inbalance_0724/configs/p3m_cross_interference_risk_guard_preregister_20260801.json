@@ -1,0 +1,18 @@
+{
+  "experiment": "P3m cross-interference consistency risk guard",
+  "research_question": "Can a supervised false-positive risk head suppress ultra-close MFT to ISRJ cross-talk while preserving at least 90 percent of the frozen P1n recall gain?",
+  "evidence_role": "fresh_identity_safe_guard_development_after_failed_independent_confirmation",
+  "failure_target": "P3l localized cell-wise FPR failures in ultra_close MFT regimes; P3l identities are excluded from fitting and evaluation",
+  "data": {"training_identity_seed": 660000000, "development_identity_seed": 670000000, "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers_db": [25, 35, 50]},
+  "guard": {
+    "input": "frozen 256-D MLCNN latent, shared waveform physics, and six main probabilities",
+    "target": "frozen P1n false-positive event for the ISRJ output",
+    "model": "class-balanced HistGradientBoostingClassifier, 200 trees, learning_rate 0.05, max_leaf_nodes 7, l2 1.0",
+    "action": "set P1n ISRJ probability to zero only when predicted false-positive risk exceeds a selected threshold",
+    "selection": "training-selection identities only; among thresholds retaining >=90 percent of P1n recall gain and macro-AUPR delta>=-0.005, minimize worst regime-power FPR then veto coverage"
+  },
+  "promotion_gates": {"each_seed_retain_at_least_90_percent_p1n_recall_gain": true, "maximum_development_cell_fpr_at_most": 0.10, "each_seed_macro_aupr_delta_vs_p1n_at_least": -0.005, "three_of_three_positive_gain_vs_main": true, "identity_overlap_zero": true},
+  "next_if_pass": "Freeze the guard and repeat two fresh-identity confirmation; do not revisit P3l.",
+  "stop_rule": "If the guard fails, freeze the latent risk-head branch and retain P1n as Level-3 only; redesign the main backbone with explicit cross-interference supervision on new identities.",
+  "locked_test_used": false
+}

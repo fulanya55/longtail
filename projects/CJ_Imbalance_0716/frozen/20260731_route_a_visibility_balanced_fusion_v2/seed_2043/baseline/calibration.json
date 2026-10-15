@@ -1,0 +1,7 @@
+{
+  "iterations": 50,
+  "loss_after": 0.492740660905838,
+  "loss_before": 0.5768097639083862,
+  "source_role": "calibration",
+  "temperature": 2.058100700378418
+}

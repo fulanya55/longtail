@@ -1,0 +1,35 @@
+{
+  "experiment": "P3o-E invariant frozen-frequency delay parameter residual: two fresh-identity confirmation",
+  "hypothesis": "The P3o-E delay residual produces repeatable twelve-parameter improvement without changing recognition logits, thresholds, or F backbone state, rather than exploiting the 1120M development identities.",
+  "source_development": {
+    "output": "outputs/p3oe_invariant_frequency_delay_parameter_residual_development_20260802/summary.json",
+    "sha256": "61a3305bc76fb5227f9e93fbad27a370ef25ac6b1d361a411213c1c6d442b914",
+    "must_have_passed_all_development_gates": true,
+    "frozen_model_seeds": [2041, 2042, 2043],
+    "frozen_train_root": "generated_data/p3oe_invariant_residual_train_seed1110000000_{regime}_rechunked",
+    "forbidden_development_root": "generated_data/p3oe_invariant_residual_dev_seed1120000000_{regime}_rechunked"
+  },
+  "confirmation_identities": {
+    "seeds": [1130000000, 1140000000],
+    "prefixes": ["p3oe_invariant_residual_confirmation_seed1130000000", "p3oe_invariant_residual_confirmation_seed1140000000"],
+    "samples_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_pairing": "receiver_noise_seed paired across every regime and power view"
+  },
+  "frozen_evaluation": "For each frozen seed, load its selected base and side checkpoints recorded in the passed 1120M development summary. Reconstruct the parameter normalizer and base threshold vector solely from the pre-existing 1110M training full-fit/calibration roles. Evaluate both models on each confirmation identity without training, selecting checkpoints, calibrating on confirmation data, or opening 1120M.",
+  "promotion_gates": {
+    "each_confirmation_identity_and_history_zero_overlap": true,
+    "confirmation_identities_mutually_zero_overlap": true,
+    "all_6_frozen_model_identity_cells_logits_bitwise_equal": true,
+    "all_6_cells_base_safe_calibration_feasible_and_maximum_cell_fpr_at_most_0p10": true,
+    "all_6_cells_base_overall_isrj_recall_at_least_0p85_and_25db_recall_at_least_0p78": true,
+    "all_6_cells_oracle_and_predicted_gate_nmae_ratio_at_most_0p98": true,
+    "all_6_cells_miss_penalty_and_worst_combination_nonworse": true,
+    "all_6_cells_mft_and_isrj_oracle_nmae_ratio_at_most_0p99": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "stopping_rule": "Any gate failure permanently stops this residual variant. No checkpoint, loss, residual width/scale, data role, threshold, generator setting, or confirmation result may be tuned. Passing confirmation only promotes the mechanism to the subsequent preregistered five-seed/statistical and external-scope audit; it does not authorize any locked-test access."
+}

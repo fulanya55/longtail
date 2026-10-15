@@ -1,0 +1,22 @@
+{
+  "stage": "R3",
+  "status": "verified_development",
+  "run_dir": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\route_b_r1_full_development\\r1_20260826_122730",
+  "coverage": {
+    "B0": 5,
+    "B1": 5,
+    "B2": 5,
+    "B3": 5,
+    "B4": 5
+  },
+  "device": "cuda",
+  "test_mat_opened": false,
+  "locked_test_used": false,
+  "rows": {
+    "per_parameter": 240,
+    "visibility": 120,
+    "paired_power": 180,
+    "ablation": 20
+  },
+  "performance_claim": "development_only; no locked-test claim"
+}

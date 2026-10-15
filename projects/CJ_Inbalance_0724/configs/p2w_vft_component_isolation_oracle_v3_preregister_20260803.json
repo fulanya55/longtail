@@ -1,0 +1,11 @@
+{
+  "experiment": "P2w-v3 explicit VFT component-isolation oracle sufficiency",
+  "supersedes": "P2w-v1/v2 aborted before oracle predictions because of reconstruction plumbing; v3 uses smoke-checked sample-first component indexing and new identity seeds.",
+  "single_mechanism_change": "Exact generator-reconstructed, power-calibrated VFT component as an oracle-only observation; no classifier, router, separator, threshold, or full-12 attachment is trained or changed.",
+  "fresh_data": {"generator": "matlab/generate_p2w_vft_component_isolation_oracle_data.m", "identity_seeds": [1381000000, 1382000000, 1383000000], "powers_db": [10, 30, 50], "samples_per_nonempty_combination": 10, "identities_per_seed": 630, "generated_split": "train only", "identity_contract": "all powers paired and zero overlap with historic generated train identities"},
+  "frozen_estimator": {"module": "cj0724.vft_doppler_aligned_expert.estimate_aligned_doppler", "correct_reference": {"chirp_rate_hz_per_s": 50000000000.0, "delay_min_samples": 100, "delay_max_samples": 500, "delay_candidates": 8, "doppler_min_hz": 1000.0, "doppler_max_hz": 7000.0, "doppler_step_hz": 100.0, "search_delay": true}, "target": "VFT Doppler parameter column 49; finite VFT-positive rows only"},
+  "controls": {"C0_raw_composite": "frozen estimator on observed composite I/Q", "C1_exact_isolated_component_oracle": "same estimator on VFT component reconstructed with component seed and stored calibrated target power", "C2_wrong_reference": "C1 with chirp rate multiplied by 0.8", "C3_no_delay_alignment": "C1 with search_delay=false and delay fixed to zero"},
+  "promotion_gates": {"three_pools_all_three_powers_aligned_and_zero_historic_overlap": true, "C1_finite_rate_each_seed_power": 1.0, "C1_pearson_each_seed_power_min": 0.7, "C1_mae_each_seed_power_vs_C0_ratio_max": 0.8, "C1_10dB_mae_each_seed_vs_C0_ratio_max": 0.5, "C1_mean_mae_each_power_vs_C2_ratio_max": 0.8, "C1_mean_mae_each_power_vs_C3_ratio_max": 0.8},
+  "stop_rule": "Any oracle gate failure stops VFT component-separator and deeper-router search. A pass permits only a separately preregistered separator on another fresh identity pool. Oracle seeds/components never enter deployment.",
+  "evidence_boundary": {"test_generated": false, "test_opened": false, "locked_test_used": false}
+}

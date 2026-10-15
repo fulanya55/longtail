@@ -1,0 +1,10 @@
+{
+  "experiment": "P3o-D frozen frequency delay parameter residual",
+  "status": "formal_development_failed",
+  "summary_file": "outputs/p3od_frozen_frequency_delay_parameter_residual_development_20260801_retry1/summary.json",
+  "failure_audit_file": "outputs/p3od_frozen_frequency_delay_parameter_residual_development_20260801_retry1/failure_audit.json",
+  "decision": "Classification invariance was violated and promotion gates failed. 1090M/1100M remain unused; do not tune or rerun P3o-D on 1080M.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

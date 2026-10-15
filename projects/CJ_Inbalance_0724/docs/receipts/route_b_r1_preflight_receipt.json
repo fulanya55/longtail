@@ -1,0 +1,76 @@
+{
+  "stage": "R1_preflight",
+  "status": "verified_smoke_only",
+  "variants": [
+    {
+      "variant": "B0",
+      "kind": "classification_only",
+      "model": "legacy_mlcnn",
+      "status": "verified_smoke",
+      "device": "cuda",
+      "output_shapes": "{\"logits\": [2, 6]}",
+      "valid_parameter_entries_in_batch": "",
+      "loss": 0.7026230692863464,
+      "finite_gradients": true,
+      "performance_claim": "none",
+      "locked_test_used": false
+    },
+    {
+      "variant": "B1",
+      "kind": "shared_backbone_shared_head",
+      "model": "legacy_mlcnn_global",
+      "status": "verified_smoke",
+      "device": "cuda",
+      "output_shapes": "{\"logits\": [2, 6], \"parameters\": [2, 6, 2]}",
+      "valid_parameter_entries_in_batch": 4,
+      "loss": 0.7140411734580994,
+      "finite_gradients": true,
+      "performance_claim": "none",
+      "locked_test_used": false
+    },
+    {
+      "variant": "B2",
+      "kind": "shared_backbone_class_conditioned_head",
+      "model": "legacy_mlcnn_class_conditioned",
+      "status": "verified_smoke",
+      "device": "cuda",
+      "output_shapes": "{\"logits\": [2, 6], \"parameters\": [2, 6, 2]}",
+      "valid_parameter_entries_in_batch": 4,
+      "loss": 0.8040086627006531,
+      "finite_gradients": true,
+      "performance_claim": "none",
+      "locked_test_used": false
+    },
+    {
+      "variant": "B3",
+      "kind": "class_conditioned_parameter_stop_gradient",
+      "model": "legacy_mlcnn_class_conditioned_detached",
+      "status": "verified_smoke",
+      "device": "cuda",
+      "output_shapes": "{\"logits\": [2, 6], \"parameters\": [2, 6, 2]}",
+      "valid_parameter_entries_in_batch": 4,
+      "loss": 0.845915675163269,
+      "finite_gradients": true,
+      "performance_claim": "none",
+      "locked_test_used": false
+    },
+    {
+      "variant": "B4",
+      "kind": "class_conditioned_parameter_loss_warmup",
+      "model": "legacy_mlcnn_class_conditioned",
+      "status": "verified_smoke",
+      "device": "cuda",
+      "output_shapes": "{\"logits\": [2, 6], \"parameters\": [2, 6, 2]}",
+      "valid_parameter_entries_in_batch": 4,
+      "loss": 0.8245158195495605,
+      "finite_gradients": true,
+      "performance_claim": "none",
+      "locked_test_used": false
+    }
+  ],
+  "config": "E:\\LJQ_code\\CJ_Inbalance_0724\\configs\\route_b_r1_preregister.json",
+  "performance_validated": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

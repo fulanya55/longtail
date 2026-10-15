@@ -1,0 +1,32 @@
+{
+  "status": "preregistered_before_execution",
+  "trigger": "B2-R passed AUPR, Hamming and FPR gates but maximum MFT recall drop was 0.04953",
+  "hypothesis": "unconstrained AUPR/F1 selection over-activates negative protection; recall-constrained selection can retain FPR gains without suppressing true MFT",
+  "frozen": ["E5", "ISRJ expert", "MFT combined expert", "reliability feature definition", "three-state router architecture"],
+  "selection": {
+    "router_fit": "first half of early_stop identities across all nine paired powers",
+    "grouping": "sample identity",
+    "candidate_alpha": [0.25, 0.5, 0.75, 1.0],
+    "candidate_confidence": [0.4, 0.5, 0.6, 0.7, 0.8, 0.9],
+    "threshold": "frozen E5 MFT threshold; no new MFT threshold",
+    "cv_constraint_max_power_MFT_recall_drop": 0.005,
+    "objective_after_constraint": "maximum mean nine-power MFT AUPR"
+  },
+  "calibration_fail_safe": {
+    "role": "second half of early_stop identities",
+    "maximum_MFT_recall_drop": 0.01,
+    "minimum_mean_power_MFT_aupr_delta": 0.0,
+    "fallback": "keep E5 MFT and retain frozen ISRJ expert"
+  },
+  "development_gate": {
+    "mean_nine_power_macro_aupr_gain_vs_E5_min": 0.015,
+    "mean_nine_power_hamming_reduction_vs_E5_min": 0.015,
+    "MFT_FPR_reduced_levels_min": 7,
+    "ISRJ_FPR_reduced_levels_min": 7,
+    "worst_power_macro_aupr_delta_min": -0.01,
+    "mean_weak_recall_delta_min": -0.01,
+    "max_MFT_recall_drop": 0.01
+  },
+  "forbidden": ["explicit JNR input", "per-power threshold", "development-based candidate selection"],
+  "locked_test_used": false
+}

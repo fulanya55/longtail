@@ -1,0 +1,59 @@
+{
+  "experiment": "P2x ISRJ sample-width phase-reset-sequence OOD identifiability",
+  "research_question": "Does the instantaneous-frequency reset interval of the exact ISRJ component recover sample width across ID and OOD intervals, including the 1-2 us boundary regime where maximum-prominence ACF failed?",
+  "evidence_role": "fresh_oracle_positive_development",
+  "data": {
+    "identity_seed": 4100000000,
+    "powers_db": [25, 35, 50],
+    "regimes_us": {
+      "ID_control": [5, 20],
+      "near_low": [2, 5],
+      "near_high": [20, 30],
+      "far_low": [1, 2],
+      "far_high": [30, 50]
+    },
+    "identities": 630,
+    "all_63_combinations": true,
+    "paired_across_regimes_and_powers": true
+  },
+  "parameter_contract": {
+    "sample_width_column_zero_based": 53,
+    "num_replicas_column_zero_based": 54,
+    "arrival_delay_column_zero_based": 56,
+    "valid_mask": "label[ISRJ]=1 AND parameter_mask[53]=1 AND finite target"
+  },
+  "estimator": {
+    "input": "exact reconstructed ISRJ component",
+    "feature": "wrapped second difference of complex phase on active adjacent samples",
+    "active_amplitude_ratio": 0.001,
+    "phase_reset_threshold_rad": 0.05,
+    "event_clustering": "merge consecutive reset samples, then use cluster centres",
+    "candidate_gap_samples": [10, 500],
+    "selection": "integer mode of adjacent reset-cluster gaps; ties are resolved closest to the gap median then by smaller lag",
+    "fallback": "12.5 microseconds when no valid reset gap exists",
+    "trainable_parameters": 0
+  },
+  "baselines_and_controls": {
+    "C0_constant": "12.5 microseconds fixed from the original 5-20 us training interval",
+    "C1_exact_phase_reset": "preregistered exact-component reset-sequence estimator",
+    "C2_raw_phase_reset": "same estimator on compound received IQ, diagnostic only",
+    "C3_time_shuffled_exact": "deterministically shuffled exact component, mechanism destruction control",
+    "C4_exact_acf": "frozen P2w maximum-prominence ACF estimator"
+  },
+  "promotion_gates": {
+    "C1_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C1_each_regime_pearson_at_least": 0.30,
+    "C1_compound_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C1_compound_each_regime_pearson_at_least": 0.30,
+    "C1_each_regime_mae_better_than_C3": true,
+    "C1_catastrophic_error_fraction_each_regime_at_most": 0.10,
+    "C1_far_low_mae_better_than_C4": true,
+    "C1_far_low_pearson_better_than_C4": true,
+    "identity_overlap_with_all_prior_roles": 0
+  },
+  "interpretation": {
+    "pass": "The phase-reset sequence supplies a physical oracle upper bound; next test component isolation on a new identity seed.",
+    "fail": "The reset-sequence mechanism is insufficient; stop ISRJ-width expert development and retain the failure boundary."
+  },
+  "locked_test_used": false
+}

@@ -1,0 +1,33 @@
+{
+  "stage": "R1_stop",
+  "status": "stopped_parameter_gate_failure",
+  "run_dir": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\route_b_r1_full_development\\r1_20260826_122730",
+  "failed_branches": [
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "gate_basis": {
+    "complete_seed_coverage": true,
+    "locked_test_unused": true,
+    "classification_safety": true,
+    "parameter_improvement": false,
+    "hard_gate_pass": false
+  },
+  "thresholds": {
+    "max_aupr_drop": 0.005,
+    "max_f1_drop": 0.01,
+    "min_parameter_relative_improvement": 0.05
+  },
+  "reason": "Each conditional branch failed the preregistered mean parameter Macro-NMAE relative-improvement gate versus B1.",
+  "classification_safety_preserved": true,
+  "locked_test_used": false,
+  "test_mat_opened": false,
+  "prohibited_rescue_actions": [
+    "threshold_retuning",
+    "resampling",
+    "model_enlargement",
+    "test_feedback"
+  ],
+  "next": "retain failure evidence; do not promote B2/B3/B4; evaluate only separately preregistered branches with fresh receipts"
+}

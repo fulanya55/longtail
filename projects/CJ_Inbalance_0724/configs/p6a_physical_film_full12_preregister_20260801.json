@@ -1,0 +1,85 @@
+{
+  "experiment": "P6a observable-physical-FiLM heterogeneous full-12 development",
+  "registration_date": "2026-08-01",
+  "research_question": "Can a bounded conditioning of the IQ-Grouped parameter representation by fixed raw-IQ physical statistics and detached six-label MLCNN posterior improve end-to-end full-12 parameter estimation without changing the classification optimization path?",
+  "evidence_role": "fresh_identity_development_screen",
+  "single_changed_axis_vs_P4c": "Only the parameter representation is FiLM-conditioned by a 26-D fixed raw-IQ descriptor and detach(sigmoid(MLCNN logits)); the MLCNN classifier, IQ-Grouped backbone, labels, loss, optimizer, data roles and training budget remain the P4c protocol.",
+  "reference_only": {
+    "P4c_P4d": "heterogeneous MLCNN classification plus IQ-Grouped full-12 parameter route",
+    "P5b2": "physical descriptor plus frozen posterior is sufficient for selected JNR probes but is not an end-to-end full-12 result",
+    "P5e": "frozen JNR-only attachment confirmation; not a trainable full-12 comparator",
+    "P5f": "stopped lazy execution experiment; no tolerance, batching or scheduling setting is reused",
+    "consumed_development_and_test_predictions_may_be_opened": false
+  },
+  "candidate_contract": {
+    "raw_iq_input": "RMS-normalized [B,2,3000] I/Q only",
+    "physical_descriptor": "fixed 26-D time, complex-FFT-band and complex-ACF statistic; no label, parameter target, nominal power or identity input",
+    "classification_context": "detach(sigmoid(classification logits))",
+    "modulation": "zero-initialized bounded affine FiLM on the post-IQ-Grouped 256-D parameter feature",
+    "classification_gradient_from_parameter_loss": false,
+    "classification_logit_replacement": false,
+    "parameter_prediction_shape": "[B,6,2]"
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p6a_physical_film_full12_data.m",
+    "base_seed": 1030000000,
+    "raw_root": "generated_data/p6a_physical_film_full12_seed1030000000",
+    "rechunked_root": "generated_data/p6a_physical_film_full12_seed1030000000_rechunked",
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "identity_key": "receiver_noise_seed",
+    "data_role": "train only",
+    "required_identity_overlap_with_root_and_all_prior_consumed_pools": 0,
+    "roles_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5}
+  },
+  "comparators": {
+    "C0": "mlcnn_iq_grouped_task_routed",
+    "C1": "mlcnn_iq_grouped_physical_film_task_routed"
+  },
+  "training": {
+    "model_seeds": [16041, 16042, 16043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "parameter_loss": "masked SmoothL1 only on label=1 AND parameter_mask=1 AND finite",
+    "checkpoint_objective": "early parameter macro-NMAE",
+    "threshold_calibration": "per-class F1 grid using calibration role only"
+  },
+  "required_audits": [
+    "identity overlap with all prior consumed pools is zero",
+    "all 12 positive masked targets are finite and variable in every role",
+    "all roles are disjoint and contain all 63 combinations",
+    "classification branch receives no parameter-loss gradient through physical conditioning",
+    "classification output dimensions and inactive-NaN loss safety tests pass",
+    "parameter count, MAC proxy, CUDA batch-1 and batch-64 median/P95 latency are recorded"
+  ],
+  "development_promotion_gates": {
+    "each_seed_full12_oracle_macro_nmae_reduction_vs_C0_at_least": 0.02,
+    "mean_full12_oracle_macro_nmae_reduction_vs_C0_at_least": 0.03,
+    "each_seed_full12_macro_pearson_not_lower_than_C0": true,
+    "no_target_worse_in_all_3_seeds_by_more_than_absolute_nmae": 0.03,
+    "each_seed_macro_aupr_drop_vs_C0_at_most": 0.003,
+    "each_seed_subset_accuracy_drop_vs_C0_at_most": 0.01,
+    "candidate_parameter_count_relative_increase_vs_C0_at_most": 0.02,
+    "candidate_batch64_median_latency_relative_to_C0_at_most": 1.25,
+    "candidate_batch1_p95_latency_relative_to_C0_at_most": 1.35
+  },
+  "statistical_reporting": {
+    "paired_unit": "model seed for development screen; receiver_noise_seed for later bootstrap",
+    "report": ["full-12 oracle and predicted-gate NMAE", "per-target NMAE/Pearson", "per-combination worst NMAE", "per-class AUPR/recall/FPR", "thresholds", "parameter and latency costs"],
+    "no_success_claim_from": ["early", "calibration", "tune", "single seed", "training loss", "latency-only"]
+  },
+  "stop_rule": "If any validity or promotion gate fails, P6a stops on this identity pool. No change to feature set, FiLM scale, loss weight, threshold, batch size or latency tolerance is allowed. The pool may only be retained as a failure atlas.",
+  "next_if_pass": "Freeze all code, checkpoints, normalizers and calibration outputs; generate two new untouched train-only identity pools and perform no-training/no-recalibration confirmation before any OOD, long-tail, LSCO or locked-test preregistration.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,49 @@
+{
+  "experiment": "P3d MFT inverse-filter delay-sequence ordinal expert",
+  "research_question": "Can a learned ordinal head suppress compound-IQ nuisance responses while retaining the sparse MFT delay support established by P3c?",
+  "evidence_role": "fresh_oracle_positive_identity_safe_development",
+  "data": {
+    "training_identity_seed": 460000000,
+    "development_identity_seed": 470000000,
+    "powers_db": [25, 35, 50],
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "paired_power_views_are_not_independent_samples": true,
+    "all_63_combinations": true
+  },
+  "parameter_contract": {
+    "class": "MFT",
+    "class_index_zero_based": 3,
+    "num_targets_column_zero_based": 28,
+    "valid_mask": "label[MFT]=1 AND parameter_mask[28]=1 AND finite num_targets",
+    "classification_loss_used": false,
+    "oracle_positive_only": true
+  },
+  "front_end": {
+    "reference": "known 10 MHz 100 us LFM",
+    "inverse_filter_regularizer": "1e-6 times maximum reference spectral power",
+    "observable_delay_search_samples": [350, 1100],
+    "channels": ["log normalized inverse magnitude", "positive local-background contrast", "local sharpness", "normalized delay position"]
+  },
+  "model": {
+    "head": "small 1D CNN plus seven-level ordinal logits for counts 1 through 8",
+    "model_seeds": [2041, 2042, 2043],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "early_stop_patience": 5,
+    "batch_size": 64
+  },
+  "baseline": "constant median fitted on training identities only",
+  "promotion_gates": {
+    "identity_overlap_with_prior_and_cross_role": 0,
+    "each_seed_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "each_seed_each_regime_pearson_at_least": 0.30,
+    "each_seed_each_regime_compound_mae_reduction_vs_constant_at_least": 0.10,
+    "each_seed_each_regime_compound_pearson_at_least": 0.30,
+    "same_direction": "3 of 3 seeds"
+  },
+  "stop_rule": "If any frozen gate fails, do not attach the MFT count expert to C2/P1n and do not tune on development seed 470000000.",
+  "next_if_pass": "Freeze the expert and test predicted-label-gated end-to-end attachment on another fresh identity seed.",
+  "locked_test_used": false
+}

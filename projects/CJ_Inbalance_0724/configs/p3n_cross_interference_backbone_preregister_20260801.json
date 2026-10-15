@@ -1,0 +1,75 @@
+{
+  "experiment": "P3n-A cross-interference identifiable backbone",
+  "research_question": "On identical fresh identities and training budgets, does MFT-ISRJ label-conditional margin supervision outperform original BCE retraining and ordinary ISRJ hard-negative weighting for ultra-close MFT false-positive control without degrading twelve-parameter joint sensing?",
+  "evidence_role": "fresh_identity_safe_backbone_mechanism_development",
+  "seed_substitution_reason": "The prompt-proposed 680M and 690M identities were already consumed by P4d and P4e in the authoritative workspace. P3n-A therefore uses unused 760M and 770M identities.",
+  "data": {
+    "train_identity_seed": 760000000,
+    "development_identity_seed": 770000000,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_roles_per_combination": {"fit": 7, "early": 1, "calibration": 1, "selection": 1},
+    "identity_key": "receiver_noise_seed",
+    "all_regime_power_views_grouped": true,
+    "test_generated": false,
+    "test_opened": false
+  },
+  "model": {
+    "name": "mlcnn_iq_grouped_task_routed",
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "classification_backbone": "MLCNN",
+    "parameter_backbone": "IQ-Grouped",
+    "parameter_outputs": 12
+  },
+  "variants": {
+    "B1_original_bce": "BCEWithLogitsLoss + 0.1 masked SmoothL1",
+    "B2_hard_negative": "B1 plus weight 3.0 on ISRJ BCE for MFT=1 and ISRJ=0 samples",
+    "B3_conditional_margin": "B1 plus 0.1 times symmetric label-conditional MFT-ISRJ softplus margin loss with margin 1.0"
+  },
+  "training": {
+    "model_seeds": [2041, 2042, 2043],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "scheduler": "cosine",
+    "batch_size": 63,
+    "gradient_clip_norm": 5.0,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "minimum early-role oracle parameter macro-NMAE",
+    "threshold_calibration": "per-class F1 grid 0.05:0.01:0.95 on calibration identities only",
+    "selection_role": "diagnostic only; no hyperparameter change after development access"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "b3_each_seed_isrj_recall_delta_vs_b1_nonnegative": true,
+    "b3_maximum_development_cell_fpr_at_most": 0.10,
+    "b3_each_power_isrj_recall_drop_vs_b1_at_most": 0.02,
+    "b3_each_seed_macro_aupr_delta_vs_b1_at_least": -0.005,
+    "b3_each_seed_oracle_parameter_nmae_ratio_vs_b1_at_most": 1.01,
+    "b3_each_seed_predicted_gate_parameter_nmae_ratio_vs_b1_at_most": 1.01,
+    "b3_miss_penalty_and_worst_combination_nonworse_vs_b1": true,
+    "b3_stably_beats_b2_on_at_least_two_core_safety_metrics": true,
+    "three_of_three_direction_consistent": true
+  },
+  "attribution_rules": {
+    "B1_passes_and_B3_not_better": "distribution coverage, not a new loss mechanism",
+    "B2_equivalent_to_B3": "ordinary hard-negative weighting is sufficient; conditional margin is not supported as the core innovation",
+    "only_B3_passes": "conditional cross-interference relation supervision receives mechanism support",
+    "all_fail_but_oracle_separable": "representation insufficiency; move to local delay-peak and periodic dual-view training",
+    "oracle_not_separable": "audit physical identifiability, generator contract and observation length"
+  },
+  "next_identity_reservations": {
+    "P3n_B_router_train": 780000000,
+    "P3n_B_router_development": 790000000,
+    "Level4_confirmation_1": 810000000,
+    "Level4_confirmation_2": 820000000
+  },
+  "stop_rule": "Do not change data roles, losses, weights, margin, training budget, thresholds procedure or gates after opening seed770000000 development predictions. If P3n-A fails, freeze 770M and follow the preregistered attribution rule on new identities.",
+  "locked_test_used": false
+}

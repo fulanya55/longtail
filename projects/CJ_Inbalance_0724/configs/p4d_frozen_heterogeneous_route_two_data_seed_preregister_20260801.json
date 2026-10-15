@@ -1,0 +1,56 @@
+{
+  "experiment": "P4d frozen heterogeneous route two-data-seed confirmation",
+  "research_question": "Does the P4c heterogeneous route retain its full-12-parameter gain on two entirely new identity pools when checkpoints, normalizers, and classification thresholds are frozen?",
+  "evidence_role": "fresh_identity_no_tuning_confirmation_development",
+  "single_changed_axis_vs_p4c": "replace the data generator seed; no training, checkpoint selection, normalizer fitting, calibration, or threshold tuning is permitted",
+  "source_freeze": {
+    "run_root": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+    "models": ["legacy_mlcnn_global", "mlcnn_iq_grouped_task_routed"],
+    "model_seeds": [3041, 3042, 3043],
+    "checkpoint_objective": "parameter",
+    "normalizer": "frozen from P4c train role",
+    "classification_thresholds": "frozen separately for every P4c checkpoint"
+  },
+  "data": {
+    "generator": "create_closedset_6class_config",
+    "generator_seeds": [670000000, 680000000],
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "identities_per_seed": 6300,
+    "identity_key": "receiver_noise_seed",
+    "required_cross_seed_overlap": 0,
+    "required_overlap_with_p4b_p4c_and_root": 0,
+    "role": "external confirmation only",
+    "test_generation": "train-named container only; no project test split generated"
+  },
+  "evaluation": {
+    "batch_size": 126,
+    "evaluate_all_6300_identities_per_data_seed": true,
+    "classification_metrics": ["macro_aupr", "macro_f1", "subset_acc"],
+    "parameter_metrics": ["macro_nmae", "macro_pearson", "per_target_nmae", "per_target_pearson"],
+    "paired_unit": "same frozen model seed and same external data seed"
+  },
+  "validity_gates": {
+    "all_12_targets_finite_count_positive": true,
+    "all_12_targets_range_positive": true,
+    "all_63_combinations_present": true,
+    "identity_overlap_zero": true,
+    "checkpoint_hashes_match_p4c": true,
+    "no_fit_or_calibration_on_external_data": true
+  },
+  "promotion_gates": {
+    "each_of_6_paired_route_parameter_macro_nmae_reduction_at_least": 0.04,
+    "mean_route_parameter_macro_nmae_reduction_at_least": 0.05,
+    "each_paired_route_macro_aupr_drop_at_most": 0.003,
+    "each_paired_route_subset_accuracy_drop_at_most": 0.03,
+    "each_paired_route_parameter_macro_pearson_not_lower": true,
+    "no_target_worse_in_all_3_model_seeds_within_either_data_seed_by_more_than_absolute_nmae": 0.03
+  },
+  "sawfm_watch_rule": "Even if the numerical promotion gate passes, SawFM sweep-period worsening in 3 of 3 model seeds on both new data seeds is treated as replicated local negative transfer and triggers a new fresh-identity safe-fallback experiment before final promotion.",
+  "stop_rule": "Do not tune or choose checkpoints using either external pool. On failure, freeze both pools for attribution only and preregister exactly one new mechanism on entirely new identities.",
+  "next_if_pass": "Retain the heterogeneous route as the parameter backbone candidate, add strict MAC matching, then proceed to five-seed statistics and multi-axis stress tests.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

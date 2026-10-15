@@ -1,0 +1,21 @@
+{
+  "experiment": "P5h exclusive-GPU guarded shared frozen-forward and dense bounded-head execution",
+  "status": "execution_frozen_before_any_model_comparison_result",
+  "reason": "The runner accessed the first new development pool to collect analytic features, then raised KeyError('benchmark') before loading a frozen source model because the implemented runner read the wrong pre-registered container name. The correct container is execution.",
+  "execution_record": {
+    "p5h_process_id": 86092,
+    "exception": "KeyError: benchmark",
+    "result_json_written": false,
+    "frozen_model_loaded": false,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "consumed_data": {
+    "development_generator_seeds": [3850000000, 3860000000, 3870000000],
+    "all_three_pools_generated_train_only": true,
+    "reuse_for_rerun_selection_confirmation_or_test": false
+  },
+  "allowed_claims": ["P5h has no equivalence, latency, or performance result."],
+  "forbidden_actions": ["Restart P5h on 3850M/3860M/3870M identities.", "Generate/use P5h 3880M/3890M confirmation identities.", "Use partial runtime or the absence of source-model loading as a performance result."]
+}

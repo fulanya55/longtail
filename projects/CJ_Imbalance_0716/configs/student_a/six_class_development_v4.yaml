@@ -1,0 +1,22 @@
+experiment_name: six_class_student_a_development_v4
+data_root: 'C:\LJQ_code\干扰数据\复合干扰数据0801_v4'
+train_file: closedset_6class_train.mat
+class_mode: six
+input_mode: complex_1d_true
+normalization: complex_rms
+signal_length: 3000
+seed: 34000000
+allow_locked_test: false
+evidence_role: development_v4
+test_v4_path: 'C:\LJQ_code\干扰数据\复合干扰数据0801_v4\closedset_6class_test.mat'
+test_v4_generated: false
+test_v4_access_authorized: false
+test_v4_used: false
+sealed_test_v3_path: 'C:\LJQ_code\干扰数据\复合干扰数据0731_v3\closedset_6class_test.mat'
+test_v3_sealed: true
+test_v3_used: false
+forbidden_test_v2_path: 'C:\LJQ_code\干扰数据\复合干扰数据0731_v2\closedset_6class_test.mat'
+test_v2_consumed: true
+development_v2_reuse_for_selection: false
+development_v3_reuse_for_selection: false
+

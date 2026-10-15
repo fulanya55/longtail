@@ -1,0 +1,77 @@
+{
+  "experiment_id": "P2m-fixed-FFT-ACF-SawFM-period-OOD-physical-sufficiency",
+  "registration_date": "2026-08-01",
+  "trigger": {
+    "P2l_failure": "The frozen learned period head lost rank correlation outside 20-80 us even on exact SawFM components.",
+    "exploratory_diagnostic_only": "A fixed FFT autocorrelation peak rule was explored on consumed P2l development data and is not evidence.",
+    "new_evidence_seed": 2700000000
+  },
+  "single_hypothesis": "A non-trainable FFT autocorrelation period estimator can recover the wide-range periodic evidence already present in exact and P2f-separated SawFM components without changing the separator or classification system.",
+  "frozen_algorithm": {
+    "input": "RMS-normalized complex I/Q component",
+    "autocorrelation": "biased linear autocorrelation from zero-padded FFT length 2N, normalized by lag-zero",
+    "lag_samples": [40, 2799],
+    "scipy_find_peaks_prominence": 0.03,
+    "scipy_find_peaks_distance_samples": 20,
+    "strongest_peak_boundary_samples": 800,
+    "early_peak_fraction_below_boundary": 0.20,
+    "early_peak_fraction_at_or_above_boundary": 0.60,
+    "absolute_peak_floor": 0.10,
+    "selection": "choose the earliest peak above max(absolute floor, selected fraction times strongest peak); otherwise choose strongest peak",
+    "sample_rate_Hz": 10000000,
+    "training_or_fitting": false
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p2m_analytic_saw_period_data.m",
+    "base_seed": 2700000000,
+    "split": "train only",
+    "powers_db": [25, 35, 50],
+    "combinations": 63,
+    "identities_per_combination": 10,
+    "identities": 630,
+    "period_regimes_us": {
+      "ID_control": [25, 75],
+      "near_low": [10, 20],
+      "near_high": [80, 100],
+      "far_low": [5, 10],
+      "far_high": [100, 160]
+    }
+  },
+  "controls": [
+    "learned period head on exact component",
+    "learned period head on P2f-separated component plus frozen affine calibration",
+    "fixed analytic estimator on exact component",
+    "fixed analytic estimator on P2f-separated component"
+  ],
+  "promotion_gates": {
+    "analytic_exact_mean_pearson_each_regime_min": 0.60,
+    "analytic_exact_mean_mae_us_max": {
+      "ID_control": 2.0,
+      "near_low": 1.0,
+      "near_high": 2.0,
+      "far_low": 0.3,
+      "far_high": 1.0
+    },
+    "analytic_separated_mean_mae_reduction_vs_learned_each_regime_min": 0.15,
+    "analytic_separated_all_15_runs_improve_mae": true,
+    "analytic_separated_mean_pearson_min": {
+      "ID_control": 0.55,
+      "near_low": 0.50,
+      "near_high": 0.15,
+      "far_low": 0.85,
+      "far_high": 0.25
+    }
+  },
+  "stop_rules": {
+    "exact_fails": "Stop analytic attachment; the fixed peak rule is not physically sufficient.",
+    "exact_passes_separated_fails": "Do not alter the estimator on this seed; develop separator OOD robustness on a new seed.",
+    "all_pass": "Freeze the analytic estimator and separately preregister full predicted-gate system attachment."
+  },
+  "evidence_boundary": {
+    "development_physical_screen": true,
+    "system_attachment_not_in_this_stage": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  }
+}

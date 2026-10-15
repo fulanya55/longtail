@@ -1,0 +1,63 @@
+{
+  "schema": "P5u-two-pool-confirmation-v1",
+  "experiment": "P5u conditional two-new-identity confirmation of direct-supervised frozen shared-forward execution",
+  "status": "preregistered_before_P5u_development_result_or_confirmation_data",
+  "evidence_role": "independent_two_pool_confirmation_no_training_no_selection_no_locked_test",
+  "parent_p5u_preregister": "configs/p5u_direct_supervision_preregister_20260806.json",
+  "parent_p5u_preregister_sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c",
+  "parent_p5u_method_freeze": "configs/p5u_direct_supervision_method_freeze_20260806.json",
+  "parent_p5u_method_freeze_sha256": "f36d4b463eed04c29704c0ee956eb8803adf3b994514a59232ba66c2e3858a24",
+  "condition_before_generation": {
+    "require_parent_development_passed": true,
+    "require_all_three_parent_pool_gates": true,
+    "require_parent_direct_supervisor_terminal_returncode_zero": true,
+    "require_parent_terminal_child_pid_equals_started_child_pid": true,
+    "forbid_confirmation_data_before_condition": true
+  },
+  "confirmation_generator_seeds": [3340000000, 3350000000],
+  "data_contract": {
+    "generator": "matlab/generate_p5u_two_pool_confirmation_data.m",
+    "powers_db": [10, 15, 20, 25, 30],
+    "samples_per_combination": 60,
+    "full_pool_examples": 3780,
+    "split": "train only evaluation-only",
+    "paired_identity_key": "receiver_noise_seed",
+    "identity_rule": "Each confirmation pool must have zero overlap with the explicit historical baseline, every retained local generated training identity, all P5p/P5q/P5r/P5s/P5t/P5u-development identities, and the other confirmation pool."
+  },
+  "frozen_execution": {
+    "supervision": "P5u supervisor directly spawns and waits for the actual two-pool confirmation executor after the unchanged P5t no-data source/checkpoint preflight.",
+    "analytic_chunk_positions": 630,
+    "batch_size": 126,
+    "benchmark_batch": "first complete index-ordered batch, indices 0 through 125",
+    "reference": "two frozen base forwards plus unchanged dense attachment",
+    "candidate": "one frozen base forward plus identical unchanged dense attachment",
+    "warmup_runs": 5,
+    "timed_repetitions": 15,
+    "latency_ratio_upper_bound": 0.85,
+    "source_model_seeds": [3041, 3042, 3043, 3044, 3045]
+  },
+  "confirmation_gates": {
+    "exact_full_pool_outputs_and_metrics_for_every_pool_and_model": true,
+    "exact_fixed_batch_outputs_for_every_pool_and_model": true,
+    "every_pool_model_latency_ratio_at_most_0p85": true,
+    "every_chunk_and_post_execution_external_python_cuda_guard_clean": true,
+    "direct_supervisor_preflight_and_terminal_receipts_complete": true,
+    "no_exception_or_selective_rerun": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "stop_rule": "Any conditional-development failure, audit failure, source preflight failure, terminal PID mismatch, missing receipt, external CUDA Python guard, output non-equivalence or latency failure freezes the confirmation identities without tuning, rerun, calibration, model change, test generation or locked-test access.",
+  "frozen_artifacts": [
+    {"path": "cj0724/p5u_two_pool_confirmation_execution.py", "sha256": "55448a4e54e78f4a91ff14387fe8a1001eaeba7a7af137577e9832b0bfc1729c"},
+    {"path": "matlab/generate_p5u_two_pool_confirmation_data.m", "sha256": "79350dff467b3be595eed9a11db29938a5ed73b1f2f090824e34b654414a343e"},
+    {"path": "tests/test_p5u_two_pool_confirmation_protocol.py", "sha256": "2cd844863c517f63c1b0f9c91bb510df1fe76d575450de6619fbec9b5f22d8ef"},
+    {"path": "cj0724/p5u_preflight_supervisor.py", "sha256": "5b4f0e986cf7e646a0095bfc4c26b56a0066b99485b63fa9940354aee3244230"},
+    {"path": "cj0724/p5s_detached_chunked_execution.py", "sha256": "62dcb19a9ed1f748e1b16062cadab8fc891ff113bda7bd41b84a4375b3d9f8f2"},
+    {"path": "cj0724/models.py", "sha256": "28bb3565497920f546c72afa4ceaf8566cbadb0ba61bd24e0d70b466923e72b3"},
+    {"path": "cj0724/p5t_legacy_portable_execution.py", "sha256": "40163d3beda90b37818643c918fd0f40726ac503a6a51f934100b1373e65f6a6"}
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

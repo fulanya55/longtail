@@ -1,0 +1,27 @@
+usage: solve_pure_label_longtail.py [-h] [--n N] [--labels LABELS]
+                                    [--target-if TARGET_IF] [--cf-cap CF_CAP]
+                                    [--min-per-pattern MIN_PER_PATTERN]
+                                    [--js-threshold JS_THRESHOLD] --output
+                                    OUTPUT
+
+Plan six-class pure-label long-tail combination counts. This module only plans
+integer counts; it never opens or modifies waveform MAT files. The six labels
+are represented by the 63 non-empty bit-mask patterns. For a count vector
+``n`` we report: * label IF = max(A @ n) / min(A @ n), where A is the 63x6
+pattern matrix; * combination CF = max(n[p]) / min(n[p]) over retained
+patterns; * JS divergence between the normalised retained-pattern distribution
+and the uniform 63-pattern anchor (zero mass for omitted patterns). The MILP
+maximises retained-pattern coverage first, then seeks a large label spread
+while keeping the requested IF and CF upper bounds. JS is evaluated as an
+exact nonlinear post-condition; candidates are generated with an L1 distance
+tie-breaker so that a configured JS threshold is not silently relaxed.
+
+options:
+  -h, --help            show this help message and exit
+  --n N                 comma-separated total sample counts
+  --labels LABELS       six labels in bit order, comma-separated
+  --target-if TARGET_IF
+  --cf-cap CF_CAP
+  --min-per-pattern MIN_PER_PATTERN
+  --js-threshold JS_THRESHOLD
+  --output OUTPUT

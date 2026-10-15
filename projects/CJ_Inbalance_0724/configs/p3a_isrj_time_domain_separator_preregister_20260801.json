@@ -1,0 +1,71 @@
+{
+  "experiment": "P3a edge-preserving time-domain ISRJ separator",
+  "registration_date": "2026-08-01",
+  "single_hypothesis": "Replacing the STFT/ISTFT separator with a no-downsampling dilated time-domain complex residual network preserves local ISRJ phase-reset boundaries and transfers the P2x width estimator across ID and OOD intervals.",
+  "evidence_role": "fresh_identity_safe_development_and_frozen_architecture_comparison",
+  "failure_basis": {
+    "P2x": "exact-component phase-reset width estimation passed all five ID/OOD regimes",
+    "P2y": "the frozen shared STFT U-Net retained waveform cosine but not width ordering",
+    "P2z": "dedicated STFT U-Net reached waveform cosine 0.56-0.77; reset loss changed mean width MAE by -0.016 percent and Pearson remained near zero",
+    "inference": "sample-local phase discontinuities are blurred by STFT/ISTFT and frequency-mask reconstruction; another reset-loss weight search is not justified"
+  },
+  "data": {
+    "training_root": "reuse frozen P2z train-only seed3700000000 ID-control roles",
+    "training_roles": "same fixed 6/2/2 identities per combination as P2z",
+    "fresh_development_identity_seed": 4000000000,
+    "development_regimes_us": {
+      "ID_control": [5, 20],
+      "near_low": [2, 5],
+      "near_high": [20, 30],
+      "far_low": [1, 2],
+      "far_high": [30, 50]
+    },
+    "powers_db": [25, 35, 50],
+    "all_63_combinations": true,
+    "training_development_overlap_required": 0,
+    "test_generated": false,
+    "test_opened": false
+  },
+  "candidate": {
+    "name": "TD-Reset",
+    "input": "RMS-normalized raw I/Q",
+    "architecture": "2-channel stem plus six no-downsampling depthwise-separable residual blocks",
+    "kernel_size": 9,
+    "width": 16,
+    "dilations": [1, 2, 4, 8, 16, 32],
+    "output": "sample-domain complex residual plus identity skip, followed by complex RMS normalization",
+    "loss": "same P2z waveform objective plus fixed 0.5 phase-curvature consistency",
+    "model_seeds": [2041, 2042, 2043],
+    "epochs": 12,
+    "patience": 4,
+    "batch_size_identities": 8,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0
+  },
+  "comparators": {
+    "C0_raw": "P2x estimator on raw compound I/Q",
+    "C1_frozen_P2z_STFT_Reset": "frozen seed-matched P2z S1 checkpoint evaluated without tuning on seed400",
+    "C2_TD_Reset": "preregistered time-domain candidate",
+    "C3_exact": "P2x exact-component oracle"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "exact_each_regime_mae_reduction_vs_constant_min": 0.10,
+    "exact_each_regime_pearson_min": 0.30,
+    "candidate_all_3_seeds_each_regime_mae_reduction_vs_constant_min": 0.10,
+    "candidate_all_3_seeds_each_regime_pearson_min": 0.30,
+    "candidate_all_3_seeds_each_regime_catastrophic_fraction_max": 0.10,
+    "candidate_compound_all_3_seeds_each_regime_mae_reduction_vs_constant_min": 0.10,
+    "candidate_compound_all_3_seeds_each_regime_pearson_min": 0.30,
+    "candidate_all_3_seeds_each_regime_mae_better_than_raw": true,
+    "candidate_each_seed_mean_mae_reduction_vs_frozen_P2z_min": 0.20,
+    "candidate_mean_mae_reduction_vs_frozen_P2z_min": 0.30,
+    "candidate_all_3_seeds_each_regime_waveform_cosine_min": 0.30,
+    "candidate_parameter_count_max_fraction_of_P2z": 0.25,
+    "positive_model_seeds": "3/3"
+  },
+  "stop_rule": "No architecture, loss, threshold or epoch tuning on seed400. If P3a fails an absolute physical gate, stop learned ISRJ waveform-separator development and retain P2x as oracle/identifiability evidence only. If it passes, freeze all weights and run two fresh identity seeds before any full-system attachment.",
+  "locked_test_used": false
+}

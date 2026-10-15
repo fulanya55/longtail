@@ -1,0 +1,27 @@
+{
+  "experiment": "P3e frozen parallel lazy scheduler benchmark",
+  "research_question": "Can parallel conditional scheduling reduce the frozen P2c expert pipeline to at most 1.5 times main-backbone batch-64 latency without changing any expert output?",
+  "evidence_role": "deployment_development_benchmark",
+  "method_changes": "none to models, checkpoints, thresholds, routes, losses, or predictions; scheduling only",
+  "data": {
+    "source": "fresh P3d development identities, all five regimes and 25/35/50 dB",
+    "locked_test": false,
+    "deterministic_samples_per_regime_power": 64
+  },
+  "variants": ["main_only", "always_on", "sequential_lazy", "parallel_lazy"],
+  "scheduler": {
+    "main_runs_first": true,
+    "candidate_masks": "exact frozen P2c thresholds",
+    "parallel_branches": ["UNet ISRJ physics", "SawFM period expert", "VFT aligned analytic expert"],
+    "cuda_streams": 3
+  },
+  "promotion_gates": {
+    "candidate_subset_outputs_max_abs_difference": 1e-5,
+    "batch64_parallel_lazy_to_main_median_latency_at_most": 1.5,
+    "batch64_parallel_lazy_at_least_10_percent_faster_than_sequential_lazy": true,
+    "parallel_lazy_peak_memory_not_above_always_on": true,
+    "report_batch1_and_batch64_median_p95_throughput_coverage_and_worst_path": true
+  },
+  "stop_rule": "If the 1.5x gate fails, do not claim deployable low-overhead routing; retain the measured cost as a limitation and investigate shared-front-end replacement on new identities.",
+  "locked_test_used": false
+}

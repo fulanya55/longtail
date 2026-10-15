@@ -1,0 +1,40 @@
+{
+  "experiment": "P5o protocol-generic verified-idle shared frozen-forward and dense bounded-head execution",
+  "status": "stopped_abrupt_termination_after_launch_no_performance_result",
+  "decision": "Do not rerun P5o, do not alter the P5o protocol or executor on its consumed identities, do not generate confirmation data, and do not open any independent or locked test.",
+  "cause": {
+    "stage": "after pre-data integration validation, train-only generation, zero-overlap audits, and guarded GPU launch; before a normal result or exception receipt was flushed",
+    "observed": "The launched P5o Python process later disappeared and its pre-created output root is empty: neither result.json nor pre_result_abort.json exists.",
+    "attribution": "unattributed abrupt process termination. A focused Windows Application/System event-log query did not produce a process-specific Python fault or a time-correspondent CUDA-driver incident that can be assigned to P5o.",
+    "why_no_model_conclusion": "The executor writes a pre_result_abort receipt for catchable Python exceptions and result.json on normal completion. An empty root therefore has no valid equivalence, latency, guard, or model metric; it is execution-infrastructure failure evidence only."
+  },
+  "evidence": {
+    "preregister": "configs/p5o_protocol_generic_idle_window_preregister_20260803.json",
+    "preregister_sha256": "be160fa4c8f27f2f7810a23f1bbd3d6966603641938e5edccacc82e3c4699138",
+    "method_freeze": "configs/p5o_protocol_generic_idle_window_method_freeze_20260803.json",
+    "method_freeze_sha256": "788665823e84a2c47e7cfaea7a3708ebc7224ce6011a564e04338579e4da47bf",
+    "execution_runner": "cj0724/p5o_protocol_generic_idle_window_execution.py",
+    "execution_runner_sha256": "c7f9b0c5b043ee2e8a460461c304d5b2ef8fb5a251582cdc192f32365d6bddfd",
+    "preflight_audits": [
+      {"path": "outputs/p5o_protocol_generic_idle_window_preflight_20260803/audit_seed3910000000.json", "sha256": "7e9c9bf663ff47fbacdb8c5b29072d00c93a75b27d1b3759164b1a5379e4437"},
+      {"path": "outputs/p5o_protocol_generic_idle_window_preflight_20260803/audit_seed3920000000.json", "sha256": "4c79cafd88773f2570820271351ab834cf2f098e275d81301088a46dfdba1353"},
+      {"path": "outputs/p5o_protocol_generic_idle_window_preflight_20260803/audit_seed3930000000.json", "sha256": "2f73820042baf4053593c619d295b8b61ba4fbb6a08146696d57d142d3060fa5"}
+    ],
+    "launch_time_local": "2026-08-03T19:09:43+08:00",
+    "post_termination_check": "2026-08-04; no p5o Python command line present; output root exists and has zero entries",
+    "event_log_check": "Application Error, Windows Error Reporting, and selected System providers queried over 2026-08-04 20:20-21:05 local; no P5o-attributable process crash/driver event retained",
+    "output_root": "outputs/p5o_protocol_generic_idle_window_development_20260803",
+    "output_files": []
+  },
+  "data_disposition": {
+    "development_identity_roots": [
+      "generated_data/p5o_protocol_generic_idle_window_dev_seed3910000000",
+      "generated_data/p5o_protocol_generic_idle_window_dev_seed3920000000",
+      "generated_data/p5o_protocol_generic_idle_window_dev_seed3930000000"
+    ],
+    "identity_disposition": "quarantined_for_P5; no rerun, selection, confirmation, calibration, or test on these identities",
+    "independent_or_locked_test_generated": false,
+    "independent_or_locked_test_opened": false
+  },
+  "next_allowed_action": "Only a separately preregistered checkpointed P5 successor may be considered. Before fresh data generation it must write an immutable launch receipt and per-pool completion checkpoints, validate recovery behavior without performance evaluation, then use wholly new identity pools."
+}

@@ -1,0 +1,12 @@
+{
+  "experiment": "P3o-S oracle MFT subtraction causal diagnosis",
+  "authorization": "User explicitly authorized use of C: for this experiment.",
+  "raw_output_root": "C:\\CJ0724_generated_data",
+  "rechunk_output_root": "C:\\CJ0724_rechunked_data",
+  "authorization_recorded_utc": "2026-08-03",
+  "preflight_free_bytes": 392239681536,
+  "preflight_result": "P3OS_C_DRIVE_PREFLIGHT_PASS",
+  "preserved_artifacts": ["D: P3o-R raw data", "D: P3o-R rechunked caches", "all historical outputs"],
+  "generator_protocol": "one serial MATLAB process per data_seed x regime x power, atomic resume transaction, writable-root and 5 GiB capacity guard",
+  "locked_test_used": false
+}

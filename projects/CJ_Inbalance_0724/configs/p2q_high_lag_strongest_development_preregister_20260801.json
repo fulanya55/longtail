@@ -1,0 +1,34 @@
+{
+  "experiment": "P2q high-lag strongest-peak SawFM development",
+  "research_question": "Does using the strongest peak only when the strongest lag is at least 800 samples remove high-period small-lag catastrophes while retaining the legacy rule below 800 samples?",
+  "evidence_role": "second_generation_development_only",
+  "source_development": "outputs/p2p_saw_peak_rule_development_20260801",
+  "frozen_rule": {
+    "boundary_samples": 800,
+    "below_boundary": "legacy P2m rule",
+    "at_or_above_boundary": "strongest autocorrelation peak",
+    "sample_rate_hz": 10000000.0
+  },
+  "promotion_requirements": {
+    "all_15_separated_runs_improve_mae_over_learned": true,
+    "each_regime_mean_separated_pearson_at_least": {
+      "ID_control": 0.60,
+      "near_low": 0.55,
+      "near_high": 0.30,
+      "far_low": 0.90,
+      "far_high": 0.40
+    },
+    "each_regime_mean_separated_mae_no_more_than_legacy_factor": 1.10,
+    "each_regime_mean_exact_pearson_at_least": 0.60,
+    "each_regime_mean_exact_mae_us_at_most": {
+      "ID_control": 2.0,
+      "near_low": 1.0,
+      "near_high": 2.0,
+      "far_low": 0.3,
+      "far_high": 1.0
+    },
+    "three_of_three_model_seeds_improve_near_high_and_far_high_pearson_vs_legacy": true
+  },
+  "next_gate": "If passed, freeze before a fresh seed-3000000000 development validation; confirmation seeds 2800000000 and 2900000000 remain forbidden.",
+  "locked_test_used": false
+}

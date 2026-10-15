@@ -1,0 +1,25 @@
+{
+  "experiment": "P3o-N observable resolution-aware abstention for compound MFT target count",
+  "outcome_date": "2026-08-03",
+  "summary": "outputs/p3on_resolution_abstention_development_20260803_contractfix/summary.json",
+  "summary_sha256": "a87375dcd5f075f44f6ab820d4f90c8213f13021df046153d148380954815528",
+  "development_passed": false,
+  "verdict": "stop_no_confirmation_data",
+  "failed_gates": [
+    "each_seed_C1_accepted_overall_and_compound_mae_reduction_vs_C0_at_least_0p05",
+    "each_seed_C1_accepted_overall_and_compound_pearson_delta_vs_C0_at_least_0p05",
+    "each_seed_C1_accepted_low_count_pearson_at_least_0p30",
+    "each_seed_C1_ultra_close_coverage_at_most_C0_minus_0p03",
+    "each_seed_C1_accepted_ultra_close_mae_not_worse_than_C0"
+  ],
+  "confirmation_generated": false,
+  "confirmation_opened": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false,
+  "forbidden_follow_up": [
+    "tune resolution formula", "tune gap scale", "tune target coverage",
+    "tune tokens or point estimator on P3o-N development identities",
+    "generate P3o-N confirmation", "attach C1 to full system"
+  ]
+}

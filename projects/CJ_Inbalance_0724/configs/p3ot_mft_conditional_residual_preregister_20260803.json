@@ -1,0 +1,79 @@
+{
+  "experiment": "P3o-T deployable MFT-support conditional ISRJ residual",
+  "status": "preregistered_before_data_generation_and_development_prediction",
+  "question": "Can an observable MFT inverse-delay support descriptor, gated only by the frozen predicted MFT posterior, reduce MFT-to-ISRJ false positives without removing MFT evidence or degrading safety, ranking, and predicted-gate parameter utility?",
+  "evidence_boundary": "fresh-identity formal development only; no confirmation, test, or locked test is generated or opened in this stage",
+  "roles": {
+    "train": 1960000000,
+    "selection": 1970000000,
+    "development": 1980000000,
+    "reserved_confirmation": [1990000000, 2000000000]
+  },
+  "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+  "powers_db": [25, 35, 50],
+  "samples_per_pattern": 33,
+  "conditions": {
+    "T0_base": "Frozen MLCNN logits and frozen P2c safe thresholds; no residual.",
+    "T1_zero_side_residual": "Equal-capacity ISRJ-only residual over detached frozen MLCNN global feature and predicted MFT posterior; support input is zero.",
+    "T2_support_conditional_residual": "The same residual receives a fixed complex-LFM inverse-delay support summary from raw compound I/Q.",
+    "T3_matched_noninformative_control": "The same residual receives a deterministic fixed-phase-scrambled support summary with matched dimensions and per-sample norm."
+  },
+  "base_model": {
+    "name": "mlcnn_iq_grouped_task_routed",
+    "checkpoint_objective": "parameter",
+    "base_model_seeds": [2041, 2042, 2043],
+    "safe_threshold_receipt": "outputs/p2c_lazy_joint_confirmation_20260801/method_freeze.json",
+    "base_parameters_frozen": true,
+    "non_isrj_logits_bitwise_preserved": true
+  },
+  "residual_training": {
+    "residual_model_seeds": [2401, 2402, 2403],
+    "hidden_dim": 64,
+    "dropout": 0.0,
+    "support_bins": 16,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "batch_size": 128,
+    "epochs": 15,
+    "warmup_epochs": 2,
+    "gradient_clip_norm": 5.0,
+    "checkpoint_rule": "minimum selection corrected-ISRJ BCE, deterministic first-epoch tie break",
+    "primary_loss": "BCEWithLogits(corrected_ISRJ_logit, ISRJ_label)",
+    "conditional_loss": "mean softplus(corrected_ISRJ_logit - frozen_base_ISRJ_logit + 0.0) over MFT=1 and ISRJ=0 samples only",
+    "conditional_loss_weight": 0.25,
+    "mft_gate": "detached sigmoid(frozen MFT logit); no label, oracle component, or parameter target is used at inference"
+  },
+  "calibration": {
+    "primary_thresholds": "unchanged frozen P2c safe thresholds",
+    "secondary_selection_only_threshold": "ISRJ threshold selected on selection role by maximum recall subject to every regime-power observed FPR <= 0.08 and one-sided 95% Clopper-Pearson upper bound <= 0.15; all non-ISRJ thresholds remain frozen",
+    "report_both": true
+  },
+  "statistics": {
+    "bootstrap_unit": "receiver_noise_seed identity clustered paired resampling",
+    "bootstrap_resamples": 2000,
+    "comparisons": ["T2-T0", "T2-T1", "T2-T3"],
+    "ci": "two-sided 95 percent percentile interval"
+  },
+  "development_gates": {
+    "each_base_seed_T2_source_fpr_reduction_vs_T0_at_least": 0.02,
+    "each_base_seed_T2_source_fpr_reduction_vs_T1_and_T3_at_least": 0.01,
+    "paired_bootstrap_ci_low_strictly_positive_for_all_three_comparisons": true,
+    "isrj_recall_delta_vs_T0_at_least": -0.02,
+    "worst_source_cell_fpr_not_worse": true,
+    "mft_ap_absolute_tolerance": 1e-12,
+    "macro_aupr_delta_vs_T0_at_least": -0.005,
+    "macro_f1_delta_vs_T0_at_least": -0.005,
+    "predicted_gate_nmae_ratio_vs_T0_at_most": 1.01,
+    "miss_penalty_delta_vs_T0_at_most": 0.0,
+    "worst_combo_predicted_gate_nmae_delta_vs_T0_at_most": 0.0,
+    "at_least_four_regimes_nonnegative_source_fpr_direction": true,
+    "power_25_source_fpr_direction_nonnegative": true,
+    "base_safe_threshold_receipt_complete": true,
+    "all_identity_overlaps_zero": true
+  },
+  "stop_rule": "Any failed development gate freezes this hypothesis, its identities, and its reserved confirmation roles. No loss, support, threshold, checkpoint, seed, or capacity retuning is allowed on these identities.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

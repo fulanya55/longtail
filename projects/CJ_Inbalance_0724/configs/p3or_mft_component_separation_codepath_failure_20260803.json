@@ -1,0 +1,14 @@
+{
+  "experiment": "P3o-R MFT component separability before count extraction",
+  "attempt_output_root": "outputs/p3or_mft_component_separation_development_20260803",
+  "status": "invalid_codepath_before_first_training_batch",
+  "failure": "MFTComponentDataset.__getitem__ selected each V73IQDataset object but did not index it at sample_index, causing ValueError when attempting to convert the dictionary key 'sample_index' to int.",
+  "scientific_result_created": false,
+  "checkpoint_created": false,
+  "development_prediction_opened": false,
+  "development_metric_created": false,
+  "data_identity_consumed_by_model_selection": false,
+  "repair": "Index each power-view dataset with the requested sample_index and add a unit test that asserts all three power views are read at that index.",
+  "next_execution": "Use the contract-fixed implementation and method-freeze on the same pre-registered 1880M/1890M data, with a distinct output root. No loss, architecture, split, threshold, or gate change is authorized.",
+  "locked_test_used": false
+}

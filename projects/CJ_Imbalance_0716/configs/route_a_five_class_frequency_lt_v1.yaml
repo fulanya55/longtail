@@ -1,0 +1,26 @@
+experiment_name: route_a_five_class_frequency_lt_v1
+data_root: 'E:\LJQ_code\干扰数据\复合干扰数据0716'
+train_file: closedset_6class_train.mat
+test_file: closedset_6class_test.mat
+class_mode: five
+selected_classes:
+  - FMB
+  - SinFM
+  - MFT
+  - VFT
+  - ISRJ
+excluded_classes:
+  - SawFM
+exclude_sawfm_positive_samples: true
+longtail_axis: label_frequency_only
+power_longtail: false
+backbone: dfms_iq
+backbone_variant: B0_DelayedFusionMultiScale
+normalization: complex_rms
+signal_length: 3000
+label_imbalance_factor: 4
+seeds:
+  - 271001
+  - 271002
+  - 271003
+locked_test_used: false

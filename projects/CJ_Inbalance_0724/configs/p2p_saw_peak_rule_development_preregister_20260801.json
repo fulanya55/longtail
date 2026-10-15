@@ -1,0 +1,50 @@
+{
+  "experiment": "P2p SawFM autocorrelation peak-rule development",
+  "research_question": "Can a frozen high-confidence or harmonic-consensus peak rule suppress small-lag separator artifacts while preserving exact-component physical accuracy?",
+  "evidence_role": "development_only",
+  "data": {
+    "identity_seed": 2700000000,
+    "regimes": ["ID_control", "near_low", "near_high", "far_low", "far_high"],
+    "powers_db": [25, 35, 50],
+    "model_seeds": [2041, 2042, 2043]
+  },
+  "frozen_inputs": {
+    "separator": "outputs/p2f_dedicated_sawfm_separator_development_v5_20260801",
+    "period_baseline": "outputs/p2m_analytic_saw_period_physics_20260801",
+    "no_classifier_retraining": true
+  },
+  "candidate_rules": {
+    "legacy": "P2m adaptive 0.20/0.60 earliest eligible peak",
+    "relative_0p75": "earliest peak with score >= max(0.10, 0.75 * strongest score)",
+    "relative_0p90": "earliest peak with score >= max(0.10, 0.90 * strongest score)",
+    "strongest": "lag of the strongest autocorrelation peak",
+    "harmonic_consensus": "peak maximizing weighted support at integer multiples, with deterministic smallest-lag tie break"
+  },
+  "selection_rule": {
+    "primary": "maximize the minimum separated Pearson margin over the frozen regime limits",
+    "tie_breakers": ["mean separated Pearson", "mean separated MAE"],
+    "requirements": {
+      "all_15_separated_runs_improve_mae_over_learned": true,
+      "each_regime_mean_separated_pearson_at_least": {
+        "ID_control": 0.60,
+        "near_low": 0.55,
+        "near_high": 0.30,
+        "far_low": 0.90,
+        "far_high": 0.40
+      },
+      "each_regime_mean_separated_mae_no_more_than_legacy_factor": 1.10,
+      "each_regime_mean_exact_pearson_at_least": 0.60,
+      "each_regime_mean_exact_mae_us_at_most": {
+        "ID_control": 2.0,
+        "near_low": 1.0,
+        "near_high": 2.0,
+        "far_low": 0.3,
+        "far_high": 1.0
+      },
+      "three_of_three_model_seeds_same_direction_vs_legacy_for_near_high_and_far_high_pearson": true
+    }
+  },
+  "next_gate": "If and only if one candidate passes, freeze it before generating any new identities; use new development and then two new independent confirmation seeds.",
+  "confirmation_identities_forbidden_for_selection": [2800000000, 2900000000],
+  "locked_test_used": false
+}

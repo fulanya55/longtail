@@ -1,0 +1,28 @@
+{
+  "experiment": "P5u direct-supervised frozen shared-forward execution",
+  "status": "development_stopped_without_result",
+  "created_utc": "2026-08-07T14:50:03.202124+00:00",
+  "parent_preregister": "E:\\LJQ_code\\CJ_Inbalance_0724\\configs\\p5u_direct_supervision_preregister_20260806.json",
+  "parent_preregister_sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c",
+  "confirmation_preregister": "E:\\LJQ_code\\CJ_Inbalance_0724\\configs\\p5u_two_pool_confirmation_preregister_20260806.json",
+  "confirmation_preregister_sha256": "0bac7bb790dd0a14124c07ba41b45ff31e435201a07e47b925bdb13441edbde1",
+  "development_execution_root": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\p5u_direct_supervision_20260806\\execution",
+  "confirmation_execution_root": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\p5u_two_pool_confirmation_20260806\\execution",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false,
+  "evidence_role": "stopped_or_failed_execution_protocol",
+  "payload": {
+    "development_terminal": {
+      "schema": "P5u-preflight-supervisor-v1",
+      "created_utc": "2026-08-05T17:57:21.067270+00:00",
+      "supervisor_pid": 59020,
+      "manifest": "E:\\LJQ_code\\CJ_Inbalance_0724\\configs\\p5u_direct_supervision_launch_manifest_20260806.json",
+      "manifest_sha256": "b0b275724cb1f7b285f9691ddff1cbc25ee314b827e7b2dce03833723d588bf5",
+      "stage": "child_terminal",
+      "child_pid": 54160,
+      "returncode": 1
+    }
+  },
+  "frozen_claim": "No P5u execution-performance claim is supported; the consumed identities are not eligible for rerun, selection, calibration, confirmation reuse or locked-test use."
+}

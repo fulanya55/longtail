@@ -1,0 +1,24 @@
+experiment_name: route_a_backbone_development_v1
+data_root: 'E:\LJQ_code\干扰数据\route_a_backbone-development-v1_20260806'
+train_file: closedset_6class_train.mat
+class_mode: six
+input_mode: complex_1d_true
+normalization: complex_rms
+signal_length: 3000
+seed: 2550000000
+evidence_role: fresh_train_only_backbone_development
+role_root: 'E:\LJQ_code\CJ_Imbalance_0716\outputs\tapc\route_a_backbone_development_v1\roles'
+training_seeds: [2039, 2040, 2041, 2042, 2043]
+weak_threshold_db: 10.0
+allow_locked_test: false
+generated_test_split: false
+test_v3_sealed: true
+test_v3_access_authorized: false
+test_v3_analysis_allowed: false
+test_v3_used: false
+development_v3_reuse_for_selection: false
+h3_reuse_for_selection: false
+h5o_reuse_for_selection: false
+h0v_reuse_for_selection: false
+p1_reuse_for_selection: false
+p2_reuse_for_selection: false

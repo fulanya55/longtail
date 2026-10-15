@@ -1,0 +1,35 @@
+{
+  "experiment": "P5n verified-idle-window shared frozen-forward and dense bounded-head execution",
+  "status": "stopped_pre_execution_protocol_integration_incompatibility_no_performance_result",
+  "decision": "Do not invoke the P5m runner with the P5n protocol, do not alter P5n protocol fields after data generation, and do not reuse any P5n identity pool for rerun, selection, confirmation or test.",
+  "cause": {
+    "stage": "after train-only data generation and successful identity audits, before any CUDA model inference or output-root creation",
+    "incompatibility": "The reused P5m runner's _verify_parent requires P5l_preregister, P5l_outcome_freeze, P5l_runner and P5l_generator keys, while the preregistered P5n frozen_parent intentionally contains P5m provenance keys.",
+    "why_not_patched": "Changing either the protocol or execution runner after fresh P5n data generation would violate the frozen-method-before-data rule."
+  },
+  "evidence": {
+    "preregister": "configs/p5n_verified_idle_window_shared_dense_preregister_20260803.json",
+    "preregister_sha256": "bcfd7c4a6a0dc35c9b18e9b2cd827837ca62a458feceb193301e12771ec61451",
+    "method_freeze": "configs/p5n_verified_idle_window_shared_dense_method_freeze_20260803.json",
+    "method_freeze_sha256": "4f77a8af9f8e181f78873e4683fa1539ae82d76a2f0344ad898c71b505608b00",
+    "audits": [
+      "outputs/p5n_verified_idle_window_shared_dense_preflight_20260803/audit_seed4140000000.json",
+      "outputs/p5n_verified_idle_window_shared_dense_preflight_20260803/audit_seed4160000000.json",
+      "outputs/p5n_verified_idle_window_shared_dense_preflight_20260803/audit_seed4170000000.json"
+    ],
+    "output_root": "outputs/p5n_verified_idle_window_shared_dense_development_20260803",
+    "output_root_exists": false
+  },
+  "data_disposition": {
+    "development_identity_roots": [
+      "generated_data/p5n_verified_idle_window_dev_seed4140000000",
+      "generated_data/p5n_verified_idle_window_dev_seed4160000000",
+      "generated_data/p5n_verified_idle_window_dev_seed4170000000"
+    ],
+    "identity_disposition": "quarantined_for_P5; no repeat or retuning on these identities",
+    "cuda_model_inference_started": false,
+    "independent_or_locked_test_generated": false,
+    "independent_or_locked_test_opened": false
+  },
+  "next_allowed_action": "A P5 successor may be prepared only with a protocol-generic runner integration test that executes its own parent-hash validation before any fresh data generation."
+}

@@ -1,0 +1,28 @@
+{
+  "experiment": "P3o-Q global nonnegative in-phase support-curve MFT-count screen",
+  "registration_date": "2026-08-03",
+  "research_question": "On fresh compound I/Q identities, does a whole-delay-window nonnegative in-phase support curve for candidate counts 1 through 8 improve ordinal MFT target-count estimation beyond the identical-capacity sparse-magnitude control?",
+  "evidence_role": "fresh_identity_oracle_positive_three_seed_development",
+  "prior_boundary": {
+    "generator_basis": "MFT is a sum of real-positive-amplitude shifts of one complex LFM reference, so positive in-phase inverse-filter support is a global count model constraint.",
+    "P3oM_N_O_P": "local magnitude peaks, adjacent geometry, post-hoc abstention and per-peak complex coherence are frozen negative routes; none is adjusted here.",
+    "mechanism_change": "C1 receives only deterministic full-window candidate-count support/residual curves; it does not alter sparse event locations or use a threshold, a true count, a true delay, a regime or power.",
+    "forbidden": ["P3o-M/N/O/P identities for selection", "classification loss", "predicted-label-gated attachment", "locked test"]
+  },
+  "data": {"generator": "matlab/generate_p3oq_nonnegative_support_curve_level.m", "train_receiver_noise_seed": 1840000000, "development_receiver_noise_seed": 1850000000, "reserved_confirmation_receiver_noise_seeds": [1860000000, 1870000000], "output_root": "D:\\CJ0724_generated_data", "rechunk_root": "D:\\CJ0724_rechunked_data", "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers_db": [25, 35, 50], "samples_per_pattern": 33, "all_63_combinations": true, "identity_key": "receiver_noise_seed", "paired_power_views_are_not_independent": true, "test_generation": "disabled"},
+  "parameter_contract": {"class": "MFT", "class_index_zero_based": 3, "target": "num_targets", "column_zero_based": 28, "valid_samples": "label[MFT]=1 AND parameter_mask[28]=1 AND finite(parameter_values[28])", "classification_loss_used": false, "oracle_positive_only": true},
+  "roles": {"within_train_identity_split_per_combination": {"fit": 25, "selection": 4, "unused": 4}, "split_seed": 20260803, "normalization": "fit only", "selection": "lowest ordinal loss", "development": "all 33 identities per combination; read once after method freeze"},
+  "front_end": {
+    "shared_tokens": "P3o-M frozen four-channel sparse magnitude tokens, 16 locations, unchanged",
+    "C0": "append four zero channels",
+    "C1": "for candidate counts k=1..8, append at token k the normalized residual complex energy after k largest nonnegative in-phase support samples, their cumulative positive energy fraction, kth normalized support and kth/top support ratio; other supplementary entries zero",
+    "support_domain": "entire 751-sample inverse-delay window; no local-max threshold or peak-distance rule",
+    "forbidden": ["adaptive thresholds", "true count/delay/amplitude", "regime", "power", "post-development curve edits"]
+  },
+  "models": {"C0_sparse_zero_curve": "8-channel, 16-token ordinal CNN", "C1_global_nonnegative_curve": "identical 8-channel, 16-token ordinal CNN", "ordinal_output": "seven cumulative logits decoded to count 1 through 8", "model_seeds": [2331, 2332, 2333], "parameter_count_contract": "C0 equals C1 exactly"},
+  "training": {"optimizer": "AdamW", "learning_rate": 0.0003, "weight_decay": 0.0001, "epochs": 20, "early_stop_patience": 5, "batch_size": 64, "loss": "ordinal BCE plus 0.05 monotonicity penalty"},
+  "promotion_gates": {"identity_overlap_zero": true, "all_power_and_parameter_contracts_hold": true, "C0_C1_parameter_count_exactly_equal": true, "each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least": 0.05, "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least": 0.03, "each_seed_C1_ID_control_and_low_count_pearson_at_least": 0.3, "no_C1_regime_worse_than_C0_in_all_three_seeds_by_mae_over": 0.02, "each_seed_C1_ultra_close_mae_not_worse_than_C0": true, "test_generated_false": true, "test_opened_false": true, "locked_test_used_false": true},
+  "stop_rule": "If any promotion gate fails, stop P3o-Q. Do not tune support curve values, support selection, peak rule, model width, loss, training schedule or selection on 1840M/1850M. Do not generate confirmation identities or attach an expert.",
+  "next_if_pass": "Freeze code/checkpoints/normalizers; evaluate two untouched identity confirmations before considering a predicted-label-gated MFT-only attachment.",
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

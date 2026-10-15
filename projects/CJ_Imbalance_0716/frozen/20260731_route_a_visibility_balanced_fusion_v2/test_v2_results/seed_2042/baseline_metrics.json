@@ -1,0 +1,72 @@
+{
+  "calibration_temperature": 1.9391223192214966,
+  "evidence_role": "independent_test_v2",
+  "historic_locked_test_used": false,
+  "macro_aupr": 0.8822840895741457,
+  "macro_f1": 0.7839973599791723,
+  "per_label": {
+    "FMB": {
+      "aupr": 0.8525122111025484,
+      "f1": 0.7693058436013176,
+      "negative_fpr": 0.18806451612903224,
+      "weak_count": 2927,
+      "weak_recall": 0.476938845234028
+    },
+    "ISRJ": {
+      "aupr": 0.874280487653328,
+      "f1": 0.7562690510058931,
+      "negative_fpr": 0.20169354838709677,
+      "weak_count": 2881,
+      "weak_recall": 0.37035751475182227
+    },
+    "MFT": {
+      "aupr": 0.9074168847101834,
+      "f1": 0.8154374060222849,
+      "negative_fpr": 0.20661290322580644,
+      "weak_count": 2950,
+      "weak_recall": 0.46983050847457625
+    },
+    "SinFM": {
+      "aupr": 0.9197899632733707,
+      "f1": 0.8358875625721988,
+      "negative_fpr": 0.1867741935483871,
+      "weak_count": 2822,
+      "weak_recall": 0.47696669029057404
+    },
+    "VFT": {
+      "aupr": 0.8574209011312977,
+      "f1": 0.743086936694167,
+      "negative_fpr": 0.19024193548387097,
+      "weak_count": 2899,
+      "weak_recall": 0.3283890996895481
+    }
+  },
+  "per_label_target_strong_recall": {
+    "ISRJ": 0.8304264542796653,
+    "MFT": 0.9328934010152284,
+    "VFT": 0.809009190990809
+  },
+  "per_label_target_weak_auroc": {
+    "ISRJ": 0.6129087122526901,
+    "MFT": 0.6773536221979224,
+    "VFT": 0.6159453204108202
+  },
+  "residual_abs_max": 0.0,
+  "residual_abs_mean": 0.0,
+  "saw_absent_macro_f1": 0.8301469224549928,
+  "saw_present_macro_f1": 0.7427925882285834,
+  "seed": 2042,
+  "target_negative_fpr": 0.19951612903225804,
+  "target_strong_recall": 0.8574430154285677,
+  "target_weak_auroc": 0.6354025516204777,
+  "target_weak_recall": 0.3895257076386489,
+  "test_v2_used": true,
+  "thresholds": [
+    0.58,
+    0.5,
+    0.45,
+    0.51,
+    0.37
+  ],
+  "variant": "B0_FrozenC6"
+}

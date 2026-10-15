@@ -1,0 +1,23 @@
+{
+  "experiment": "P5r explicit-baseline relocation-safe fine-grained checkpointed shared frozen-forward execution",
+  "status": "preregistered_before_any_P5r_data_generation",
+  "research_question": "After fixing only the historical-baseline audit path contract, can the unchanged P5q/P5e execution experiment reach valid fresh-data audit and then test output-equivalent shared-forward latency?",
+  "single_changed_axis": "Historical-baseline audit path resolution only. Replace the stale global C-drive DEFAULT_TRAIN_MAT dependency with an explicit existing E-drive baseline whose SHA-256 is preregistered and verified. Reuse the P5q execution runner unchanged.",
+  "frozen_artifacts": [
+    {"path": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json", "sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832"},
+    {"path": "configs/p5q_relocation_safe_checkpoint_preregister_20260805.json", "sha256": "b6d6b0bb547b5126dd246a39acfd3cb16d33462301795a1c47fd1087a6ddc3c4"},
+    {"path": "configs/p5q_relocation_safe_checkpoint_method_freeze_20260805.json", "sha256": "a5c65eb5f24a139d935c0ebbc455db482f76f4addb34f65c33e9cfd3f5a8bf03"},
+    {"path": "configs/p5q_relocation_safe_checkpoint_outcome_freeze_20260805.json", "sha256": "1b6136c75b4e8e5627c7bc5eca00cc482e74d10a111f316d45596b282903508b"},
+    {"path": "cj0724/p5q_relocation_safe_checkpoint_execution.py", "sha256": "aa1e8b73ac776991e84e2217b40fffe6187e44f137150511a56a7dc20c1143f5"}
+  ],
+  "base_candidate": {"freeze_path": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json", "freeze_sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832", "source_model_seeds": [3041, 3042, 3043, 3044, 3045]},
+  "historical_baseline_audit": {"path": "E:/LJQ_code/干扰数据/复合干扰数据0716/closedset_6class_train.mat", "sha256": "2e9afdf1999452b6635038c52457f2b44b28f98aec422d87576e5ad76135d50e", "audit_runner": "cj0724/audit_p5r_relocation_safe_data.py", "rule": "The explicit baseline and every locally retained generated train MAT must be readable; overlap and unreadable counts must both be zero."},
+  "authorized_environment": {"user_authorized_exclusive_window": true, "requested_compute_mode": "EXCLUSIVE_PROCESS", "fallback_if_windows_driver_rejects_mode_change": "Use unchanged P5h guards at every frozen checkpoint.", "restore_compute_mode_after_each_attempt": "Default"},
+  "development_data": {"generator": "matlab/generate_p5r_explicit_baseline_audit_development_data.m", "generator_seeds": [3610000000, 3620000000, 3630000000], "powers_db": [10, 15, 20, 25, 30], "samples_per_combination": 60, "generated_split": "train only", "paired_identity_key": "receiver_noise_seed", "roles": "evaluation-only", "identity_rule": "zero overlap with explicit baseline and every locally retained generated train identity, including quarantined P5p and P5q"},
+  "execution": {"full_pool_examples": 3780, "batch_size": 126, "benchmark_batch": "indices 0 through 125", "reference": "two frozen base forwards plus unchanged dense attachment", "candidate": "one frozen base forward plus identical unchanged dense attachment", "warmup_runs": 5, "timed_repetitions": 15, "timing": "unchanged P5q/P5h guarded CUDA timing"},
+  "checkpoint_contract": {"schema": "P5q-v1", "immutable_units": ["analytic NPZ", "per-model completed receipt", "per-pool completed receipt", "per-attempt terminal receipts"], "recovery_rule": "unchanged from P5q", "selection_prohibition": "No completed timing/model unit may be selectively rerun.", "self_test": "P5q relocation/checkpoint self-test plus P5r explicit-baseline path/hash test must pass before generation."},
+  "development_gates": {"all_full_pool_outputs_and_metrics_exact": true, "all_fixed_benchmark_batch_outputs_exact": true, "all_data_seeds_and_models_median_latency_ratio_shared_dense_over_reference_at_most": 0.85, "all_guard_receipts_have_no_external_python_cuda_compute_pid": true, "environment_window_receipt_complete": true, "checkpoint_receipts_complete": true, "test_generated": false, "test_opened": false, "locked_test_used": false},
+  "stop_rule": "Any baseline hash/path failure, unreadable or overlapping historical file, protocol failure, CUDA contention, hash mismatch, non-equivalence, missing receipt or latency failure stops P5r without tuning or identity reuse.",
+  "confirmation_if_and_only_if_development_passes": {"generator_seeds": [3640000000, 3650000000], "same_execution_and_audit_gates": true, "decision": "Only confirmation supports the narrow execution-cost claim."},
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

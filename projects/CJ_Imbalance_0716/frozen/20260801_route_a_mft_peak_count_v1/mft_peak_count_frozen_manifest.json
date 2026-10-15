@@ -1,0 +1,43 @@
+{
+  "status": "frozen",
+  "frozen_at": "2026-08-01",
+  "candidate_name": "MFT_PulseCompression_NMSPeakCount_v1",
+  "source_evidence_role": "development_v3_fixed_mechanism_diagnostic",
+  "feature_contract": {
+    "reference": "known transmitted LFM exp(j*pi*K*t^2)",
+    "fs_Hz": 10000000.0,
+    "pulse_width_s": 0.0001,
+    "pri_s": 0.0003,
+    "bandwidth_Hz": 5000000.0,
+    "circular_correlation": true,
+    "delay_roi_inclusive_samples": [400, 1000],
+    "background": "samples outside the delay ROI",
+    "background_threshold": "per-sample background q99",
+    "nms_radius_samples": 8,
+    "nms_candidate_count": 12,
+    "score": "count of NMS peaks greater than background q99",
+    "score_orientation": "higher means more MFT evidence",
+    "learned_parameters": 0
+  },
+  "development_v9_confirmation_gate": {
+    "overall_high_order_auroc_ge": 0.60,
+    "high_order_positive_receiver_blocks_ge": 4,
+    "overall_aligned_minus_wrong_chirp_auroc_ge": 0.08,
+    "positive_receiver_blocks_vs_wrong_chirp_ge": 4,
+    "overall_order5_negative_auroc_ge": 0.58,
+    "development_v3_to_v9_high_order_auroc_drop_le": 0.06
+  },
+  "frozen_source_sha256": {
+    "docs/plans/route_a_mft_pulse_compression_morphology_audit_v3_plan_20260801.md": "9dfa504edc17e425ded45baf8bbe084cefeb2abb5579c8660670bf1777f366b8",
+    "experiments/audit_route_a_mft_pulse_compression_morphology_v3.py": "4406aa67d57123df55c45a297d1da57414810a4f92bb32f9273f38ede21eb33c",
+    "tests/test_audit_route_a_mft_pulse_compression_morphology_v3.py": "83c54ab63bf56a84b3290e863886ffc70c89e69b0fa88b6aa5cac32a55c012f6"
+  },
+  "development_v7_used_for_selection": false,
+  "development_v8_used_for_selection": false,
+  "test_v3": {
+    "access_authorized": false,
+    "analysis_allowed": false,
+    "used": false
+  }
+}
+

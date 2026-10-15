@@ -1,0 +1,8 @@
+{
+  "experiment": "P3o-F independent confirmation of P3o-E",
+  "method_source": "P3o-E invariant frozen-frequency posterior-conditioned delay residual, unchanged",
+  "training_identity_seed": 1110000000,
+  "confirmation_identity_seeds": [1130000000, 1140000000],
+  "forbidden": ["confirmation-set model selection", "confirmation-set threshold calibration", "hyperparameter adjustment", "test generation", "locked-test access"],
+  "confirmation_gates": ["all development P3o-E gates reproduced on both confirmation identities", "logits bitwise equal", "oracle and predicted-gate NMAE ratio <= 0.98", "miss and worst-combination nonworse"]
+}

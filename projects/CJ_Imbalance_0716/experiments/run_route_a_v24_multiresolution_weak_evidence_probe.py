@@ -1,0 +1,51 @@
+"""Five-seed matched-capacity test of local multi-resolution VFT morphology evidence."""
+from __future__ import annotations
+import argparse,json,sys
+from pathlib import Path
+import numpy as np
+import torch
+from torch import nn
+import torch.nn.functional as F
+
+PROJECT_ROOT=Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:sys.path.insert(0,str(PROJECT_ROOT))
+from experiments.run_route_a_v22_visibility_balanced_morphology_expert import _load,_load_signals,_mean_ci,_metric,_predict,_sha256,_stratum_loss,_stratum_metric,_set_seed,_write
+from experiments.run_route_a_raw_iq_physics_separability_v3 import _vft_features
+
+VFT=4
+class Probe(nn.Module):
+ def __init__(self,dim=1292,hidden=13,dropout=.1):super().__init__();self.net=nn.Sequential(nn.Linear(dim,hidden),nn.GELU(),nn.Dropout(dropout),nn.Linear(hidden,1))
+ def forward(self,x):return self.net(x).squeeze(-1)
+
+def _extract_multires(signals,device,batch):
+ base=[];detail=[]
+ with torch.no_grad():
+  for start in range(0,len(signals),int(batch)):
+   x=torch.from_numpy(signals[start:start+int(batch)]).to(device);base.append(_vft_features(x,grid_size=16).cpu().numpy().astype(np.float32));detail.append(_vft_features(x,grid_size=32)[:,:1024].cpu().numpy().astype(np.float32))
+ return np.concatenate(base),np.concatenate(detail)
+
+def _train(name,xfit,yfit,wfit,xearly,yearly,weearly,seed,device,args,root):
+ _set_seed(seed);model=Probe(xfit.shape[1],args.hidden,args.dropout).to(device);optimizer=torch.optim.AdamW(model.parameters(),lr=args.learning_rate,weight_decay=args.weight_decay);generator=torch.Generator();generator.manual_seed(seed+244);best={'loss':float('inf'),'epoch':0,'state':None};history=[]
+ for epoch in range(1,args.epochs+1):
+  model.train();order=torch.randperm(len(xfit),generator=generator).numpy();losses=[]
+  for start in range(0,len(order),args.batch_size):
+   idx=order[start:start+args.batch_size];xb=torch.from_numpy(xfit[idx]).to(device);yb=torch.from_numpy(yfit[idx]).to(device);optimizer.zero_grad(set_to_none=True);loss=F.binary_cross_entropy_with_logits(model(xb),yb);loss.backward();optimizer.step();losses.append(float(loss.detach().cpu()))
+  with torch.no_grad():early=float(_stratum_loss(model(torch.from_numpy(xearly).to(device)),torch.from_numpy(yearly).to(device),torch.from_numpy(weearly).to(device)).cpu())
+  history.append({'epoch':epoch,'train_loss':float(np.mean(losses)),'early_three_stratum_loss':early})
+  if early<best['loss']-1e-10:best={'loss':early,'epoch':epoch,'state':{k:v.detach().cpu().clone() for k,v in model.state_dict().items()}}
+ model.load_state_dict(best['state']);out=root/name;out.mkdir(parents=True,exist_ok=True);torch.save({'state_dict':model.state_dict(),'best_epoch':best['epoch'],'best_early_three_stratum_loss':best['loss'],'architecture':{'input_dim':int(xfit.shape[1]),'hidden':args.hidden,'dropout':args.dropout}},out/'best_model.pth');_write(out/'history.json',history);return model,best
+
+def _one_seed(args,base,detail,projection,labels,weak,receiver,ids,seed,device):
+ root=args.output_root/f'seed_{seed}';root.mkdir(parents=True,exist_ok=True);fit,early,evaluation=(ids[x] for x in ('fit','early_stop','evaluation'));control=np.concatenate([base,base@projection],axis=1).astype(np.float32);candidate=np.concatenate([base,detail],axis=1).astype(np.float32);y=labels[:,VFT].astype(np.float32);w=weak[:,VFT].astype(np.float32);variants={}
+ for name,raw in (('M_ProjControl',control),('M_MultiRes',candidate)):
+  mean=raw[fit].mean(0).astype(np.float32);std=np.maximum(raw[fit].std(0),1e-5).astype(np.float32);x=((raw-mean)/std).astype(np.float32);model,best=_train(name,x[fit],y[fit],w[fit],x[early],y[early],w[early],seed,device,args,root);score=_predict(model,x,device,args.eval_batch_size);out=root/name;metrics={'overall':_metric(y[evaluation],score[evaluation]),'weak_vft_vs_hard_negative':_stratum_metric(labels,weak,evaluation,score[evaluation],'weak'),'strong_vft_vs_hard_negative':_stratum_metric(labels,weak,evaluation,score[evaluation],'strong'),'best_epoch':best['epoch'],'best_early_three_stratum_loss':best['loss'],'input_dim':int(x.shape[1])};np.savez_compressed(out/'normalization.npz',mean=mean,std=std);np.savez_compressed(out/'predictions.npz',sample_ids=evaluation,receiver_noise_seed=receiver[evaluation],targets=y[evaluation].astype(np.uint8),weak_vft=w[evaluation].astype(np.uint8),scores=score[evaluation]);_write(out/'metrics.json',metrics);variants[name]=metrics
+ return {'seed':seed,'feature_dim':int(candidate.shape[1]),'parameter_count':int(sum(p.numel() for p in Probe(candidate.shape[1],args.hidden,args.dropout).parameters())),'roles':{k:int(len(v)) for k,v in ids.items()},'variants':variants,'projection_sha256':_sha256(args.projection_path),'locked_test_used':False,'test_v2_used':False,'test_v3_used':False,'test_v24_used':False}
+
+def run(args):
+ audit,labels,weak,receiver,ids=_load(args);device=torch.device(args.device or ('cuda' if torch.cuda.is_available() else 'cpu'));all_ids=np.sort(np.concatenate(tuple(ids.values())));signals=_load_signals(args.data_path,all_ids);b,d=_extract_multires(signals,device,args.feature_batch_size);base=np.zeros((len(labels),b.shape[1]),dtype=np.float32);detail=np.zeros((len(labels),d.shape[1]),dtype=np.float32);base[all_ids]=b;detail[all_ids]=d;rng=np.random.default_rng(args.projection_seed);projection=(rng.standard_normal((base.shape[1],detail.shape[1]))/np.sqrt(base.shape[1])).astype(np.float32);args.output_root.mkdir(parents=True,exist_ok=True);np.save(args.projection_path,projection);rows=[_one_seed(args,base,detail,projection,labels,weak,receiver,ids,seed,device) for seed in args.seeds]
+ def delta(section,field,salt):return _mean_ci([row['variants']['M_MultiRes'][section][field]-row['variants']['M_ProjControl'][section][field] for row in rows],salt)
+ dlt={'weak':{f:delta('weak_vft_vs_hard_negative',f,240100+i) for i,f in enumerate(('auroc','aupr'))},'strong':{f:delta('strong_vft_vs_hard_negative',f,240200+i) for i,f in enumerate(('auroc','aupr'))},'overall':{f:delta('overall',f,240300+i) for i,f in enumerate(('auroc','aupr'))}};weak_seed=[r['variants']['M_MultiRes']['weak_vft_vs_hard_negative']['auroc']-r['variants']['M_ProjControl']['weak_vft_vs_hard_negative']['auroc'] for r in rows];strong_seed=[r['variants']['M_MultiRes']['strong_vft_vs_hard_negative']['auroc']-r['variants']['M_ProjControl']['strong_vft_vs_hard_negative']['auroc'] for r in rows];all_seed=[r['variants']['M_MultiRes']['overall']['auroc']-r['variants']['M_ProjControl']['overall']['auroc'] for r in rows];checks={'weak_auroc_gain_ge_0p030':dlt['weak']['auroc']['mean']>=.03,'weak_auroc_ci_positive':dlt['weak']['auroc']['bootstrap_95_ci'][0]>0,'weak_auroc_positive_4of5':sum(x>0 for x in weak_seed)>=4,'weak_aupr_gain_ge_0p020':dlt['weak']['aupr']['mean']>=.02,'strong_auroc_safe_every_seed':all(x>=-.01 for x in strong_seed),'overall_auroc_safe_every_seed':all(x>=-.01 for x in all_seed),'matched_input_and_parameter_count':len({r['feature_dim'] for r in rows})==1 and len({r['parameter_count'] for r in rows})==1 and all(r['variants']['M_ProjControl']['input_dim']==r['variants']['M_MultiRes']['input_dim'] for r in rows),'projection_hash_matched':len({r['projection_sha256'] for r in rows})==1,'test_v3_sealed':True};passed=bool(all(checks.values()));result={'status':'completed','experiment':'route_a_v24_multiresolution_weak_evidence_probe','evidence_role':'fresh_identity_isolated_multiresolution_feature_probe','data_audit_sha256':_sha256(args.audit),'projection_seed':args.projection_seed,'projection_sha256':_sha256(args.projection_path),'seeds':list(args.seeds),'architecture':{'input_dim':1292,'hidden':args.hidden,'dropout':args.dropout,'parameter_count':rows[0]['parameter_count']},'optimizer':{'name':'AdamW','learning_rate':args.learning_rate,'weight_decay':args.weight_decay,'batch_size':args.batch_size,'epochs':args.epochs,'checkpoint_criterion':'unweighted_three_stratum_early_loss'},'rows':rows,'multires_minus_projection_control':dlt,'gate':{'checks':checks,'passed':passed,'decision':'permit_fresh_fusion_design' if passed else 'stop_multiresolution_morphology'},'locked_test_used':False,'test_v2_used':False,'test_v3_used':False,'test_v24_used':False};_write(args.output_root/'route_a_v24_multiresolution_weak_evidence_probe_summary.json',result);_write(args.output_root/'run_receipt.json',{'status':'completed','gate_passed':passed,'decision':result['gate']['decision'],'locked_test_used':False,'test_v2_used':False,'test_v3_used':False,'test_v24_used':False});print(json.dumps({'passed':passed,'checks':checks,'output':str(args.output_root)},ensure_ascii=False,indent=2));return result
+
+def parse_args():
+ p=argparse.ArgumentParser(description=__doc__);p.add_argument('--data-path',type=Path,default=Path(r'C:\LJQ_code\干扰数据\复合干扰数据0802_v24_multiresolution_weak_evidence\closedset_6class_train.mat'));p.add_argument('--audit',type=Path,default=PROJECT_ROOT/'outputs/tapc/route_a_v24_multiresolution_weak_evidence_generation/identity_audit.json');p.add_argument('--roles',type=Path,default=PROJECT_ROOT/'outputs/tapc/route_a_v24_multiresolution_weak_evidence_generation/role_indices.npz');p.add_argument('--test-v3-manifest',type=Path,default=PROJECT_ROOT/'frozen/20260731_route_a_test_v3_sealed/test_v3_sealed_manifest.json');p.add_argument('--output-root',type=Path,default=PROJECT_ROOT/'outputs/tapc/route_a_v24_multiresolution_weak_evidence_probe');p.add_argument('--projection-path',type=Path,default=PROJECT_ROOT/'outputs/tapc/route_a_v24_multiresolution_weak_evidence_probe/fixed_projection.npy');p.add_argument('--projection-seed',type=int,default=240024);p.add_argument('--seeds',type=int,nargs='+',default=[2039,2040,2041,2042,2043]);p.add_argument('--device',default=None);p.add_argument('--hidden',type=int,default=13);p.add_argument('--dropout',type=float,default=.1);p.add_argument('--learning-rate',type=float,default=3e-4);p.add_argument('--weight-decay',type=float,default=1e-4);p.add_argument('--batch-size',type=int,default=64);p.add_argument('--eval-batch-size',type=int,default=256);p.add_argument('--feature-batch-size',type=int,default=32);p.add_argument('--epochs',type=int,default=30);p.add_argument('--weak-threshold-db',type=float,default=10.);return p.parse_args()
+if __name__=='__main__':run(parse_args())

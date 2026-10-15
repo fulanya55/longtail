@@ -1,0 +1,15 @@
+{
+  "status": "sealed_unused_external_role",
+  "experiment": "RouteA_H2_MultiPulseSixLabel",
+  "role": "external-mp-v1",
+  "source_path": "C:\\LJQ_code\\干扰数据\\h2_multipulse_sixlabel_external-mp-v1_20260803_r1\\closedset_6class.mat",
+  "source_sha256": "4f8463fa870127a78232bb6f2804b92e6744e2f353c3053794bc53be3ea9fbbf",
+  "source_audit": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h2_multipulse_generation\\external_mp_v1_r1_source_audit.json",
+  "external_access_authorized": false,
+  "external_analysis_allowed": false,
+  "external_used": false,
+  "rerun_allowed_after_execution": false,
+  "locked_test_used": false,
+  "test_v2_used": false,
+  "test_v3_used": false
+}

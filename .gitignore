@@ -218,3 +218,31 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# Research data and local artifacts
+**/generated_data/
+**/outputs/
+**/.obsidian/
+modelscope_verify/
+modelscope_longtail_README.md
+*.mat
+*.pt
+*.pth
+*.ckpt
+*.npz
+*.npy
+*.h5
+*.hdf5
+*.pdf
+*.asv
+*.log
+.env
+.env.*
+!.env.example
+
+# Original workspace materials are curated under docs/research/
+/*.md
+!/README.md
+!/.gitignore
+!/.gitattributes
+/文献库/

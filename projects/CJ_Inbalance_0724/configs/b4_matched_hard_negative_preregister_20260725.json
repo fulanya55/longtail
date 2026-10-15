@@ -1,0 +1,52 @@
+{
+  "status": "preregistered_before_execution",
+  "stage": "B4",
+  "objective": "Reduce residual MFT and ISRJ false positives using matched hard-negative training without changing frozen E5, B3-R features, decision thresholds, or router architecture",
+  "reference": "B2-RC",
+  "legacy_screen_seeds": [20260724, 20260725, 20260726, 271828, 314159],
+  "powers_dB": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+  "negative_sets": [
+    "random",
+    "neural_high_confidence",
+    "physics_similar",
+    "power_cardinality_composition_matched"
+  ],
+  "frozen": [
+    "EfficientNet-B1 E5 checkpoints",
+    "VFT E5 expert",
+    "B3-R shared physical feature definition",
+    "B2-RC MFT three-state router architecture and action probabilities",
+    "E5 MFT threshold",
+    "B2 ISRJ threshold"
+  ],
+  "training": {
+    "roles": "optimization identities only",
+    "paired_view_rule": "nine power views remain grouped; each identity has constant total base weight",
+    "classifier": "HistGradientBoostingClassifier(max_iter=200, learning_rate=0.05, max_leaf_nodes=7, l2=1.0)",
+    "hard_negative_concentration": "top half receives 5x raw weight and bottom half 0.2x before class normalization",
+    "matched_definition": "same power and same labels excluding the target; hardness is the mean within-stratum percentile of frozen E5 and frozen physical-expert scores",
+    "explicit_JNR_feature": false
+  },
+  "selection": {
+    "role": "second half of early-stop identities",
+    "development_used_for_selection": false,
+    "eligibility": "target AUPR delta >= 0 and recall drop <= 0.01 relative to B2-RC",
+    "objective": "maximum target FPR reduction, then maximum target AUPR delta",
+    "fallback": "retain B2-RC target branch"
+  },
+  "development_gate": {
+    "mean_target_FPR_reduction_min": 0.05,
+    "mean_target_AUPR_delta_min": 0.0,
+    "max_power_mean_recall_drop": 0.01,
+    "same_direction_seeds_min": 4,
+    "weak_component_recall_drop_max": 0.005,
+    "hamming_increase_max": 0.0
+  },
+  "forbidden": [
+    "per-power thresholds",
+    "development-based variant selection",
+    "explicit JNR input",
+    "locked test access"
+  ],
+  "locked_test_used": false
+}

@@ -1,0 +1,17 @@
+{
+  "experiment": "P3o-H finite-valid bounded compound-CVaR residual",
+  "status": "frozen incomplete-execution failure",
+  "output": "outputs/p3oh_finite_masked_combo_cvar_development_20260802",
+  "identity_seeds_consumed": [1270000000, 1280000000],
+  "reserved_confirmation_not_generated": [1290000000, 1320000000],
+  "evidence": {
+    "finite_valid_unit_and_optimizer_step": "tests/test_p3oh_finite_masked_combo_cvar.py",
+    "full_pytest": "265 passed, 9 warnings",
+    "seed_2071_complete_prediction_payloads": ["seed_2071_F_base.npz", "seed_2071_G0_bounded_mean.npz", "seed_2071_G1_bounded_combo_cvar.npz"],
+    "unlogged_termination": "seed 2072 completed base epochs 1..20 and G0 epochs 1..2, then the Python process ceased with no summary, result JSON or captured stderr",
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "decision": "The finite-valid loss correction is code-tested and the visible H0/H1 checkpoints are finite, but the formal three-seed development run is incomplete. Do not use the single completed seed as evidence. Do not resume, rerun, tune or calibrate on 1270M/1280M, and do not generate 1290M/1320M for P3o-H. A successor must use fresh identities and persist each seed's result/exception independently, release CUDA resources between seeds, and capture stderr before attempting the same frozen scientific comparison."
+}

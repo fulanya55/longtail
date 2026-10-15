@@ -1,0 +1,50 @@
+{
+  "stage": "R1_preflight",
+  "status": "proposal/not-validated_for_performance",
+  "data_file": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\closedset_6class_train.mat",
+  "class_names": [
+    "FMB",
+    "SawFM",
+    "SinFM",
+    "MFT",
+    "VFT",
+    "ISRJ"
+  ],
+  "input_shape": [
+    2,
+    3000
+  ],
+  "development_role": "development-v2 candidate split from training MAT; no test-v2 created",
+  "split_seed": 20260826,
+  "train_count": 22680,
+  "val_count": 2520,
+  "train_indices_sha256": "e6f54edbb53afa61dc9db45a8dd292a3654c2c8cbd47f6f748e4fd8d1e7dab6f",
+  "val_indices_sha256": "763edec01cc4342fe499f32c44a47bf87773feeaa727d75845a460105fc54079",
+  "optimizer": "AdamW",
+  "learning_rate": 0.0003,
+  "weight_decay": 0.0001,
+  "parameter_loss": "masked SmoothL1 on label=1 AND parameter_mask=1 AND finite target",
+  "parameter_weight": 0.1,
+  "warmup_variant": "B4 uses the B2 architecture; schedule is not performance-validated in this preflight",
+  "r2_proposal": {
+    "status": "proposal_not_validated",
+    "physical_branch": "mlcnn_iq_grouped_physical_film_task_routed",
+    "spectral_branch": "mlcnn_iq_grouped_spectral_film_task_routed",
+    "spectral_features": "16 normalized positive-frequency PSD bands plus centroid, entropy, peak",
+    "recognition_head_unchanged": true,
+    "parameter_conditioning_uses_detached_recognition_probability": true,
+    "no_pseudo_labels_or_test_feedback": true
+  },
+  "threshold": 0.5,
+  "hard_gates": {
+    "status": "proposal_not_user_confirmed",
+    "minimum_seeds_per_variant": 5,
+    "classification_reference": "B0",
+    "classification_macro_aupr_drop_at_most_each_seed": 0.005,
+    "classification_macro_f1_drop_at_most_each_seed": 0.01,
+    "parameter_reference": "B1",
+    "parameter_macro_nmae_relative_improvement_at_least": 0.05,
+    "aggregation_ci": "deterministic 95% percentile bootstrap CI over development seeds; seed 20260826"
+  },
+  "locked_test_used": false
+}

@@ -1,0 +1,41 @@
+{
+  "experiment": "P5u conditional two-new-identity confirmation of direct-supervised frozen shared-forward execution",
+  "status": "method_frozen_before_confirmation_data_generation",
+  "confirmation_preregister": "configs/p5u_two_pool_confirmation_preregister_20260806.json",
+  "confirmation_preregister_sha256": "0bac7bb790dd0a14124c07ba41b45ff31e435201a07e47b925bdb13441edbde1",
+  "implementation": {
+    "two_pool_executor": "cj0724/p5u_two_pool_confirmation_execution.py",
+    "two_pool_executor_sha256": "55448a4e54e78f4a91ff14387fe8a1001eaeba7a7af137577e9832b0bfc1729c",
+    "confirmation_generator": "matlab/generate_p5u_two_pool_confirmation_data.m",
+    "confirmation_generator_sha256": "79350dff467b3be595eed9a11db29938a5ed73b1f2f090824e34b654414a343e",
+    "confirmation_protocol_test": "tests/test_p5u_two_pool_confirmation_protocol.py",
+    "confirmation_protocol_test_sha256": "2cd844863c517f63c1b0f9c91bb510df1fe76d575450de6619fbec9b5f22d8ef",
+    "direct_supervisor": "cj0724/p5u_preflight_supervisor.py",
+    "direct_supervisor_sha256": "5b4f0e986cf7e646a0095bfc4c26b56a0066b99485b63fa9940354aee3244230",
+    "unchanged_development_executor_primitives": "cj0724/p5s_detached_chunked_execution.py",
+    "unchanged_development_executor_primitives_sha256": "62dcb19a9ed1f748e1b16062cadab8fc891ff113bda7bd41b84a4375b3d9f8f2"
+  },
+  "validation_before_freeze": {
+    "protocol_validation": "P5u parent protocol and all hash-pinned confirmation artifacts validated successfully.",
+    "pytest": "4 passed in 12.24s for P5s/P5t/P5u supervisor/two-pool confirmation protocol tests.",
+    "synthetic_confirmation_context": "A synthetic three-pool pass with a matching direct-child terminal was accepted; no MAT data or CUDA was opened.",
+    "confirmation_data_directories_before_freeze": 0
+  },
+  "conditional_pre_generation_validation": {
+    "required_only_after_parent_terminal_pass_and_before_confirmation_generation": [
+      "MATLAB dry-run of the two reserved pools with zero file creation",
+      "parent P5u result, direct-child-started receipt and terminal receipt validation",
+      "confirmation output root absence and no active P5 Python worker"
+    ],
+    "prohibition": "No confirmation data generation is authorized until these checks and every parent development gate pass."
+  },
+  "frozen_invariants": [
+    "Exactly two reserved confirmation identities 3340000000 and 3350000000; neither is generated or read at freeze time.",
+    "The only execution cardinality change from P5u development is three pools to exactly two independent confirmation pools. Frozen model seeds, data shape, paired-power construction, 630-position chunks, batch 126, warmups 5, repetitions 15, timing logic, source path repair, forward definitions and 0.85 gate remain unchanged.",
+    "The confirmation executor refuses to start unless the full P5u development result passes and its terminal receipt records the same direct executor PID as its child-started receipt.",
+    "Any confirmation failure freezes both confirmation identities and prohibits tuning, rerun, test generation and locked-test access."
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

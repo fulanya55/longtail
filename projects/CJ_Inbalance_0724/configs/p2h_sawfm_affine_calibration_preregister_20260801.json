@@ -1,0 +1,53 @@
+{
+  "experiment_id": "P2h-SawFM-separated-period-bounded-affine-calibration",
+  "evidence_role": "fresh development fit-selection-calibration",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "antecedent": {
+    "P2g_strict_confirmation": "failed because model seed 2041 had 15.9-16.8% MAE reduction below the 20% gate",
+    "P2g_other_evidence": "all six Pearson values were 0.787-0.867 and waveform cosine was about 0.75",
+    "post_failure_cross_seed_diagnostic": "affine calibration fit on one consumed confirmation seed improved the other seed to 40.6-52.5%; diagnostic only"
+  },
+  "question": "Is the remaining cross-seed failure a stable calibration mismatch that can be corrected without changing representation or capacity?",
+  "data_protocol": {
+    "generator_seed": 2000000000,
+    "generator_entrypoint": "matlab/generate_p2h_sawfm_affine_calibration_data.m",
+    "powers_db": [35, 40, 45, 50],
+    "split_generated": "train only",
+    "samples_per_combination": 40,
+    "roles_per_combination": {"fit": 20, "selection": 10, "calibration": 10},
+    "SawFM_positive_only": true,
+    "required_overlap_with_prior_identities": 0,
+    "test_generated": false
+  },
+  "frozen_candidate": "P2f S1 waveform-only separator plus seed-matched frozen period expert",
+  "calibrators": {
+    "C0": "uncalibrated separated period prediction",
+    "C1": "fit-role bias-only correction y=p+b",
+    "C2": "fit-role bounded affine correction y=a*p+b; primary",
+    "coefficient_bounds": {"a": [0.5, 1.5], "b_seconds": [-0.00002, 0.00002]},
+    "estimator": "bounded linear least squares on fit sample-power rows",
+    "selection_role": "audit direction only; no hyperparameter choice"
+  },
+  "promotion_gates_C2": {
+    "each_seed_calibration_reduction_vs_raw_min": 0.35,
+    "each_seed_calibration_improvement_over_C0_min": 0.15,
+    "each_seed_calibration_pearson_min": 0.60,
+    "each_seed_selection_and_calibration_improvement_positive": true,
+    "each_seed_C2_not_worse_than_C1_by_more_than": 0.01,
+    "mean_calibration_reduction_vs_raw_min": 0.40,
+    "same_direction": "3/3 seeds"
+  },
+  "interpretation_rules": {
+    "pass": "freeze separator, expert and affine coefficients; confirm without refitting on two new identity seeds",
+    "C1_pass_C2_fail": "retain bias-only correction",
+    "fail": "calibration mismatch is not stable; do not attach or select checkpoints",
+    "no_post_result_coefficient_or_bound_change": true
+  },
+  "prohibited": [
+    "separator or expert training",
+    "calibration fit on selection or calibration roles",
+    "test generation/access",
+    "coefficient fitting on P2g confirmation data"
+  ],
+  "locked_test_used": false
+}

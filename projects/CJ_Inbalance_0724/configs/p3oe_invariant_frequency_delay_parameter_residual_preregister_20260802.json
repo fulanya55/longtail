@@ -1,0 +1,8 @@
+{
+  "experiment": "P3o-E invariant frozen frequency delay parameter residual",
+  "question": "Can a posterior-conditioned delay parameter side branch improve parameters while the frozen local time-frequency recognition path remains exactly invariant through training?",
+  "identities": {"train_seed": 1110000000, "development_seed": 1120000000, "reserved_confirmation": [1130000000, 1140000000], "samples_per_combination": 33, "powers": [25, 35, 50]},
+  "method": "Use P3o-D base and residual losses, but force base.eval() in side.train(). Require logits and every base state_dict tensor to be bitwise equal before versus after side training.",
+  "gates": {"zero_identity_overlap": true, "classification_and_base_buffers_bitwise_equal": true, "residual_oracle_and_predicted_gate_nmae_ratio_at_most_0p98_all_seeds": true, "residual_miss_and_worst_combination_nonworse_all_seeds": true, "residual_mft_and_isrj_oracle_nmae_ratio_at_most_0p99_all_seeds": true, "test_generated_false": true, "locked_test_used_false": true},
+  "rule": "Only all-gate pass permits 1130M/1140M confirmation."
+}

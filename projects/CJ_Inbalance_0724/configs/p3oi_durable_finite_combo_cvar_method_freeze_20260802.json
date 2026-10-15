@@ -1,0 +1,12 @@
+{
+  "experiment": "P3o-I durable finite-valid bounded compound-CVaR method freeze",
+  "preregister": "configs/p3oi_durable_finite_combo_cvar_preregister_20260802.json",
+  "implementation": "cj0724/p3og_bounded_combo_cvar.py",
+  "wrapper": "cj0724/p3oi_durable_finite_combo_cvar_seed.py",
+  "data_generator": "matlab/generate_p3o_low_power_attribution_data.m",
+  "preregister_sha256": "2d58838f9d8aa67c43fcf8605f6d2e15792c5cde2af4ca7ee8279dd7ce987030",
+  "implementation_sha256": "294e019ec5f15b5780dd07ca775ad118d3b88aac8e4dcf5f2d6d0a49d549fc00",
+  "wrapper_sha256": "ffc5a2352a9d0be640d2d364015795173e4cffbfd853b1fbddff260f9bc2e46b",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "locked_test_used": false
+}

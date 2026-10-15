@@ -1,0 +1,10 @@
+﻿*.mat
+*.asv
+*.fig
+*.slxc
+*.mex*
+*.log
+.obsidian/
+data/
+output/
+results/

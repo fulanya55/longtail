@@ -1,0 +1,47 @@
+{
+  "center": [
+    -0.15573132038116455,
+    -0.0026164352893829346,
+    -0.06561434268951416
+  ],
+  "diagnostics": {
+    "ISRJ": {
+      "center": -0.06561434268951416,
+      "negative_count": 6942,
+      "negative_median": -0.513367772102356,
+      "orientation": 1.0,
+      "scale": 0.9597336432949714,
+      "weak_count": 1610,
+      "weak_median": 0.38213908672332764
+    },
+    "MFT": {
+      "center": -0.15573132038116455,
+      "negative_count": 6974,
+      "negative_median": -0.9963529706001282,
+      "orientation": 1.0,
+      "scale": 1.3182481862687463,
+      "weak_count": 1602,
+      "weak_median": 0.6848903298377991
+    },
+    "VFT": {
+      "center": -0.0026164352893829346,
+      "negative_count": 6948,
+      "negative_median": -0.3919416069984436,
+      "orientation": 1.0,
+      "scale": 0.8730997281042712,
+      "weak_count": 1628,
+      "weak_median": 0.38670873641967773
+    }
+  },
+  "orientation": [
+    1.0,
+    1.0,
+    1.0
+  ],
+  "scale": [
+    1.3182481862687463,
+    0.8730997281042712,
+    0.9597336432949714
+  ],
+  "source_role": "optimization_fit"
+}

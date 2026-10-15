@@ -1,0 +1,30 @@
+{
+  "schema": "route-a-A-final-prelock-manifest-v1",
+  "status": "frozen_development_candidate_prelocked",
+  "candidate": "F2_anti_alias / dfms_iq_anti_alias",
+  "branch": "codex/route-a-ama-sixclass-baseline-20260826",
+  "selected_classes": ["FMB", "AMA", "SawFM", "SinFM", "MFT", "ISRJ"],
+  "input": "[B,2,3000] true normalized I/Q",
+  "parameters": 257511,
+  "threshold": 0.5,
+  "checkpoint_aggregation": "uniform arithmetic mean of logits over the ten listed checkpoints; paired F2_full ablation uses its corresponding ten checkpoints; no per-seed or per-test selection",
+  "locked_test_used": false,
+  "locked_test_authorization": "required_before_one_time_read",
+  "selection_evidence": [
+    "E:/LJQ_code/CJ_Imbalance_0716/docs/reports/route_a_p1a_anti_alias_confirm_20260906.md",
+    "E:/LJQ_code/CJ_Imbalance_0716/docs/reports/route_a_p1a_anti_alias_replication_20260907.md"
+  ],
+  "source_checkpoints": [
+    {"split": "confirm_20260906", "seed": 2039, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2039.pth", "sha256": "2cd902c81da305f61d0a6f5ce80438481831cd1f2b24d1ea045f6dfa5dfa1a67"},
+    {"split": "confirm_20260906", "seed": 2040, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2040.pth", "sha256": "b9aef52a03b02011b70d984cd2f9d2d995001a9e69b1f5e294e8117e4e2cd435"},
+    {"split": "confirm_20260906", "seed": 2041, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2041.pth", "sha256": "53aa4ac39432c1cfcb74c66cbbd288a0c9a45480b14d3822ed40800569e02535"},
+    {"split": "confirm_20260906", "seed": 2042, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2042.pth", "sha256": "cd1c0df611628b029a31c62a36fe17f03b8265bb9a19b1fd2891bd85ec44b0ef"},
+    {"split": "confirm_20260906", "seed": 2043, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2043.pth", "sha256": "23d26e53ad004d51e21bb6f35e8dbeeca070bd5885ed93873fe9a449c0295c59"},
+    {"split": "independent_20260907", "seed": 2039, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2039.pth", "sha256": "b840a261498489063567b4cae92bebc96c6ce6726334f102276c01f614894a4f"},
+    {"split": "independent_20260907", "seed": 2040, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2040.pth", "sha256": "a8f5c548a57d9246228582bf30e2f54f086721582fa82bfb439cd0f889660835"},
+    {"split": "independent_20260907", "seed": 2041, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2041.pth", "sha256": "2176dace6606c8fc47d881a236e7be687f9c1e7754ee291e7eeee2469e625015"},
+    {"split": "independent_20260907", "seed": 2042, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2042.pth", "sha256": "d522f9508ff69561b048ff23cba392971c90ea6e89a7cfcb33f9a796741fe72d"},
+    {"split": "independent_20260907", "seed": 2043, "path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2043.pth", "sha256": "bfd3e730eb411aab3f378343b12c3c8b8e336cb9d62a1df466c49bb71d3fad2c"}
+  ],
+  "decision": "prelock only; authorize one-time locked test separately"
+}

@@ -1,0 +1,12 @@
+{
+  "allow_locked_test": false,
+  "class_modes": {
+    "formal": "six",
+    "pilot": "four"
+  },
+  "data_root": "G:\\论文相关\\干扰数据\\复合干扰数据0716",
+  "locked_test_file": "closedset_6class_test.mat",
+  "normalization": "complex_rms",
+  "power_sweep_dir": "power_sweep_9level_v1",
+  "train_file": "closedset_6class_train.mat"
+}

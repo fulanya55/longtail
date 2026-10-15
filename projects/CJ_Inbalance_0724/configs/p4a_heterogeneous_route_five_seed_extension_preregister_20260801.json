@@ -1,0 +1,50 @@
+{
+  "experiment": "P4a heterogeneous MLCNN classification plus IQ-Grouped parameter route five-seed extension",
+  "research_question": "Does the heterogeneous task route retain its parameter advantage over the near-parameter-matched shared MLCNN-global baseline on two additional optimization seeds without an unacceptable classification cost?",
+  "evidence_role": "optimization_seed_extension_on_existing_identity_safe_within_root_confirmation_split",
+  "frozen_parent_evidence": {
+    "existing_model_seeds": [2041, 2042, 2043],
+    "shared_split_seed": 20260724,
+    "confirm_role_sha256": "b28b1a74758aa6aac202790d648605f385fad2708c9e718db9b64d7a34c5a2fc",
+    "locked_test_used": false
+  },
+  "new_runs": {
+    "model_seeds": [2044, 2045],
+    "models": [
+      "legacy_mlcnn_global",
+      "mlcnn_iq_grouped_task_routed"
+    ],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter"
+  },
+  "fairness_control": {
+    "same_data_roles": true,
+    "same_optimizer_schedule": true,
+    "same_training_budget": true,
+    "same_heads_and_losses": true,
+    "parameter_count_note": "The frozen audit measured 12.807M parameters for MLCNN-global and 12.891M for the heterogeneous route, a 0.66 percent difference.",
+    "compute_note": "The route has about 11.12 percent more MACs; report this cost and do not call the comparison exactly FLOP-matched."
+  },
+  "promotion_gates": {
+    "each_new_seed_route_parameter_macro_nmae_reduction_vs_global_at_least": 0.04,
+    "each_new_seed_route_macro_aupr_drop_vs_global_at_most": 0.003,
+    "five_seed_mean_route_parameter_macro_nmae_reduction_vs_global_at_least": 0.04,
+    "five_seed_paired_parameter_improvement_direction": "5_of_5_positive",
+    "five_seed_mean_route_macro_aupr_drop_vs_global_at_most": 0.003,
+    "identity_role_hashes_exactly_match_frozen_split": true
+  },
+  "stop_rule": "Do not change architecture, loss, schedule, checkpoint rule, thresholds or gates after viewing seeds 2044 or 2045. If either new seed misses a critical gate, retain the three-seed result as development evidence only and do not claim five-seed robustness.",
+  "evidence_boundary": "This extension tests optimization-seed robustness on an already used within-root confirmation split. It is not fresh-identity confirmation, parameter OOD, long-tail, composition-disjoint or locked-test evidence.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

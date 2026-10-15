@@ -1,0 +1,47 @@
+{
+  "experiment": "P5q relocation-safe fine-grained checkpointed shared frozen-forward and dense bounded-head execution",
+  "status": "stopped_before_gpu_invalid_audit_due_stale_C_drive_baseline_path",
+  "decision": "Do not execute P5q on GPU, do not repair or reinterpret the consumed P5q audits, do not reuse P5q identities, and do not generate confirmation/test data.",
+  "observed_result": {
+    "generated_development_pools": 3,
+    "power_views_per_pool": 5,
+    "samples_per_power_view": 3780,
+    "partial_mat_files_after_generation": 0,
+    "audit_valid_for_frozen_inference": [false, false, false],
+    "overlap_file_count": [0, 0, 0],
+    "unreadable_file_count": [1, 1, 1],
+    "unreadable_path": "C:/LJQ_code/干扰数据/复合干扰数据0716/closedset_6class_train.mat",
+    "relocated_equivalent_exists": "E:/LJQ_code/干扰数据/复合干扰数据0716/closedset_6class_train.mat"
+  },
+  "attribution": {
+    "classification": "audit_baseline_path_portability_failure_before_cuda",
+    "evidence": "All three audits found zero identity-overlap files, but each was invalid because cj0724.DEFAULT_TRAIN_MAT still pointed to the deleted C-drive baseline and the audit treats every unreadable historical train file as a hard failure.",
+    "boundary": "This is not a model, output-equivalence, latency, data-generation, or identity-overlap result. The zero-overlap observation cannot be promoted because the full historical audit was invalid."
+  },
+  "frozen_evidence": {
+    "preregister": "configs/p5q_relocation_safe_checkpoint_preregister_20260805.json",
+    "preregister_sha256": "b6d6b0bb547b5126dd246a39acfd3cb16d33462301795a1c47fd1087a6ddc3c4",
+    "method_freeze": "configs/p5q_relocation_safe_checkpoint_method_freeze_20260805.json",
+    "method_freeze_sha256": "a5c65eb5f24a139d935c0ebbc455db482f76f4addb34f65c33e9cfd3f5a8bf03",
+    "runner_sha256": "aa1e8b73ac776991e84e2217b40fffe6187e44f137150511a56a7dc20c1143f5",
+    "generator_sha256": "2524b014b2d4737250c1f06c6f3a07277081f05c9a9497fb9a67b7a34210de6e",
+    "audit_sha256": {
+      "3710000000": "4fd28215c64de5605c8717c297dfb987ef8d37d68b28a047f4566df483bcba4a",
+      "3720000000": "632c46b679094192d1ce056ec3c6da605a3fe51d3a9fcfd92ebf6fe12289d054",
+      "3730000000": "96242b75a6cdd5e3a965e55b5e8220c97fbec0853af81efce3a34266e54bf325"
+    }
+  },
+  "data_disposition": {
+    "development_seeds": [3710000000, 3720000000, 3730000000],
+    "identity_disposition": "quarantined_for_P5; no rerun, repaired audit, resume, selection, calibration, confirmation or test",
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "failure_analysis": [
+    "P5q fixed runner and MATLAB-generator relocation, as proven by unrelated-CWD tests and successful E-drive generation.",
+    "The relocation audit was incomplete: audit_p5g_shared_dense_data imports a globally hard-coded DEFAULT_TRAIN_MAT from cj0724.__init__, so its historical reference remained bound to C drive.",
+    "The failure occurred before CUDA and therefore consumed no GPU timing evidence, but the generated identities are still consumed by the failed frozen protocol."
+  ],
+  "next_allowed_action": "A P5r successor may change only historical-baseline path resolution in the audit contract, require an explicit existing baseline plus SHA-256 receipt, retain P5q execution/checkpoint code unchanged, and use wholly new identities."
+}

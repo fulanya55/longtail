@@ -1,0 +1,89 @@
+{
+  "experiment_id": "P2b-SawFM-period-power-sufficiency-development-v2",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "evidence_role": "development-only mechanism and physical-sufficiency screen",
+  "status_at_registration": {
+    "p2a_result": "strict Phase-A failure because full 12-parameter NMAE improvement was 0.0477687 below the frozen 0.05 gate",
+    "exploratory_p2b": "an unregistered run on P2a train identities showed a 0.0664 mean SawFM-period MAE reduction and is hypothesis-generating only",
+    "p2b_data_generated": false,
+    "p2b_predictions_read": false
+  },
+  "frozen_reference": {
+    "system": "P1n reference-only",
+    "sawfm_specialist": "outputs/physics_parameter_specialists/sawfm_period_sequence/seed_{2041,2042,2043}/best.pt",
+    "classification_isrj_vft_thresholds": "unchanged and outside this experiment",
+    "p1n_method_freeze_sha256": "f461e6a3b3beeb1c02fff94d47b67320b850b574b260b7961e95805d9e8d3ed7"
+  },
+  "question": "Is the high-power SawFM period loss caused by insufficient power-balanced supervision rather than lack of physical information or insufficient network depth?",
+  "primary_hypothesis": "With architecture and parameter routing frozen, equal-identity nine-power supervision improves SawFM period estimation at 35-50 dB relative to both the frozen specialist and a constant estimator, without degrading 10-30 dB.",
+  "data_protocol": {
+    "generator_seed": 1300000000,
+    "generator_entrypoint": "matlab/generate_p2b_sawfm_power_sufficiency_data.m",
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "split_generated": "train only",
+    "samples_per_combination": 40,
+    "combination_count": 63,
+    "identities_per_power": 2520,
+    "pairing_key": "receiver_noise_seed",
+    "required_identity_overlap_with_p1n_p1d_p2a": 0,
+    "role_split_per_combination": {
+      "fit": 20,
+      "selection": 10,
+      "calibration": 10
+    },
+    "positive_subset": "label[SawFM]=1 and parameter_mask[SawFM.sweep_period]=1",
+    "prohibited": [
+      "opening or evaluating P2a test predictions for selection",
+      "generating or reading a P2b test split before development promotion",
+      "changing classification, ISRJ, VFT, routing thresholds, or any other parameter output"
+    ]
+  },
+  "model_seeds": [3041, 3042, 3043],
+  "frozen_variants": {
+    "E0": "frozen root-trained SawFM autocorrelation-sequence specialist",
+    "E1": "non-learned autocorrelation peak estimator using the known 10 MHz sample rate and 20-80 us lag range",
+    "E2": "compute-matched 30 dB-only fine-tuning; the 30 dB view is repeated nine times per identity",
+    "E3": "identity-paired nine-power supervised fine-tuning with equal identity and equal power weighting",
+    "E4": "E3 plus within-identity prediction-variance penalty weight 0.05; primary candidate"
+  },
+  "training": {
+    "architecture": "unchanged SawFMPeriodSequenceSpecialist width 16",
+    "initialization": "corresponding frozen E0 checkpoint; seeds 3041-3043 map to reference checkpoints 2041-2043",
+    "epochs_max": 12,
+    "patience": 4,
+    "batch_identities": 16,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "selection_metric": "selection-role equal-power normalized SmoothL1 total loss",
+    "calibration_access": "once per frozen best checkpoint"
+  },
+  "metrics": {
+    "primary": "35-50 dB MAE reduction versus fit-role constant median and Pearson correlation",
+    "secondary": [
+      "35-50 dB MAE reduction versus E0",
+      "10-30 dB MAE change versus E0",
+      "per-power MAE and Pearson correlation",
+      "within-identity prediction standard deviation",
+      "all-power MAE"
+    ]
+  },
+  "promotion_gates_for_E4": {
+    "each_seed_high_power_relative_mae_reduction_vs_constant_min": 0.10,
+    "each_seed_high_power_pearson_min": 0.30,
+    "each_seed_high_power_mae_reduction_vs_E0_positive": true,
+    "mean_high_power_mae_reduction_vs_E0_min": 0.02,
+    "each_seed_low_mid_10_30dB_mae_degradation_vs_E0_floor": -0.01,
+    "same_direction": "3/3 seeds",
+    "E4_must_not_be_worse_than_E3_mean_high_power_by_more_than": 0.005
+  },
+  "interpretation_rules": {
+    "E1_passes_but_E4_fails": "physical information is sufficient; prefer an explicit estimator and stop neural-capacity expansion",
+    "E3_passes_but_E4_fails": "power-balanced supervision works but consistency regularization is harmful; retain E3",
+    "E4_passes": "advance only to a new identity seed confirmation; do not read a development test split",
+    "all_learned_variants_fail_physical_sufficiency": "stop deep-expert expansion and inspect mixture interference or signal isolation",
+    "no_gate_changes_after_results": true
+  },
+  "locked_test_used": false
+}

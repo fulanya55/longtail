@@ -1,0 +1,81 @@
+{
+  "experiment_id": "P2f-dedicated-SawFM-component-separator-development-v5",
+  "evidence_role": "fresh development-only train-select-calibration experiment",
+  "antecedent": {
+    "P2e_passed": true,
+    "oracle_reduction_vs_raw_range": [0.6652, 0.7224],
+    "oracle_pearson_min": 0.80,
+    "authorization": "exact component isolation proved physical sufficiency, so dedicated separator training is permitted"
+  },
+  "question": "Can a small dedicated separator recover enough SawFM component structure from compound I/Q to transfer the frozen oracle-period advantage?",
+  "data_protocol": {
+    "generator_seed": 1700000000,
+    "generator_entrypoint": "matlab/generate_p2f_dedicated_sawfm_separator_data.m",
+    "powers_db": [35, 40, 45, 50],
+    "split_generated": "train only",
+    "samples_per_combination": 40,
+    "identities_per_power": 2520,
+    "roles_per_combination": {"fit": 20, "selection": 10, "calibration": 10},
+    "training_subset": "SawFM-positive finite-period identities only",
+    "pairing_key": "receiver_noise_seed",
+    "required_overlap_with_prior_identities": 0,
+    "test_generated": false
+  },
+  "target": {
+    "exact_component_reconstruction": "same deterministic SawFM formula as P2e from bandwidth, period and delay truth",
+    "target_normalization": "complex RMS",
+    "deployment_availability": false,
+    "role": "training supervision only"
+  },
+  "architecture": {
+    "separator": "ConditionalComplexUNetSeparator width 12, condition false",
+    "initialization": "identity-mask initialization from the existing class definition; no generic separator checkpoint transfer",
+    "downstream_period_expert": "frozen seed-matched SawFMPeriodSequenceSpecialist width 16",
+    "classification": "not trained or changed"
+  },
+  "variants": {
+    "S0": "raw compound I/Q to frozen period expert",
+    "S1": "waveform-supervised dedicated separator",
+    "S2": "same separator plus frozen downstream normalized period SmoothL1 weight 0.25; primary"
+  },
+  "loss": {
+    "waveform": "cosine + 0.2*time_L1 + 0.25*multi-resolution log-spectral L1",
+    "period_weight_S1": 0.0,
+    "period_weight_S2": 0.25,
+    "equal_identity_equal_power_weighting": true
+  },
+  "training": {
+    "model_seeds": [2041, 2042, 2043],
+    "epochs_max": 12,
+    "patience": 4,
+    "batch_identities": 8,
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0,
+    "selection_metric": "variant total loss on selection identities",
+    "calibration_access": "once after each best checkpoint is frozen"
+  },
+  "promotion_gates_S2": {
+    "each_seed_period_mae_reduction_vs_raw_min": 0.20,
+    "each_seed_period_pearson_min": 0.60,
+    "each_seed_waveform_cosine_min": 0.50,
+    "each_seed_S2_reduction_vs_S1_floor": -0.01,
+    "mean_S2_period_mae_reduction_vs_raw_min": 0.30,
+    "same_direction": "3/3 seeds"
+  },
+  "interpretation_rules": {
+    "pass": "freeze P2f candidate and create a new two-seed confirmation before end-to-end attachment",
+    "S1_pass_S2_fail": "component supervision works but downstream period loss causes negative transfer; retain S1",
+    "both_fail": "dedicated U-Net cannot recover the oracle component under this supervision; stop architecture scaling and inspect target alignment/loss",
+    "no_gate_relaxation": true
+  },
+  "prohibited": [
+    "test generation or access",
+    "period-expert fine-tuning",
+    "classification changes",
+    "using P2e oracle probe for training",
+    "post-result loss-weight search"
+  ],
+  "locked_test_used": false
+}

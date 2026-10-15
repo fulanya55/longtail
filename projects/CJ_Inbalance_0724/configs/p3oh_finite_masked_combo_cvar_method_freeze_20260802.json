@@ -1,0 +1,13 @@
+{
+  "experiment": "P3o-H finite-valid bounded compound-CVaR method freeze",
+  "preregister": "configs/p3oh_finite_masked_combo_cvar_preregister_20260802.json",
+  "implementation": "cj0724/p3og_bounded_combo_cvar.py",
+  "wrapper": "cj0724/p3oh_finite_masked_combo_cvar.py",
+  "data_generator": "matlab/generate_p3o_low_power_attribution_data.m",
+  "preregister_sha256": "84f0f6ac848d588f1bcc4110bbd3572128b100ef0680970bef0424704718a9a7",
+  "implementation_sha256": "294e019ec5f15b5780dd07ca775ad118d3b88aac8e4dcf5f2d6d0a49d549fc00",
+  "wrapper_sha256": "6d3dde4221e9ff515438806eb92a40dcd8f3b3cd32053bade160e458e0b03071",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "freeze_scope": ["new identities 1270M/1280M", "finite-valid loss correction", "F backbone and selection rule", "H0/H1 shared side architecture and initialization", "residual bound", "CVaR fraction and weight", "optimizer/checkpoint/calibration/gates"],
+  "locked_test_used": false
+}

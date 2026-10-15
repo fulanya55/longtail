@@ -1,0 +1,12 @@
+{
+  "experiment": "P3o-C parameter-matched multiview",
+  "status": "formal_development_failed",
+  "summary_file": "outputs/p3oc_parameter_matched_multiview_development_20260801/summary.json",
+  "failure_audit_file": "outputs/p3oc_parameter_matched_multiview_development_20260801/failure_audit.json",
+  "preregister_sha256": "15cba2b2d37cb578d6f8a1178b3044877dbf260c532e12681cdcee8296d9803c",
+  "implementation_sha256": "1e3876a5786fc5d94dc96cddab5ca69c622fc73375420c48cce42c6283589f0a",
+  "decision": "P3o-C does not demonstrate reliable delay-view complementarity under strict parameter matching. Seeds 1050M/1060M remain unused; no confirmation or locked-test action is allowed. Any successor must be newly preregistered with a distinct mechanism and new identity seeds.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

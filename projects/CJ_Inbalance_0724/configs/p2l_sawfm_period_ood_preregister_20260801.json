@@ -1,0 +1,66 @@
+{
+  "experiment_id": "P2l-SawFM-period-ID-near-far-OOD",
+  "registration_date": "2026-08-01",
+  "frozen_candidate": "outputs/p2k_full_parameter_confirmation_20260801/method_freeze.json",
+  "single_question": "Does the P2k-confirmed separated SawFM period attachment generalize outside its 20-80 us training range, and if not, is the boundary caused by physical sufficiency, separator transfer, or period-head extrapolation?",
+  "fresh_paired_data": {
+    "generator": "matlab/generate_p2l_sawfm_period_ood_data.m",
+    "base_seed": 2600000000,
+    "split": "train only",
+    "powers_db": [25, 35, 50],
+    "combinations": 63,
+    "identities_per_combination": 10,
+    "identities": 630,
+    "regimes": {
+      "ID_control": [0.000025, 0.000075],
+      "near_low": [0.000010, 0.000020],
+      "near_high": [0.000080, 0.000100],
+      "far_low": [0.000005, 0.000010],
+      "far_high": [0.000100, 0.000160]
+    },
+    "paired_across_regimes": "same receiver_noise_seed identities and uniform draws transformed into preregistered ranges"
+  },
+  "physical_controls": {
+    "C0_constant": "regime-blind training-range mean period",
+    "C1_raw_old": "frozen raw-IQ SawFM period expert",
+    "C2_exact_component": "same period expert on the exact reconstructed SawFM component",
+    "C3_separated_uncalibrated": "P2f S1 separator plus same period expert",
+    "C4_separated_calibrated": "C3 plus frozen P2h affine coefficient"
+  },
+  "system_variants": [
+    "safe ISRJ route with IQ-Grouped parameters",
+    "old P2a joint physics system",
+    "P2k calibrated predicted-positive SawFM attachment"
+  ],
+  "promotion_gates": {
+    "ID_control_passes_all_P2j_gates": true,
+    "near_regimes_all_three_full_nmae_improvement_vs_safe_min": 0.05,
+    "near_regimes_all_three_full_nmae_improvement_vs_old_positive": true,
+    "near_regimes_exact_component_reduction_vs_constant_mean_min": 0.20,
+    "near_regimes_calibrated_reduction_vs_old_mean_min": 0.10,
+    "far_regimes_exact_component_pearson_all_min": 0.30,
+    "far_regimes_mean_full_nmae_improvement_vs_safe_min": 0.05,
+    "far_regimes_all_three_full_nmae_improvement_vs_old_positive": true,
+    "far_regimes_mean_calibrated_saw_nmae_ratio_vs_old_max": 1.0,
+    "classification_and_other_11_parameter_outputs_unchanged": true
+  },
+  "failure_attribution": {
+    "exact_component_fails": "period-head extrapolation or finite-window identifiability failure; do not deepen the separator",
+    "exact_component_passes_separator_fails": "separator domain transfer failure",
+    "physical_controls_pass_system_fails": "predicted-gate coverage or compound-combination aggregation failure",
+    "only_far_high_fails": "report a finite-observation-window boundary and develop an analytic or censored period estimator on a new seed"
+  },
+  "statistics": {
+    "model_seeds": [2041, 2042, 2043],
+    "within_regime_bootstrap_replicates": 100,
+    "report_per_power": true,
+    "report_per_regime": true,
+    "report_physical_oracle": true
+  },
+  "evidence_boundary": {
+    "development_only": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  }
+}

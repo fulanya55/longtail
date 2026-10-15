@@ -1,0 +1,51 @@
+{
+  "status": "preregistered_before_execution",
+  "stage": "B6-S",
+  "objective": "Screen whether two physically distinct compact ISRJ evidence domains are sufficient before constructing any cross-domain router",
+  "reference": "frozen B2-RC with B3-R implementation",
+  "legacy_screen_seeds": [20260724, 20260725, 20260726, 271828, 314159],
+  "powers_dB": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+  "domains": {
+    "envelope_periodicity": "envelope autocorrelation lag lattice, peak positions and peak strengths",
+    "comb_spectrum": "detrended spectrum lag autocorrelation, log-spectrum cepstrum and peak spacing"
+  },
+  "frozen": [
+    "EfficientNet-B1 E5",
+    "VFT E5 expert",
+    "B2-RC MFT route",
+    "B2-RC ISRJ expert and threshold",
+    "B3-R input normalization"
+  ],
+  "training": {
+    "role": "optimization identities across all nine paired powers",
+    "identity_weight": "each identity has constant total weight across nine views",
+    "classifier": "HistGradientBoostingClassifier(max_iter=200, learning_rate=0.05, max_leaf_nodes=7, l2=1.0)",
+    "explicit_JNR_feature": false
+  },
+  "thresholds": {
+    "selection_role": "first half of early-stop identities",
+    "constraint": "each power recall drop relative to B2-RC <= 0.005",
+    "objective_after_constraint": "minimum MFT/VFT hard-negative FPR",
+    "safety_audit_role": "second half of early-stop identities",
+    "development_used_for_selection": false
+  },
+  "primary_slice": "10 dB development ISRJ positives and ISRJ-negative samples containing MFT or VFT",
+  "development_gate": {
+    "envelope_10dB_AUPR_delta_min": -0.03,
+    "comb_10dB_AUPR_delta_min": -0.03,
+    "reference_false_negative_union_rescue_min": 0.10,
+    "unique_rescue_each_domain_min": 0.02,
+    "reference_hard_false_positive_joint_correction_min": 0.10,
+    "joint_negative_positive_harm_max": 0.005,
+    "same_direction_seeds_min": 4,
+    "calibration_safe_seeds_min": 4
+  },
+  "promotion_rule": "Only if every gate passes may B6 construct a cross-domain router; otherwise stop before router construction",
+  "forbidden": [
+    "route construction before sufficiency passes",
+    "per-development threshold tuning",
+    "explicit JNR input",
+    "locked test access"
+  ],
+  "locked_test_used": false
+}

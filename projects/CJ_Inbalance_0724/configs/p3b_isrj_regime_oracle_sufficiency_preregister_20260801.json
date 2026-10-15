@@ -1,0 +1,46 @@
+{
+  "experiment": "P3b ISRJ regime-conditioned feature-target sufficiency Oracle",
+  "registration_date": "2026-08-01",
+  "evidence_role": "post_failure_diagnostic_oracle_only",
+  "research_question": "Did the P3a ordinal expert fail at 1-5 us because one global model conflicts across disjoint width ranges, or because the raw periodic-sequence features contain no transferable low-width ordering information?",
+  "data_boundary": {
+    "training_identity_seed": 3400000000,
+    "development_identity_seed": 3500000000,
+    "reuse_reason": "P3b is a label-informed upper-bound diagnosis after P3a failure, not independent promotion evidence.",
+    "new_test_or_locked_test_use": false,
+    "allowed_claim": "feature-target sufficiency diagnosis only"
+  },
+  "frozen_inputs": {
+    "features": "unchanged P3a periodic sequences",
+    "lag_samples": [10, 500],
+    "A0_channels": [0, 1, 4],
+    "A1_channels": [0, 1, 2, 3, 4],
+    "architecture": "unchanged P3a SequenceOrdinalNet",
+    "loss": "unchanged cumulative ordinal BCE plus 0.05 monotonic penalty",
+    "optimizer_and_epochs": "unchanged P3a settings",
+    "model_seed": 2041
+  },
+  "oracle_information": {
+    "available_at_training_and_evaluation": "true regime among ID_control, near_low, near_high, far_low, far_high",
+    "deployment_available": false,
+    "purpose": "remove cross-range competition and establish an optimistic within-range upper bound"
+  },
+  "variants": {
+    "G0_global_A0": "saved P3a seed2041 global ACF ordinal prediction",
+    "O1_regime_A0": "five separate regime-oracle ACF ordinal experts",
+    "O2_regime_A1": "five separate regime-oracle multiphysics ordinal experts"
+  },
+  "diagnostic_gates": {
+    "O1_or_O2_each_regime_mae_reduction_vs_constant_min": 0.10,
+    "O1_or_O2_each_regime_pearson_min": 0.30,
+    "O1_or_O2_compound_each_regime_mae_reduction_vs_constant_min": 0.10,
+    "O1_or_O2_compound_each_regime_pearson_min": 0.30,
+    "near_low_pearson_gain_vs_G0_min": 0.20,
+    "far_low_pearson_gain_vs_G0_min": 0.20
+  },
+  "decision_rule": {
+    "pass": "Raw periodic features are sufficient under an optimistic regime Oracle. A future method may test a learned bounded range router on entirely new identities with three model seeds.",
+    "fail": "Even the label-informed same-architecture Oracle cannot recover low-width ordering. Stop raw periodic-sequence scalar-expert development; retain only exact-component identifiability evidence."
+  },
+  "locked_test_used": false
+}

@@ -1,0 +1,48 @@
+{
+  "schema": "P5u-preflight-supervisor-v1",
+  "experiment": "P5u direct-child-supervised hash-pinned legacy-source-portable shared frozen-forward execution",
+  "preregister": "configs/p5u_direct_supervision_preregister_20260806.json",
+  "preregister_sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c",
+  "method_freeze": "configs/p5u_direct_supervision_method_freeze_20260806.json",
+  "method_freeze_sha256": "f36d4b463eed04c29704c0ee956eb8803adf3b994514a59232ba66c2e3858a24",
+  "working_directory": "E:\\LJQ_code\\CJ_Inbalance_0724",
+  "execution_root": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\p5u_direct_supervision_20260806\\execution",
+  "preflight_command": [
+    "D:\\anaconda3\\envs\\PY10\\python.exe",
+    "-m",
+    "cj0724.p5t_legacy_portable_execution",
+    "--preregister",
+    "configs/p5t_legacy_portable_preregister_20260806.json",
+    "--p5e-freeze",
+    "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "--self-test-frozen-models"
+  ],
+  "child_command": [
+    "D:\\anaconda3\\envs\\PY10\\python.exe",
+    "-m",
+    "cj0724.p5s_detached_chunked_execution",
+    "--preregister",
+    "configs/p5u_direct_supervision_preregister_20260806.json",
+    "--p5e-freeze",
+    "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "--data-roots",
+    "generated_data/p5u_direct_supervision_dev_seed3310000000",
+    "generated_data/p5u_direct_supervision_dev_seed3320000000",
+    "generated_data/p5u_direct_supervision_dev_seed3330000000",
+    "--audits",
+    "outputs/p5u_direct_supervision_20260806/audits/p5u_direct_supervision_dev_seed3310000000.json",
+    "outputs/p5u_direct_supervision_20260806/audits/p5u_direct_supervision_dev_seed3320000000.json",
+    "outputs/p5u_direct_supervision_20260806/audits/p5u_direct_supervision_dev_seed3330000000.json",
+    "--output-root",
+    "outputs/p5u_direct_supervision_20260806/execution"
+  ],
+  "audit_sha256": {
+    "3310000000": "29a9505e6fba78bd66e5a24016370e965af36b2ee9d9e93f466be561e4affe22",
+    "3320000000": "c0c5efb2bbf90b5f3443b4ea82041e3759abda67580c15a433b29824c4bfe521",
+    "3330000000": "131418aa985e272b6bffe640a0405889bc42c7390e6fe77464585b7cf55f31d4"
+  },
+  "supervision_contract": "The P5u supervisor must directly spawn and wait for child_command. supervisor_child_started.json and supervisor_terminal.json must report the same child_pid; that PID is the P5s executor.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,11 @@
+{
+  "experiment": "P3o-E invariant frozen frequency delay parameter residual",
+  "status": "development_passed_confirmation_failed",
+  "development_summary": "outputs/p3oe_invariant_frequency_delay_parameter_residual_development_20260802/summary.json",
+  "confirmation_1130_summary": "outputs/p3of_invariant_residual_confirmation_seed1130000000_20260802/summary.json",
+  "confirmation_1140_summary": "outputs/p3of_invariant_residual_confirmation_seed1140000000_20260802/summary.json",
+  "decision": "One of two independent confirmation identities fails worst-combination nonworsening. No locked-test eligibility; all P3o-E/P3o-F identities and settings are frozen.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

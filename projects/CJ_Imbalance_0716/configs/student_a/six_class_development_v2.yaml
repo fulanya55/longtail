@@ -1,0 +1,13 @@
+experiment_name: six_class_student_a_development_v2
+data_root: 'C:\LJQ_code\干扰数据\复合干扰数据0731_v2'
+train_file: closedset_6class_train.mat
+class_mode: six
+input_mode: complex_1d_true
+normalization: complex_rms
+signal_length: 3000
+seed: 20260731
+allow_locked_test: false
+evidence_role: development_v2
+test_v2_path: 'C:\LJQ_code\干扰数据\复合干扰数据0731_v2\closedset_6class_test.mat'
+test_v2_sealed: true
+

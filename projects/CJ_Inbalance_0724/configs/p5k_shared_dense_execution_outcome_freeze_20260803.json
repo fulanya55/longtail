@@ -1,0 +1,31 @@
+{
+  "experiment": "P5k CUDA-compute-guarded shared frozen-forward and dense bounded-head execution",
+  "status": "execution_frozen_before_any_complete_model-comparison_result",
+  "reason": "The refined guard correctly detected an external CUDA Python process during the first reference timing loop and stopped the run. The externally concurrent p3on_resolution_abstention process was identified by nvidia-smi pmon as GPU compute; therefore all partial P5k timings are invalid for cost comparison.",
+  "execution_record": {
+    "p5k_process_id": 76740,
+    "exception": "exclusive-GPU timing guard rejected external Python CUDA process p3on_resolution_abstention (PID 69120)",
+    "result_json_written": false,
+    "model_comparison_completed": false,
+    "partial_timing_usable": false,
+    "external_python_gpu_compute_pid_observed": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "consumed_data": {
+    "development_generator_seeds": [4060000000, 4090000000, 4110000000],
+    "all_three_pools_generated_train_only": true,
+    "rechunked_and_audited": true,
+    "reuse_for_rerun_selection_confirmation_or_test": false
+  },
+  "allowed_claims": [
+    "P5k validates that the refined guard can block a genuine concurrent CUDA Python workload.",
+    "P5k has no equivalence, latency, or model-performance result."
+  ],
+  "forbidden_actions": [
+    "Restart P5k on 4060M/4090M/4110M identities.",
+    "Generate or use P5k 4120M/4130M confirmation identities.",
+    "Use any partial timing as acceleration evidence."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "experiment": "P3i distilled shared-representation ISRJ student",
+  "research_question": "Can a compact residual student trained from frozen P1n supervision replace UNet inference while retaining at least 90 percent of the teacher recall gain under cell-wise FPR control?",
+  "evidence_role": "fresh_identity_safe_distillation_development",
+  "data": {
+    "training_identity_seed": 570000000,
+    "development_identity_seed": 580000000,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50]
+  },
+  "teacher": "frozen P2c/P1n lower-score route, alpha=1",
+  "student": {
+    "input": "frozen 256-D MLCNN embedding plus shared raw-physics isrj_periodicity and main ISRJ logit",
+    "architecture": "LayerNorm, 192-D MLP, bounded residual-logit head plus changed-event auxiliary head",
+    "loss": "truth BCE + 0.5 soft-teacher BCE + 0.25 changed-event BCE",
+    "optimizer": "AdamW lr=3e-4 wd=1e-4",
+    "epochs": 20,
+    "patience": 5,
+    "batch_size": 128
+  },
+  "threshold_selection": "training-selection identities only; maximize mean recall with every regime-power observed FPR<=0.08 and CP95<=0.15",
+  "promotion_gates": {
+    "each_seed_retain_at_least_90_percent_teacher_recall_gain": true,
+    "maximum_development_cell_fpr_at_most": 0.10,
+    "each_seed_macro_aupr_delta_vs_teacher_at_least": -0.005,
+    "three_of_three_positive_recall_gain_vs_safe_main": true,
+    "identity_overlap_zero": true
+  },
+  "next_if_pass": "Freeze the student, add predicted-gate twelve-parameter metrics, then benchmark batch1/64 FLOPs, memory and latency on two untouched identity seeds.",
+  "stop_rule": "If the compact student fails, do not tune on development seed580000000; reassess whether the P1n gain is intrinsically tied to separated-waveform information.",
+  "locked_test_used": false
+}

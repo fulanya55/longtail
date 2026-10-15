@@ -1,0 +1,32 @@
+{
+  "experiment": "P3o-M resolution-aware sparse-delay-event ordinal MFT-count screen",
+  "frozen_at": "2026-08-03",
+  "preregister_sha256": "39a3f5d2da75fb0348beeddfc164b0730913b8ce27c84ea59aafec23e223ad90",
+  "implementation_sha256": "809cd9446c768ed990595d96d76c2d755a946afd84eea8108969055e9d7f7c6c",
+  "data_audit_implementation_sha256": "cff7532588aeabafe6dee44d5e8cfe8a52092cfc1af26ffd4745dddf37e24d29",
+  "generator_wrapper_sha256": "66fa1eeb63ba5caa9221c1cdaa6a321042da2d08ee25fcbb69f9538b37dd4491",
+  "single_view_generator_sha256": "f62d7d916671593b229ecdba12c461c9b9241c45165af5e111d8772365bdca28",
+  "shared_generator_sha256": "d24c4ddce4b154a12256714a65c977ac5f968897d01749e064eed45df0a9a7ff",
+  "data": {
+    "train_seed": 1570000000,
+    "development_seed": 1580000000,
+    "reserved_confirmation_seeds": [1590000000, 1610000000],
+    "raw_root": "D:\\CJ0724_generated_data",
+    "rechunk_root": "D:\\CJ0724_rechunked_data",
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers": [25, 35, 50],
+    "samples_per_pattern": 33,
+    "execution": "one regime-power HDF5 transaction per MATLAB process; exact resume only"
+  },
+  "mechanism": {
+    "C0": "fixed-bin maximum-contrast 16 tokens",
+    "C1": "positive strict local contrast maxima, rank then temporally order 16 tokens",
+    "token_channels": ["inverse magnitude", "contrast", "sharpness", "position"],
+    "model": "identical OrdinalTokenNet and cumulative 1..8 ordinal loss",
+    "forbidden_post_freeze_changes": ["token count", "peak rule", "network width", "loss", "optimizer", "epochs", "selection", "development identities"]
+  },
+  "training": {"model_seeds": [2201, 2202, 2203], "AdamW": {"lr": 0.0003, "weight_decay": 0.0001}, "epochs": 20, "patience": 5, "batch_size": 64, "selection": "minimum selection ordinal loss"},
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

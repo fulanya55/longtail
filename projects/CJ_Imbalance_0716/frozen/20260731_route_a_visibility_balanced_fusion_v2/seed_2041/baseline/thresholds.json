@@ -1,0 +1,11 @@
+{
+  "max_negative_fpr": 0.2,
+  "source_role": "threshold_selection",
+  "thresholds": [
+    0.57,
+    0.59,
+    0.56,
+    0.42,
+    0.45
+  ]
+}

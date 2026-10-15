@@ -1,0 +1,82 @@
+{
+  "experiment": "P4k fresh-identity accuracy validation of the CUDA-Graph-deployable compact heterogeneous route",
+  "research_question": "Does the width-4 compact heterogeneous route retain a reproducible full-12-parameter advantage over the shared MLCNN baseline on wholly new identities while preserving classification and retaining a substantial fraction of the full-width route gain?",
+  "evidence_role": "fresh_identity_three_seed_compact_architecture_development",
+  "frozen_parent": {
+    "p4j_deployment_passed": true,
+    "p4j_preregister_sha256": "21691e895241c3a056034f2110b3af3af0ee9f52b85870b40bf86d1f35ce2854",
+    "compact_model": "mlcnn_iq_grouped_task_routed_w4",
+    "deployment": "matched fixed-shape CUDA Graph",
+    "sample_level_predictions_reused": false,
+    "prior_checkpoints_reused": false
+  },
+  "data": {
+    "generator": "create_closedset_6class_config",
+    "generator_seed": 730000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "identity_key": "receiver_noise_seed",
+    "split_seed": 20260801,
+    "role_counts_per_combination": {
+      "train": 75,
+      "early": 10,
+      "calibration": 5,
+      "tune": 5,
+      "confirm": 5
+    },
+    "required_overlap_with_root_and_all_p4a_through_p4g_identity_pools": 0,
+    "test_generation": "train split only"
+  },
+  "models": {
+    "C0_shared": "legacy_mlcnn_global",
+    "C1_full_route_reference": "mlcnn_iq_grouped_task_routed",
+    "C2_compact_route": "mlcnn_iq_grouped_task_routed_w4"
+  },
+  "training": {
+    "model_seeds": [8041, 8042, 8043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "external_width_argument": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter",
+    "paired_batch_order": "same model seed and independently seeded DataLoader generator"
+  },
+  "frozen_cost_facts": {
+    "compact_parameter_increase_vs_global": 0.0005203549648584935,
+    "compact_mac_increase_vs_global": 0.003434567560352355,
+    "compact_graph_batch1_median_latency_increase_vs_global_graph": 0.03925563143303301,
+    "compact_graph_batch64_throughput_retention_vs_global_graph": 0.9603978069014014
+  },
+  "validity_gates": {
+    "all_12_confirm_targets_finite_and_variable": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true,
+    "compact_architecture_exactly_width_4": true,
+    "no_sawfm_loss_reweight_or_fallback": true
+  },
+  "promotion_gates": {
+    "each_seed_compact_relative_macro_nmae_reduction_vs_global_at_least": 0.025,
+    "mean_compact_relative_macro_nmae_reduction_vs_global_at_least": 0.04,
+    "compact_parameter_improvement_direction": "3_of_3_positive",
+    "each_seed_compact_parameter_macro_pearson_not_lower_than_global": true,
+    "mean_compact_retention_of_full_route_absolute_nmae_gain_at_least": 0.65,
+    "each_seed_compact_retention_of_full_route_absolute_nmae_gain_at_least": 0.40,
+    "each_seed_compact_macro_aupr_drop_vs_global_at_most": 0.003,
+    "each_seed_compact_subset_accuracy_drop_vs_global_at_most": 0.03,
+    "no_target_worse_in_3_of_3_seeds_vs_global_by_more_than_absolute_nmae": 0.03,
+    "sawfm_sweep_period_must_be_reported_separately": true
+  },
+  "stop_rule": "Do not alter width, losses, epochs, optimizer, thresholds or gates after reading seed730000000. If the compact route misses any primary benefit gate, do not sweep width on this identity pool. If it passes, freeze it and add seeds 8044 and 8045 without changing the protocol, then perform frozen evaluation on a wholly new generator seed.",
+  "next_if_pass": "Complete five optimization seeds, bootstrap 95 percent CI and exact paired sign-flip test, then freeze all artifacts for a new-data-seed confirmation and nine-power stress test.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

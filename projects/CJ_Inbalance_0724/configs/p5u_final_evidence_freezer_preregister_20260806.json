@@ -1,0 +1,25 @@
+{
+  "experiment": "P5u terminal evidence freezer",
+  "status": "preregistered_before_development_or_confirmation_terminal",
+  "parent_preregister": "configs/p5u_direct_supervision_preregister_20260806.json",
+  "parent_preregister_sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c",
+  "confirmation_preregister": "configs/p5u_two_pool_confirmation_preregister_20260806.json",
+  "confirmation_preregister_sha256": "0bac7bb790dd0a14124c07ba41b45ff31e435201a07e47b925bdb13441edbde1",
+  "development_root": "outputs/p5u_direct_supervision_20260806/execution",
+  "confirmation_root": "outputs/p5u_two_pool_confirmation_20260806/execution",
+  "output": "configs/p5u_final_evidence_freeze_20260806.json",
+  "decision_contract": {
+    "p5_final_confirmed": "Requires direct child-started/terminal PID equality and returncode zero for development and confirmation, all three development and two confirmation pool gates, five-model rows, result pass flags, and no test/locked-test access.",
+    "stopped_or_failed": "A terminal without a valid corresponding pass result freezes the route with no execution-cost claim and no identity reuse.",
+    "running": "Missing terminal receipt creates no freeze and is reported only as running/uncertain."
+  },
+  "frozen_artifacts": [
+    {"path": "cj0724/p5u_final_evidence_freezer.py", "sha256": "340554121159804dfd0bd39a9755dbf1a776182769536b8196c45c4a986a2b69"},
+    {"path": "tests/test_p5u_final_evidence_freezer.py", "sha256": "8228b3932943622a43f33878adf7a2c2e5844111b5ed281d4d94ba4cab5f73c5"},
+    {"path": "configs/p5u_direct_supervision_preregister_20260806.json", "sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c"},
+    {"path": "configs/p5u_two_pool_confirmation_preregister_20260806.json", "sha256": "0bac7bb790dd0a14124c07ba41b45ff31e435201a07e47b925bdb13441edbde1"}
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,39 @@
+{
+  "snapshot_date": "2026-10-16",
+  "files": 2675,
+  "bytes": 15864444,
+  "roots": [
+    {
+      "source": "E:\\LJQ_code\\CJ_Imbalance_0716",
+      "destination": "projects/CJ_Imbalance_0716"
+    },
+    {
+      "source": "E:\\LJQ_code\\CJ_Inbalance_0724",
+      "destination": "projects/CJ_Inbalance_0724"
+    },
+    {
+      "source": "E:\\LJQ_code\\干扰数据\\干扰信号生成程序",
+      "destination": "data_generation/0716"
+    },
+    {
+      "source": "E:\\论文相关\\干扰数据\\干扰信号生成程序",
+      "destination": "data_generation/paper"
+    }
+  ],
+  "excluded": {
+    ".asv": 2,
+    ".git/": 3,
+    ".npz": 5,
+    ".obsidian/": 3,
+    ".pth": 20,
+    ".pytest_cache/": 3,
+    "__pycache__/": 12,
+    "generated_data/": 2,
+    "outputs/": 2
+  },
+  "source_files_modified": false,
+  "note": "Text source snapshot only. Historical run artifacts and datasets remain external.",
+  "additional_curated_files": 15,
+  "total_inventory_files": 2690,
+  "additional_scope": "Workspace research Markdown, original visualization script, and dataset text receipts/manifests."
+}

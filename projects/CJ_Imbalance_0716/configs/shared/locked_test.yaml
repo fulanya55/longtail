@@ -1,0 +1,4 @@
+allow_locked_test: false
+configuration_freeze_path: null
+expected_freeze_sha256: null
+

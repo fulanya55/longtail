@@ -1,0 +1,23 @@
+{
+  "experiment": "P8c VFT hard-negative logit-cap development",
+  "method_freeze": "configs/p8c_vft_hard_negative_logit_cap_method_freeze_20260803.json",
+  "result": "outputs/p8c_vft_hard_negative_logit_cap_development_20260803/result.json",
+  "result_sha256": "c48237ec40c74ea1d9f5fccfacd86e48eaec03db2ab8067943cc137a05488232",
+  "data_audit": "outputs/p8c_vft_hard_negative_logit_cap_preflight_20260803/data_audit.json",
+  "development_passed": false,
+  "verdict": "stop_no_confirmation_data",
+  "failed_gates": [
+    "all_three_seeds_vft_10db_aupr_nonnegative_vs_C0",
+    "mean_vft_10db_aupr_gain_vs_C0_min",
+    "all_three_seeds_macro_aupr_delta_vs_C0_min",
+    "all_three_seeds_hamming_delta_vs_C0_max",
+    "all_three_seeds_vft_hard_negative_fpr_delta_vs_C0_max",
+    "all_three_seeds_worst_power_vft_fpr_delta_vs_C0_max",
+    "all_three_seeds_vft_separation_delta_vs_C0_min",
+    "no_non_vft_label_has_systemic_fpr_increase_over_0p02"
+  ],
+  "permanent_stop_scope": "Do not change P8c penalty weight, cap, hard-negative definition, sampling, checkpoint rule, calibration, model, budget or gates on receiver_noise_seed 1325000000. Do not generate the reserved confirmation identities 1326000000 or 1327000000 for P8c.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

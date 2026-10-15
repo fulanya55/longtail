@@ -1,0 +1,116 @@
+{
+  "experiment": "P4l maximum-capacity heterogeneous route under a five-percent MAC budget",
+  "research_question": "Can the largest IQ-Grouped parameter width that stays within a preregistered five-percent total-MAC budget retain a reproducible portion of the full-width heterogeneous route's parameter advantage on wholly new identities?",
+  "evidence_role": "fresh_identity_single_budget_constrained_architecture_development",
+  "selection_rule": {
+    "rule": "Choose the largest integer candidate from the pre-audited widths 4, 6, 8, 10, 12, 16, 20, 24 whose total MAC increase versus legacy_mlcnn_global is at most 0.05",
+    "selected_width": 16,
+    "selection_uses_accuracy_results": false,
+    "reason": "width 16 has 4.995 percent MAC overhead; width 20 has more than 5 percent and is ineligible",
+    "no_width_sweep_on_p4l_data": true
+  },
+  "frozen_parent": {
+    "p4j": "matched CUDA Graph deployment passed for fixed shapes",
+    "p4k": "width 4 failed accuracy on three new-identity seeds while full width 24 improved by 6.91 percent on average",
+    "sample_level_predictions_reused": false,
+    "prior_checkpoints_reused": false
+  },
+  "single_mechanism": {
+    "full_route_reference": "mlcnn_iq_grouped_task_routed",
+    "budget_candidate": "mlcnn_iq_grouped_task_routed_w16",
+    "only_change": "IQ-Grouped parameter-backbone base width is 16 instead of 24",
+    "classification_path": "identical MLCNN",
+    "loss_and_training_protocol": "unchanged",
+    "deployment": "matched fixed-shape CUDA Graph"
+  },
+  "static_cost": {
+    "global_parameters": 12806642,
+    "candidate_parameters": 12850194,
+    "candidate_parameter_increase_fraction": 0.0034007334316804527,
+    "global_macs_per_sample": 413472128,
+    "candidate_macs_per_sample": 434128512,
+    "candidate_mac_increase_fraction": 0.04995835233539254
+  },
+  "benchmark_protocol": {
+    "device": "NVIDIA GeForce RTX 5080",
+    "dtype": "float32",
+    "amp": false,
+    "model_initialization_seed": 9040,
+    "input_length": 3000,
+    "batch_sizes": [1, 64],
+    "capture_warmup": 30,
+    "measurement_warmup_per_block": 50,
+    "repeats_per_block": 200,
+    "measurement_blocks": 5,
+    "block_order_seed": 20260801
+  },
+  "data": {
+    "generator_seed": 740000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "identity_key": "receiver_noise_seed",
+    "split_seed": 20260801,
+    "role_counts_per_combination": {
+      "train": 75,
+      "early": 10,
+      "calibration": 5,
+      "tune": 5,
+      "confirm": 5
+    },
+    "required_overlap_with_root_and_all_p4b_through_p4k_identity_pools": 0,
+    "test_generation": "train split only"
+  },
+  "training": {
+    "model_seeds": [9041, 9042, 9043],
+    "models": [
+      "legacy_mlcnn_global",
+      "mlcnn_iq_grouped_task_routed",
+      "mlcnn_iq_grouped_task_routed_w16"
+    ],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "external_width_argument": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter"
+  },
+  "cost_gates_before_training": {
+    "parameter_increase_vs_global_at_most": 0.004,
+    "mac_increase_vs_global_at_most": 0.05,
+    "cuda_graph_batch1_median_latency_increase_vs_global_graph_at_most": 0.15,
+    "cuda_graph_batch1_p95_latency_increase_vs_global_graph_at_most": 0.20,
+    "cuda_graph_batch64_throughput_retention_vs_global_graph_at_least": 0.85,
+    "eager_and_graph_outputs_equivalent_at_tolerance": 0.000001
+  },
+  "validity_gates": {
+    "all_12_confirm_targets_finite_and_variable": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true,
+    "candidate_width_exactly_16": true,
+    "no_sawfm_loss_reweight_or_fallback": true
+  },
+  "promotion_gates": {
+    "each_seed_candidate_relative_macro_nmae_reduction_vs_global_at_least": 0.025,
+    "mean_candidate_relative_macro_nmae_reduction_vs_global_at_least": 0.04,
+    "candidate_parameter_improvement_direction": "3_of_3_positive",
+    "each_seed_candidate_parameter_macro_pearson_not_lower_than_global": true,
+    "mean_candidate_retention_of_full_route_absolute_nmae_gain_at_least": 0.70,
+    "each_seed_candidate_retention_of_full_route_absolute_nmae_gain_at_least": 0.50,
+    "each_seed_candidate_macro_aupr_drop_vs_global_at_most": 0.003,
+    "each_seed_candidate_subset_accuracy_drop_vs_global_at_most": 0.03,
+    "no_target_worse_in_3_of_3_seeds_vs_global_by_more_than_absolute_nmae": 0.03,
+    "sawfm_sweep_period_reported_separately": true
+  },
+  "stop_rule": "First run only the static and matched-CUDA-Graph cost audit. If any cost gate fails, do not generate data or train. If cost passes, generate seed740000000 and run the frozen three-seed protocol. Do not try widths 12 or 20 on this identity pool. If accuracy fails, stop budget-constrained width scaling and retain the full route or redesign a shared front end.",
+  "next_if_pass": "Add two new optimization seeds without protocol changes, then freeze and evaluate on a wholly new data seed before nine-power stress testing.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,60 @@
+{
+  "experiment_id": "P2e-SawFM-exact-component-oracle-sufficiency",
+  "evidence_role": "fresh development-only oracle mechanism screen",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "antecedent": {
+    "P2c": "unconditional generic-separator residual failed 3/3 safety and magnitude gates",
+    "P2d": "bounded router failed because seed 2041 residual benefit was not separable",
+    "required_decision": "establish whether exact SawFM component isolation would make the frozen period expert physically sufficient before training a dedicated separator"
+  },
+  "data_protocol": {
+    "generator_seed": 1600000000,
+    "generator_entrypoint": "matlab/generate_p2e_sawfm_component_oracle_data.m",
+    "power_db": 50,
+    "split_generated": "train only",
+    "samples_per_combination": 10,
+    "total_identities": 630,
+    "SawFM_positive_identities": 320,
+    "required_overlap_with_prior_identities": 0,
+    "test_generated": false
+  },
+  "oracle_reconstruction": {
+    "source_fields": [
+      "SawFM sweep_bandwidth_Hz parameter column 12",
+      "SawFM sweep_period_s parameter column 14",
+      "SawFM arrival_delay_s parameter column 15"
+    ],
+    "formula": "the same deterministic sawtooth instantaneous-frequency and cumulative-phase formula used by generate_sawfm.m",
+    "sample_rate_hz": 10000000,
+    "signal_length": 3000,
+    "noise": "none",
+    "amplitude": "irrelevant because the frozen input contract applies RMS normalization",
+    "deployable": false,
+    "purpose": "physical sufficiency only"
+  },
+  "frozen_models": "SawFM period specialists seeds 2041-2043; no trainable parameters",
+  "comparators": {
+    "constant": "median target over all oracle probe identities",
+    "raw_mixture": "50 dB compound I/Q through the same frozen specialist",
+    "exact_component_oracle": "reconstructed pure SawFM component through the same frozen specialist"
+  },
+  "promotion_gates": {
+    "each_seed_oracle_relative_mae_reduction_vs_constant_min": 0.50,
+    "each_seed_oracle_pearson_min": 0.80,
+    "each_seed_oracle_mae_reduction_vs_raw_mixture_min": 0.50,
+    "each_seed_oracle_correlation_gain_vs_raw_min": 0.30,
+    "same_direction": "3/3 seeds"
+  },
+  "interpretation_rules": {
+    "pass": "dedicated SawFM component supervision is physically justified; next train a small separator with frozen period downstream loss on another fresh development seed",
+    "fail": "even exact isolation is insufficient for the current period expert; stop separator expansion and redesign the period estimator",
+    "no_gate_change": true
+  },
+  "prohibited": [
+    "using the oracle waveform at deployment",
+    "training or selecting on this oracle probe",
+    "generating a test split",
+    "reusing prior calibration identities"
+  ],
+  "locked_test_used": false
+}

@@ -1,0 +1,27 @@
+{
+  "experiment": "P3o-P complex-coherence sparse-event ordinal MFT-count screen",
+  "outcome_date": "2026-08-03",
+  "summary": "outputs/p3op_complex_coherence_development_20260803_contractfix2/summary.json",
+  "summary_sha256": "5a53775bbad63c265e58dc0c78bab5ec3cf3fe053366c675a7e79caedabae429",
+  "development_passed": false,
+  "verdict": "stop_no_confirmation_data",
+  "failed_gates": [
+    "each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least_0p05",
+    "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least_0p03",
+    "each_seed_C1_ID_control_and_low_count_pearson_at_least_0p30",
+    "no_C1_regime_worse_than_C0_in_all_three_seeds_by_mae_over_0p02"
+  ],
+  "aborted_pretraining_outputs": [
+    "outputs/p3op_complex_coherence_development_20260803",
+    "outputs/p3op_complex_coherence_development_20260803_contractfix"
+  ],
+  "confirmation_generated": false,
+  "confirmation_opened": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false,
+  "forbidden_follow_up": [
+    "tune coherence descriptors", "tune peak rule", "tune width/loss/schedule on 1800M/1810M",
+    "generate P3o-P confirmation", "attach a P3o-P expert"
+  ]
+}

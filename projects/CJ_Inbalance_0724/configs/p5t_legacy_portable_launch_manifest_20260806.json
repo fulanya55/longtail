@@ -1,0 +1,33 @@
+{
+  "schema": "P5s-detached-supervisor-v1",
+  "experiment": "P5t hash-pinned legacy-source-portable detached shared frozen-forward execution",
+  "preregister": "configs/p5t_legacy_portable_preregister_20260806.json",
+  "preregister_sha256": "00004670009f6de5167e060ff72b6a776756c613339845bec1b5d2b1af9e0560",
+  "method_freeze": "configs/p5t_legacy_portable_method_freeze_20260806.json",
+  "method_freeze_sha256": "2e60829d2193b99d72a54bb494e79f828d5b2e58b8bd3e7ae7ce5611bcb97341",
+  "working_directory": "E:\\LJQ_code\\CJ_Inbalance_0724",
+  "execution_root": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\p5t_legacy_portable_20260806\\execution",
+  "command": [
+    "D:\\anaconda3\\envs\\PY10\\python.exe",
+    "-m", "cj0724.p5t_legacy_portable_execution",
+    "--preregister", "configs/p5t_legacy_portable_preregister_20260806.json",
+    "--p5e-freeze", "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "--data-roots",
+    "generated_data/p5t_legacy_portable_dev_seed3410000000",
+    "generated_data/p5t_legacy_portable_dev_seed3420000000",
+    "generated_data/p5t_legacy_portable_dev_seed3430000000",
+    "--audits",
+    "outputs/p5t_legacy_portable_20260806/audits/p5t_legacy_portable_dev_seed3410000000.json",
+    "outputs/p5t_legacy_portable_20260806/audits/p5t_legacy_portable_dev_seed3420000000.json",
+    "outputs/p5t_legacy_portable_20260806/audits/p5t_legacy_portable_dev_seed3430000000.json",
+    "--output-root", "outputs/p5t_legacy_portable_20260806/execution"
+  ],
+  "audit_sha256": {
+    "3410000000": "6eeb8106d94f769d797af4aaf79324f69f4354ff72615821218f5e677ae30ebd",
+    "3420000000": "912061aaebfd9306d8ebe604309d717300b006f82bc3ddd1732bec2b1c540077",
+    "3430000000": "172cb6c86754b4e366e75a700af88214940f9732ffc00db068a3d62ac361b77f"
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

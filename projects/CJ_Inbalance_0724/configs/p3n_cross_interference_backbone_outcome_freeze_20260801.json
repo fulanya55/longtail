@@ -1,0 +1,18 @@
+{
+  "experiment": "P3n-A cross-interference identifiable backbone",
+  "outcome": "failed",
+  "decision": "freeze failure and do not execute P3n-B",
+  "summary_sha256": "E9C13159CF3951994FC45F3409B7BA4785F884C25C89F5A1B28A339930D5621A",
+  "identity_audit_sha256": "993F0FECC3AF37394685A6B23F5FE775AE4A4838F885D4B0763685985694ABE9",
+  "preregister_sha256": "AB6BA483D9B266A847C4D229B6C4FA81916D4758EAE711C9AF85A3C945BBC5BA",
+  "method_freeze_sha256": "AB528D718C2F463ED77D2BDE45A22032F9225745F88B33A539A8B8322603ACA7",
+  "implementation_sha256": "E89C0A8974C9542514321FDE710B70A29B00D223C840DB41BF6F2A9A33367474",
+  "formal_model_seeds": [2041, 2042, 2043],
+  "development_identity_seed": 770000000,
+  "development_passed": false,
+  "all_required_tests_passed": true,
+  "pytest_result": "223 passed in 8.38s",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

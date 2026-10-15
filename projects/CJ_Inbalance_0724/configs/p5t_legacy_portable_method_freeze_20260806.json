@@ -1,0 +1,37 @@
+{
+  "experiment": "P5t hash-pinned legacy-source-portable detached shared frozen-forward execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5t_legacy_portable_preregister_20260806.json",
+  "preregister_sha256": "00004670009f6de5167e060ff72b6a776756c613339845bec1b5d2b1af9e0560",
+  "implementation": {
+    "package_path_portability_change": "cj0724/models.py",
+    "package_path_portability_change_sha256": "28bb3565497920f546c72afa4ceaf8566cbadb0ba61bd24e0d70b466923e72b3",
+    "legacy_source_manifest": "configs/p5t_legacy_source_manifest_20260806.json",
+    "legacy_source_manifest_sha256": "5db230543518e8bf4eac2817537179e51c8dba92925b9888449caa462c2ddd7f",
+    "preflight_entrypoint": "cj0724/p5t_legacy_portable_execution.py",
+    "preflight_entrypoint_sha256": "40163d3beda90b37818643c918fd0f40726ac503a6a51f934100b1373e65f6a6",
+    "generator": "matlab/generate_p5t_legacy_portable_development_data.m",
+    "generator_sha256": "f6e09c06be85b1000f688ad9556124270d0045571ebc740b421d64229f242e27",
+    "integration_test": "tests/test_p5t_legacy_portable_protocol.py",
+    "integration_test_sha256": "79a5f0c41fbddb30e5de03f9d7cb37767cee2834294ee17a8bfc4fdaef996c55"
+  },
+  "pre_generation_validation": {
+    "pytest_result": "18 passed in 26.59s",
+    "source_resolution": "From an unrelated current working directory, LEGACY_SOURCE_ROOT resolved to E:/LJQ_code/pythonProject/新建文件夹 rather than any historical drive.",
+    "required_source_hash": "model.py SHA-256 = 406e5868ff71c1f038f5b43dd7bbbf40f740dd6ca04bddbb1bab8e5a70ac043d",
+    "five_model_cpu_load": "Seeds 3041-3045 constructed and loaded their frozen state_dict successfully; each had 88 state keys and 12,892,618 state elements. No MAT data or CUDA context was opened.",
+    "matlab_dry_run": "15 train manifests validated in memory and three P5t pools returned.",
+    "p5t_generated_directories_before_freeze": 0,
+    "p5t_generated_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "Only legacy source path portability changed from P5s",
+    "P5e candidate, all weights, thresholds, normalizers, analytic features, data audit, detached supervisor, chunk size 630, batch 126, five warmups, 15 repetitions and latency gate 0.85 are unchanged",
+    "P5t preflight verifies hash-pinned E-drive model.py and all five frozen state_dicts before any execution",
+    "P5t uses new train-only paired-power identities; every P5p/P5q/P5r/P5s identity remains quarantined",
+    "No confirmation or locked test data may be generated before all three development pools pass"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

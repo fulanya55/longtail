@@ -1,0 +1,42 @@
+{
+  "experiment": "P5p checkpointed protocol-generic verified-idle shared frozen-forward and dense bounded-head execution",
+  "status": "stopped_abrupt_termination_inside_first_pool_no_performance_result",
+  "decision": "Do not rerun P5p, do not reuse any P5p identity pool, do not infer output equivalence or latency, and do not generate confirmation/test data.",
+  "observed_terminal_state": {
+    "process_present": false,
+    "last_durable_stage": "pool_000_started",
+    "pool_completed_receipts": 0,
+    "result_present": false,
+    "pre_result_abort_present": false,
+    "restore_receipt_present": false
+  },
+  "attribution": {
+    "classification": "external_relocation_associated_abrupt_termination_unattributed",
+    "evidence": "P5p launched from C:/LJQ_code/CJ_Inbalance_0724 and durably reached first-pool start. The C/D project locations were subsequently removed and the retained project was relocated to E:/LJQ_code/CJ_Inbalance_0724. The original process is absent and no catchable-exception receipt exists.",
+    "boundary": "The relocation is temporally associated with the disappearance but is not claimed as a proven operating-system termination cause. The only admissible conclusion is no performance result."
+  },
+  "frozen_evidence": {
+    "preregister": "configs/p5p_checkpointed_idle_window_preregister_20260804.json",
+    "preregister_sha256": "a5c76048b69409ca0c7b31bca973f5797c6ce8213d72cc2615b9b9e0a22f6941",
+    "method_freeze": "configs/p5p_checkpointed_idle_window_method_freeze_20260804.json",
+    "method_freeze_sha256": "c2d5c284df9db60ff5bd0987c57d6911ca42af209173721ae157d3b01d657e53",
+    "runner": "cj0724/p5p_checkpointed_idle_window_execution.py",
+    "runner_sha256": "1cdb9d9a2278532379c862847a21a2e32b8d80683e363f68d8475f286779b462",
+    "launch_receipt_sha256": "fedcb0cf3fbb4540ddf7ee0a4c572f69c6628e6d2820db5998792dd0d734b4d3",
+    "environment_receipt_sha256": "5e3f50f0c58ba84b742c87c6a36de9e61530d7205325fb8c11fd443183ce8b94",
+    "pool_000_started_sha256": "c543a5a40f5dbc8b3f4a78fc3f0869ee83c365ffad16ddf0626224f6bc57ae3b"
+  },
+  "data_disposition": {
+    "development_seeds": [3810000000, 3820000000, 3830000000],
+    "identity_disposition": "quarantined_for_P5; no rerun, resume, selection, calibration, confirmation or test",
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "failure_analysis": [
+    "P5p successfully repaired P5o's empty-root ambiguity: the durable receipts prove launch, clean initial process guard, failed EXCLUSIVE_PROCESS permission attempt, and entry into pool 0.",
+    "The checkpoint unit remained too coarse: one entire pool contains analytic extraction plus five frozen models before a completion receipt, leaving many hours of work without a recoverable scientific unit.",
+    "The generator and historical execution assumptions were path-bound to C:, so external storage relocation remained an untested infrastructure hazard."
+  ],
+  "next_allowed_action": "A P5 successor may change only execution durability and path portability: derive project root at runtime, validate all artifacts after relocation, checkpoint immutable analytic inputs and each model result, and validate interruption classification without CUDA or performance data before generating wholly new identities."
+}

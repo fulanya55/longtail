@@ -1,0 +1,40 @@
+{
+  "schema": "route-a-locked-test-execution-freeze-v1",
+  "status": "frozen_waiting_explicit_authorization",
+  "candidate_manifest": "E:/LJQ_code/CJ_Imbalance_0716/frozen/route_a_anti_alias_Afinal_prelock_20260907/manifest.json",
+  "sealed_source_manifest": "E:/LJQ_code/CJ_Imbalance_0716/frozen/route_a_anti_alias_Afinal_prelock_20260907/locked_test_source_sealed_manifest.json",
+  "runner": "E:/LJQ_code/CJ_Imbalance_0716/experiments/run_route_a_locked_test_once.py",
+  "runner_sha256": "f3429007ec31d41ee20cd2970123144938fa9379754b21c1ef0eb1a6440f048c",
+  "output_root": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_locked_test_once_20260827",
+  "sealed_source_manifest_sha256": "3d7925d277f0c8d1d16ae037bbb44dba088302adac92c3a5447db6119da1a945",
+  "candidate_manifest_sha256": "60da154672ac00f8a80d12fc51b8296040db5391b0ad7973040ccc7a7951214b",
+  "classes": ["FMB", "AMA", "SawFM", "SinFM", "MFT", "ISRJ"],
+  "input": "true normalized I/Q [B,2,3000]",
+  "threshold": 0.5,
+  "aggregation": "uniform arithmetic mean of logits over exactly ten candidate checkpoints and ten paired F2_full checkpoints",
+  "candidate_checkpoints": [
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2039.pth", "sha256": "2cd902c81da305f61d0a6f5ce80438481831cd1f2b24d1ea045f6dfa5dfa1a67"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2040.pth", "sha256": "b9aef52a03b02011b70d984cd2f9d2d995001a9e69b1f5e294e8117e4e2cd435"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2041.pth", "sha256": "53aa4ac39432c1cfcb74c66cbbd288a0c9a45480b14d3822ed40800569e02535"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2042.pth", "sha256": "cd1c0df611628b029a31c62a36fe17f03b8265bb9a19b1fd2891bd85ec44b0ef"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_anti_alias/F2_anti_alias__seed_2043.pth", "sha256": "23d26e53ad004d51e21bb6f35e8dbeeca070bd5885ed93873fe9a449c0295c59"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2039.pth", "sha256": "b840a261498489063567b4cae92bebc96c6ce6726334f102276c01f614894a4f"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2040.pth", "sha256": "a8f5c548a57d9246228582bf30e2f54f086721582fa82bfb439cd0f889660835"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2041.pth", "sha256": "2176dace6606c8fc47d881a236e7be687f9c1e7754ee291e7eeee2469e625015"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2042.pth", "sha256": "d522f9508ff69561b048ff23cba392971c90ea6e89a7cfcb33f9a796741fe72d"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_anti_alias/F2_anti_alias__seed_2043.pth", "sha256": "bfd3e730eb411aab3f378343b12c3c8b8e336cb9d62a1df466c49bb71d3fad2c"}
+  ],
+  "baseline_checkpoints": [
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_full/F2_full__seed_2039.pth", "sha256": "D8771909FF5F13CBCDE0D19431B58FDA6FA7F6CACA4A0BDDF7427DE155514EF5"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_full/F2_full__seed_2040.pth", "sha256": "1B6A5097C5D3F8B61C2F5FDF1F33A1E81CCC9A601A23CC87653762613B723B97"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_full/F2_full__seed_2041.pth", "sha256": "7195419FCA76E76F03A2F9E481C17659187E44E539E70FD2B70B771E7A4D1976"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_full/F2_full__seed_2042.pth", "sha256": "769197CB5BE48099F31B01FCA716FF87D820FD4D30001DBDB3AFC0ACA058E314"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_confirm_20260906/F2_full/F2_full__seed_2043.pth", "sha256": "42E71790526453B0410A01408F9B4DDF4BBC32D520F983D88B31EC8A02C92D1A"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_full/F2_full__seed_2039.pth", "sha256": "CFCD880B87DBB8B2EECC0B5954D4A4D4B84E682AF4870DC0037F79F7163A0BB5"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_full/F2_full__seed_2040.pth", "sha256": "72955FCB11906859BBDEE0C3C9AAFED74A6E75C9B738FF454FEAE1B75EFEEC1C"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_full/F2_full__seed_2041.pth", "sha256": "0171FC824A970C8CC8D825AE2CCF6DF845D2242FF729A615F1770A0063202946"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_full/F2_full__seed_2042.pth", "sha256": "A144FB757B47D907F2B13B3FA9E82BC681E1DD78A30BBFB63AD617B6FD2E65C8"},
+    {"path": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_p1a_anti_alias_independent_20260907/F2_full/F2_full__seed_2043.pth", "sha256": "4ABEE7FF9A3B90B7A86231463D8A81815A513F6BAEFF97F407B68F66FB95EA5D"}
+  ],
+  "authorization": "NOT AUTHORIZED: require explicit user authorization for one-time locked-test read"
+}

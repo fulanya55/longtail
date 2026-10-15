@@ -1,0 +1,45 @@
+{
+  "schema": "route-a-locked-test-source-sealed-manifest-v1",
+  "status": "sealed_waiting_explicit_authorization",
+  "sealed_at_local": "2026-08-27T04:05:00+08:00",
+  "source_root": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000",
+  "generation_config": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_locked_test_source_generation_20260908/generation_config.json",
+  "generation_script": "E:/LJQ_code/CJ_Imbalance_0716/experiments/generate_route_a_locked_test_source.m",
+  "generation_script_sha256": "052b556d18b54fa672c5265c438e405c6862c35d555ad8c8d7a9f1a71b69a6ce",
+  "generation_seed": 4050000000,
+  "split_selection": "test_only",
+  "selected_classes": ["FMB", "AMA", "SawFM", "SinFM", "MFT", "ISRJ"],
+  "excluded_classes": ["SN", "VFT", "RangeFakeTarget"],
+  "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+  "patterns_per_power": 63,
+  "samples_per_pattern": 40,
+  "samples_per_power": 2520,
+  "total_samples": 22680,
+  "identity_audit": {
+    "audit_file": "E:/LJQ_code/CJ_Imbalance_0716/outputs/route_a_locked_test_source_generation_20260908/metadata_identity_audit.json",
+    "receiver_noise_seed_intersection_with_existing_9class_train_test": 0,
+    "existing_files_scanned": 18,
+    "sample_bytes_used_for_model_selection": false,
+    "locked_test_used": false
+  },
+  "files": [
+    {"power_db": 10, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_01__jnr_10dB/closedset_6class_test.mat", "sha256": "42F9A4BF8F0AC7D0CE80199DC4A1DB1D320CD97FE64C3B621CBF5C9886993382", "bytes": 138505535},
+    {"power_db": 15, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_02__jnr_15dB/closedset_6class_test.mat", "sha256": "794481097029C56C0E9766E76D91CCD1196DED69DA9AEADBE9AE0193197E70C6", "bytes": 138468803},
+    {"power_db": 20, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_03__jnr_20dB/closedset_6class_test.mat", "sha256": "A759043BE05EB5940307862611C786D334E9E0E3E155D5CF72FB90D800D99954", "bytes": 138445077},
+    {"power_db": 25, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_04__jnr_25dB/closedset_6class_test.mat", "sha256": "24F3F2A718A3872641625CB523BCBFAC898A04649290BF7CEC01F58820821C36", "bytes": 138427111},
+    {"power_db": 30, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_05__jnr_30dB/closedset_6class_test.mat", "sha256": "12F5C93DBB3FB384B22ADA94151094EBF4D75298FD1EB6E6CB14E15249F41FB1", "bytes": 138397319},
+    {"power_db": 35, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_06__jnr_35dB/closedset_6class_test.mat", "sha256": "929653937422C442D593F5DD2547141818EB26E5D05B75A3EB17CE805D743706", "bytes": 138383276},
+    {"power_db": 40, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_07__jnr_40dB/closedset_6class_test.mat", "sha256": "E65014DE68E46F014DDE3C1BBF1F031DCD0841930732529E57B4890D9A5E5F49", "bytes": 138384169},
+    {"power_db": 45, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_08__jnr_45dB/closedset_6class_test.mat", "sha256": "AAEDA7A5D162BB22EB787341BACADF4422D1E190FC544B8C16A8BC2BDEAEE3B3", "bytes": 138394547},
+    {"power_db": 50, "path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/level_09__jnr_50dB/closedset_6class_test.mat", "sha256": "2B26E8A268A79BAF5215D87EAA47D4A3846A9B75849E3CC8BE38C9AACE20C1EA", "bytes": 138405163}
+  ],
+  "manifest_csv": {"path": "E:/LJQ_code/CJ_Imbalance_0716/generated_data/route_a_locked_test_ama_seed4050000000/power_sweep_manifest.csv", "sha256": "85F2DC219954E99DB62631FD34CD6EE1B0B919BEEB027701E805CEF6D71E8DB5"},
+  "evaluation_contract": {
+    "candidate": "F2_anti_alias / dfms_iq_anti_alias",
+    "checkpoint_aggregation": "uniform arithmetic mean of the ten prelocked logits",
+    "threshold": 0.5,
+    "metrics": ["Macro-AUPR", "Macro-F1", "subset_accuracy", "per-class recall", "per-class FPR", "per-power metrics", "combination accuracy", "Hamming loss", "ECE", "latency"],
+    "post_read_policy": "No model, threshold, checkpoint, preprocessing, or metric definition changes after first locked-test read"
+  },
+  "authorization": "NOT AUTHORIZED: require explicit user authorization for one-time locked-test read"
+}

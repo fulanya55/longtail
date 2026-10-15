@@ -1,0 +1,34 @@
+{
+  "experiment": "P5t hash-pinned legacy-source-portable detached shared frozen-forward execution",
+  "status": "stopped_before_model_output_due_invalid_nested_supervisor_chain",
+  "decision": "Do not resume or rerun P5t. Do not reuse P5t identities. Do not infer output equivalence, latency, classification or parameter behavior. Do not generate confirmation or test data.",
+  "observed_state": {
+    "legacy_source_preflight_passed": true,
+    "all_five_frozen_models_cpu_loaded": true,
+    "first_analytic_chunk_completed": true,
+    "second_analytic_chunk_started": true,
+    "model_completed_receipts": 0,
+    "pool_completed_receipts": 0,
+    "result_present": false,
+    "actual_executor_pid": 48944,
+    "supervisor_recorded_child_pid": 53632,
+    "supervisor_terminal_returncode": 0
+  },
+  "attribution": {
+    "classification": "windows_nested_process_supervision_contract_failure",
+    "root_cause": "p5t_legacy_portable_execution.py invoked os.execv on Windows. It spawned a new P5s executor PID rather than replacing the supervised wrapper PID, so supervisor_terminal recorded the wrapper's successful exit before the actual executor finished.",
+    "mitigation": "The actual unsupervised executor PID 48944 was verified against its command line and terminated before model output. This avoids spending GPU time on a run that could not satisfy the preregistered supervisor-terminal gate.",
+    "boundary": "The E-drive source-path fix itself passed: model.py hash verification and all five state_dict loads succeeded. P5t has no valid performance evidence because its process-supervision protocol was invalid."
+  },
+  "frozen_evidence": {
+    "preregister_sha256": "00004670009f6de5167e060ff72b6a776756c613339845bec1b5d2b1af9e0560",
+    "method_freeze_sha256": "2e60829d2193b99d72a54bb494e79f828d5b2e58b8bd3e7ae7ce5611bcb97341",
+    "launch_manifest_sha256": "5234d1e2170c8645c401321b8b0f6ceab10e001d4dab0a4fe4035f6a57c750ae",
+    "p5t_entrypoint_sha256": "40163d3beda90b37818643c918fd0f40726ac503a6a51f934100b1373e65f6a6",
+    "preflight_receipt_sha256": "cb0499e928ca2a79f4c9eaabcb56fd985f6ec625a7dc95c14cb1fb1fb3ab89cd",
+    "supervisor_terminal_sha256": "467d82a9e7a68649e1ca4f85fcd1d2f7c23102f8c2abd89e7a4e05d6830947dc",
+    "first_chunk_receipt_sha256": "200a4943f771062210887f3dcf68787370bf649b487e42a468cac14cdc5593e9"
+  },
+  "data_disposition": {"development_seeds": [3410000000, 3420000000, 3430000000], "identity_disposition": "quarantined_for_P5; no rerun, resume, selection, calibration, confirmation or test", "test_generated": false, "test_opened": false, "locked_test_used": false},
+  "next_allowed_action": "P5u may change only detached supervision topology: run P5t's no-data source/checkpoint preflight inside the supervisor before spawning the unchanged P5s executor directly, then bind supervisor child PID and terminal receipt to that actual executor. Use wholly new identities."
+}

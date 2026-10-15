@@ -1,0 +1,41 @@
+{
+  "schema": "P5u-autonomous-progression-monitor-v1",
+  "experiment": "P5u gate-driven autonomous progression monitor",
+  "status": "frozen_before_parent_development_terminal",
+  "parent_preregister": "configs/p5u_direct_supervision_preregister_20260806.json",
+  "parent_method_freeze": "configs/p5u_direct_supervision_method_freeze_20260806.json",
+  "development_execution_root": "outputs/p5u_direct_supervision_20260806/execution",
+  "confirmation_preregister": "configs/p5u_two_pool_confirmation_preregister_20260806.json",
+  "confirmation_method_freeze": "configs/p5u_two_pool_confirmation_method_freeze_20260806.json",
+  "confirmation_data_roots": [
+    "generated_data/p5u_two_pool_confirmation_seed3340000000",
+    "generated_data/p5u_two_pool_confirmation_seed3350000000"
+  ],
+  "confirmation_audits": [
+    "outputs/p5u_two_pool_confirmation_20260806/audits/p5u_two_pool_confirmation_seed3340000000.json",
+    "outputs/p5u_two_pool_confirmation_20260806/audits/p5u_two_pool_confirmation_seed3350000000.json"
+  ],
+  "confirmation_execution_root": "outputs/p5u_two_pool_confirmation_20260806/execution",
+  "monitor_root": "outputs/p5u_autonomous_progression_20260806",
+  "python": "D:\\anaconda3\\envs\\PY10\\python.exe",
+  "matlab": "D:\\Matlab\\bin\\matlab.exe",
+  "historical_baseline": "E:\\LJQ_code\\干扰数据\\复合干扰数据0716\\closedset_6class_train.mat",
+  "historical_baseline_sha256": "2e9afdf1999452b6635038c52457f2b44b28f98aec422d87576e5ad76135d50e",
+  "rule": "No CUDA work, model loading, data generation, confirmation execution or locked-test access may occur before a passing parent result and a successful direct-child terminal receipt. After promotion, exactly the frozen two-pool confirmation workflow is permitted once.",
+  "frozen_artifacts": [
+    {"path": "cj0724/p5u_autonomous_progression_monitor.py", "sha256": "47a442e3d4c1cd7317e13b706bfcba34cad34a026150dc6cc1c45662ef1135cb"},
+    {"path": "tests/test_p5u_autonomous_progression_monitor.py", "sha256": "ea0df714198900e35937724294f751b7035ff65bbaca205c7672a199cfae614e"},
+    {"path": "configs/p5u_direct_supervision_preregister_20260806.json", "sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c"},
+    {"path": "configs/p5u_direct_supervision_method_freeze_20260806.json", "sha256": "f36d4b463eed04c29704c0ee956eb8803adf3b994514a59232ba66c2e3858a24"},
+    {"path": "configs/p5u_two_pool_confirmation_preregister_20260806.json", "sha256": "0bac7bb790dd0a14124c07ba41b45ff31e435201a07e47b925bdb13441edbde1"},
+    {"path": "configs/p5u_two_pool_confirmation_method_freeze_20260806.json", "sha256": "fbdb75ac905114f47d1176aca5ea2b8f25af98aec97ac732b8db2ecce9943c14"},
+    {"path": "cj0724/p5u_two_pool_confirmation_execution.py", "sha256": "55448a4e54e78f4a91ff14387fe8a1001eaeba7a7af137577e9832b0bfc1729c"},
+    {"path": "matlab/generate_p5u_two_pool_confirmation_data.m", "sha256": "79350dff467b3be595eed9a11db29938a5ed73b1f2f090824e34b654414a343e"},
+    {"path": "cj0724/p5u_preflight_supervisor.py", "sha256": "5b4f0e986cf7e646a0095bfc4c26b56a0066b99485b63fa9940354aee3244230"},
+    {"path": "cj0724/p5t_legacy_portable_execution.py", "sha256": "40163d3beda90b37818643c918fd0f40726ac503a6a51f934100b1373e65f6a6"},
+    {"path": "cj0724/audit_p5r_relocation_safe_data.py", "sha256": "ad32d5a8bde24090bca0d33059d6957de78cc75553dbd692172fc9cc25866885"}
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,108 @@
+{
+  "experiment": "P2a frozen P1n nine-power independent generalization",
+  "registration_date": "2026-07-31",
+  "single_hypothesis": "The fully frozen P1n joint physics system retains recognition, risk and end-to-end 12-parameter benefit across all nine power levels on new identity-disjoint data.",
+  "reference_only": {
+    "name": "P1n full-blend shared-threshold joint confirmation",
+    "root": "outputs/p1n_full_blend_joint_20260801",
+    "method_freeze_sha256": "f461e6a3b3beeb1c02fff94d47b67320b850b574b260b7961e95805d9e8d3ed7",
+    "method_changes_allowed": false,
+    "historical_test_reuse_allowed": false
+  },
+  "fresh_data": {
+    "root": "generated_data/p2a_nine_power_generalization_seed1200000000_rechunked",
+    "raw_root": "generated_data/p2a_nine_power_generalization_seed1200000000",
+    "generator": "matlab/generate_p2a_nine_power_generalization_data.m",
+    "base_seed": 1200000000,
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "combinations": 63,
+    "identities_per_combination_per_split": 40,
+    "identities_per_split": 2520,
+    "paired_identity_key": "receiver_noise_seed",
+    "required_overlap": {
+      "train_test": 0,
+      "train_original": 0,
+      "test_original": 0,
+      "train_p1n": 0,
+      "test_p1n": 0
+    }
+  },
+  "data_roles": {
+    "fresh_train": {
+      "fit_per_combination": 20,
+      "selection_per_combination": 10,
+      "calibration_per_combination": 10
+    },
+    "fresh_test": "one-time evaluation only after method_freeze.json is written",
+    "historical_confirm_used": false,
+    "historical_locked_test_used": false
+  },
+  "frozen_method": {
+    "classification_backbone": "MLCNN",
+    "parameter_backbone": "IQ-Grouped",
+    "multitask_model": "mlcnn_iq_grouped_task_routed",
+    "sawfm_period": "frozen sequence specialist replacement",
+    "vft_doppler": "frozen aligned non-trainable physical expert replacement",
+    "isrj": "frozen conditional U-Net physics expert plus bootstrap lower-confidence route",
+    "isrj_route_score": "lower",
+    "isrj_route_alpha": 1.0,
+    "isrj_threshold_policy": "base_calibrated",
+    "mft": "not attached because its specialist promotion gate failed",
+    "unchanged_outputs": "all other probabilities, thresholds and ten non-promoted parameter outputs"
+  },
+  "calibration_constraints": {
+    "targets": ["VFT", "ISRJ"],
+    "single_threshold_per_target_without_power_input": true,
+    "every_power_observed_fpr_max": 0.06,
+    "every_power_one_sided_cp95_max": 0.08
+  },
+  "variants": [
+    "original_iq_grouped",
+    "safe_calibrated_iq_grouped",
+    "safe_isrj_route",
+    "joint_physics_system"
+  ],
+  "promotion_gates": {
+    "mean_nine_power_isrj_recall_gain_vs_safe_calibrated_min": 0.05,
+    "positive_model_seeds": "3/3",
+    "nonnegative_power_levels_min": "8/9",
+    "minimum_power_recall_delta": -0.02,
+    "maximum_observed_isrj_or_vft_power_fpr": 0.10,
+    "mean_macro_aupr_delta_vs_original_min": -0.005,
+    "mean_full_predicted_gate_parameter_nmae_improvement_vs_safe_route_min": 0.05,
+    "full_parameter_improvement_seeds": "3/3",
+    "mean_miss_penalty_delta_vs_original_max": 0.0,
+    "mean_worst_combo_delta_vs_safe_route_max": 0.0,
+    "paired_bootstrap_parameter_and_miss_ci95_high_max": 0.0,
+    "paired_bootstrap_isrj_recall_ci95_low_min": 0.0
+  },
+  "statistics": {
+    "identity_grouped_bootstrap_replicates": 2000,
+    "model_seeds": [2041, 2042, 2043],
+    "report_per_class": true,
+    "report_per_power": true,
+    "report_per_combination": true,
+    "report_weak_component": true,
+    "report_parameter_and_cost": true
+  },
+  "stop_rules": [
+    "If recall rises while macro-AUPR, hard-negative separation or FPR violates a gate, classify the result as response amplification and do not promote.",
+    "If any identity overlap is non-zero, invalidate the run before test evaluation.",
+    "If the fresh test is read, do not adjust the method, thresholds, seeds or gates and do not reread it.",
+    "Failure of P2a keeps P1n frozen at Level 3 and routes the next study to the failed power or mechanism rather than deeper model search."
+  ],
+  "execution": {
+    "runner": "cj0724/p1k_joint_level3_system.py",
+    "statistics_runner": "cj0724/p1k_finalize_saved_predictions.py",
+    "defer_waveform_statistics": true,
+    "output_root": "outputs/p2a_nine_power_generalization_20260731",
+    "locked_test_used": false
+  },
+  "amendment": {
+    "data_generation_started_before_this_registration": true,
+    "reason": "The generator process was already active when the persistent goal continuation inspected the workspace.",
+    "data_or_predictions_read_before_registration": false,
+    "method_or_gate_selected_from_generated_data": false,
+    "registration_boundary": "All model loading, train-role fitting, threshold calibration, method freeze and test evaluation occur after this registration."
+  }
+}

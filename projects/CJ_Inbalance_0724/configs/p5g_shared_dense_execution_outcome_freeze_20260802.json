@@ -1,0 +1,32 @@
+{
+  "experiment": "P5g shared frozen-forward and dense bounded-head execution",
+  "status": "execution_frozen_before_any_complete_development_result",
+  "reason": "The pre-registered CUDA-synchronized end-to-end latency benchmark began while an unrelated P3o-L training process shared the same GPU. This invalidates an exclusive-device cost audit. The P5g process was stopped before result.json was written.",
+  "execution_record": {
+    "p5g_process_id": 85488,
+    "concurrent_process_id": 89072,
+    "concurrent_process": "P3o-L component-conditioned residual training",
+    "result_json_written": false,
+    "runner_stdout_bytes": 0,
+    "runner_stderr_bytes": 0,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "consumed_data": {
+    "development_generator_seeds": [3650000000, 3660000000, 3670000000],
+    "all_three_pools_generated_train_only": true,
+    "all_three_pools_passed_pairing_parameter_and_historical_identity_audit_before_runner_start": true,
+    "reuse_for_rerun_selection_confirmation_or_test": false
+  },
+  "allowed_claims": [
+    "P5f remains stopped because selected-row lazy attachment evaluation was not numerically equivalent.",
+    "P5g has no performance, equivalence, or latency result."
+  ],
+  "forbidden_actions": [
+    "Restart P5g on 3650M/3660M/3670M identities.",
+    "Generate or use P5g 3680M/3690M confirmation identities.",
+    "Use partial runtime, process CPU time, or missing result files as a latency result.",
+    "Relax P5g gates or modify the frozen P5e candidate."
+  ]
+}

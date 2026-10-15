@@ -1,0 +1,42 @@
+{
+  "experiment": "P3o-I durable finite-valid bounded compound-CVaR residual",
+  "status": "frozen development gate failure",
+  "output": "outputs/p3oi_durable_finite_combo_cvar_development_20260802",
+  "identity_seeds_consumed": [1330000000, 1340000000],
+  "reserved_confirmation_not_generated": [1350000000, 1360000000],
+  "model_seeds_completed": [2081, 2082, 2083],
+  "identity_audit": {
+    "train_unique": 2079,
+    "development_unique": 2079,
+    "train_sha256": "5ba0bbebf316f9a4c29c6c7c6bc2b02b5e4db1199d82b7d2aa99794191350566",
+    "development_sha256": "503c01ac9495fad15c07167a15aa81c762f336c081bdf3d6b87f5956daf94836",
+    "cross_role_overlap": 0,
+    "prior_files_checked": 343,
+    "maximum_prior_overlap": 0
+  },
+  "evidence": {
+    "finite_valid_unit_and_optimizer_step": "tests/test_p3oi_durable_finite_combo_cvar.py",
+    "full_pytest_before_data_generation": "267 passed, 9 warnings",
+    "successful_seed_receipts": [
+      "outputs/p3oi_durable_finite_combo_cvar_development_20260802/seed_2081/summary.json",
+      "outputs/p3oi_durable_finite_combo_cvar_development_20260802/seed_2082/summary.json",
+      "outputs/p3oi_durable_finite_combo_cvar_development_20260802/seed_2083/summary.json"
+    ],
+    "merged_receipt": "outputs/p3oi_durable_finite_combo_cvar_development_20260802/summary.json",
+    "all_seed_base_safety_and_recall_gates": true,
+    "all_seed_F_state_and_logits_bitwise": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "failed_gates": {
+    "all_seeds_G1_oracle_and_predicted_gate_nmae_ratio_vs_F_base_at_most_0p98": false,
+    "all_seeds_G1_worst_combo_predicted_gate_nmae_ratio_vs_G0_at_most_0p99": false
+  },
+  "per_seed_comparisons": [
+    {"seed": 2081, "g1_oracle_ratio_vs_base": 0.9896951625153673, "g1_predicted_ratio_vs_base": 0.9894334989487091, "g1_miss_delta_vs_base": -0.004457682371139526, "g1_worst_ratio_vs_base": 0.9668762966512057, "g1_worst_ratio_vs_g0": 1.014955030493715},
+    {"seed": 2082, "g1_oracle_ratio_vs_base": 0.9771791856714438, "g1_predicted_ratio_vs_base": 0.9758418543950904, "g1_miss_delta_vs_base": -0.010384857654571533, "g1_worst_ratio_vs_base": 0.967733616138075, "g1_worst_ratio_vs_g0": 1.0160744751411466},
+    {"seed": 2083, "g1_oracle_ratio_vs_base": 0.9909461823781207, "g1_predicted_ratio_vs_base": 0.9905320416465451, "g1_miss_delta_vs_base": -0.004104435443878174, "g1_worst_ratio_vs_base": 0.9590470104386664, "g1_worst_ratio_vs_g0": 1.014621046583814}
+  ],
+  "decision": "The three-seed formal development result rejects the equal-weight compound-label-group CVaR extension as a promotion candidate. Do not rerun, resume, tune, calibrate, or select checkpoints on 1330M/1340M; do not generate 1350M/1360M; do not use test or locked test. A successor must use fresh identities and a materially different, falsifiable mechanism rather than a CVaR-weight sweep."
+}

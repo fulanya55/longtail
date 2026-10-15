@@ -1,0 +1,33 @@
+{
+  "schema": "P5s-detached-supervisor-v1",
+  "experiment": "P5s detached-supervised deterministic-chunk checkpointed shared frozen-forward execution",
+  "preregister": "configs/p5s_detached_chunked_preregister_20260805.json",
+  "preregister_sha256": "1753026950cef68b506a871c3c05ab598bcdc9b5129a5e32ab302127e1a509da",
+  "method_freeze": "configs/p5s_detached_chunked_method_freeze_20260805.json",
+  "method_freeze_sha256": "c837453d0ef915af288d22f55e7c2da6e6829eae364bef1c36ca6cb54e79f5ea",
+  "working_directory": "E:\\LJQ_code\\CJ_Inbalance_0724",
+  "execution_root": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\p5s_detached_chunked_20260805\\execution",
+  "command": [
+    "D:\\anaconda3\\envs\\PY10\\python.exe",
+    "-m", "cj0724.p5s_detached_chunked_execution",
+    "--preregister", "configs/p5s_detached_chunked_preregister_20260805.json",
+    "--p5e-freeze", "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "--data-roots",
+    "generated_data/p5s_detached_chunked_dev_seed3510000000",
+    "generated_data/p5s_detached_chunked_dev_seed3520000000",
+    "generated_data/p5s_detached_chunked_dev_seed3530000000",
+    "--audits",
+    "outputs/p5s_detached_chunked_20260805/audits/p5s_detached_chunked_dev_seed3510000000.json",
+    "outputs/p5s_detached_chunked_20260805/audits/p5s_detached_chunked_dev_seed3520000000.json",
+    "outputs/p5s_detached_chunked_20260805/audits/p5s_detached_chunked_dev_seed3530000000.json",
+    "--output-root", "outputs/p5s_detached_chunked_20260805/execution"
+  ],
+  "audit_sha256": {
+    "3510000000": "086a8da49a99ab48e0d322202171a79e3978245225ce0c32bbe341c9c59d957d",
+    "3520000000": "88ea7b4af0ecefe918e77d04e0614af0c02795cef852e40b231dcf35673e0e11",
+    "3530000000": "c57be7f0182ad590566762a292afd363bc86d9517c8163c391b15d5bc52331e4"
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,10 @@
+{
+  "experiment": "P7a fresh-identity equal-MAC generic-control audit",
+  "preregister_sha256": "c62a5f51a08589e5030e0c2c05f3eb7854d140b1316a49fc42066e906c448dcd",
+  "multitask_implementation_sha256": "10bbf56ea43b3ae0b525bc4da20163184257f19cb54e9ff48a35aaa1f4a28a9b",
+  "aggregate_implementation_sha256": "7c3dbc4f97cf4e2078415d978c8ea3b0866f6e23c70ccd5af91a0870c8065c21",
+  "data_generator_sha256": "b2107a150c98d26209946ef7e037f3ab8c85773e687e3e46ed82127919bc0a0f",
+  "static_screen_sha256": "88148376ef62b24d187724a85aa4ae529835626f60c09a3c49599671e3c240d1",
+  "selected_control": "legacy_mlcnn_global_compute_matched_control, generic branch channels=67, MAC ratio=0.9991520542690839, parameter ratio=1.0007254018490417 versus mlcnn_iq_grouped_task_routed",
+  "prohibition": "After P7a output creation do not change raw-IQ generic control channels/kernels/strides, model definition, loss, optimizer, checkpoint, calibration, thresholds, static-screen grid, gates, generated identity roles or data seed. No test or locked-test generation/opening/use."
+}

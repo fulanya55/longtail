@@ -1,0 +1,28 @@
+{
+  "stage": "R4",
+  "status": "proposal_not_validated",
+  "base_protocol": "configs/route_b_r1_preregister.json",
+  "fixed_invariants": [
+    "input_shape_[N,2,3000]",
+    "development_split_and_seed_set",
+    "AdamW_learning_rate_weight_decay",
+    "masked_parameter_rule",
+    "threshold_0.5",
+    "epoch_patience_batch_budget",
+    "paired_seed_statistics"
+  ],
+  "ablation_matrix": [
+    {"id": "A1", "comparison": "single_global_parameter_head_vs_class_conditioned_head", "reference": "B1", "candidate": "B2"},
+    {"id": "A2", "comparison": "shared_parameter_gradient_vs_stop_gradient", "reference": "B2", "candidate": "B3"},
+    {"id": "A3", "comparison": "no_warmup_vs_parameter_loss_warmup", "reference": "B2", "candidate": "B4"},
+    {"id": "A4", "comparison": "I/Q_only_vs_I/Q_plus_PSD", "reference": "B2", "candidate": "R2_spectral_film"},
+    {"id": "A5", "comparison": "visibility_safe_routing_vs_no_routing", "reference": "R2_visibility_safe", "candidate": "R2_no_routing"},
+    {"id": "A6", "comparison": "uniform_parameter_loss_vs_per_parameter_weights", "reference": "R2_uniform", "candidate": "R2_weighted"},
+    {"id": "A7", "comparison": "nominal_power_vs_low_power", "reference": "paired_power_30dB", "candidate": "paired_power_10_20dB"},
+    {"id": "A8", "comparison": "single_jamming_component_vs_compound", "reference": "single_component_role", "candidate": "compound_role"},
+    {"id": "A9", "comparison": "one_seed_smoke_vs_five_seed_development", "reference": "R1_smoke", "candidate": "R1_full"},
+    {"id": "A10", "comparison": "random_sample_split_vs_source_identity_split", "reference": "combination_split", "candidate": "identity_group_split"}
+  ],
+  "promotion_rule": "A failed hard gate stops that ablation branch; no threshold retuning or test-v2 feedback is allowed",
+  "locked_test_used": false
+}

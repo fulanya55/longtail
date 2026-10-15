@@ -1,0 +1,15 @@
+{
+  "experiment": "P7a static equal-MAC generic-convolution control for heterogeneous routing",
+  "question": "Can the historical full-12 gain of MLCNN plus IQ-Grouped routing survive against a non-grouped raw-I/Q parameter branch with matched parameters and Conv/Linear MACs?",
+  "single_changed_axis": "Add only a generic non-grouped raw-I/Q parameter branch to the shared MLCNN-global control; the heterogeneous candidate is unchanged.",
+  "static_only": {
+    "input_shape": [1, 2, 3000],
+    "reference_candidate": "mlcnn_iq_grouped_task_routed width=24 head_dim=256 parameter_hidden_dim=64",
+    "control_family": "MLCNN classification path plus raw-I/Q Conv1d branch [2,C, C,64,32,64] with kernels [15,9,7,5,3] and strides [4,1,2,2,2]",
+    "channel_grid": [64, 65, 66, 67, 68, 69, 70],
+    "selection_rule": "Select the grid value minimizing absolute MAC ratio error, subject to control/reference MAC ratio in [0.98,1.02] and trainable-parameter ratio in [0.98,1.02]. Tie-break lower channel count. If no candidate passes, do not generate data or train.",
+    "mac_definition": "Conv1d and Linear multiply-accumulates measured by forward hooks; FLOPs are reported as two times MACs."
+  },
+  "forbidden": ["training data", "development data", "checkpoint selection", "test generation", "test opening", "locked test"],
+  "decision_rule": "Only a passing static control is eligible for a separate P7a development preregistration on new identities. The selected channel value may not be changed after that preregistration is frozen."
+}

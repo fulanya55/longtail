@@ -1,0 +1,45 @@
+{
+  "experiment": "P3o-M resolution-aware sparse-delay-event ordinal MFT-count screen",
+  "outcome_date": "2026-08-03",
+  "preregister_sha256": "39a3f5d2da75fb0348beeddfc164b0730913b8ce27c84ea59aafec23e223ad90",
+  "implementation_sha256": "809cd9446c768ed990595d96d76c2d755a946afd84eea8108969055e9d7f7c6c",
+  "data_audit": "outputs/p3om_sparse_peak_ordinal_preflight_20260803/data_audit.json",
+  "result": "outputs/p3om_sparse_peak_ordinal_development_20260803/summary.json",
+  "data": {
+    "train_seed": 1570000000,
+    "development_seed": 1580000000,
+    "reserved_confirmation_seeds_not_generated": [1590000000, 1610000000],
+    "train_unique": 2079,
+    "development_unique": 2079,
+    "cross_role_overlap": 0,
+    "maximum_prior_overlap": 0,
+    "prior_files_checked": 373,
+    "committed_train_views": 15,
+    "committed_development_views": 15,
+    "partial_views": 0
+  },
+  "development_result": {
+    "candidate": "C1_sparse_peak",
+    "control": "C0_fixed_bin",
+    "model_seeds": [2201, 2202, 2203],
+    "equal_parameter_count": 146599,
+    "overall_mae_reduction_vs_control": [0.1606676319012036, 0.14298398104872867, 0.16937268990902965],
+    "compound_mae_reduction_vs_control": [0.1538356877147835, 0.1358282521401485, 0.1621611270411092],
+    "overall_pearson_delta_vs_control": [0.11615492190107735, 0.11413634612865042, 0.12343073809342398],
+    "compound_pearson_delta_vs_control": [0.11331548779098588, 0.11162446238840817, 0.12102327058457096],
+    "low_count_candidate_pearson": [0.30567446622060657, 0.29731692659618253, 0.29671749564236927]
+  },
+  "failed_gate": "each_seed_C1_ID_control_and_low_count_pearson_at_least_0p30",
+  "development_passed": false,
+  "verdict": "stop_no_confirmation_data_no_attachment",
+  "frozen_prohibitions": [
+    "do not tune peak rule, token count, network width, loss, optimizer, schedule or checkpoint selection on 1570M/1580M",
+    "do not generate or use the 1590M/1610M confirmation identities for P3o-M",
+    "do not attach this expert to classification or predicted-label-gated full-12 metrics",
+    "do not describe this as a reliable MFT-count expert"
+  ],
+  "permitted_next_hypothesis": "A new identity-safe experiment may test a resolution-aware abstention or interval-valued MFT-count mechanism. It must treat ultra-close and low-count ambiguity as an explicit reliability target, use a new information or decision mechanism, compare coverage-risk against a matched fixed-bin control, and must not reuse P3o-M identities for selection.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

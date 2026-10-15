@@ -1,0 +1,55 @@
+{
+  "experiment": "P4c fresh-identity variable-JNR heterogeneous route confirmation",
+  "research_question": "Does the frozen heterogeneous task route improve genuinely variable full-12-parameter estimation on new identities without systematic target-level negative transfer?",
+  "evidence_role": "fresh_identity_variable_parameter_mechanism_confirmation_development",
+  "single_changed_axis_vs_p4b": "restore the ordinary closed-set JNR range 10 to 30 dB; all model and optimization settings remain frozen",
+  "data": {
+    "generator": "create_closedset_6class_config",
+    "generator_seed": 590000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "split_seed": 20260801,
+    "role_counts_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5},
+    "identity_key": "receiver_noise_seed",
+    "required_overlap_with_root_and_prior_safe_development_roles": 0,
+    "test_generation": "train split only"
+  },
+  "models": {"C0_shared": "legacy_mlcnn_global", "C1_heterogeneous": "mlcnn_iq_grouped_task_routed"},
+  "training": {
+    "model_seeds": [3041, 3042, 3043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter"
+  },
+  "validity_gates": {
+    "all_12_targets_confirm_finite_count_positive": true,
+    "all_12_targets_confirm_range_positive": true,
+    "all_12_targets_constant_baseline_mae_positive": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true
+  },
+  "promotion_gates": {
+    "each_seed_route_parameter_macro_nmae_reduction_vs_shared_at_least": 0.04,
+    "mean_route_parameter_macro_nmae_reduction_vs_shared_at_least": 0.05,
+    "each_seed_route_macro_aupr_drop_vs_shared_at_most": 0.003,
+    "each_seed_route_subset_accuracy_drop_vs_shared_at_most": 0.03,
+    "each_seed_route_parameter_macro_pearson_not_lower_than_shared": true,
+    "no_non_jnr_target_worse_in_3_of_3_seeds_by_more_than_absolute_nmae": 0.03,
+    "no_jnr_target_worse_in_3_of_3_seeds_by_more_than_absolute_nmae": 0.03
+  },
+  "stop_rule": "If any validity gate fails, declare the protocol invalid. If validity passes but a promotion gate fails, do not tune on seed590000000 and retain P4a only as the strongest heterogeneous-route evidence.",
+  "next_if_pass": "Freeze and run two new generator seeds without tuning, then add a strictly MAC-matched shared backbone.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

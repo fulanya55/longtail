@@ -1,0 +1,48 @@
+{
+  "experiment": "P5e read-only five-model-seed bounded-JNR attachment confirmation",
+  "evidence_role": "two_new_identity_confirmation_no_training_no_selection",
+  "parent_preregister": "configs/p5e_five_model_seed_bounded_jnr_preregister_20260801.json",
+  "extension_result": "outputs/p5e_five_model_seed_bounded_jnr_20260801/head_extension/result.json",
+  "extension_result_sha256": "1769697701355647227414633411d5f128c3b63e33f3a31b21e34c6df310367c",
+  "frozen_candidate": {
+    "source_model_seeds": [3041, 3042, 3043, 3044, 3045],
+    "base_roots": {
+      "3041": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+      "3042": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+      "3043": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+      "3044": "outputs/p5e_five_model_seed_bounded_jnr_20260801/tuned_multitask_20260801_204600",
+      "3045": "outputs/p5e_five_model_seed_bounded_jnr_20260801/tuned_multitask_20260801_204600"
+    },
+    "head_checkpoints": {
+      "3041": "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3041_head14041.pt",
+      "3042": "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3042_head14042.pt",
+      "3043": "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3043_head14043.pt",
+      "3044": "outputs/p5e_five_model_seed_bounded_jnr_20260801/head_extension/frozen_candidate_heads/source3044_head14044.pt",
+      "3045": "outputs/p5e_five_model_seed_bounded_jnr_20260801/head_extension/frozen_candidate_heads/source3045_head14045.pt"
+    },
+    "forbidden_changes": ["base training", "head training", "normalizer refit", "threshold calibration", "architecture change", "loss change", "power input", "router", "checkpoint selection"]
+  },
+  "fresh_confirmation_data": {
+    "generator_seeds": [950000000, 960000000],
+    "powers_db": [10, 15, 20, 25, 30],
+    "samples_per_combination": 60,
+    "generated_split": "train only",
+    "paired_identity_key": "receiver_noise_seed",
+    "must_have_zero_identity_overlap_with": ["root_0716", "P4c", "P5b1", "P5b2", "P5b3", "P5b4_860", "P5b4_870", "P5c_880", "P5d_890"]
+  },
+  "confirmation_gates": {
+    "invariance_each_data_seed_and_each_model": true,
+    "MFT_and_ISRJ_oracle_gated_nmae_improve_each_data_seed_and_each_of_five_models": true,
+    "MFT_and_ISRJ_predicted_gated_nmae_not_worse_each_data_seed_and_model": true,
+    "MFT_and_ISRJ_identity_clustered_bootstrap_ci95_low_greater_than": 0.0,
+    "no_target_power_10_or_30_nmae_worse_than_base_by_more_than": 0.03,
+    "runtime_and_lazy_call_cost_reported": true
+  },
+  "decision_rule": {
+    "pass": "Freeze the five-model bounded JNR-only claim for a later separately authorized once-only new locked test; do not claim composition-disjoint classification improvement.",
+    "fail": "Retain P5b4 as three-model/two-data-seed evidence. Do not modify or retune the attachment, and do not use these confirmation pools again."
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

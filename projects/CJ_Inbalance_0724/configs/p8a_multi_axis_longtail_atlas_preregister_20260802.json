@@ -1,0 +1,54 @@
+{
+  "experiment": "P8a train-only multi-axis long-tail manifest atlas",
+  "research_question": "Can a reproducible six-class VFT-targeted label-combination-visibility long-tail protocol be constructed from paired nine-power train identities without mixing identities across roles or treating power views as independent samples?",
+  "evidence_role": "protocol_preflight_only_no_model_training_no_metric_selection",
+  "single_changed_axis": "data sampling contract only; no network, loss, calibration, threshold, checkpoint, or router is evaluated",
+  "input": {
+    "power_root": "C:\\LJQ_code\\干扰数据\\复合干扰数据0716\\power_sweep_9level_v1",
+    "allowed_manifest_column": "train_path",
+    "forbidden": ["closedset_6class_test", "test_path", "locked test", "model checkpoint", "prediction", "metric selection"]
+  },
+  "identity_roles": {
+    "split_seed": 1300000000,
+    "role_contract": "63 combinations; per combination optimization=280, early_stop=40, calibration=40, development=40; all roles identity-disjoint",
+    "future_use_rule": "P8a selected identities are protocol-only and cannot later serve as candidate training, selection, calibration, development, confirmation, or test evidence."
+  },
+  "manifests": {
+    "balanced": {
+      "sample_count": 2400,
+      "label_targets": [1217, 1217, 1217, 1217, 1217, 1217],
+      "combination_target": "uniform subject to exact label and sample constraints",
+      "power_policy": "30 dB only"
+    },
+    "combo_lt": {
+      "sample_count": 2400,
+      "label_targets": [1200, 1200, 1200, 1200, 1200, 1200],
+      "combination_tail": "even-cardinality nonempty combinations target 10 samples each; odd-cardinality combinations absorb the remaining mass subject to exact marginal labels",
+      "power_policy": "30 dB only"
+    },
+    "mixed_lt": {
+      "sample_count": 2400,
+      "target_label": "VFT",
+      "label_targets": [1200, 1200, 1200, 1200, 400, 1200],
+      "combination_tail": "even-cardinality nonempty combinations target 10 samples each; odd-cardinality combinations absorb the remaining mass subject to exact marginal labels",
+      "visibility_tail": "for VFT-positive identities that also contain at least one fixed component, deterministically select one of 10/15/20 dB; every other identity uses 30 dB",
+      "power_views_are_not_independent_samples": true
+    }
+  },
+  "validity_gates": {
+    "all_nine_powers_identity_and_label_aligned": true,
+    "only_train_paths_opened": true,
+    "identity_roles_disjoint": true,
+    "all_63_combinations_retained": true,
+    "exact_sample_and_label_targets": true,
+    "mixed_vft_positive_fixed_component_rows_have_only_10_15_20db_views": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "promotion_rule": "A passing P8a atlas establishes only a reusable data protocol. It cannot promote a long-tail method. A subsequent P8b must use fresh, non-P8a identities, a separate preregistration, an equal-compute BCE control, three development model seeds, per-class AUPR/FPR and hard-negative separation gates before any confirmation.",
+  "stop_rule": "If any validity gate fails, do not repair the manifest after observing a model result. Record the failure, keep all P8a identities out of later candidate selection, and redesign on a new protocol seed.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

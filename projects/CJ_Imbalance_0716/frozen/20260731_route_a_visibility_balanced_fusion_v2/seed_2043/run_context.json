@@ -1,0 +1,10 @@
+{
+  "backbone_sha256": "0bc2a7ec449fc2008c0d8600b2fe102788a933f874ec596a20a23d0c1980cc67",
+  "base_head_sha256": "e8180bd43aa8119db61a45ef2797be57b8a8c55edc0abcd42da859f74566a29d",
+  "development_v2_used": true,
+  "locked_test_used": false,
+  "probe_sha256": "c56897de38c6ad9bb3ac1ac0f0798e34ecbcf80a50e77aeee82d993a5c205e20",
+  "seed": 2043,
+  "split_sha256": "259a851c4cca07a51ea2ade3c3fcd12f555ec60f21a5f162760c319299a380a2",
+  "test_v2_used": false
+}

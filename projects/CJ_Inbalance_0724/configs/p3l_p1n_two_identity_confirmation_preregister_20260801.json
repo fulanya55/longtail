@@ -1,0 +1,23 @@
+{
+  "experiment": "P3l frozen P1n two-identity independent confirmation",
+  "research_question": "Does the frozen P1n task route retain positive ISRJ recall gain, controlled cell-wise FPR and non-inferior macro-AUPR on two wholly new receiver-noise identity sets?",
+  "evidence_role": "independent_confirmation_without_locked_test",
+  "method": "unchanged frozen P2c/P1n lower-score route, alpha=1, original routed thresholds",
+  "data": {
+    "identity_seeds": [640000000, 650000000],
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "paired_unit": "receiver_noise_seed; all regime and power views remain in the same bootstrap cluster"
+  },
+  "statistics": {"paired_cluster_bootstrap_replicates": 10000, "confidence_level": 0.95, "bootstrap_seed": 20260801},
+  "promotion_gates": {
+    "all_six_model_seed_by_data_seed_recall_gains_positive": true,
+    "each_model_seed_aggregate_bootstrap_ci_lower_above_zero": true,
+    "overall_bootstrap_ci_lower_above_zero": true,
+    "maximum_cell_fpr_at_most": 0.10,
+    "each_run_macro_aupr_delta_vs_main_at_least": -0.005,
+    "identity_overlap_zero": true
+  },
+  "decision_rule": "No threshold, router or model changes after preregistration. Pass promotes P1n classification routing to Level-4 independent-confirmation evidence; fail freezes the claim at Level 3 and triggers mechanism diagnosis on new development identities.",
+  "locked_test_used": false
+}

@@ -1,0 +1,11 @@
+{
+  "experiment": "P3o-L durable-D-drive component-conditioned residual method freeze",
+  "preregister_sha256": "8bee969dd1c0e12ad05fcb4ab10ddc542e66274d996c31869cf65fc6bc5912b1",
+  "implementation_sha256": "294e019ec5f15b5780dd07ca775ad118d3b88aac8e4dcf5f2d6d0a49d549fc00",
+  "model_sha256": "c8a1bcffaac69fe4cf1d5d9bad9148b25e1e9b0167eadf39cd8b1e7c66f7b939",
+  "wrapper_sha256": "bbefbe66dff53019df51e96d36d73f9e585b8baea8d8eb66e8a86e9a03c6143c",
+  "data_generator_sha256": "ebace24ed18583760027e3a1e95c1801447a402fe09b091a039dafa671b59ceb",
+  "raw_output_base": "D:/CJ0724_generated_data",
+  "frozen_mechanism": "L0 has a zero frozen 6x12 component table. L1 alone learns it from detached posterior probabilities. Both retain finite-valid shared residual, frozen classifier, F-only calibration, and identical mean objective.",
+  "locked_test_used": false
+}

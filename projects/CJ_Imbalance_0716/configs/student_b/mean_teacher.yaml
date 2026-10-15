@@ -1,0 +1,10 @@
+experiment_name: four_class_student_b_mean_teacher
+data_root: 'C:\LJQ_code\干扰数据\复合干扰数据0716'
+train_file: closedset_6class_train.mat
+locked_test_file: closedset_6class_test.mat
+power_sweep_dir: power_sweep_9level_v1
+class_mode: four
+input_mode: complex_1d_true
+normalization: complex_rms
+signal_length: 3000
+allow_locked_test: false

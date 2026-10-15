@@ -1,0 +1,10 @@
+{
+  "experiment": "P3o-E state-preserving frozen frequency delay parameter residual",
+  "preregister_sha256": "cf15bbb56ebd4273a98f1d32981aa11510dbf22283ebac7367a376ac14c92a0f",
+  "implementation_sha256": "f31963a6109084d5a6e29d3640aa95138064ad633d872cd6f02e8bc684ec500f",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "frozen_method": "Train the F local time-frequency base with BCEWithLogits plus 0.1 masked SmoothL1 and select C_joint using early identities only. Then freeze its parameters and force every base submodule into eval inside the side branch train method. Optimize only the posterior-conditioned delay residual. Reuse the F calibration threshold exactly; do not select from development.",
+  "seeds": {"train": 1180000000, "development": 1190000000, "reserved_confirmation": [1200000000, 1210000000], "model": [2051, 2052, 2053]},
+  "mandatory_predata_unit_invariant": "After side.train() and one optimizer step, every F parameter and named buffer are bitwise unchanged, all F submodules remain eval, and F logits equal the base logits bitwise.",
+  "prohibition": "No modification of data generator, code, widths, losses, residual scale, checkpoint rule, threshold, promotion gate, or optimizer after the development output directory is created. Do not generate/open test or locked test; do not use P3o-D reserved confirmation identities."
+}

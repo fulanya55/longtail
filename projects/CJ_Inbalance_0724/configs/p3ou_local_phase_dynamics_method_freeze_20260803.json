@@ -1,0 +1,17 @@
+{
+  "experiment": "P3o-U local phase dynamics conditional ISRJ calibration",
+  "freeze_timestamp_local": "2026-08-03",
+  "preregister_sha256": "2f64e9e1e398bbd41f037ad8c020ae6b864d402a3c563cb5eb40d789909fc97e",
+  "implementation_sha256": "e4f0ee7c3110fc9b86f9437867d2c7d4dfeb35c1560f59100717f5beb5ac51bb",
+  "runner_sha256": "4557d4a54c362a02da4a07b8baa91cdd2dbed2279edb720672c0c43ed12779af",
+  "generator_sha256": "f4963ac8f3c804e692bba442968418b93a13608c8ef32125e5fe304c44ed92be",
+  "base_model": "mlcnn_iq_grouped_task_routed",
+  "base_model_seeds": [2041, 2042, 2043],
+  "residual_seeds": [2501, 2502, 2503],
+  "data_roles": {"train": 2010000000, "selection": 2020000000, "development": 2030000000, "confirmation_reserved_not_generated": [2040000000, 2050000000]},
+  "conditions": ["U0_base", "U1_posterior_only_capacity_control", "U2_local_phase_dynamics", "U3_timebin_shuffled_phase_control"],
+  "locked_test_used": false,
+  "test_generated": false,
+  "test_opened": false,
+  "freeze_scope": "All scientific choices and implementation hashes are frozen before fresh P3o-U data generation."
+}

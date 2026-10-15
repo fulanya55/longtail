@@ -1,0 +1,45 @@
+{
+  "status": "frozen",
+  "frozen_at": "2026-08-01",
+  "candidate_name": "U2_MFT_AlignedPeakNegativeGuard_v1",
+  "base_endpoint": "U2_FullAlpha1p5_RawSaw_AlignedPeriodicity",
+  "feature_candidate": "MFT_PulseCompression_NMSPeakCount_v1",
+  "integration_contract": {
+    "expert_model": "per-seed standardized one-dimensional balanced logistic regression",
+    "expert_fit_role": "development-v3 fit only",
+    "expert_fit_view": "weak MFT positives versus MFT-absent order>=4 negatives",
+    "residual_cap": 0.75,
+    "residual": "0.75 * sqrt(4*p_u2*(1-p_u2)) * min(tanh(expert_logit),0)",
+    "affected_logit": "MFT only",
+    "u2_calibration_reused": true,
+    "u2_thresholds_reused": true,
+    "non_mft_logits_preserved": true
+  },
+  "development_v10_confirmation_gate": {
+    "macro_aupr_delta_ge": -0.002,
+    "target_mean_weak_recall_delta_ge": -0.010,
+    "target_mean_weak_auroc_delta_ge": 0.005,
+    "mft_order_ge4_fpr_delta_le": -0.020,
+    "mft_order5_fpr_delta_le": -0.020,
+    "mft_hard_auroc_delta_ge": 0.010,
+    "aligned_minus_wrong_hard_auroc_ge": 0.005,
+    "aligned_minus_shuffled_hard_auroc_ge": 0.005,
+    "hard_fpr_reduction_positive_seeds_ge": 4,
+    "non_mft_logits_exact": true
+  },
+  "source_sha256": {
+    "docs/plans/route_a_u2_mft_peak_count_negative_guard_v3_plan_20260801.md": "d52bb896df1d681ec2ff06f7b329caad988c87481a2b2652f5c8f46fd3664e25",
+    "experiments/run_route_a_u2_mft_peak_count_negative_guard_v3.py": "af518a79ea55722f6cff518fcb32a83751d30b98879f79a8beb6dc63adf4ca47",
+    "tests/test_route_a_u2_mft_peak_count_negative_guard_v3.py": "dada634788e1c29bf99d1fa1fa5fe8d3e255e12ee3072f76a61411890c72e1bd",
+    "construction_summary": "f088ab2e143866223d400e6c737b6e0089a77c0b83e3c54a9e266d72402bedc5"
+  },
+  "seed_artifacts": {
+    "2039": {"aligned_model_sha256": "42fd48e96842079d86e1a0409a93766d9a69800464eed9f845f2202c61e84cbb", "normalization_sha256": "0e220091fbf768558e5724d5782e456b0364abf59468063a0ab9fc3c6c218af1"},
+    "2040": {"aligned_model_sha256": "0ec1648b298dff98bfe52e47914118880cdc225925f148ee0ba76bddad90f858", "normalization_sha256": "33a5370fa11d7fc509d6f168d4e991e4ded61b9cf9cfc1e3d2ce8efdadeef46e"},
+    "2041": {"aligned_model_sha256": "3471b575f184c3bd682b320fd7ad66069084297ca3db763ecec19f9cf6a47f19", "normalization_sha256": "1d1c47ece0bd6050b830936f9adc3594f99a02bee295026d4729618d181e11c1"},
+    "2042": {"aligned_model_sha256": "ce9e88e5f796fa1c4f0d72f3a45812079f84925700199cbd80c4515abc22bb36", "normalization_sha256": "ebd6f6c5e6212b479570c20c69b31c54f87b1ff66d55a403c509ed6ab5725484"},
+    "2043": {"aligned_model_sha256": "58bdfa6e7c81e96e79fa466d9604daf4b849e116acefc39837db3a35385afead", "normalization_sha256": "f42df5f191aa362d93d541ecc0ff56e145ef8b93b734aac1e7e5bfd5856cfdad"}
+  },
+  "test_v3": {"access_authorized": false, "analysis_allowed": false, "used": false}
+}
+

@@ -1,0 +1,64 @@
+{
+  "experiment": "P3o-C parameter-matched delay and local time-frequency complementarity",
+  "evidence_role": "fresh_identity_safe_formal_development",
+  "motivation": "P3o-B found a strong local time-frequency baseline but its dual-view model had materially fewer parameters. P3o-C tests whether a delay sequence adds complementary low-power information after parameter matching, not whether another contrast weight can be tuned.",
+  "identity_contract": {
+    "train_pool_seed": 1030000000,
+    "formal_development_seed": 1040000000,
+    "reserved_confirmation_seeds_if_and_only_if_development_passes": [1050000000, 1060000000],
+    "forbidden_p3o_seeds": [830000000, 860000000, 910000000, 920000000, 930000000, 940000000],
+    "identity_key": "receiver_noise_seed",
+    "same_identity_all_regime_power_views_grouped": true,
+    "roles_per_combination": {"fit": 27, "early": 2, "calibration": 2, "selection": 2},
+    "identities_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "models": {
+    "T_time_matched": {"view": "raw I/Q temporal convolution", "width": 18, "expected_parameters": 26370},
+    "D_delay_matched": {"view": "normalized complex autocorrelation lags 1..1024 plus fixed 7/31 smoothing", "width": 18, "expected_parameters": 26640},
+    "F_time_frequency_matched": {"view": "STFT n_fft=128 hop=64 log magnitude plus adjacent-frame phase increment", "width": 16, "expected_parameters": 25490},
+    "DF_dual_matched": {"view": "fixed delay and local time-frequency branches fused before a common 64-dimensional multitask head", "branch_width": 10, "expected_parameters": 24400}
+  },
+  "parameter_match_rule": "Every model must be within 5 percent of F_time_frequency_matched parameters before training. Parameter matching is verified and saved before opening development outputs.",
+  "training": {
+    "classification_loss": "BCEWithLogitsLoss",
+    "parameter_loss": "0.1 * masked SmoothL1 over label=1 AND parameter_mask=1 AND finite(target)",
+    "forbidden": ["contrast loss", "prototype loss", "hard-negative", "conditional margin", "router", "distillation", "component oracle", "global FFT classifier"],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 2,
+    "scheduler": "cosine",
+    "epochs": 20,
+    "batch_size": 63,
+    "gradient_clip_norm": 5.0,
+    "model_seeds": [2041, 2042, 2043]
+  },
+  "selection_and_safety": {
+    "checkpoint": "C_joint: maximum early macro-AUPR among epochs with early oracle parameter macro-NMAE <= 1.01 times early minimum",
+    "threshold": "F1 per class on calibration; replace only ISRJ threshold by lowest threshold with every regime x power calibration cell one-sided 95% Clopper-Pearson FPR upper <=0.10",
+    "development_selection_forbidden": true
+  },
+  "promotion_gates": {
+    "candidate": "DF_dual_matched/C_joint/T_safe",
+    "identity_overlap_zero": true,
+    "parameter_match_within_5_percent": true,
+    "all_seeds_maximum_cell_fpr_at_most": 0.10,
+    "all_seeds_overall_isrj_recall_at_least": 0.85,
+    "all_seeds_25db_isrj_recall_at_least": 0.78,
+    "all_seeds_25db_aupr_delta_vs_F_time_frequency_matched_at_least": 0.01,
+    "all_seeds_recall_delta_vs_F_time_frequency_matched_nonnegative": true,
+    "all_seeds_oracle_and_predicted_gate_parameter_nmae_ratio_vs_F_time_frequency_matched_at_most": 1.01,
+    "all_seeds_miss_penalty_and_worst_combination_nonworse_vs_F_time_frequency_matched": true,
+    "all_seeds_safe_calibration_feasible": true,
+    "full_pytest_passes": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "failure_rule": "If DF does not pass every gate, do not alter widths, representation, thresholds, checkpoint, learning rate, epochs, or seed1040000000. The conclusion must distinguish a fair negative result (delay adds no complementary value) from a residual low-power representational limitation."
+}

@@ -1,0 +1,14 @@
+usage: visualize_0716_closedset_train_test.py [-h] [--data-root DATA_ROOT]
+                                              [--output-root OUTPUT_ROOT]
+
+Create visual checks for every combination in the 0716 closed-set train/test
+data. Each output image contains two deterministic samples of one label
+combination: the first and the middle record in its 400-sample group. The four
+plots per sample are real time-domain waveform, spectrum, LFM matched-filter
+output, and time-frequency power. The input MAT files are only read; no
+dataset content is modified.
+
+options:
+  -h, --help            show this help message and exit
+  --data-root DATA_ROOT
+  --output-root OUTPUT_ROOT

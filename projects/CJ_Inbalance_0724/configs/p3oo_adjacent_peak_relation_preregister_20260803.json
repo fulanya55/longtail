@@ -1,0 +1,69 @@
+{
+  "experiment": "P3o-O adjacent-peak relation ordinal MFT-count screen",
+  "registration_date": "2026-08-03",
+  "research_question": "On fresh compound I/Q identities, does making the observable relation between temporally adjacent sparse delay peaks available during ordinal training improve MFT target-count estimation beyond the identical-capacity sparse-token control?",
+  "evidence_role": "fresh_identity_oracle_positive_three_seed_development",
+  "prior_boundary": {
+    "P3oM": "sparse local peaks improved over fixed bins but missed the three-seed low-count correlation gate; its identities, token rule and model selection are frozen.",
+    "P3oN": "post-hoc peak-strength/min-gap abstention degraded matched-coverage risk; its score formula, coverage and identities are frozen.",
+    "mechanism_change": "C1 is a training-time adjacent-event representation, not a post-hoc abstention score, threshold, calibration or a P3o-M peak-rule adjustment.",
+    "forbidden": ["P3o-M/P3o-N identities for selection", "classification loss", "predicted-label-gated attachment", "locked test"]
+  },
+  "data": {
+    "generator": "matlab/generate_p3oo_adjacent_peak_relation_level.m",
+    "train_receiver_noise_seed": 1760000000,
+    "development_receiver_noise_seed": 1770000000,
+    "reserved_confirmation_receiver_noise_seeds": [1780000000, 1790000000],
+    "output_root": "D:\\CJ0724_generated_data",
+    "rechunk_root": "D:\\CJ0724_rechunked_data",
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "samples_per_pattern": 33,
+    "all_63_combinations": true,
+    "identity_key": "receiver_noise_seed",
+    "paired_power_views_are_not_independent": true,
+    "test_generation": "disabled"
+  },
+  "parameter_contract": {
+    "class": "MFT", "class_index_zero_based": 3, "target": "num_targets", "column_zero_based": 28,
+    "valid_samples": "label[MFT]=1 AND parameter_mask[28]=1 AND finite(parameter_values[28])",
+    "classification_loss_used": false, "oracle_positive_only": true
+  },
+  "roles": {
+    "within_train_identity_split_per_combination": {"fit": 25, "selection": 4, "unused": 4},
+    "split_seed": 20260803, "normalization": "fit only", "selection": "lowest ordinal loss", "development": "all 33 identities per combination; read once after method freeze"
+  },
+  "front_end": {
+    "shared_sparse_events": "P3o-M frozen 16 strict local contrast maxima from four deterministic inverse-delay channels, restored to temporal order and zero padded",
+    "C0": "append four zero relation channels to each sparse peak token",
+    "C1": "append, at each valid peak, next-valid-peak normalized-magnitude difference, next contrast, sharpness difference and normalized inter-peak delay; terminal/padded relations are zero",
+    "observable_only": true,
+    "forbidden": ["true count", "true delay", "true amplitude", "regime", "power", "adaptive peak thresholds", "post-development representation edits"]
+  },
+  "models": {
+    "C0_sparse_zero_relation": "8-channel, 16-token ordinal CNN; relation channels fixed to zero",
+    "C1_adjacent_peak_relation": "the identical 8-channel, 16-token ordinal CNN; relation channels carry adjacent sparse-event values",
+    "ordinal_output": "seven cumulative logits decoded to count 1 through 8",
+    "model_seeds": [2311, 2312, 2313],
+    "parameter_count_contract": "C0 equals C1 exactly"
+  },
+  "training": {
+    "optimizer": "AdamW", "learning_rate": 0.0003, "weight_decay": 0.0001,
+    "epochs": 20, "early_stop_patience": 5, "batch_size": 64,
+    "loss": "ordinal BCE plus 0.05 monotonicity penalty"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "all_power_and_parameter_contracts_hold": true,
+    "C0_C1_parameter_count_exactly_equal": true,
+    "each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least": 0.05,
+    "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least": 0.03,
+    "each_seed_C1_ID_control_and_low_count_pearson_at_least": 0.3,
+    "no_C1_regime_worse_than_C0_in_all_three_seeds_by_mae_over": 0.02,
+    "each_seed_C1_ultra_close_mae_not_worse_than_C0": true,
+    "test_generated_false": true, "test_opened_false": true, "locked_test_used_false": true
+  },
+  "stop_rule": "If any promotion gate fails, stop P3o-O. Do not tune relation channels, peak rule, model width, loss, training schedule or selection on seeds 1760M/1770M. Do not generate confirmation identities or attach an expert.",
+  "next_if_pass": "Freeze all code, checkpoints and normalizers; evaluate the same oracle-positive screen on two untouched identity confirmations before considering a predicted-label-gated MFT-only attachment.",
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

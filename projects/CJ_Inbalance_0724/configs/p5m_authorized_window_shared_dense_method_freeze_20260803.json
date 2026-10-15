@@ -1,0 +1,30 @@
+{
+  "experiment": "P5m user-authorized exclusive-window shared frozen-forward and dense bounded-head execution",
+  "status": "method_frozen_before_data_generation",
+  "preregister": "configs/p5m_authorized_window_shared_dense_preregister_20260803.json",
+  "preregister_sha256": "f58aa667e5c8042f1af5225b5d6e4308fd42ce31477a72dcf9b33147702bea2d",
+  "implementation": {
+    "generator": "matlab/generate_p5m_authorized_window_shared_dense_development_data.m",
+    "generator_sha256": "a024b4c9656c2ac9380a4d9a66a42baefebaa99d255ccfaf887fd2873f945663",
+    "runner": "cj0724/p5m_authorized_window_shared_dense_execution.py",
+    "runner_sha256": "5bb0566ddec2f284f5148a075c086ae2670f61d93364b36be96da9986393b1c4",
+    "identity_audit": "cj0724/audit_p5g_shared_dense_data.py",
+    "identity_audit_sha256": "8a11475432d93636c3746c36ae562ffbb5eeab912c942228d8184a240c388620"
+  },
+  "tests": {
+    "command": "D:/anaconda3/envs/PY10/python.exe -m pytest tests/test_p5m_authorized_window_protocol.py tests/test_p5l_minibatch_protocol.py tests/test_p5h_exclusive_gpu_guard.py tests/test_p5g_data_audit.py -q",
+    "result": "11 passed in 1.56s",
+    "p5m_test": "tests/test_p5m_authorized_window_protocol.py",
+    "p5m_test_sha256": "1cc2fa4c930462bcd158d09be9ca7cb9463f573fa41d5c684dac7e444fc84a9c"
+  },
+  "generator_dry_run": {
+    "command": "D:/Matlab/bin/matlab.exe -batch addpath('C:/LJQ_code/CJ_Inbalance_0724/matlab'); generate_p5m_authorized_window_shared_dense_development_data(false);",
+    "result": "passed: 3 fresh seeds x 5 paired power manifests, each 3780 identities and 63 combinations; no dataset write"
+  },
+  "environment_authority": {
+    "user_authorized_exclusive_window": true,
+    "exclusive_process_mode_attempt": "requested before execution; Windows driver may reject the mode switch without administrator permission",
+    "fallback": "only the user-authorized no-other-CUDA-job window plus repeated P5h process guard can authorize Default-mode execution"
+  },
+  "forbidden_after_freeze": ["P5e candidate changes", "P5l identity reuse", "seed changes", "benchmark-unit changes", "warmup/repetition changes", "guard relaxation", "test generation/opening/use"]
+}

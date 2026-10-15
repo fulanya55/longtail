@@ -1,0 +1,72 @@
+{
+  "calibration_temperature": 1.8955579996109009,
+  "evidence_role": "independent_test_v2",
+  "historic_locked_test_used": false,
+  "macro_aupr": 0.8884944490956768,
+  "macro_f1": 0.7947562691285845,
+  "per_label": {
+    "FMB": {
+      "aupr": 0.8525122008142695,
+      "f1": 0.7697868020304569,
+      "negative_fpr": 0.1892741935483871,
+      "weak_count": 2927,
+      "weak_recall": 0.4796720191322173
+    },
+    "ISRJ": {
+      "aupr": 0.8854573617813534,
+      "f1": 0.7739067755886593,
+      "negative_fpr": 0.20233870967741935,
+      "weak_count": 2881,
+      "weak_recall": 0.406456091634849
+    },
+    "MFT": {
+      "aupr": 0.9158745975886701,
+      "f1": 0.8305799248034635,
+      "negative_fpr": 0.20935483870967742,
+      "weak_count": 2950,
+      "weak_recall": 0.5220338983050847
+    },
+    "SinFM": {
+      "aupr": 0.9197899786938843,
+      "f1": 0.8358875625721988,
+      "negative_fpr": 0.1867741935483871,
+      "weak_count": 2822,
+      "weak_recall": 0.47696669029057404
+    },
+    "VFT": {
+      "aupr": 0.8688381066002063,
+      "f1": 0.7636202806481444,
+      "negative_fpr": 0.20766129032258066,
+      "weak_count": 2899,
+      "weak_recall": 0.4008278716798896
+    }
+  },
+  "per_label_target_strong_recall": {
+    "ISRJ": 0.8561346909970763,
+    "MFT": 0.9538071065989848,
+    "VFT": 0.8417331582668417
+  },
+  "per_label_target_weak_auroc": {
+    "ISRJ": 0.6393538449910986,
+    "MFT": 0.7050610442864954,
+    "VFT": 0.6482864920050295
+  },
+  "residual_abs_max": 0.49999362230300903,
+  "residual_abs_mean": 0.10257799178361893,
+  "saw_absent_macro_f1": 0.8411302448780068,
+  "saw_present_macro_f1": 0.7534047531907829,
+  "seed": 2042,
+  "target_negative_fpr": 0.2064516129032258,
+  "target_strong_recall": 0.883891651954301,
+  "target_weak_auroc": 0.6642337937608745,
+  "target_weak_recall": 0.44310595387327445,
+  "test_v2_used": true,
+  "thresholds": [
+    0.58,
+    0.5,
+    0.42,
+    0.48,
+    0.36
+  ],
+  "variant": "E1_VTSE_Bounded"
+}

@@ -1,0 +1,112 @@
+{
+  "status": "locked_test_configuration_frozen",
+  "locked_test_authorized": true,
+  "authorization_record": {
+    "date": "2026-07-26",
+    "timezone": "Asia/Shanghai",
+    "user_response": "ok",
+    "context": "Explicit confirmation requested for one-shot access to closedset_6class_test.mat using the frozen six-seed Route-B C2 safe-routing scheme."
+  },
+  "locked_test": {
+    "path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0716\\closedset_6class_test.mat",
+    "expected_sample_count": 25200
+  },
+  "protocol": {
+    "scope": "closedset_6class_test.mat only",
+    "fit_or_selection_on_locked_test": false,
+    "targets_modified": [
+      ["FMB", "interference_bandwidth"],
+      ["SinFM", "frequency_deviation"]
+    ],
+    "classification_outputs_modified": false,
+    "unchanged_parameter_target_count": 10,
+    "identity_consensus_beta": 0,
+    "predicted_context_safety": false,
+    "aggregation": "report each frozen seed and arithmetic mean across seeds; no seed selection or test-time ensemble",
+    "rerun_permitted": false
+  },
+  "implementation_sources": [
+    {"path": "experiments/run_route_b_c2_locked_test_once.py", "sha256": "f48e7cfb35eb7c1bf117f2e4175f9124e397a1a34234a9afb503d5292d7f098e"},
+    {"path": "experiments/run_route_b_c2_visibility_safe_routing.py", "sha256": "2137cd43c010b6496fca6635ab3ecd80f5382c0ec00f411478ca3ceec32bd807"},
+    {"path": "experiments/run_route_b_c2_frozen_local_replacement.py", "sha256": "d92d99d6214f633dc958c2cc549ea6544941d06af1e734a9c27200f3e67220d7"},
+    {"path": "experiments/run_route_b_c2_local_parameter_probe.py", "sha256": "dd998567a179b490134651159b1f637375bd6335df8cbb3898ccc552d686e749"},
+    {"path": "cjlt/data/v73_dataset.py", "sha256": "6d4dfc464c32e101a83b2be1dc585c51c0f56696677bb8a48f4b9fd62d9ceaf5"},
+    {"path": "cjlt/data/parameter_schema.py", "sha256": "dbfa590d677747b10f3a084a25e03da2800b45e460787d670028ade9352a220f"},
+    {"path": "cjlt/data/registry.py", "sha256": "06a192c1ddb9a724c2d62339563684816b37585a75c166a9a1b66af738a5ba49"},
+    {"path": "cjlt/models/supervised_joint.py", "sha256": "feeba2b8464a6134742f8740d3b4e675c8baa53c96be2c76dd862b407b326050"},
+    {"path": "cjlt/models/backbone_adapter.py", "sha256": "072cefacf38b2b30e19ce601d56fe36f0d0f54819a0280a1848d5677d59a0b33"},
+    {"path": "cjlt/engine/evaluator.py", "sha256": "55ed065b726663c61408e4daada83af5bd90f28924b14ac67ae5e98a2620f1b3"},
+    {"path": "cjlt/engine/calibration.py", "sha256": "bfe4fe3c9983ccb74a0dd1cd0682af120adc85aeeace0a94f35f98fb3d4b24b4"},
+    {"path": "cjlt/engine/thresholding.py", "sha256": "6c345823c121c8fb64f2149b626f1658387b97ebf8c3742a25ed092152aba7da"},
+    {"path": "cjlt/engine/supervised_joint_trainer.py", "sha256": "a99b34b6a9c56ca1621a699a2dfcad7961a70d31a152bdbb3083b3c2fb358532"},
+    {"path": "cjlt/losses/parameter.py", "sha256": "aa7ec230bdb555116685c49ef041b20cf8bff9edb95e68fe37efbfa2c3c40b5f"}
+  ],
+  "seeds": [
+    {
+      "seed": 2041,
+      "sources": {
+        "c2_checkpoint": {"path": "outputs/student_b/supervised_joint_parameter_confirm_seed2041/C2/seed_2041/best_model.pth", "sha256": "7a7ed2fd0af19b4fd70450eb7f4afb55ded44000a0ae7ce600469d295ccf1e58"},
+        "normalizer": {"path": "outputs/student_b/supervised_joint_parameter_confirm_seed2041/C2/seed_2041/parameter_normalizer.json", "sha256": "6e435f4d2ddf2ff5c653a42526e0e24acdcc01479d3ab77b0ed369b1189b7c31"},
+        "calibration": {"path": "outputs/student_b/supervised_joint_parameter_confirm_seed2041/C2/seed_2041/calibration_and_thresholds.json", "sha256": "a2dba6bd0a81bea8e79f6d595e36a3f95349af64857cef41ab3e14db8c7557d9"},
+        "fmb_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_20260725/seed_2041/FMB_interference_bandwidth_local_expert.pth", "sha256": "f79ef0cd86dfb996fa881426431c9b7a271c3e41a45dd9937ba033ed800d9425"},
+        "sinfm_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_20260725/seed_2041/SinFM_frequency_deviation_local_expert.pth", "sha256": "a0ddd57b7fb1451f5012eb094e5d1c834e240a0ca750ae6686a157e8b19f7a1e"},
+        "router_receipt": {"path": "outputs/student_b/route_b_c2_visibility_safe_routing_confirmatory_20260725/seed_2041/run_receipt.json", "sha256": "9d22f1deedb9873701cd7490269109fb94cbb243ecd0d004f9eabc152167e941"}
+      }
+    },
+    {
+      "seed": 2042,
+      "sources": {
+        "c2_checkpoint": {"path": "outputs/student_b/supervised_joint_parameter_confirm_final/C2/seed_2042/best_model.pth", "sha256": "ebc06e48967f8321c936329a08b358f0f04a5f3dce311fb14f5023f5ac1d86b3"},
+        "normalizer": {"path": "outputs/student_b/supervised_joint_parameter_confirm_final/C2/seed_2042/parameter_normalizer.json", "sha256": "654114b28bb897734552a03b2e3765e90cb23464faa096fc80fd59e3807e980f"},
+        "calibration": {"path": "outputs/student_b/supervised_joint_parameter_confirm_final/C2/seed_2042/calibration_and_thresholds.json", "sha256": "2a30c9c0acfc8ecd3da738efdaec5ad4b0da2af92853259956424dbe4cc1f261"},
+        "fmb_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_20260725/seed_2042/FMB_interference_bandwidth_local_expert.pth", "sha256": "b1174c0ea5a2a652642cf49a4795ff6fe252f0ee5cba79ca8a5c7f48945d72dd"},
+        "sinfm_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_20260725/seed_2042/SinFM_frequency_deviation_local_expert.pth", "sha256": "aa1d1a716503313b11a6f97491c4542ca489cd05aefc9eb2ec312a5b2ff705cd"},
+        "router_receipt": {"path": "outputs/student_b/route_b_c2_visibility_safe_routing_confirmatory_20260725/seed_2042/run_receipt.json", "sha256": "e684bfd160d3f21b7bf96d48a117a26e1fe308293229b266c2d04684a922b3d5"}
+      }
+    },
+    {
+      "seed": 2043,
+      "sources": {
+        "c2_checkpoint": {"path": "outputs/student_b/supervised_joint_parameter_confirm_final/C2/seed_2043/best_model.pth", "sha256": "4001b621c9680375a6ab42676f9fc7cd205814edcb59bdf796d466f4b00eef24"},
+        "normalizer": {"path": "outputs/student_b/supervised_joint_parameter_confirm_final/C2/seed_2043/parameter_normalizer.json", "sha256": "020d2b044dd8f83fc0b816e4fb625db4bd2b655f469532f263be50c58ea77cf6"},
+        "calibration": {"path": "outputs/student_b/supervised_joint_parameter_confirm_final/C2/seed_2043/calibration_and_thresholds.json", "sha256": "60373c65d6faaf3c3cf38d8cf0e7845515e6d264b0525dbbee96c42c69822a1a"},
+        "fmb_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_20260725/seed_2043/FMB_interference_bandwidth_local_expert.pth", "sha256": "d9174cd4144e9c60d480f37256c4bfa61e5fc3213b0edb34cf1b6e1a14d98d6c"},
+        "sinfm_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_20260725/seed_2043/SinFM_frequency_deviation_local_expert.pth", "sha256": "5b8661d9ee55bf4f4efc5bdf04ec953ed98eb309f0e38000ce357e3d0a5af74b"},
+        "router_receipt": {"path": "outputs/student_b/route_b_c2_visibility_safe_routing_confirmatory_20260725/seed_2043/run_receipt.json", "sha256": "3d6ea3bae1c3bd0d67a75ebc7193acfff2acb54e67692402fba6fbcf63106c5b"}
+      }
+    },
+    {
+      "seed": 2044,
+      "sources": {
+        "c2_checkpoint": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2044/best_model.pth", "sha256": "77a1054de2355360f51e70d95ae38090b06a95dae46157b0d32157d531be2a8f"},
+        "normalizer": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2044/parameter_normalizer.json", "sha256": "271f09c1bc4b8832d031e55756ac53163b734d7739c11424826727984e022cc1"},
+        "calibration": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2044/calibration_and_thresholds.json", "sha256": "273032ae13d4f752e7dbcb7bb8034f671f1f0a5e8f9d863f83f30d5004d1f1cd"},
+        "fmb_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_replication_2044_2046_20260725/seed_2044/FMB_interference_bandwidth_local_expert.pth", "sha256": "936816321d83e9fdeb56beed8e323da8e082bf4d4648268d8338f2a2dd99d110"},
+        "sinfm_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_replication_2044_2046_20260725/seed_2044/SinFM_frequency_deviation_local_expert.pth", "sha256": "7ef47d27c377dc50abec71fa80923101ac107341f40a5a655c0efe4f9cdfd2db"},
+        "router_receipt": {"path": "outputs/student_b/route_b_c2_visibility_safe_routing_replication_2044_2046_20260725/seed_2044/run_receipt.json", "sha256": "c7b9256c919d6b0e1fb2303d730f1c3d544fc1779fec191bdb8faebfb5abff0e"}
+      }
+    },
+    {
+      "seed": 2045,
+      "sources": {
+        "c2_checkpoint": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2045/best_model.pth", "sha256": "c6a1ccf965476c219be20a05c47eb576c2937394306690e2a59aa3f2a37dbb0e"},
+        "normalizer": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2045/parameter_normalizer.json", "sha256": "06d33496a991508e7017293870eb4871a5b6153a233971c89d2b025203e5eba0"},
+        "calibration": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2045/calibration_and_thresholds.json", "sha256": "b4db92dc9c95c5dffa57f4d556021c79e6da0f5194448d2a1507f8661e7e13a7"},
+        "fmb_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_replication_2044_2046_20260725/seed_2045/FMB_interference_bandwidth_local_expert.pth", "sha256": "b4ee58221e692cc0ff8fadc9323f408254050f09ccb3c909ba1dbdf67dfc6e90"},
+        "sinfm_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_replication_2044_2046_20260725/seed_2045/SinFM_frequency_deviation_local_expert.pth", "sha256": "f9675002145eadfd50935797358b18b22d4c507b9871692b13ffde024f57b352"},
+        "router_receipt": {"path": "outputs/student_b/route_b_c2_visibility_safe_routing_replication_2044_2046_20260725/seed_2045/run_receipt.json", "sha256": "6731fd65b06bdd54a5c5bd6d44f2125f49379f4a9ca27ce77772c6e899ce794d"}
+      }
+    },
+    {
+      "seed": 2046,
+      "sources": {
+        "c2_checkpoint": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2046/best_model.pth", "sha256": "a774662f8212bc07d626e6621a660bd73cd9badb9280199095ef9613e4994e83"},
+        "normalizer": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2046/parameter_normalizer.json", "sha256": "948dc43d9cb05075dc245884c732da8589a72c7f3312535d3b52964674fdba6f"},
+        "calibration": {"path": "outputs/student_b/supervised_joint_parameter_replication_seeds_2044_2046_20260725/C2/seed_2046/calibration_and_thresholds.json", "sha256": "8aaa4535c0c9ef5b14751bd1ac56cc8ad15a5d0b99edd6d28926e1f266bbaf43"},
+        "fmb_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_replication_2044_2046_20260725/seed_2046/FMB_interference_bandwidth_local_expert.pth", "sha256": "42e50a88be3f3b45ecd5bc7f51bbc31e9d36e48dcaf061a2570d9d19fc5494b0"},
+        "sinfm_expert": {"path": "outputs/student_b/route_b_c2_frozen_local_replacement_replication_2044_2046_20260725/seed_2046/SinFM_frequency_deviation_local_expert.pth", "sha256": "2d926cef3d47f49147dff0d7c2138ea00822ad41bab87fbf461670e956b05175"},
+        "router_receipt": {"path": "outputs/student_b/route_b_c2_visibility_safe_routing_replication_2044_2046_20260725/seed_2046/run_receipt.json", "sha256": "90efd0523b4307d1753778d3d53eb46fb30c76c3372c0494f4a52495ad46457b"}
+      }
+    }
+  ]
+}

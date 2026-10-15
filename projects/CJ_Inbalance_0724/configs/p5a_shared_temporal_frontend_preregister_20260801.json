@@ -1,0 +1,109 @@
+{
+  "experiment": "P5a shared unpooled temporal front end for heterogeneous parameter routing",
+  "research_question": "Can a parameter route that reuses MLCNN stages 1-2 and preserves the ordered I/Q feature grid retain most of the full independent route's parameter benefit within a five-percent MAC budget?",
+  "evidence_role": "architecture_cost_gate_then_fresh_identity_three_seed_development",
+  "frozen_parent": {
+    "p4c_p4d": "full-width independent IQ-Grouped route reproducibly improves full-12 parameter estimation",
+    "p4j": "matched CUDA Graph removes fixed-shape launch overhead for a compact route",
+    "p4k": "width 4 is deployment-feasible but accuracy-insufficient",
+    "p4l": "width 16 misses the frozen batch-throughput gate before training",
+    "sample_level_predictions_reused": false,
+    "prior_checkpoints_reused": false
+  },
+  "single_mechanism": {
+    "baseline": "legacy_mlcnn_global",
+    "accuracy_reference": "mlcnn_iq_grouped_task_routed",
+    "candidate": "mlcnn_shared_temporal_task_routed",
+    "shared_prefix": "legacy MLCNN conv1-bn1-relu-pool and conv2-bn2-relu-pool for separate real and imaginary paths",
+    "parameter_branch_input": "concatenated unpooled stage-2 real and imaginary maps with shape [B,128,750] for length-3000 input",
+    "parameter_continuation": "grouped Conv1d 128-to-64 k5 stride2, grouped Conv1d 64-to-64 k3 stride2, 1x1 fusion, global average pool, common 256-dimensional adapter and label-wise parameter head",
+    "classification_path_after_share": "unchanged legacy MLCNN stages 3-4, fc1, common adapter and classifier",
+    "gradient_policy": "classification and parameter losses jointly update shared stages 1-2; no detach",
+    "difference_from_failed_p4e_p4f": "candidate preserves the temporal grid and performs temporal convolution; it does not regress from a globally pooled classification embedding or pooled shallow tokens",
+    "loss_and_training_protocol": "unchanged"
+  },
+  "benchmark_protocol": {
+    "device": "NVIDIA GeForce RTX 5080",
+    "dtype": "float32",
+    "amp": false,
+    "model_initialization_seed": 10040,
+    "input_length": 3000,
+    "batch_sizes": [1, 64],
+    "capture_warmup": 30,
+    "measurement_warmup_per_block": 50,
+    "repeats_per_block": 200,
+    "measurement_blocks": 5,
+    "block_order_seed": 20260801
+  },
+  "cost_gates_before_training": {
+    "parameter_increase_vs_global_at_most": 0.005,
+    "mac_increase_vs_global_at_most": 0.05,
+    "cuda_graph_batch1_median_latency_increase_vs_global_graph_at_most": 0.15,
+    "cuda_graph_batch1_p95_latency_increase_vs_global_graph_at_most": 0.20,
+    "cuda_graph_batch64_throughput_retention_vs_global_graph_at_least": 0.85,
+    "eager_and_graph_outputs_equivalent_at_tolerance": 0.000001
+  },
+  "data_if_cost_passes": {
+    "generator_seed": 750000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "identity_key": "receiver_noise_seed",
+    "split_seed": 20260801,
+    "role_counts_per_combination": {
+      "train": 75,
+      "early": 10,
+      "calibration": 5,
+      "tune": 5,
+      "confirm": 5
+    },
+    "required_overlap_with_root_and_all_p4b_through_p4l_identity_pools": 0,
+    "test_generation": "train split only"
+  },
+  "training_if_cost_passes": {
+    "model_seeds": [10041, 10042, 10043],
+    "models": [
+      "legacy_mlcnn_global",
+      "mlcnn_iq_grouped_task_routed",
+      "mlcnn_shared_temporal_task_routed"
+    ],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "classification_loss": "BCEWithLogitsLoss",
+    "parameter_loss": "masked SmoothL1 over label=1 AND parameter_mask=1 AND finite only",
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter"
+  },
+  "validity_gates": {
+    "all_12_confirm_targets_finite_and_variable": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true,
+    "shared_input_shape_exactly_B_128_750": true,
+    "parameter_gradient_reaches_shared_stage2": true,
+    "no_sawfm_loss_reweight_or_fallback": true
+  },
+  "promotion_gates": {
+    "each_seed_candidate_relative_macro_nmae_reduction_vs_global_at_least": 0.025,
+    "mean_candidate_relative_macro_nmae_reduction_vs_global_at_least": 0.04,
+    "candidate_parameter_improvement_direction": "3_of_3_positive",
+    "each_seed_candidate_parameter_macro_pearson_not_lower_than_global": true,
+    "mean_candidate_retention_of_full_route_absolute_nmae_gain_at_least": 0.70,
+    "each_seed_candidate_retention_of_full_route_absolute_nmae_gain_at_least": 0.50,
+    "each_seed_candidate_macro_aupr_drop_vs_global_at_most": 0.005,
+    "each_seed_candidate_subset_accuracy_drop_vs_global_at_most": 0.01,
+    "no_target_worse_in_3_of_3_seeds_vs_global_by_more_than_absolute_nmae": 0.03,
+    "sawfm_sweep_period_reported_separately": true
+  },
+  "stop_rule": "Run only the architecture and matched-CUDA-Graph audit first. If any cost gate fails, do not generate seed750000000 and do not train. If cost passes but the accuracy gates fail, do not deepen or widen this branch on the same identities; perform physical-sufficiency and feature-separability diagnostics before proposing another expert.",
+  "next_if_pass": "Add two wholly new optimization seeds without protocol changes, freeze the candidate, and confirm without retraining on two new data-generation seeds before nine-power testing.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

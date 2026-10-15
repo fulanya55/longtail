@@ -1,0 +1,62 @@
+{
+  "stage": "B7",
+  "objective": "Test whether identity-paired high-visibility supervision improves 10 dB ISRJ separability rather than only response magnitude",
+  "reference": "frozen B2-RC/B3-R",
+  "target_class": "ISRJ",
+  "seeds": [20260724, 20260725, 20260726, 271828, 314159],
+  "identity": {
+    "key": "receiver_noise_seed",
+    "rule": "all power views of one identity remain in the same train, early-stop, or development role",
+    "alignment_must_match": true
+  },
+  "views": {
+    "student_train_powers_dB": [10, 15, 20],
+    "teacher_power_dB": 30,
+    "primary_evaluation_power_dB": 10,
+    "inference_inputs": "10 dB I/Q-derived frozen physical features and frozen B2-RC ISRJ probability only"
+  },
+  "model": {
+    "type": "bounded residual MLP over frozen shared physical features",
+    "hidden_dim": 32,
+    "residual_logit_bound": 1.5,
+    "epochs": 40,
+    "batch_size": 512,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "distillation_weight": 0.35,
+    "teacher_probability_margin": 0.05,
+    "teacher_confidence_rule": "teacher probability is at least the frozen B2-Hard ISRJ threshold",
+    "checkpoint_selection": "10 dB early-stop ISRJ AUPR, then hard-negative FPR; development is not used"
+  },
+  "ablations": [
+    "low_only_supervised",
+    "unpaired_views",
+    "all_pair_invariance",
+    "pair_type_aware_reliability",
+    "explicit_JNR_shortcut_control"
+  ],
+  "primary_candidate": "pair_type_aware_reliability",
+  "threshold_rule": "reuse frozen B2-RC thresholds; no per-variant or per-power threshold tuning",
+  "gates": {
+    "mean_10dB_ISRJ_AUPR_gain_vs_B2RC_min": 0.015,
+    "mean_10dB_macro_AUPR_gain_vs_B2RC_min": 0.0025,
+    "mean_10dB_hamming_increase_max": 0.0,
+    "mean_10dB_ISRJ_FPR_increase_max": 0.0,
+    "mean_10dB_ISRJ_recall_drop_max": 0.005,
+    "paired_AUPR_advantage_vs_unpaired_min": 0.005,
+    "paired_AUPR_advantage_vs_low_only_min": 0.005,
+    "same_direction_seeds_min": 4
+  },
+  "decision": {
+    "pass": "enter B8 composition-disjoint generalization without changing B7 architecture or thresholds",
+    "fail": "stop route B at frozen B2-RC/B3-R and do not construct B8 deep reliability experts"
+  },
+  "forbidden": [
+    "modifying frozen E5",
+    "forcing all powers to share identical representations in the primary method",
+    "using explicit JNR in the deployable primary method",
+    "development-driven architecture or threshold selection",
+    "reading locked test"
+  ],
+  "locked_test_used": false
+}

@@ -1,0 +1,79 @@
+{
+  "objective": "Develop a mechanism-sufficient bounded-evidence routing model for MFT and ISRJ without modifying frozen E5",
+  "method_name": "MSER-CJ",
+  "frozen_reference": "outputs/vft_physics_e5_frozen_candidate_20260725/bundle_manifest.json",
+  "current_candidate": "outputs/ab_frozen_candidates_20260725/bundle_manifest.json",
+  "data": {
+    "root": "C:\\LJQ_code\\干扰数据\\复合干扰数据0716\\power_sweep_9level_v1",
+    "levels_dB": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "identity_key": "receiver_noise_seed",
+    "rule": "all nine power views of one identity remain in the same role and are never counted as independent samples"
+  },
+  "seeds": {
+    "legacy_evidence": [20260724, 20260725, 20260726, 271828, 314159],
+    "v2_development": [424242, 161803, 8675309],
+    "v2_confirmation": [112358, 173205]
+  },
+  "stages": {
+    "B2": {
+      "name": "nine-power composition and weak-visibility boundary audit",
+      "model_changes_allowed": false,
+      "roles": ["development identities only"],
+      "comparisons": ["E0", "E5", "B2-Hard"],
+      "metrics": ["macro_AUPR", "macro_F1", "Hamming", "subset_accuracy", "per_label_AUPR", "per_label_FPR", "per_label_recall", "weak_component_recall", "per_combination_exact_accuracy"],
+      "gate": {
+        "mean_nine_power_macro_aupr_gain_vs_E5_min": 0.015,
+        "mean_nine_power_hamming_reduction_vs_E5_min": 0.015,
+        "MFT_FPR_reduced_levels_min": 7,
+        "ISRJ_FPR_reduced_levels_min": 7,
+        "worst_power_macro_aupr_delta_min": -0.01,
+        "mean_weak_recall_delta_min": -0.01
+      }
+    },
+    "B3": {
+      "name": "shared analytic front-end and speed optimization",
+      "variants": ["numpy_reference", "torch_fft_shared", "lag_frequency_pruned", "small_MLP_distillation"],
+      "gate": {"macro_aupr_drop_max": 0.003, "hamming_increase_max": 0.003, "total_latency_vs_E5_max": 1.5, "expert_bytes_max": 3000000}
+    },
+    "B4": {
+      "name": "power-composition-matched hard negatives",
+      "negative_sets": ["random", "neural_high_confidence", "physics_similar", "power_cardinality_composition_matched"],
+      "gate": {"target_FPR_reduction_min": 0.05, "target_aupr_delta_min": 0.0, "recall_drop_max": 0.01, "same_direction_seeds_min": 4}
+    },
+    "B5": {
+      "name": "bounded three-state reliability router",
+      "states": ["positive_rescue", "negative_protection", "unknown_keep_E5"],
+      "allowed_outputs": ["MFT", "ISRJ"],
+      "ablations": ["hard_replace", "fixed_blend", "unbounded_sigmoid_gate", "bounded_two_state", "bounded_three_state", "without_physics_reliability", "without_E5_uncertainty"],
+      "gate": {"macro_aupr_gain_vs_B2_min": 0.005, "hamming_increase_max": 0.0, "weak_recall_drop_max": 0.005}
+    },
+    "B6": {
+      "name": "cross-domain consistent compact experts",
+      "MFT_domains": ["delay_lattice", "spectrum"],
+      "ISRJ_domains": ["envelope_periodicity", "comb_spectrum"],
+      "rule": "domain disagreement maps to unknown rather than forced negative"
+    },
+    "B7": {
+      "name": "identity-paired multi-power reliability learning",
+      "rule": "semantic consistency is identity-paired; visibility may change; explicit JNR is forbidden as default input",
+      "ablations": ["unpaired_views", "all_pair_invariance", "pair_type_aware_reliability", "explicit_JNR_shortcut_control"]
+    },
+    "B8": {
+      "name": "composition-disjoint generalization",
+      "splits": ["seen", "unseen_MFT", "unseen_ISRJ", "unseen_MFT_plus_ISRJ", "VFT_cooccurrence_hard_set"],
+      "gate": {"unseen_macro_aupr_gain_vs_E5_min": 0.015, "seen_unseen_gap_reduction_fraction_min": 0.20}
+    }
+  },
+  "v2_selection": {
+    "development_rule": "all preregistered gates pass on at least two of three new development seeds",
+    "confirmation_rule": "both new confirmation seeds preserve primary direction; no architecture or threshold changes",
+    "primary_metrics": ["macro_AUPR", "Hamming"],
+    "secondary_metrics": ["macro_F1", "subset_accuracy", "per_label_AUPR", "per_label_FPR", "weak_component_recall", "cost"]
+  },
+  "locked_test": {
+    "authorized": false,
+    "used": false,
+    "read_once_after_final_freeze": true,
+    "post_read_tuning_forbidden": true
+  }
+}

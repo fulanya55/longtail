@@ -1,0 +1,7 @@
+{
+  "experiment": "P3o-J posterior-component-conditioned bounded parameter residual",
+  "status": "frozen incomplete data-generation failure",
+  "consumed_identity_seed": 1450000000,
+  "evidence": {"committed_views": 5, "partial_views": 1, "regime_directories_created": 2, "matlab_process_exited": true, "development_generated": false, "training_started": false, "test_generated": false, "test_opened": false, "locked_test_used": false},
+  "decision": "Do not resume, rerun, or complete 1450M. Do not generate 1460M/1470M/1480M for P3o-J. Preserve partial artifacts for audit. A successor requires fresh identities and a durable generator receipt before any development plan."
+}

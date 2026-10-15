@@ -1,0 +1,33 @@
+{
+  "experiment": "P5p checkpointed protocol-generic verified-idle shared frozen-forward and dense bounded-head execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5p_checkpointed_idle_window_preregister_20260804.json",
+  "preregister_sha256": "a5c76048b69409ca0c7b31bca973f5797c6ce8213d72cc2615b9b9e0a22f6941",
+  "implementation": {
+    "execution_runner": "cj0724/p5p_checkpointed_idle_window_execution.py",
+    "execution_runner_sha256": "1cdb9d9a2278532379c862847a21a2e32b8d80683e363f68d8475f286779b462",
+    "generator": "matlab/generate_p5p_checkpointed_idle_window_development_data.m",
+    "generator_sha256": "3635618c9e00e887f0c2f7a0ac723cc97dbaeef2b15eb451a4467656f486a28",
+    "integration_test": "tests/test_p5p_checkpointed_protocol.py",
+    "integration_test_sha256": "66fc49c383300014336b210fe66b5d53b8fc2d20a0b3d595d7c5e8a56c6e379b"
+  },
+  "pre_generation_validation": {
+    "pytest_command": "D:\\anaconda3\\envs\\PY10\\python.exe -m pytest tests\\test_p5p_checkpointed_protocol.py tests\\test_p5o_protocol_generic_integration.py tests\\test_p5n_verified_idle_window_protocol.py tests\\test_p5m_authorized_window_protocol.py tests\\test_p5l_minibatch_protocol.py tests\\test_p5h_exclusive_gpu_guard.py tests\\test_p5g_data_audit.py -q",
+    "pytest_result": "14 passed in 6.97s",
+    "explicit_runner_validation": "python -m cj0724.p5p_checkpointed_idle_window_execution --validate-protocol completed without CUDA, data opening or output directory creation",
+    "receipt_recovery_validation": "The integration test invoked --self-test-receipts with no data/CUDA. It atomically produced launch and pool-start receipts, intentionally no pool-complete receipt, and classified the state as interrupted_before_pool_completion_no_resume.",
+    "matlab_dry_run": "generate_p5p_checkpointed_idle_window_development_data(false) completed; 15 train manifests only",
+    "p5p_generated_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "P5e candidate, all model/head weights, thresholds, normalizer, analytic features and routing are unchanged",
+    "full-pool exactness, first-index batch 126, five warmups, 15 timed repetitions and latency ratio 0.85 gate are unchanged",
+    "P5p writes immutable launch/environment/pool/terminal receipts; it cannot resume a consumed interrupted pool",
+    "P5p uses only fresh uint32 identity seeds and train-only paired power views",
+    "no external CUDA Python process may exist at launch or any guard checkpoint",
+    "no confirmation or test data may be generated before all three P5p development pools pass"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

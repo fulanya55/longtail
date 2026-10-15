@@ -1,0 +1,24 @@
+{
+  "experiment": "P3o-C parameter-matched multiview method freeze",
+  "preregister": "configs/p3oc_parameter_matched_multiview_preregister_20260801.json",
+  "preregister_sha256": "15cba2b2d37cb578d6f8a1178b3044877dbf260c532e12681cdcee8296d9803c",
+  "implementation": "cj0724/p3oc_parameter_matched_multiview.py",
+  "implementation_sha256": "1e3876a5786fc5d94dc96cddab5ca69c622fc73375420c48cce42c6283589f0a",
+  "data_generator": "matlab/generate_p3o_low_power_attribution_data.m",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "immutable_before_development": {
+    "identity_seeds": [1030000000, 1040000000],
+    "parameter_counts": {"T_time_matched": 26370, "D_delay_matched": 26640, "F_time_frequency_matched": 25490, "DF_dual_matched": 24400},
+    "parameter_match_tolerance": 0.05,
+    "views": ["T_time_matched", "D_delay_matched", "F_time_frequency_matched", "DF_dual_matched"],
+    "no_contrast_or_prototype_loss": true,
+    "optimizer": "AdamW lr=1e-4 wd=1e-4 warmup=2 cosine epochs=20 batch=63 clip=5",
+    "checkpoint": "C_joint parameter tolerance 1.01",
+    "safety": "per-cell 95% Clopper-Pearson FPR upper cap 0.10",
+    "development_selection_forbidden": true
+  },
+  "post_development_rule": "After seed1040000000 predictions are opened, no parameter width, branch, feature, loss, optimizer, checkpoint, threshold, cap, gate, or data-role change is allowed. A failure prohibits 1050M/1060M confirmation and requires a genuinely new identity-safe hypothesis.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,17 @@
+{
+  "experiment": "P5i clean exclusive-GPU guarded shared frozen-forward and dense bounded-head execution",
+  "status": "execution_frozen_before_any_complete_model-comparison_result",
+  "reason": "The external-process guard rejected a transient Conda shell hook helper (conda-script.py shell.powershell hook) during the first reference timing loop. It is not a GPU compute process, but that helper was not yet in the explicitly non-computing whitelist.",
+  "execution_record": {
+    "p5i_process_id": 69504,
+    "exception": "exclusive-GPU guard rejected conda-script.py shell.powershell hook",
+    "result_json_written": false,
+    "model_comparison_completed": false,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "consumed_data": {"development_generator_seeds": [3950000000, 3960000000, 3970000000], "all_three_pools_generated_train_only": true, "reuse_for_rerun_selection_confirmation_or_test": false},
+  "allowed_claims": ["P5i has no equivalence, latency, or performance result."],
+  "forbidden_actions": ["Restart P5i on 3950M/3960M/3970M identities.", "Generate/use P5i 3980M/3990M confirmation identities.", "Use partial timing or guard rejection as a performance result."]
+}

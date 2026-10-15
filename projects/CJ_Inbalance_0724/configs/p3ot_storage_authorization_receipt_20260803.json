@@ -1,0 +1,13 @@
+{
+  "experiment": "P3o-T deployable MFT-support conditional ISRJ residual",
+  "authorization_basis": "User explicitly authorized C drive use in this thread; no deletion, move, or overwrite of historical D-drive artifacts is authorized.",
+  "raw_output_root": "C:\\CJ0724_generated_data",
+  "rechunk_output_root": "C:\\CJ0724_rechunked_data",
+  "pre_generation_c_free_bytes": 353239261184,
+  "expected_views": 45,
+  "expected_roles": ["train", "selection", "development"],
+  "transaction_contract": "one MATLAB process per role/regime/power; resume only the same-name partial; atomic commit required",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

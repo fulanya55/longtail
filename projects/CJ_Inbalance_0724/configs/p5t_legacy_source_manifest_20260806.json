@@ -1,0 +1,28 @@
+{
+  "schema": "P5t-legacy-source-manifest-v1",
+  "legacy_source_root": "E:/LJQ_code/pythonProject/新建文件夹",
+  "root_resolution": "Path(cj0724.models.__file__).resolve().parents[2] / pythonProject / 新建文件夹",
+  "p5e_actual_required_files": [
+    {
+      "path": "model.py",
+      "sha256": "406e5868ff71c1f038f5b43dd7bbbf40f740dd6ca04bddbb1bab8e5a70ac043d",
+      "reason": "All five P5e mlcnn_iq_grouped_task_routed checkpoints construct their frozen classification branch with build_benchmark_model('legacy_mlcnn'), which loads model.py only."
+    }
+  ],
+  "available_but_not_required_by_p5e": [
+    {
+      "path": "DBmodel.py",
+      "sha256": "a0e5aee08561cfc5a9d70b64755ecd551df1bfc3b89bc64fc7821102ac6a5de3",
+      "reason": "Used by other legacy backbones, not by legacy_mlcnn or P5e's routed candidate."
+    },
+    {"path": "EffNet.py", "reason": "Other legacy backbone only."},
+    {"path": "EffNetV1.py", "reason": "Other legacy backbone only."},
+    {"path": "EffNetV2.py", "reason": "Other legacy backbone only."},
+    {"path": "EffNetV3.py", "reason": "Other legacy backbone only."}
+  ],
+  "p5e_checkpoint_source_contract": "3041-3043 are loaded from the P4c tuned root and 3044-3045 from the P5e extension root. All use source name mlcnn_iq_grouped_task_routed and therefore the same legacy_mlcnn classification constructor.",
+  "forbidden_roots": ["C:/LJQ_code", "D:/LJQ_code", "F:/LJQ_code"],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

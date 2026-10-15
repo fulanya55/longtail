@@ -1,0 +1,49 @@
+{
+  "experiment": "P3c MFT sparse-delay deconvolution count oracle",
+  "research_question": "Is MFT num_targets physically identifiable from the exact MFT component by deconvolving the known transmit reference into a sparse delay impulse train?",
+  "evidence_role": "fresh_oracle_positive_physical_sufficiency_development",
+  "data": {
+    "identity_seed": 450000000,
+    "powers_db": [25, 35, 50],
+    "regimes": {
+      "ID_control": {"count": [3, 8], "delay_us": [30, 50], "amplitude": [0.5, 1.5]},
+      "low_count": {"count": [1, 2], "delay_us": [30, 50], "amplitude": [0.5, 1.5]},
+      "close_spacing": {"count": [3, 8], "delay_us": [30, 34], "amplitude": [0.5, 1.5]},
+      "ultra_close": {"count": [3, 8], "delay_us": [30, 31], "amplitude": [0.5, 1.5]},
+      "weak_target": {"count": [3, 8], "delay_us": [30, 50], "amplitude": [0.05, 1.5]}
+    },
+    "all_63_combinations": true
+  },
+  "parameter_contract": {
+    "num_targets_column_zero_based": 28,
+    "delay_columns_zero_based": [31, 38],
+    "amplitude_columns_zero_based": [39, 46],
+    "valid_mask": "label[MFT]=1 AND parameter_mask[28]=1 AND finite num_targets"
+  },
+  "estimator": {
+    "reference": "10 MHz, 100 us LFM, chirp rate 5e10 Hz/s, zero padded to 3000 samples",
+    "inverse_filter": "FFT(signal)*conj(FFT(reference))/(abs(FFT(reference))^2 + 1e-6*max_power)",
+    "delay_search_samples": [0, 1500],
+    "support_threshold_relative_to_max": 0.02,
+    "count": "number of above-threshold delay bins, clipped to [0,8]",
+    "trainable_parameters": 0
+  },
+  "controls": {
+    "C0_constant": "5.5 targets, fixed midpoint of original 3-8 support",
+    "C1_exact_correct_reference": "preregistered sparse deconvolution",
+    "C2_raw_correct_reference": "same method on compound IQ, diagnostic only",
+    "C3_exact_wrong_reference": "chirp rate multiplied by 0.8",
+    "C4_time_shuffled_exact": "deterministic time permutation"
+  },
+  "promotion_gates": {
+    "C1_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C1_each_regime_pearson_at_least": 0.30,
+    "C1_compound_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C1_compound_each_regime_pearson_at_least": 0.30,
+    "C1_each_regime_exact_accuracy_at_least": 0.90,
+    "C1_each_regime_better_than_C3_and_C4": true,
+    "identity_overlap_with_all_prior_roles": 0
+  },
+  "next_if_pass": "Freeze the inverse-filter front end and test raw/separated count estimation on a new identity seed with an ordinal or support-denoising head.",
+  "locked_test_used": false
+}

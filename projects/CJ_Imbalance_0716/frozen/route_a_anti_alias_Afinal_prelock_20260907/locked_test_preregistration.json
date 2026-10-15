@@ -1,0 +1,44 @@
+{
+  "schema": "route-a-locked-test-preregistration-v1",
+  "status": "preregistered_execution_frozen_waiting_explicit_authorization",
+  "candidate_manifest": "frozen/route_a_anti_alias_Afinal_prelock_20260907/manifest.json",
+  "execution_freeze": "frozen/route_a_anti_alias_Afinal_prelock_20260907/locked_test_execution_freeze.json",
+  "execution_freeze_sha256": "a7530c77f0fdf063fb00b0b17ca39739d5856b9d09b4e638a2c1b89eb34a68f0",
+  "runner": "experiments/run_route_a_locked_test_once.py",
+  "runner_sha256": "f3429007ec31d41ee20cd2970123144938fa9379754b21c1ef0eb1a6440f048c",
+  "candidate": "F2_anti_alias / dfms_iq_anti_alias",
+  "baseline_ablation": "F2_full",
+  "selected_classes": ["FMB", "AMA", "SawFM", "SinFM", "MFT", "ISRJ"],
+  "input_contract": "true normalized I/Q [B,2,3000]",
+  "threshold": 0.5,
+  "checkpoint_policy": "use only the ten source checkpoints and hashes recorded in the candidate manifest; primary estimate is the uniform arithmetic mean of their logits, paired with the corresponding ten F2_full checkpoints; no retraining, per-seed selection, or test-driven ensemble weighting after authorization",
+  "data_policy": {
+    "locked_test_reference": "frozen/route_a_anti_alias_Afinal_prelock_20260907/locked_test_source_sealed_manifest.json",
+    "read_count": 0,
+    "test_files_opened": true,
+    "test_file_open_mode": "preseal metadata/labels audit only; iq_complex was not read for model selection and no inference was run",
+    "test_files_opened_for_model_inference": false,
+    "preseal_metadata_audit_opened": true,
+    "locked_test_used": false,
+    "authorization_required": true,
+    "data_role_audit": "outputs/route_a_p1a_anti_alias_Afinal_prelock_20260907/locked_test_data_role_audit.json",
+    "source_metadata_identity_audit": "outputs/route_a_locked_test_source_generation_20260908/metadata_identity_audit.json"
+  },
+  "primary_metrics": ["macro_aupr", "macro_f1", "six_class_combination_exact_accuracy", "weakest_power_combination_accuracy"],
+  "secondary_metrics": ["per_class_recall", "per_class_fpr", "per_class_aupr", "per_power_macro_aupr", "per_power_combination_accuracy", "hamming_loss", "subset_accuracy", "label_cardinality_error", "combination_transition_matrix", "calibration_error", "parameters", "gpu_latency", "gpu_memory", "training_time"],
+  "reporting": {
+    "emit_raw_results_before_interpretation": true,
+    "report_candidate_and_ablation_paired": true,
+    "report_uniform_logit_ensemble_and_per_checkpoint_distribution": true,
+    "report_all_classes_and_powers": true,
+    "no_threshold_tuning": true,
+    "no_model_changes_after_read": true,
+    "no_split_changes_after_read": true,
+    "preserve_negative_results": true
+  },
+  "authorization_text_required": "User must explicitly authorize the one-time locked-test read. Until then, this file is only a preregistration and no locked-test path may be opened.",
+  "created_from": {
+    "combined_statistics": "outputs/route_a_p1a_anti_alias_Afinal_prelock_20260907/combined_replication_statistics.json",
+    "prelock_decision": "docs/reports/route_a_p1a_anti_alias_Afinal_prelock_20260907.md"
+  }
+}

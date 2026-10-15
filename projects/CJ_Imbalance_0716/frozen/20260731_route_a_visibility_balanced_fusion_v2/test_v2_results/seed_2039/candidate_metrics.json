@@ -1,0 +1,72 @@
+{
+  "calibration_temperature": 2.012864351272583,
+  "evidence_role": "independent_test_v2",
+  "historic_locked_test_used": false,
+  "macro_aupr": 0.8794312543043615,
+  "macro_f1": 0.7735932012613107,
+  "per_label": {
+    "FMB": {
+      "aupr": 0.8719731795036043,
+      "f1": 0.798355490663183,
+      "negative_fpr": 0.22879032258064516,
+      "weak_count": 2927,
+      "weak_recall": 0.6146224803553126
+    },
+    "ISRJ": {
+      "aupr": 0.8817279425310753,
+      "f1": 0.757078867381219,
+      "negative_fpr": 0.22088709677419355,
+      "weak_count": 2881,
+      "weak_recall": 0.3307879208608122
+    },
+    "MFT": {
+      "aupr": 0.889039320540015,
+      "f1": 0.7823200841900753,
+      "negative_fpr": 0.18080645161290324,
+      "weak_count": 2950,
+      "weak_recall": 0.2803389830508475
+    },
+    "SinFM": {
+      "aupr": 0.9054969786533198,
+      "f1": 0.8053556350769975,
+      "negative_fpr": 0.16580645161290322,
+      "weak_count": 2822,
+      "weak_recall": 0.36888731396172925
+    },
+    "VFT": {
+      "aupr": 0.8489188502937931,
+      "f1": 0.7248559289950784,
+      "negative_fpr": 0.19008064516129033,
+      "weak_count": 2899,
+      "weak_recall": 0.2721628147637116
+    }
+  },
+  "per_label_target_strong_recall": {
+    "ISRJ": 0.858151023288638,
+    "MFT": 0.8971573604060914,
+    "VFT": 0.7905262094737905
+  },
+  "per_label_target_weak_auroc": {
+    "ISRJ": 0.5839339918934957,
+    "MFT": 0.6177962137780207,
+    "VFT": 0.575673730652394
+  },
+  "residual_abs_max": 0.4999973475933075,
+  "residual_abs_mean": 0.08636660873889923,
+  "saw_absent_macro_f1": 0.8253065337703592,
+  "saw_present_macro_f1": 0.7270323688717876,
+  "seed": 2039,
+  "target_negative_fpr": 0.19725806451612904,
+  "target_strong_recall": 0.8486115310561733,
+  "target_weak_auroc": 0.5924679787746369,
+  "target_weak_recall": 0.29442990622512377,
+  "test_v2_used": true,
+  "thresholds": [
+    0.52,
+    0.59,
+    0.61,
+    0.48,
+    0.37
+  ],
+  "variant": "E1_VTSE_Bounded"
+}

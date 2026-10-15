@@ -1,0 +1,21 @@
+{
+  "experiment": "P3o-T deployable MFT-support conditional ISRJ residual",
+  "status": "frozen_before_data_generation_and_development_prediction",
+  "preregister": "configs/p3ot_mft_conditional_residual_preregister_20260803.json",
+  "preregister_sha256": "18b7c2b084855a21fe5af5bce1be51ad2a562a5a52c8f5afd39d09950eb1332b",
+  "implementation": "cj0724/p3ot_mft_conditional_residual.py",
+  "implementation_sha256": "c1d9f43c0527a0386be6873207917d682d9def78a0789bb1e88a0271eaf0844f",
+  "generator": "matlab/generate_p3ot_mft_conditional_residual_level.m",
+  "generator_sha256": "ec7e01e27db04732e399ad71e48f8218147a26584141389c33aad7751df8095c",
+  "support_dependency": "cj0724/p3c_mft_sparse_deconvolution.py",
+  "support_dependency_sha256": "ed306490604bb2aeb572a5fc57de1627f30bce7b44a76059809955f40e4e3556",
+  "roles": {"train": 1960000000, "selection": 1970000000, "development": 1980000000, "reserved_confirmation": [1990000000, 2000000000]},
+  "base_model_seeds": [2041, 2042, 2043],
+  "residual_model_seeds": [2401, 2402, 2403],
+  "conditions": ["T0_base", "T1_zero_side_residual", "T2_support_conditional_residual", "T3_matched_noninformative_control"],
+  "bootstrap_resamples": 2000,
+  "forbidden_after_first_development_prediction": ["implementation", "generator", "support frontend", "roles", "sample count", "conditions", "base checkpoints", "threshold procedures", "optimizer", "loss", "bootstrap procedure", "gates"],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

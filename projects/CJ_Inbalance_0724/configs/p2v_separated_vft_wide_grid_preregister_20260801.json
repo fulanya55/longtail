@@ -1,0 +1,49 @@
+{
+  "experiment": "P2v separated wide-grid VFT Doppler development",
+  "research_question": "Can the frozen swept-component separator suppress compound-interference ambiguity peaks sufficiently for signed wide-grid VFT Doppler estimation?",
+  "evidence_role": "fresh_development_only",
+  "single_mechanism_change": "Apply the already-frozen seed-matched unet_wave separator before the P2u wide signed delay-Doppler search.",
+  "data": {
+    "identity_seed": 3600000000,
+    "generator": "matlab/generate_p2u_vft_doppler_ood_data.m",
+    "output_prefix": "p2v_separated_vft_ood_seed3600000000",
+    "powers_db": [25, 35, 50],
+    "regimes_hz": {
+      "ID_control": [1000, 7000],
+      "near_low": [100, 1000],
+      "near_high": [7000, 7400],
+      "far_negative": [-10000, -1000],
+      "far_negative_high": [-30000, -10000]
+    }
+  },
+  "frozen_models": {
+    "separator": "outputs/conditional_unet_separator_full_20260725/unet_wave/seed_{2041,2042,2043}/best.pt",
+    "separator_training": "unchanged",
+    "classifier_and_routes": "not executed or modified in this physical sufficiency screen"
+  },
+  "variants": {
+    "R0_raw_frozen": "raw IQ, 1-7 kHz grid, 100 Hz step",
+    "R1_raw_wide": "raw IQ, -30 to 10 kHz grid, 250 Hz step",
+    "R2_separated_wide": "frozen separator output, -30 to 10 kHz grid, 250 Hz step",
+    "R3_separated_wrong_reference": "R2 with chirp rate multiplied by 0.8",
+    "R4_separated_no_delay": "R2 with delay fixed to zero"
+  },
+  "promotion_gates": {
+    "R2_ID_mean_mae_ratio_vs_R0_at_most": 1.05,
+    "R2_ID_mean_pearson_delta_vs_R0_at_least": -0.02,
+    "R2_each_OOD_mean_mae_reduction_vs_constant_at_least": 0.10,
+    "R2_each_OOD_mean_pearson_at_least": 0.30,
+    "R2_each_OOD_mean_mae_reduction_vs_R1_at_least": 0.10,
+    "R2_each_OOD_three_of_three_separator_seeds_improve_mae_vs_R1": true,
+    "R2_compound_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "R2_compound_each_regime_pearson_at_least": 0.30,
+    "R2_mean_mae_beats_R3_and_R4": true,
+    "identity_overlap_with_all_prior_roles": 0
+  },
+  "stop_rule": "If P2v fails, do not tune the separator or grid on seed 3600000000; narrow VFT parameter claims to the frozen 1-7 kHz support and proceed to ISRJ sample-width OOD.",
+  "future_confirmation": {
+    "allowed_only_after_pass": true,
+    "identity_seeds": [3700000000, 3800000000]
+  },
+  "locked_test_used": false
+}

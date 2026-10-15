@@ -1,0 +1,16 @@
+{
+  "experiment": "P8b axis-stratified mixed-long-tail BCE development",
+  "preregister": "configs/p8b_axis_stratified_longtail_preregister_20260802.json",
+  "preregister_sha256": "cbd95ab7a13f2a937a6532a5aa9d18fdcfd8ac90f45313c190bd19afbba6a4c1",
+  "runner": "cj0724/p8b_axis_stratified_longtail.py",
+  "runner_sha256": "eecc96c52ca2c69e80ef42093b6109ac626f709166b1958e74d0e67aff29553c",
+  "data_generator": "matlab/generate_p8b_axis_stratified_longtail_data.m",
+  "data_generator_sha256": "b523fdd167acc20e28d2f38ef6b255187534b5a45bd86bb6dd7589a6b6b6a1d9",
+  "unit_test": "tests/test_p8b_axis_stratified_longtail.py",
+  "unit_test_sha256": "7195c1ba83759a04f206a3dc4781149873ce4710129da1ac991213bf38b04b5b",
+  "frozen_before_data_generation": true,
+  "frozen_method": "C0 and C1 use the same EfficientNet-B1, BCE, 64-example batches, 38 steps per epoch and 1140 optimizer updates. C1 changes only deterministic batch membership under the fixed 16/4/16/28 quotas.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

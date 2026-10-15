@@ -1,0 +1,103 @@
+{
+  "stage": "R4",
+  "status": "verified_preflight_only",
+  "active_train_file": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\closedset_6class_train.mat",
+  "ablation_count": 10,
+  "model_path_smoke": {
+    "B1": {
+      "model": "legacy_mlcnn_global",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    },
+    "B2": {
+      "model": "legacy_mlcnn_class_conditioned",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    },
+    "B3": {
+      "model": "legacy_mlcnn_class_conditioned_detached",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    },
+    "B4": {
+      "model": "legacy_mlcnn_class_conditioned",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    },
+    "R2_spectral_film": {
+      "model": "mlcnn_iq_grouped_spectral_film_task_routed",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    },
+    "R2_visibility_safe": {
+      "model": "mlcnn_iq_grouped_task_routed_saw_safe",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    },
+    "R2_uniform": {
+      "model": "mlcnn_iq_grouped_task_routed",
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true
+    }
+  },
+  "test_mat_opened": false,
+  "locked_test_used": false,
+  "performance_claim": "not_validated",
+  "next": "run each ablation only after complete R1 aggregation and with unchanged invariants"
+}

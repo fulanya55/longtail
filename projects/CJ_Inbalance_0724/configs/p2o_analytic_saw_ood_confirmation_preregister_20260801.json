@@ -1,0 +1,55 @@
+{
+  "experiment_id": "P2o-frozen-analytic-SawFM-period-OOD-confirmation",
+  "registration_date": "2026-08-01",
+  "research_question": "Does the frozen P2n FFT-ACF SawFM-period attachment retain its system-level gain on two unseen identity seeds across ID, near-OOD and far-OOD period ranges?",
+  "frozen_method": {
+    "method_freeze": "outputs/p2n_analytic_saw_full_system_20260801/method_freeze.json",
+    "model_or_threshold_refit_allowed": false,
+    "analytic_rule_change_allowed": false,
+    "separator_or_affine_change_allowed": false
+  },
+  "confirmation_data": {
+    "identity_seeds": [2800000000, 2900000000],
+    "samples_per_pattern": 10,
+    "powers_db": [25, 35, 50],
+    "regimes": {
+      "ID_control": [25e-6, 75e-6],
+      "near_low": [10e-6, 20e-6],
+      "near_high": [80e-6, 100e-6],
+      "far_low": [5e-6, 10e-6],
+      "far_high": [100e-6, 160e-6]
+    },
+    "paired_across_regimes_within_seed": true,
+    "must_be_identity_disjoint_from_all_prior_roles": true
+  },
+  "comparators": [
+    "S0_safe_route",
+    "S2_P2k_learned",
+    "S3_P2n_analytic"
+  ],
+  "confirmation_gates": {
+    "all_30_model_seed_regime_runs_improve_vs_P2k": true,
+    "each_data_seed_and_regime_mean_improvement_vs_P2k_min": 0.002,
+    "each_data_seed_and_regime_mean_miss_delta_vs_P2k_max": 0.0,
+    "each_data_seed_and_regime_mean_worst_combo_delta_vs_P2k_max": 0.0,
+    "each_regime_combined_identity_bootstrap_delta_ci95_high_max": 0.0,
+    "classification_arrays_unchanged": true,
+    "other_11_parameter_outputs_unchanged": true
+  },
+  "statistics": {
+    "identity_grouped_bootstrap_replicates": 1000,
+    "model_seeds": [2041, 2042, 2043],
+    "report_per_data_seed_per_regime_per_power": true
+  },
+  "evidence_boundary": {
+    "covers": "SawFM sweep-period marginal OOD only",
+    "does_not_cover": [
+      "VFT or ISRJ parameter OOD",
+      "new cross-parameter correlation structures",
+      "runtime cost of analytic calls on false-positive candidates",
+      "locked test"
+    ],
+    "confirmation_fit_or_selection": false,
+    "locked_test_used": false
+  }
+}

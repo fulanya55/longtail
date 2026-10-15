@@ -1,0 +1,62 @@
+{
+  "experiment": "P1c hierarchical risk-benefit router with per-class Neyman-Pearson budget",
+  "status": "preregistered_before_execution",
+  "date": "2026-07-27",
+  "inherits": "p1b_three_state_negative_protection_preregister_20260726.json",
+  "hypothesis": "Separating false-positive risk from expert benefit and selecting per-class coverage directly under an FPR-increment budget recovers useful expert coverage without losing P1b specificity.",
+  "frozen": [
+    "six-class MLCNN task-routed best_parameter checkpoints",
+    "unet_wave checkpoints",
+    "MFT/VFT/ISRJ frozen experts",
+    "role hashes and calibration identity split",
+    "main non-target outputs"
+  ],
+  "models": {
+    "risk_layer": "per-target HistGradientBoostingClassifier(max_iter=150, learning_rate=0.05, max_leaf_nodes=7, l2=1.0)",
+    "benefit_layer": "same fixed HGB family",
+    "power_feature": false,
+    "risk_target": "target-negative, expert probability exceeds main probability, and expert probability crosses the frozen target threshold",
+    "benefit_target": "expert binary log loss plus 0.05 is lower than main binary log loss",
+    "matched_risk_weight": 4.0,
+    "other_positive_risk_weight": 2.0
+  },
+  "routing_score": "logit(P_benefit) - logit(P_false_positive_risk)",
+  "selection": {
+    "role": "calibration safety identities only",
+    "per_target": true,
+    "alpha_grid": [0.25, 0.5, 0.75],
+    "coverage_grid": [0.01, 0.02, 0.05, 0.10, 0.15, 0.20],
+    "score_cutoff": "safety quantile corresponding to the candidate coverage",
+    "objective": "maximize mean target recall gain at 10 and 50 dB",
+    "constraints": {
+      "target_mean_fpr_delta_max": 0.005,
+      "target_mean_aupr_delta_min": -0.005
+    },
+    "fallback": "per-target alpha=0 and coverage=0 if no candidate is safe"
+  },
+  "track_a_fixed_threshold": {
+    "promotion": {
+      "mean_extreme_three_class_recall_gain_min": 0.10,
+      "same_direction_seeds": "3/3",
+      "maximum_target_fpr_delta": 0.005,
+      "mean_six_class_macro_aupr_delta_min": -0.005
+    }
+  },
+  "track_b_recalibrated": {
+    "threshold_source": "calibration safety identities only, separately for base and selected final probabilities",
+    "absolute_fpr_cap": 0.10,
+    "promotion": {
+      "mean_extreme_three_class_recall_gain_min": 0.10,
+      "same_direction_seeds": "3/3",
+      "maximum_target_mean_fpr": 0.10,
+      "mean_six_class_macro_aupr_delta_min": -0.005
+    }
+  },
+  "overall_gate": "both tracks must pass before P2",
+  "roles": {
+    "fit": "first identity-disjoint calibration half, all nine paired power views",
+    "safety": "second identity-disjoint calibration half, all nine paired power views",
+    "evaluation": "tune identities, all nine paired power views",
+    "forbidden": ["confirm", "locked test"]
+  }
+}

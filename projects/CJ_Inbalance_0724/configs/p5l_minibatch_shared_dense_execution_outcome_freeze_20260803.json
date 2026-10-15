@@ -1,0 +1,31 @@
+{
+  "experiment": "P5l fixed-minibatch CUDA-compute-guarded shared frozen-forward and dense bounded-head execution",
+  "status": "execution_frozen_before_any_complete_model-comparison_result",
+  "reason": "The pre-registered guard detected a genuine external CUDA Python workload during the first reference timing loop and stopped the run. Partial timings cannot support a cost claim.",
+  "execution_record": {
+    "p5l_process_id": 49504,
+    "exception": "exclusive-GPU timing guard rejected external Python CUDA process run_route_a_h1b_vft_staggered_pri_all_backgrounds.py (PID 71888)",
+    "result_json_written": false,
+    "model_comparison_completed": false,
+    "partial_timing_usable": false,
+    "external_python_gpu_compute_pid_observed": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "consumed_data": {
+    "development_generator_seeds": [4180000000, 4190000000, 4210000000],
+    "all_three_pools_generated_train_only": true,
+    "rechunked_and_audited": true,
+    "reuse_for_rerun_selection_confirmation_or_test": false
+  },
+  "allowed_claims": [
+    "P5l confirms that the guard terminates timing under a real external CUDA Python workload.",
+    "P5l has no equivalence, latency, or model-performance result."
+  ],
+  "forbidden_actions": [
+    "Restart P5l on 4180M/4190M/4210M identities.",
+    "Generate or use P5l 4220M/4230M confirmation identities.",
+    "Use partial timings as acceleration evidence."
+  ]
+}

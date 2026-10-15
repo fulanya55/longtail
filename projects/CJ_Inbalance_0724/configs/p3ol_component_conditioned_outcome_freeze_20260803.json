@@ -1,0 +1,17 @@
+{
+  "experiment": "P3o-L durable-D-drive posterior-component-conditioned bounded residual",
+  "status": "frozen development gate failure",
+  "output": "outputs/p3ol_durable_d_drive_development_20260802",
+  "identity_seeds_consumed": [1530000000, 1540000000],
+  "reserved_confirmation_not_generated": [1550000000, 1560000000],
+  "model_seeds_completed": [2101, 2102, 2103],
+  "identity_audit": {"train_unique": 2079, "development_unique": 2079, "cross_role_overlap": 0, "prior_files_checked": 363, "maximum_prior_overlap": 0, "power_alignment_verified": true, "label_contract_verified": true},
+  "evidence": {"generator": "D-drive raw generation: all 15 train and 15 development views committed with no partial files", "full_pytest_before_generation": "271 passed, 9 warnings", "successful_seed_receipts": ["outputs/p3ol_durable_d_drive_development_20260802/seed_2101/summary.json", "outputs/p3ol_durable_d_drive_development_20260802/seed_2102/summary.json", "outputs/p3ol_durable_d_drive_development_20260802/seed_2103/summary.json"], "merged_receipt": "outputs/p3ol_durable_d_drive_development_20260802/summary.json", "classification_state_and_logits_bitwise": true, "test_generated": false, "test_opened": false, "locked_test_used": false},
+  "failed_gates": {"all_seeds_F_base_safe_and_retrieval_gates": false, "all_seeds_L1_oracle_and_predicted_gate_nmae_ratio_vs_L0_at_most_0p98": false, "all_seeds_L1_worst_combo_predicted_gate_nmae_ratio_vs_L0_at_most_0p98": false},
+  "per_seed_comparisons": [
+    {"seed": 2101, "l1_oracle_ratio_vs_l0": 0.9983597089571993, "l1_predicted_ratio_vs_l0": 0.9982610252472912, "l1_miss_delta_vs_l0": -0.0007113814353942871, "l1_worst_ratio_vs_l0": 0.996458108841865, "l1_worst_ratio_vs_base": 0.9442173561512434},
+    {"seed": 2102, "l1_oracle_ratio_vs_l0": 0.9982317304964569, "l1_predicted_ratio_vs_l0": 0.9981223366406, "l1_miss_delta_vs_l0": -0.0007461905479431152, "l1_worst_ratio_vs_l0": 0.9967379843786559, "l1_worst_ratio_vs_base": 0.9402966350722181},
+    {"seed": 2103, "l1_oracle_ratio_vs_l0": 0.9984160502069089, "l1_predicted_ratio_vs_l0": 0.9983151301982549, "l1_miss_delta_vs_l0": -0.000696033239364624, "l1_worst_ratio_vs_l0": 0.997039970576741, "l1_worst_ratio_vs_base": 0.9542543000412935}
+  ],
+  "decision": "The posterior-component table produces small, consistent changes but does not meet the pre-registered magnitude gates and cannot be promoted. Do not rerun, tune, recalibrate, select checkpoints, or generate 1550M/1560M using this mechanism. Future work must use fresh identities and a materially different, falsifiable information source rather than a component-table width/weight sweep."
+}

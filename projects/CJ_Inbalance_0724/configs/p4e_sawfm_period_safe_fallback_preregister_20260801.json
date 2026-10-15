@@ -1,0 +1,62 @@
+{
+  "experiment": "P4e detached SawFM-period safe fallback",
+  "research_question": "Can a bounded MLCNN-feature fallback remove the repeatedly observed SawFM sweep-period negative transfer while retaining the IQ-Grouped route's gains on the other 11 parameters?",
+  "evidence_role": "fresh_identity_single_mechanism_development",
+  "mechanism": {
+    "baseline": "mlcnn_iq_grouped_task_routed",
+    "candidate": "mlcnn_iq_grouped_task_routed_saw_safe",
+    "single_change": "replace only normalized SawFM sweep-period output with a 32-unit scalar head on detached MLCNN classification features",
+    "protected_outputs": "classification logits and the other 11 parameter outputs keep the P4c routing structure",
+    "gradient_contract": "SawFM fallback loss updates only the small fallback head; it cannot update the MLCNN classification backbone",
+    "physics_expert_attachment": "none"
+  },
+  "data": {
+    "generator_seed": 690000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "split_seed": 20260801,
+    "role_counts_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5},
+    "required_overlap_with_root_p4b_p4c_p4d": 0,
+    "test_generation": "train split only"
+  },
+  "training": {
+    "model_seeds": [4041, 4042, 4043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter"
+  },
+  "validity_gates": {
+    "all_12_targets_confirm_finite_count_positive": true,
+    "all_12_targets_confirm_range_positive": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true,
+    "classification_backbone_has_no_parameter_gradient_from_safe_head": true
+  },
+  "promotion_gates": {
+    "each_seed_sawfm_period_absolute_nmae_improvement_vs_route_at_least": 0.015,
+    "mean_sawfm_period_absolute_nmae_improvement_vs_route_at_least": 0.025,
+    "each_seed_sawfm_period_pearson_not_lower_than_route": true,
+    "each_seed_full12_macro_nmae_worsening_at_most": 0.003,
+    "mean_full12_macro_nmae_not_worse": true,
+    "each_seed_macro_aupr_drop_at_most": 0.003,
+    "each_seed_subset_accuracy_drop_at_most": 0.03,
+    "no_other_target_worse_in_3_of_3_seeds_by_more_than_absolute_nmae": 0.02,
+    "parameter_count_increase_at_most_fraction": 0.001,
+    "measured_inference_time_increase_at_most_fraction": 0.02
+  },
+  "stop_rule": "If the SawFM target gate fails, stop the learned fallback line. If another target or classification gate fails, do not tune on seed690000000; freeze it for attribution and redesign only on new identities.",
+  "next_if_pass": "Freeze the fallback and run two new generator seeds without training or recalibration, followed by strict MAC matching.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

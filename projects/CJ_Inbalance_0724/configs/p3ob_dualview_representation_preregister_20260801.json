@@ -1,0 +1,74 @@
+{
+  "experiment": "P3o-B low-power delay-peak and local time-frequency dual-view representation",
+  "evidence_role": "fresh_identity_safe_formal_development",
+  "research_question": "After P3o-A showed that coverage, joint checkpoint selection, and CP-safe calibration cannot recover low-power recall, can a physically shaped delay-peak plus local STFT/instantaneous-frequency representation improve safety-constrained ISRJ detection without degrading joint parameter sensing?",
+  "hypothesis": "The dual view with exclusive MFT-only versus ISRJ-only prototype contrast provides information absent from the raw time convolution and either view alone. It must improve the full dual-view no-contrast control on fresh identities; co-occurring MFT and ISRJ examples are never treated as mutually exclusive.",
+  "identity_contract": {
+    "train_pool_seed": 910000000,
+    "formal_development_seed": 920000000,
+    "reserved_confirmation_seeds_if_and_only_if_development_passes": [930000000, 940000000],
+    "forbidden_prior_p3o_a_seeds": [830000000, 860000000],
+    "p3o_a_reserved_but_unavailable": [870000000, 880000000],
+    "identity_key": "receiver_noise_seed",
+    "same_identity_all_regime_power_views_grouped": true,
+    "roles_per_combination": {"fit": 27, "early": 2, "calibration": 2, "selection": 2},
+    "identities_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "models": {
+    "T_time": "equal-width raw I/Q temporal convolution baseline",
+    "D_delay": "multi-scale normalized complex-autocorrelation delay sequence only",
+    "F_time_frequency": "local complex STFT magnitude plus frame-to-frame instantaneous-frequency proxy only",
+    "DF_no_contrast": "delay and time-frequency encoders fused; BCE plus masked parameter regression only",
+    "DF_exclusive_contrast": "same dual view plus prototype cross-entropy only for MFT=1,ISRJ=0 and MFT=0,ISRJ=1 samples"
+  },
+  "fixed_representation": {
+    "delay": "complex autocorrelation magnitude lags 1..1024, plus 7- and 31-sample smoothed sequences",
+    "time_frequency": "STFT n_fft=128, hop_length=64, Hann window; channels log magnitude and adjacent-frame phase increment divided by pi",
+    "embedding_dimension": 64,
+    "single_view_width": 16,
+    "dual_branch_width": 8,
+    "forbidden": ["global FFT classifier", "label leakage", "oracle component separation", "softmax mutual exclusion", "router", "distillation", "post-development threshold tuning"]
+  },
+  "training": {
+    "classification_loss": "BCEWithLogitsLoss",
+    "parameter_loss": "0.1 * masked SmoothL1 over label=1 AND parameter_mask=1 AND finite(target)",
+    "contrast_loss": "0.05 * prototype cross entropy on exclusive MFT-only/ISRJ-only samples; zero if an exclusive group is absent from a batch",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 2,
+    "scheduler": "cosine",
+    "epochs": 20,
+    "batch_size": 63,
+    "gradient_clip_norm": 5.0,
+    "model_seeds": [2041, 2042, 2043]
+  },
+  "selection_and_safety": {
+    "checkpoint": "C_joint: maximum early macro-AUPR among epochs with early oracle parameter macro-NMAE <= 1.01 times the early minimum",
+    "threshold": "per-class F1 on calibration; replace only ISRJ threshold with the lowest score satisfying a 95% one-sided Clopper-Pearson upper FPR <=0.10 in every regime x power calibration cell",
+    "development_selection_forbidden": true
+  },
+  "promotion_gates": {
+    "candidate": "DF_exclusive_contrast/C_joint/T_safe",
+    "identity_overlap_zero": true,
+    "all_seeds_maximum_cell_fpr_at_most": 0.10,
+    "all_seeds_overall_isrj_recall_at_least": 0.85,
+    "all_seeds_25db_isrj_recall_at_least": 0.78,
+    "all_seeds_candidate_recall_delta_vs_DF_no_contrast_nonnegative": true,
+    "all_seeds_candidate_25db_aupr_delta_vs_DF_no_contrast_at_least": 0.02,
+    "all_seeds_candidate_25db_aupr_at_least_each_single_view": true,
+    "all_seeds_oracle_and_predicted_gate_parameter_nmae_ratio_vs_DF_no_contrast_at_most": 1.01,
+    "all_seeds_miss_penalty_and_worst_combination_nonworse_vs_DF_no_contrast": true,
+    "all_seeds_safe_calibration_feasible": true,
+    "full_pytest_passes": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "failure_rule": "If the frozen candidate fails, do not tune contrast weight, width, STFT settings, ACF lags, threshold, checkpoint, or seed920000000. Report whether the failure is representation insufficiency, safety-calibration conflict, or contrast-specific harm; only a new hypothesis on fresh identities may follow."
+}

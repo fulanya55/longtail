@@ -1,0 +1,35 @@
+{
+  "experiment": "P2r learned-physics disagreement-gated SawFM period development",
+  "research_question": "Can a deployable disagreement gate correct only catastrophic small-lag analytic errors without introducing large-lag errors in low-period samples?",
+  "evidence_role": "iterative_development_only",
+  "frozen_rule": {
+    "use_strongest_peak_if_all": [
+      "learned separated period >= 50 microseconds",
+      "legacy analytic period < 0.5 * learned separated period",
+      "strongest autocorrelation lag >= 800 samples"
+    ],
+    "otherwise": "retain legacy P2m analytic estimate"
+  },
+  "promotion_requirements": {
+    "all_15_separated_runs_improve_mae_over_learned": true,
+    "each_regime_mean_separated_pearson_at_least": {
+      "ID_control": 0.60,
+      "near_low": 0.55,
+      "near_high": 0.30,
+      "far_low": 0.85,
+      "far_high": 0.30
+    },
+    "each_regime_mean_separated_mae_no_more_than_legacy_factor": 1.05,
+    "each_regime_mean_exact_pearson_at_least": 0.60,
+    "each_regime_mean_exact_mae_us_at_most": {
+      "ID_control": 2.0,
+      "near_low": 1.0,
+      "near_high": 2.0,
+      "far_low": 0.3,
+      "far_high": 1.0
+    },
+    "three_of_three_model_seeds_improve_near_high_and_far_high_pearson_vs_legacy": true
+  },
+  "next_gate": "If passed, freeze and validate without tuning on fresh identity seed 3000000000, then confirm on two further identity seeds. Seeds 2800000000 and 2900000000 are never reused for selection.",
+  "locked_test_used": false
+}

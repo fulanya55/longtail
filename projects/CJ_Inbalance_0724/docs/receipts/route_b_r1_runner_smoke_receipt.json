@@ -1,0 +1,13 @@
+{
+  "stage": "R1_runner_smoke",
+  "status": "verified_runner_smoke_only",
+  "run_dir": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\route_b_r1_runner_smoke\\r1_20260826_121902",
+  "variants": ["B0", "B4"],
+  "seeds": [2041, 2042, 2043, 2044, 2045],
+  "epochs": 1,
+  "train_per_combination": 2,
+  "val_per_combination": 1,
+  "device": "cpu",
+  "locked_test_used": false,
+  "performance_claim": "not_validated"
+}

@@ -1,0 +1,77 @@
+{
+  "experiment_id": "P2d-SawFM-bounded-residual-benefit-router-development-v4",
+  "evidence_role": "fresh development-only mechanism screen",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "antecedent": {
+    "P2c_result": "unconditional residual isolation improved all three seeds but failed safety and 3/3 magnitude gates",
+    "oracle_high_power_reduction_vs_raw": {"2041": 0.1513, "2042": 0.2893, "2043": 0.2704},
+    "residual_benefit_prevalence": "0.548-0.583 per sample-power row",
+    "inference": "there is sufficient raw-versus-residual routing headroom, but unconditional replacement is unsafe"
+  },
+  "question": "Can a small bounded router identify when frozen residual isolation is beneficial without using labels at inference?",
+  "data_protocol": {
+    "generator_seed": 1500000000,
+    "generator_entrypoint": "matlab/generate_p2d_sawfm_bounded_router_data.m",
+    "powers_db": [35, 40, 45, 50],
+    "split_generated": "train only",
+    "identities_per_power": 2520,
+    "samples_per_combination": 40,
+    "roles_per_combination": {"fit": 20, "selection": 10, "calibration": 10},
+    "pairing_key": "receiver_noise_seed",
+    "required_overlap_with_prior_identities": 0,
+    "test_generated": false
+  },
+  "frozen_signal_paths": {
+    "separator": "unet_wave seeds 2041-2043",
+    "period_expert": "SawFM period specialist seeds 2041-2043",
+    "residual_alpha": {"2041": 0.5, "2042": 1.0, "2043": 1.0},
+    "alpha_source": "P2c selection role; frozen before P2d data generation"
+  },
+  "router": {
+    "model": "HistGradientBoostingRegressor",
+    "max_iter": 150,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 1.0,
+    "target_fit_only": "absolute_error(raw)-absolute_error(residual), positive means residual is beneficial",
+    "inference_features": [
+      "separator MFT/VFT/ISRJ probabilities",
+      "estimated-component energy ratio",
+      "residual energy ratio",
+      "raw-estimate cosine similarity",
+      "absolute raw-residual period prediction difference",
+      "raw period prediction",
+      "residual period prediction"
+    ],
+    "threshold_selection_role": "selection only",
+    "threshold_candidates": "no-route plus unique predicted-gain quantiles",
+    "selection_constraints": {
+      "coverage_max": 0.80,
+      "no_variable_competitor_mae_degradation_floor": -0.01
+    },
+    "selection_objective": "maximum overall MAE reduction versus raw, then lower coverage"
+  },
+  "model_seeds": [2041, 2042, 2043],
+  "promotion_gates": {
+    "each_seed_overall_reduction_vs_raw_min": 0.05,
+    "each_seed_variable_competitor_reduction_vs_raw_min": 0.05,
+    "each_seed_no_variable_competitor_degradation_floor": -0.01,
+    "each_seed_coverage_range": [0.05, 0.80],
+    "each_seed_predicted_actual_gain_spearman_min": 0.10,
+    "same_direction": "3/3 seeds"
+  },
+  "interpretation_rules": {
+    "pass": "advance frozen separator plus bounded router to a new two-seed confirmation and end-to-end 12-parameter audit",
+    "fail_separability": "available separator confidence features do not expose residual benefit; stop learned routing",
+    "fail_safety_only": "add explicit no-variable risk supervision on another fresh development seed, without changing separator",
+    "fail_gain": "stop this separator route and build dedicated SawFM component supervision or reset/ridge extraction",
+    "no_gate_relaxation": true
+  },
+  "prohibited": [
+    "reading P2c calibration for P2d fitting or threshold selection",
+    "generating a P2d test split",
+    "fine-tuning separator or period expert",
+    "using true labels or target errors at inference"
+  ],
+  "locked_test_used": false
+}

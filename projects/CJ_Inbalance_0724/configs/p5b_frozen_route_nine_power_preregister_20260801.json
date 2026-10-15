@@ -1,0 +1,109 @@
+{
+  "experiment": "P5b frozen heterogeneous route nine-power and weak-component boundary",
+  "research_question": "Does the frozen full-width MLCNN-classification plus IQ-Grouped-parameter route retain its parameter benefit across paired 10-50 dB power views without damaging classification, and where do target-specific physical-sufficiency boundaries appear?",
+  "evidence_role": "fresh_identity_frozen_model_nine_power_external_development_boundary",
+  "frozen_method": {
+    "source_run": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+    "models": [
+      "legacy_mlcnn_global",
+      "mlcnn_iq_grouped_task_routed"
+    ],
+    "model_seeds": [3041, 3042, 3043],
+    "checkpoint_objective": "parameter",
+    "normalizer": "source-run frozen train-role normalizer",
+    "thresholds": "source-run frozen per-model calibration thresholds",
+    "training_on_p5b_data": false,
+    "normalizer_refit": false,
+    "threshold_recalibration": false,
+    "model_selection_on_p5b_data": false
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p5b_frozen_route_nine_power_data.m",
+    "raw_root": "generated_data/p5b_frozen_route_nine_power_seed770000000",
+    "rechunked_root": "generated_data/p5b_frozen_route_nine_power_seed770000000_rechunked",
+    "base_seed": 770000000,
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "combinations": 63,
+    "identities_per_combination": 40,
+    "identities_per_power": 2520,
+    "paired_identity_key": "receiver_noise_seed",
+    "generated_split": "train only",
+    "required_overlap_with_root_and_all_p4b_through_p5a2_identity_pools": 0
+  },
+  "pairing_validity": {
+    "identity_order_identical_across_nine_powers": true,
+    "labels_identical_across_nine_powers": true,
+    "all_63_combinations_at_every_power": true,
+    "non_jnr_active_parameters_identical_across_power_views": true,
+    "jnr_targets_follow_the_generator_power_contract": true,
+    "same_identity_nine_views_form_one_statistical_cluster": true
+  },
+  "weak_component_contract": {
+    "power_below_30_db": "MFT, VFT and ISRJ positives are weak components when any FMB, SawFM or SinFM component is present",
+    "power_equal_30_db": "equal-power reference; no weak subset",
+    "power_above_30_db": "FMB, SawFM and SinFM positives are weak components when any MFT, VFT or ISRJ component is present"
+  },
+  "reported_metrics": {
+    "classification": [
+      "Macro-AUPR",
+      "Macro-F1",
+      "Micro-F1",
+      "Subset accuracy",
+      "per-class recall",
+      "per-class precision",
+      "per-class FPR"
+    ],
+    "parameters": [
+      "full-12 oracle macro-NMAE",
+      "full-12 macro Pearson",
+      "per-target NMAE",
+      "per-target Pearson",
+      "predicted-gate parameter coverage",
+      "predicted-gate parameter NMAE"
+    ],
+    "power_and_weak": [
+      "per-power paired route-minus-global deltas",
+      "worst power",
+      "same-identity across-power variance",
+      "weak-component recall",
+      "weak-component oracle parameter NMAE",
+      "weak predicted-gate coverage and NMAE"
+    ]
+  },
+  "robust_generalization_gates": {
+    "each_model_seed_mean_nine_power_relative_macro_nmae_reduction_at_least": 0.03,
+    "each_model_seed_nonnegative_nmae_reduction_power_levels_at_least": 7,
+    "each_power_mean_relative_macro_nmae_reduction_at_least": -0.01,
+    "each_model_seed_mean_nine_power_parameter_macro_pearson_delta_at_least": 0.0,
+    "each_model_seed_mean_nine_power_macro_aupr_delta_at_least": -0.005,
+    "each_model_seed_worst_power_subset_accuracy_delta_at_least": -0.03,
+    "no_target_worse_at_any_power_in_all_three_model_seeds_by_more_than_absolute_nmae": 0.03,
+    "identity_clustered_bootstrap_mean_nmae_gain_ci95_low_greater_than": 0.0,
+    "sawfm_sweep_period_must_be_reported_even_if_gate_fails": true
+  },
+  "physical_sufficiency_trigger": {
+    "trigger_if": [
+      "a target violates the three-seed systematic NMAE gate at any power",
+      "weak-component target error rises monotonically as its relative power falls",
+      "classification recall and predicted-gate coverage collapse together"
+    ],
+    "next_test": "frozen-feature or analytic oracle on the failed target and powers using a new role or new identities",
+    "capacity_rule": "if the oracle fails, no deeper learned expert may be constructed"
+  },
+  "stop_rules": [
+    "Do not train, recalibrate or select thresholds on P5b data.",
+    "Do not treat the nine power views as independent samples in statistics.",
+    "If classification recall increases while AUPR, hard-negative separation or FPR worsens, record response amplification and do not promote.",
+    "If any identity overlap or power-pairing validity check fails, invalidate evaluation before model inference.",
+    "Failure defines a generalization boundary and routes to physical-sufficiency screening; it does not authorize model deepening."
+  ],
+  "statistics": {
+    "identity_clustered_bootstrap_replicates": 2000,
+    "bootstrap_seed": 20260801,
+    "model_seeds_are_paired": true,
+    "power_views_are_repeated_measures": true
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

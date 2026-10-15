@@ -1,0 +1,37 @@
+{
+  "experiment": "P5r explicit-baseline relocation-safe fine-grained checkpointed shared frozen-forward execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5r_explicit_baseline_audit_preregister_20260805.json",
+  "preregister_sha256": "c5c934c82bfa468bf21709d4a8110665ebe0d00780ba9458f6bf851746019356",
+  "implementation": {
+    "unchanged_execution_runner": "cj0724/p5q_relocation_safe_checkpoint_execution.py",
+    "unchanged_execution_runner_sha256": "aa1e8b73ac776991e84e2217b40fffe6187e44f137150511a56a7dc20c1143f5",
+    "explicit_baseline_audit": "cj0724/audit_p5r_relocation_safe_data.py",
+    "explicit_baseline_audit_sha256": "ad32d5a8bde24090bca0d33059d6957de78cc75553dbd692172fc9cc25866885",
+    "generator": "matlab/generate_p5r_explicit_baseline_audit_development_data.m",
+    "generator_sha256": "a705abe85c9842fa148795c9f379f5e83749e6291c824b1775fb35617664444c",
+    "integration_test": "tests/test_p5r_explicit_baseline_audit_protocol.py",
+    "integration_test_sha256": "46e66ceb2ea51a4516dbfe452cfda9bfe57cefb475303c31613509d083d55540"
+  },
+  "pre_generation_validation": {
+    "pytest_result": "16 passed in 11.66s",
+    "explicit_baseline": "E:/LJQ_code/干扰数据/复合干扰数据0716/closedset_6class_train.mat",
+    "explicit_baseline_sha256": "2e9afdf1999452b6635038c52457f2b44b28f98aec422d87576e5ad76135d50e",
+    "baseline_negative_test": "A mismatched SHA-256 is rejected before identity reading.",
+    "protocol_relocation_test": "The unchanged P5q runner validates the P5r protocol from an unrelated current working directory.",
+    "matlab_dry_run": "15 train manifests validated in memory; three pools returned.",
+    "p5r_generated_directories_before_freeze": 0,
+    "p5r_generated_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "Only the audit baseline path contract changes from P5q",
+    "P5e candidate and P5q execution/checkpoint/timing code are byte-identical",
+    "The E-drive baseline is explicit and SHA-256 pinned",
+    "Every locally retained generated train MAT remains in the identity-overlap audit",
+    "P5r identities are new and P5p/P5q identities remain quarantined",
+    "No GPU execution occurs unless all three audits are valid"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

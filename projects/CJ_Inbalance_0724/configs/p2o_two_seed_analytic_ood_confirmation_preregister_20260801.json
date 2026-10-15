@@ -1,0 +1,60 @@
+{
+  "experiment_id": "P2o-two-new-identity-seed-analytic-SawFM-OOD-confirmation",
+  "registration_date": "2026-08-01",
+  "frozen_candidate": {
+    "receipt": "outputs/p2n_analytic_saw_full_system_20260801/method_freeze.json",
+    "receipt_sha256": "ab1d5efee7f0a35278a3e9e3b53d68e70d9c40adcd21a676a27195bd6a5f0f10",
+    "method_or_threshold_changes_allowed": false,
+    "model_seed_selection_allowed": false
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p2o_analytic_ood_confirmation_data.m",
+    "base_seeds": [2800000000, 2900000000],
+    "split": "train only",
+    "powers_db": [25, 35, 50],
+    "combinations": 63,
+    "identities_per_combination_per_seed": 10,
+    "identities_per_seed": 630,
+    "regimes_us": {
+      "ID_control": [25, 75],
+      "near_low": [10, 20],
+      "near_high": [80, 100],
+      "far_low": [5, 10],
+      "far_high": [100, 160]
+    },
+    "paired_within_data_seed": true,
+    "cross_data_seed_overlap_required": 0
+  },
+  "confirmation_stages": {
+    "physical": "Run the frozen P2m exact/separated physical controls independently on both data seeds.",
+    "system": "Run the frozen P2a/P2k system records and attach the exact frozen P2n analytic predictions.",
+    "aggregate": "Combine all 30 data-seed by regime by model-seed results without selecting a subset."
+  },
+  "confirmation_gates": {
+    "both_physical_runs_pass_all_P2m_gates": true,
+    "both_system_runs_pass_all_P2n_gates": true,
+    "all_30_full_nmae_improvement_vs_safe_min": 0.05,
+    "all_30_full_nmae_improvement_vs_P2k_positive": true,
+    "each_data_seed_regime_mean_full_improvement_vs_P2k_min": 0.002,
+    "each_data_seed_regime_mean_miss_delta_vs_P2k_max": 0.0,
+    "each_data_seed_regime_mean_worst_combo_delta_vs_P2k_max": 0.0,
+    "each_of_10_identity_bootstrap_full_delta_ci95_high_max": 0.0,
+    "classification_and_other_11_outputs_unchanged": true,
+    "cross_data_seed_identity_overlap": 0,
+    "frozen_artifact_hashes_unchanged": true
+  },
+  "statistics": {
+    "model_seeds": [2041, 2042, 2043],
+    "identity_grouped_bootstrap_replicates_per_data_seed_regime": 500,
+    "report_all_30_runs": true,
+    "report_per_power": true,
+    "report_per_regime": true
+  },
+  "stop_rule": "Any failed confirmation gate stops promotion. Do not modify the FFT-ACF constants, choose model seeds, recalibrate, or reuse these identities for development.",
+  "evidence_boundary": {
+    "confirmation_only": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  }
+}

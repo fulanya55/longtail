@@ -1,0 +1,50 @@
+{
+  "experiment": "P5e five-model-seed replication of the frozen bounded JNR-only attachment",
+  "research_question": "Does the already frozen P5b3 posterior-conditioned analytic attachment retain its MFT/VFT/ISRJ JNR benefit when the P4c source-model stochastic sample is extended from three to five independently trained models, before one final two-new-identity confirmation?",
+  "evidence_role": "fixed-mechanism_evidence_completion_then_fresh_confirmation_no_locked_test",
+  "single_changed_axis": "only the number of independently trained P4c source models changes from 3 to 5; architecture, data role, loss, thresholds, analytic features, head architecture, optimizer, checkpoint objective and attachment cells are fixed",
+  "parents": {
+    "P5b3_result": "outputs/p5b3_bounded_jnr_attachment_20260801/result.json",
+    "P5b3_result_sha256": "f798c4038c3860a73000e61bc91651726eb31a3431c83073e6a746ff4a2bbeb7",
+    "P5b4_result": "outputs/p5b4_bounded_jnr_attachment_confirmation_20260801/result.json",
+    "P5d_stop": "P5d is not reused for selection, training, thresholding, routing or confirmation"
+  },
+  "source_model_replication": {
+    "base_data": "generated_data/p4c_heterogeneous_route_variable_jnr_seed590000000_rechunked/closedset_6class_train.mat",
+    "base_profile": "cos_lr1e4_wd1e4, width24, head256, parameter_head64, dropout0.2, BCE + 0.1 masked SmoothL1, 20 epochs, parameter-NMAE early checkpoint",
+    "existing_source_model_seeds": [3041, 3042, 3043],
+    "new_source_model_seeds": [3044, 3045],
+    "head_training_data": "generated_data/p5b3_bounded_jnr_attachment_seed850000000_rechunked",
+    "new_head_model_seeds": [14044, 14045],
+    "head_profile": "same P5b3 26 analytic features plus frozen six-label posterior, 64-hidden MLP, masked SmoothL1, AdamW lr=0.001 wd=0.0001, max 30 epochs, patience 5",
+    "forbidden": ["architecture change", "loss change", "base weight update after checkpoint selection", "head hyperparameter tuning", "threshold recalibration", "nominal power input", "P5b4/P5c/P5d data access"]
+  },
+  "development_gates_for_new_two_models": {
+    "classification_and_other_parameter_invariance": true,
+    "MFT_and_ISRJ_oracle_gated_nmae_reduction_positive_each_new_model": true,
+    "MFT_and_ISRJ_predicted_gated_nmae_not_worse_each_new_model": true,
+    "MFT_and_ISRJ_bootstrap_ci95_low_greater_than": 0.0,
+    "no_target_power_10_or_30_nmae_worse_than_base_by_more_than": 0.03
+  },
+  "confirmation_after_and_only_after_development_pass": {
+    "new_generator_seeds": [950000000, 960000000],
+    "powers_db": [10, 15, 20, 25, 30],
+    "samples_per_combination": 60,
+    "paired_identity_key": "receiver_noise_seed",
+    "generated_split": "train only",
+    "evaluation": "read-only all-five-model comparison, no training/selection/calibration/threshold adjustment",
+    "must_have_zero_identity_overlap_with": ["root_0716", "P4c", "P5b1", "P5b2", "P5b3", "P5b4_860", "P5b4_870", "P5c_880", "P5d_890", "P5d LSCO"]
+  },
+  "five_model_confirmation_gates": {
+    "classification_and_other_parameter_invariance_each_data_seed_and_model": true,
+    "MFT_and_ISRJ_oracle_gated_nmae_improve_each_data_seed_and_each_of_five_models": true,
+    "MFT_and_ISRJ_predicted_gated_nmae_not_worse_each_data_seed_and_model": true,
+    "MFT_and_ISRJ_identity_clustered_bootstrap_ci95_low_greater_than": 0.0,
+    "no_target_power_10_or_30_nmae_worse_than_base_by_more_than": 0.03,
+    "report": ["five-model mean and standard deviation", "per-power results", "worst-combination result", "runtime and lazy-call cost"]
+  },
+  "stop_rule": "If either new source model fails development gates, stop and retain P5b4 as three-model/two-data-seed evidence. If any five-model fresh-confirmation gate fails, do not alter the attachment or use it in a final system claim. Neither outcome permits reusing P5b4, P5c, P5d or any consumed test data.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

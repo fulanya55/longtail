@@ -1,0 +1,10 @@
+{
+  "allow_locked_test": false,
+  "backbone": "complex_1d_true",
+  "classifier_path": "original_logits_head",
+  "default_width": 16,
+  "input_shape": [
+    2,
+    3000
+  ]
+}

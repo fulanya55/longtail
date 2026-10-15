@@ -1,0 +1,56 @@
+{
+  "created_at_utc": "2026-07-31T14:35:09.485027+00:00",
+  "development_v3": {
+    "path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0731_v3\\closedset_6class_train.mat",
+    "role": "development_only",
+    "sha256": "b55a361014dfb5b065f242b71c514ee057cd15fa8f5c10950ff126958970ac47"
+  },
+  "historic_locked_test_used": false,
+  "identity_audit": {
+    "cross_role_identity_disjoint": true,
+    "cross_role_receiver_id_intersection_count": 0,
+    "development_identity_unique": true,
+    "development_sample_count": 25200,
+    "development_unique_receiver_ids": 25200,
+    "passed": true,
+    "test_identity_unique": true,
+    "test_sample_count": 25200,
+    "test_unique_receiver_ids": 25200
+  },
+  "protocol": "RouteA development-v3/test-v3 identity-isolated protocol",
+  "protocol_files": [
+    {
+      "bytes": 4427,
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\generate_route_a_v3_dataset.m",
+      "sha256": "b9d7731b84a510879cb22c783eee1aec684c432aafa449e4c990598a1d81ff60"
+    },
+    {
+      "bytes": 5919,
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\seal_route_a_test_v3.py",
+      "sha256": "66d2d92fbd0da31f11e14ddfecd1cd91917dac50e9f76fc1a60958bcb81de6ca"
+    },
+    {
+      "bytes": 651,
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\configs\\student_a\\six_class_development_v3.yaml",
+      "sha256": "1b0f101013569fbdf3517d463e85c956234be4dcbb24adc213a5c865e6221061"
+    },
+    {
+      "bytes": 2465,
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\docs\\plans\\route_a_development_v3_test_v3_protocol_20260731.md",
+      "sha256": "fe59ee8a43ccaf39e1c3ac3b31912c7c2604838f55b2d9ae69c972cada89e43c"
+    }
+  ],
+  "status": "sealed",
+  "test_v2_used": false,
+  "test_v3": {
+    "access_authorized": false,
+    "analysis_allowed": false,
+    "bytes": 2549072272,
+    "path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0731_v3\\closedset_6class_test.mat",
+    "rerun_allowed_after_execution": false,
+    "role": "sealed_independent_test_once_after_final_freeze",
+    "sha256": "81e6e6eee295d7c36bdc7e84327189e496cfa489cf9c81199b40d37be22eb5f2",
+    "used": false
+  },
+  "test_v3_used": false
+}

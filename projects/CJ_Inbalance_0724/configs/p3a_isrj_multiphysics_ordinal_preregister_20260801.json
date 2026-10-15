@@ -1,0 +1,71 @@
+{
+  "experiment": "P3a ISRJ multi-physics periodic-sequence ordinal expert",
+  "research_question": "Can a supervised ordinal head learn ISRJ sample width from ACF, envelope-periodicity and phase-curvature-periodicity sequences on compound IQ, without waveform separation?",
+  "evidence_role": "fresh_identity_safe_wide_support_development",
+  "data": {
+    "training_identity_seed": 3400000000,
+    "development_identity_seed": 3500000000,
+    "width_support_us": [1, 50],
+    "regime_partitions_us": {
+      "ID_control": [5, 20],
+      "near_low": [2, 5],
+      "near_high": [20, 30],
+      "far_low": [1, 2],
+      "far_high": [30, 50]
+    },
+    "powers_db": [25, 35, 50],
+    "all_63_combinations": true,
+    "classification_loss": 0,
+    "oracle_positive_training_only": true
+  },
+  "features": {
+    "lag_samples": [10, 500],
+    "channels": [
+      "complex_acf_real_residual",
+      "complex_acf_magnitude_residual",
+      "envelope_acf_residual",
+      "phase_curvature_activity_acf_residual",
+      "normalized_lag_position"
+    ],
+    "local_background_window": 31,
+    "per_sample_channel_max_normalization": true
+  },
+  "models": {
+    "A0_acf_ordinal": "channels 0,1,4",
+    "A1_multiphysics_ordinal": "all five channels",
+    "model_seeds": [2041, 2042, 2043],
+    "ordinal_thresholds_samples": [11, 500],
+    "decode": "10 + sum(sigmoid(cumulative logits))",
+    "monotonic_penalty_weight": 0.05
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "patience": 5,
+    "batch_size": 64,
+    "gradient_clip_norm": 5.0,
+    "checkpoint_role": "seed340 selection identities only",
+    "seed350_use": "one-shot development evaluation only"
+  },
+  "baselines": {
+    "C0_constant": "12.5 microseconds",
+    "C1_hard_acf": "frozen P2w maximum-prominence ACF",
+    "C2_hard_phase_reset": "frozen P2x reset-gap mode",
+    "A0_acf_ordinal": "learned ACF-only ordinal ablation"
+  },
+  "promotion_gates": {
+    "A1_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "A1_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "A1_compound_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "A1_compound_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "A1_all_3_seeds_each_regime_mae_better_than_hard_acf": true,
+    "A1_each_seed_mean_mae_reduction_vs_A0_at_least": 0.02,
+    "A1_mean_mae_reduction_vs_A0_at_least": 0.05,
+    "identity_overlap_with_all_prior_roles": 0
+  },
+  "stop_rule": "Do not tune feature channels, architecture or optimizer on seed350. If A1 fails, retain the strongest valid ablation and move to a fresh mechanism/data role.",
+  "next_if_pass": "Freeze A1 and preregister leave-range-out plus new-correlation validation on new identities.",
+  "locked_test_used": false
+}

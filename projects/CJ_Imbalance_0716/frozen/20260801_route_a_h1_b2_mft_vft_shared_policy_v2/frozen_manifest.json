@@ -1,0 +1,940 @@
+{
+  "status": "frozen",
+  "candidate_name": "H1_B2_MFTSharedDecision_VFTRidgeFusion_v2",
+  "frozen_at": "2026-08-01",
+  "parent_candidate_manifest": {
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260801_route_a_h1_b2_mft_vft_unified_v1\\frozen_manifest.json",
+    "size_bytes": 48842,
+    "sha256": "8a0a6cf98e7fb935e9b4bd51592caa1eeb259a1b86d9eccba8ca6840aa552f55"
+  },
+  "construction_summary": {
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\route_a_h1_b2_mft_vft_unified_v3_summary.json",
+    "size_bytes": 154467,
+    "sha256": "44909f8c28f50f7f6e48a2d2da479c3924746adf1dafe27cd942b90b863554bf"
+  },
+  "shared_policy_audit": {
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_mft_shared_decision_policy_audit\\route_a_mft_shared_decision_policy_audit_summary.json",
+    "size_bytes": 6436,
+    "sha256": "34710cd1ae532aeba1030ac3d9eaefdaafbeebd3d04ad593ae2cdf1328fe4858"
+  },
+  "source_code": {
+    "construction": {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_h1_b2_mft_vft_unified_v3.py",
+      "size_bytes": 17264,
+      "sha256": "753faeb6c7ca2a47fbc877f09436fef175251cd866863c8ccd4798d36a3a4358"
+    },
+    "mft_feature": {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\audit_route_a_mft_pulse_compression_morphology_v3.py",
+      "size_bytes": 9584,
+      "sha256": "4406aa67d57123df55c45a297d1da57414810a4f92bb32f9273f38ede21eb33c"
+    },
+    "mft_guard": {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_u2_mft_peak_count_negative_guard_v3.py",
+      "size_bytes": 15407,
+      "sha256": "af518a79ea55722f6cff518fcb32a83751d30b98879f79a8beb6dc63adf4ca47"
+    },
+    "vft_feature": {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_raw_iq_physics_separability_v3.py",
+      "size_bytes": 12500,
+      "sha256": "4c65e171ab773d92c5e287699da3760faf068ca2b3f57cc0c0ea1e0dc8dbd8d5"
+    },
+    "shared_decision_policy": {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_mft_shared_decision_policy_audit.py",
+      "size_bytes": 10046,
+      "sha256": "ead54df167b84a8522728d038c622128db91b07a2a49bb66da851453c499a26b"
+    }
+  },
+  "fixed_hyperparameters": {
+    "weak_threshold_db": 10.0,
+    "mft_residual_cap": 0.75,
+    "vft_ridge_alpha": 10.0,
+    "vft_fusion_C": 0.1,
+    "vft_weak_positive_weight": 4.0,
+    "threshold_max_negative_fpr": 0.2,
+    "mft_calibration_source": "Q1_H1B2",
+    "mft_threshold_source": "Q1_H1B2",
+    "non_mft_calibration_source": "Q4_VFTAlignedRidgeFusion",
+    "non_mft_threshold_source": "Q4_VFTAlignedRidgeFusion",
+    "mft_negative_to_positive_allowed": false
+  },
+  "development_v3_sha256": "b55a361014dfb5b065f242b71c514ee057cd15fa8f5c10950ff126958970ac47",
+  "development_v11_role": "diagnostic_reuse_not_independent_after_policy_change",
+  "development_v12": {
+    "status": "completed",
+    "evidence_role": "development_v12",
+    "development_v12_path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0801_v12\\closedset_6class_train.mat",
+    "size_bytes": 2549109222,
+    "sha256": "358e08e6eecbf2c866a137ebeed847475ce1ea2efe2c399b6789a0a8a5bbffe9",
+    "sample_count": 25200,
+    "expected_sample_seed_range": [
+      124000001,
+      124025200
+    ],
+    "observed_receiver_noise_seed_range": [
+      322677743,
+      322702942
+    ],
+    "receiver_noise_seed_unique": 25200,
+    "reference_receiver_noise_seed_ranges": {
+      "development_v2_train": [
+        218938474,
+        218963673
+      ],
+      "test_v2_contract": [
+        221938474,
+        221963673
+      ],
+      "development_v3_train": [
+        222677743,
+        222702942
+      ],
+      "test_v3_contract": [
+        225677743,
+        225702942
+      ],
+      "development_v4_train": [
+        232677743,
+        232702942
+      ],
+      "test_v4_contract": [
+        235677743,
+        235702942
+      ],
+      "development_v5_train": [
+        242677743,
+        242702942
+      ],
+      "test_v5_contract": [
+        245677743,
+        245702942
+      ],
+      "development_v6_train": [
+        252677743,
+        252702942
+      ],
+      "test_v6_contract": [
+        255677743,
+        255702942
+      ],
+      "isrj_parameter_ood_v1": [
+        262677743,
+        262682782
+      ],
+      "development_v7_train": [
+        272677743,
+        272702942
+      ],
+      "test_v7_contract": [
+        275677743,
+        275702942
+      ],
+      "development_v8_train": [
+        282677743,
+        282702942
+      ],
+      "test_v8_contract": [
+        285677743,
+        285702942
+      ],
+      "development_v9_train": [
+        292677743,
+        292702942
+      ],
+      "test_v9_contract": [
+        295677743,
+        295702942
+      ],
+      "development_v10_train": [
+        302677743,
+        302702942
+      ],
+      "test_v10_contract": [
+        305677743,
+        305702942
+      ],
+      "development_v11_train": [
+        312677743,
+        312702942
+      ],
+      "test_v11_contract": [
+        315677743,
+        315702942
+      ]
+    },
+    "receiver_identity_disjoint": {
+      "development_v2_train": true,
+      "test_v2_contract": true,
+      "development_v3_train": true,
+      "test_v3_contract": true,
+      "development_v4_train": true,
+      "test_v4_contract": true,
+      "development_v5_train": true,
+      "test_v5_contract": true,
+      "development_v6_train": true,
+      "test_v6_contract": true,
+      "isrj_parameter_ood_v1": true,
+      "development_v7_train": true,
+      "test_v7_contract": true,
+      "development_v8_train": true,
+      "test_v8_contract": true,
+      "development_v9_train": true,
+      "test_v9_contract": true,
+      "development_v10_train": true,
+      "test_v10_contract": true,
+      "development_v11_train": true,
+      "test_v11_contract": true
+    },
+    "identity_audit_passed": true,
+    "test_files_opened": false,
+    "locked_test_used": false,
+    "test_v3_used": false,
+    "test_v12_used": false
+  },
+  "seed_artifacts": {
+    "2039": {
+      "focal_checkpoint": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_loss_convergence_audit\\seed_2039\\E2_Focal_36\\best_model.pth",
+        "size_bytes": 1708680,
+        "sha256": "c9bf7d2a971ac5cb33fa1ec986457f68f56ccfe0257284bb423c1520ea86cf60"
+      },
+      "h1_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_frozen_head_capacity_baselines\\seed_2039\\H1_Linear_BCE\\best_model.pth",
+        "size_bytes": 5053,
+        "sha256": "cfdc365a3eb62feb1b3615f1de7a55324ab5396adc3fe25d5e9bcabafda7c7c1"
+      },
+      "rawsaw": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_unified_rawsaw_vtse_vbf_v3\\seed_2039\\checkpoints\\rawsaw.pth",
+        "size_bytes": 28817,
+        "sha256": "1d9004a556ffef7f631441d462d29ad89d0a80c093ed04bfb7b949505c993b96"
+      },
+      "periodicity_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2039\\H_AlignedHGB\\model.joblib",
+        "size_bytes": 821142,
+        "sha256": "401f5990b1b5bd24781ec336a6ea26cca2084e41426040c208cdc483f7b45eb0"
+      },
+      "periodicity_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2039\\H_AlignedHGB\\normalization.npz",
+        "size_bytes": 2745,
+        "sha256": "1a56e7c24a323a3267e9ccd28ee2f9ed76b66d3008878c2fcde102273d7bd0b7"
+      },
+      "isrj_fusion_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2039\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "0e349fce88c7969923cdc76fff16f383ee0bc6d3be7fb42ab6df851d0c461819"
+      },
+      "isrj_fusion_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2039\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "85c270c1fd11e438a98d9916e3ea081d55636cec63c240ceb789d81987d72b1e"
+      },
+      "mft_guard_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2039\\experts\\aligned_model.joblib",
+        "size_bytes": 863,
+        "sha256": "42fd48e96842079d86e1a0409a93766d9a69800464eed9f845f2202c61e84cbb"
+      },
+      "mft_guard_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2039\\experts\\normalization.npz",
+        "size_bytes": 811,
+        "sha256": "0e220091fbf768558e5724d5782e456b0364abf59468063a0ab9fc3c6c218af1"
+      },
+      "vft_ridge": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_vft_ridge_stft_separability_v3\\seed_2039\\ridge_model.npz",
+        "size_bytes": 3828,
+        "sha256": "45e36440d132671c70193fc61bc264c472498bc01a0fc2d2233dbca67259a65a"
+      },
+      "vft_aligned_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "9fac5f1ec4f61ba44d62b775adaa9ffbd2e9aeee09096b13796475d89d745496"
+      },
+      "vft_aligned_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "bbfd16a53a91a97db7249a21d3dcfa36cfa9733385a1064a8a768d5e1215c280"
+      },
+      "vft_base_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\head_base\\model.joblib",
+        "size_bytes": 863,
+        "sha256": "084bb140545ad856a64754bae89c3869b9a6011783d96488e21e838983678efd"
+      },
+      "vft_base_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\head_base\\normalization.npz",
+        "size_bytes": 389,
+        "sha256": "3604a912012c96836dc8c9c3f1ac95bca4993fa6434cb61b633b4444a0b5ba96"
+      },
+      "vft_shuffled_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\head_shuffled\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "a6aa260537990a4de75ad843c3a06403319902e95bedcee1a8368a1cfc2d6674"
+      },
+      "vft_shuffled_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\head_shuffled\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "af24143c99948a3ce83a0c65bdcdfe88fa46c0e06357715f3450151f1ae72951"
+      },
+      "q0_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q0_H1\\calibration.json",
+        "size_bytes": 673,
+        "sha256": "deedd852a3f0c43b958c7f1b6b84b8d9845f84b95513ba40da5a583f938d2b65"
+      },
+      "q0_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q0_H1\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "cf9cc3c804dd9bc11cd54d30a57daf1c39859148247f0ad97746f47786823ea2"
+      },
+      "q1_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q1_H1B2\\calibration.json",
+        "size_bytes": 671,
+        "sha256": "bda9954476373acd7568e51ee88a8784623f4fb64aa65137a4deff6891d4b510"
+      },
+      "q1_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q1_H1B2\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "5865cb999c4370d374dbe3c2106225db3d4b8fb48e3bbdbabc1175fc78366087"
+      },
+      "q2_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q2_H1B2_MFTGuard\\calibration.json",
+        "size_bytes": 671,
+        "sha256": "6ba6ecbd338c944c7288f00726409b8def6ffdbe26879101574be45a467f8a26"
+      },
+      "q2_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q2_H1B2_MFTGuard\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "84d8f0aae9a3aede6fb63f64ed68f76293455195e312f9a5fbf06c9ab1d65c8e"
+      },
+      "q3_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q3_VFTBaseOnlyCapacity\\calibration.json",
+        "size_bytes": 671,
+        "sha256": "2f057ac2b0e17bbb4317f7f011f64a9190ab7b65649c1a11fceeef98f0f0ff72"
+      },
+      "q3_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q3_VFTBaseOnlyCapacity\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "84d8f0aae9a3aede6fb63f64ed68f76293455195e312f9a5fbf06c9ab1d65c8e"
+      },
+      "q4_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q4_VFTAlignedRidgeFusion\\calibration.json",
+        "size_bytes": 673,
+        "sha256": "42e396e262e4de1afeb08a88e2bda3229cee9fe960b0fcd94b64990a2274abe1"
+      },
+      "q4_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q4_VFTAlignedRidgeFusion\\thresholds.json",
+        "size_bytes": 159,
+        "sha256": "97aea5021f59842ac0ca347e36f4aee194b65d2ee83523c5bf95098c73d50437"
+      },
+      "q5_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q5_VFTShuffledRidgeFusion\\calibration.json",
+        "size_bytes": 671,
+        "sha256": "15dbeb17e56cfdcbd4e2344467a8da2bbdef6e0be13bbe475e39e91b6b532039"
+      },
+      "q5_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\Q5_VFTShuffledRidgeFusion\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "84d8f0aae9a3aede6fb63f64ed68f76293455195e312f9a5fbf06c9ab1d65c8e"
+      },
+      "seed_summary": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2039\\seed_summary.json",
+        "size_bytes": 26512,
+        "sha256": "b6d3a3daf56c0a463d4c5e2ad720d498dca1f33edeb4b3ad871ec429e270e700"
+      }
+    },
+    "2040": {
+      "focal_checkpoint": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_loss_convergence_audit\\seed_2040\\E2_Focal_36\\best_model.pth",
+        "size_bytes": 1708680,
+        "sha256": "388dce3fafa05f8ae2dee5548a6a613f9f1c765de5dc6392160bec63ea7e79e3"
+      },
+      "h1_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_frozen_head_capacity_baselines\\seed_2040\\H1_Linear_BCE\\best_model.pth",
+        "size_bytes": 5053,
+        "sha256": "a987813bb1d4e2f85a9b64b01b1675779992340e0ec2bd701c12a45029bc4da1"
+      },
+      "rawsaw": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_unified_rawsaw_vtse_vbf_v3\\seed_2040\\checkpoints\\rawsaw.pth",
+        "size_bytes": 28817,
+        "sha256": "281fbfdc995e05d81de6be44512d3e80cdda426126bf15dcd58675e231a88793"
+      },
+      "periodicity_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2040\\H_AlignedHGB\\model.joblib",
+        "size_bytes": 821206,
+        "sha256": "1050ea610c1d07b15041d97c4e2ef83e15ae4c863fdb56b713c8f6d488a63895"
+      },
+      "periodicity_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2040\\H_AlignedHGB\\normalization.npz",
+        "size_bytes": 2756,
+        "sha256": "d7b096a12c1aea5f91c61c473daadd9b865cd58768e89864b1b9e4b43f563fec"
+      },
+      "isrj_fusion_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2040\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "2339c4386ad91d5973c89b042afa59ddea7c3143caed4b4e1698ae6e21a47045"
+      },
+      "isrj_fusion_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2040\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "6ebdb11da62242db36e8f1152367322144811c23e3abf2bd8230e3ec63547d58"
+      },
+      "mft_guard_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2040\\experts\\aligned_model.joblib",
+        "size_bytes": 863,
+        "sha256": "0ec1648b298dff98bfe52e47914118880cdc225925f148ee0ba76bddad90f858"
+      },
+      "mft_guard_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2040\\experts\\normalization.npz",
+        "size_bytes": 810,
+        "sha256": "33a5370fa11d7fc509d6f168d4e991e4ded61b9cf9cfc1e3d2ce8efdadeef46e"
+      },
+      "vft_ridge": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_vft_ridge_stft_separability_v3\\seed_2040\\ridge_model.npz",
+        "size_bytes": 3835,
+        "sha256": "12866f17fb7d05bf7b30ef76f60a043e09990dc9cb63f20e159097c42f361290"
+      },
+      "vft_aligned_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "88e6f9c631f5f2d65ca4566024f8a419bc932e28baf1ed90b905114d81591410"
+      },
+      "vft_aligned_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "1a64e88e9704df40754d968bf4940e496d89dd3a3f0b25702ddbcc982975c575"
+      },
+      "vft_base_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\head_base\\model.joblib",
+        "size_bytes": 863,
+        "sha256": "1457a0f0844794a5e2ff16b129bce3fbd0f44be0715fe8146e3c1702519f1c09"
+      },
+      "vft_base_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\head_base\\normalization.npz",
+        "size_bytes": 389,
+        "sha256": "c5c2a1483dab6316eaa5f17eec05b3216327944a520ca46f35d52fe69964c1e8"
+      },
+      "vft_shuffled_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\head_shuffled\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "7baad9924c4f8828e0002fda246e38aed23d1972ec7c217288a9a5cc6589385c"
+      },
+      "vft_shuffled_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\head_shuffled\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "4bcb27f20fccf38a2a0c474a8225b16f8e0742d37a706ef04d2afc228492810f"
+      },
+      "q0_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q0_H1\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "20c27fe694d643e35d05a60164baebd215c43e22d2d7028b8c5ba42f1af3a7cf"
+      },
+      "q0_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q0_H1\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "e89ef0c7480f22b4f8dbb88c6a2306fbc1123cdd732dbfbe118621d3601a7559"
+      },
+      "q1_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q1_H1B2\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "4bd046cf6b6e40d4d55cae4979114a04ec07b8a55a5cd32fef11afdda0850dd7"
+      },
+      "q1_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q1_H1B2\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "1de0bb85ba51da3a346fe3ceae069809108c5c94a987f2e18b0d6ad7a6858fb7"
+      },
+      "q2_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q2_H1B2_MFTGuard\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "1f5f73a9a511e949db2d4270157ac4a3b46c7bb4567945a920d007554a1fe596"
+      },
+      "q2_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q2_H1B2_MFTGuard\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "47d2b57bdc189179cede8df4d43104e23bb4938835f2ccfd58a464fa8dec9551"
+      },
+      "q3_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q3_VFTBaseOnlyCapacity\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "507dd3413ccf3f2f179f63a7e556f3d7b20aa508ff0b5a454cdaa612c5ece928"
+      },
+      "q3_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q3_VFTBaseOnlyCapacity\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "47d2b57bdc189179cede8df4d43104e23bb4938835f2ccfd58a464fa8dec9551"
+      },
+      "q4_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q4_VFTAlignedRidgeFusion\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "bf85ae948203ba02f0b6cf0912f1e8c0539ab33a25b6ef22981a073c6934ea41"
+      },
+      "q4_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q4_VFTAlignedRidgeFusion\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "0d08d4c0d0f0ac3ad9ff089c476f81f547859c57607c1bb19848a68defe19bf3"
+      },
+      "q5_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q5_VFTShuffledRidgeFusion\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "5f36287d60e862646eb7f4b619490722c46a4e58edc281a0968cd7d3110618ff"
+      },
+      "q5_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\Q5_VFTShuffledRidgeFusion\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "47d2b57bdc189179cede8df4d43104e23bb4938835f2ccfd58a464fa8dec9551"
+      },
+      "seed_summary": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2040\\seed_summary.json",
+        "size_bytes": 26531,
+        "sha256": "a3d4220ac5de006b5476c7a1bfe2d61a9303ce04b03f294f3fa55554a4d9fdfc"
+      }
+    },
+    "2041": {
+      "focal_checkpoint": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_loss_convergence_audit\\seed_2041\\E2_Focal_36\\best_model.pth",
+        "size_bytes": 1708680,
+        "sha256": "14b69e5604c1aefa0e763d3cb6b53a4f908758bde125f265e80899a3b73a5637"
+      },
+      "h1_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_frozen_head_capacity_baselines\\seed_2041\\H1_Linear_BCE\\best_model.pth",
+        "size_bytes": 5053,
+        "sha256": "86f9df6a792024ab89109bc760520526526b16facd34baa3456a55866ace3d6b"
+      },
+      "rawsaw": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_unified_rawsaw_vtse_vbf_v3\\seed_2041\\checkpoints\\rawsaw.pth",
+        "size_bytes": 28817,
+        "sha256": "5401dd902e418bdbc3a5035669ccb5dcf97d939a3efd46f5b1a6981832fed6b3"
+      },
+      "periodicity_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2041\\H_AlignedHGB\\model.joblib",
+        "size_bytes": 821126,
+        "sha256": "47f9081126c70c0ccb86f951f2c4ab316bf4c3c644b1d457061f7146b749e33b"
+      },
+      "periodicity_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2041\\H_AlignedHGB\\normalization.npz",
+        "size_bytes": 2764,
+        "sha256": "af576001940e40de8ebab37d8efc453957ad0fe7e5f2b80f8490b85a74534bd5"
+      },
+      "isrj_fusion_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2041\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "7645eec11e273178e9068852512287e763e413077738321ea0257de31e79e592"
+      },
+      "isrj_fusion_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2041\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "de306c12b4de5e2811f7bd219a6dd53216ed547334f3a2afd17e8625146749ae"
+      },
+      "mft_guard_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2041\\experts\\aligned_model.joblib",
+        "size_bytes": 863,
+        "sha256": "3471b575f184c3bd682b320fd7ad66069084297ca3db763ecec19f9cf6a47f19"
+      },
+      "mft_guard_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2041\\experts\\normalization.npz",
+        "size_bytes": 810,
+        "sha256": "1d1c47ece0bd6050b830936f9adc3594f99a02bee295026d4729618d181e11c1"
+      },
+      "vft_ridge": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_vft_ridge_stft_separability_v3\\seed_2041\\ridge_model.npz",
+        "size_bytes": 3839,
+        "sha256": "85d02db56e061c58dc0fd96ccdebc1ca7d1660237ee41a28fc0f66bfa90b4790"
+      },
+      "vft_aligned_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "1bbcd6c5dbb30ec746fe657149c4745fdf92052f9a6e34811651e7be406707fd"
+      },
+      "vft_aligned_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "2e7d749382a80f8e8355e6f080526b5c93c572e0657678fa58cf6e32cc2b026c"
+      },
+      "vft_base_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\head_base\\model.joblib",
+        "size_bytes": 863,
+        "sha256": "c7cdec3378a161b3ab1ced101e8a80f608e4d8c5563bc560d870124853a59d6b"
+      },
+      "vft_base_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\head_base\\normalization.npz",
+        "size_bytes": 388,
+        "sha256": "1a3bc7d29b0dd1cf638004bdbb91247c4d09151c9e3f6125d040121596d85f41"
+      },
+      "vft_shuffled_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\head_shuffled\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "88281dac3586daddb2012bf3a92672574da8b434064abe1c55e214ceb1aa8c6b"
+      },
+      "vft_shuffled_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\head_shuffled\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "f64cec1317f1a0811b0b504633c06406bc25ce8a362691c386ba6b4651e1f686"
+      },
+      "q0_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q0_H1\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "32d28379a7657ec75d2dcbec09588caea9bdee64143d39acf16604b2febb7fc4"
+      },
+      "q0_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q0_H1\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "3785f1ef112625fc9e17556a02a864cbe2ce2d466f5b3f4f6f0f115095e227dd"
+      },
+      "q1_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q1_H1B2\\calibration.json",
+        "size_bytes": 673,
+        "sha256": "e2cc90ed4e46245e02199beea23d2a5943b95260c38d94de175235e6cbb0e6fe"
+      },
+      "q1_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q1_H1B2\\thresholds.json",
+        "size_bytes": 160,
+        "sha256": "2614ebe82e626b4708ca7ef06329f870518140b7a364b6b4652f6df26e279883"
+      },
+      "q2_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q2_H1B2_MFTGuard\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "e45163986883d759dec2b5603b217e20774cbf5e61e68c19c5657dd817d1bc61"
+      },
+      "q2_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q2_H1B2_MFTGuard\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "b8ee992b01e09251cbda7714014412a0c288b62e4bfb189ef89265bee21bdcc3"
+      },
+      "q3_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q3_VFTBaseOnlyCapacity\\calibration.json",
+        "size_bytes": 675,
+        "sha256": "4e6f2e4cb9d9b057aab26c0c079884fa00569bbf804410e934f7c886eb0d8e05"
+      },
+      "q3_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q3_VFTBaseOnlyCapacity\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "b8ee992b01e09251cbda7714014412a0c288b62e4bfb189ef89265bee21bdcc3"
+      },
+      "q4_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q4_VFTAlignedRidgeFusion\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "b23b72c595a68910461b404a793a6c05635a54506b8907f49e717ccbcc4b3448"
+      },
+      "q4_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q4_VFTAlignedRidgeFusion\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "6eb5ceae30697db58cb26c2a7c564cd13cb1343541eb93bd463d310681457131"
+      },
+      "q5_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q5_VFTShuffledRidgeFusion\\calibration.json",
+        "size_bytes": 673,
+        "sha256": "683db2057db089acb6fabd5be1cecf69ecba75c5a380e61f9a28f9f67ca6fe01"
+      },
+      "q5_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\Q5_VFTShuffledRidgeFusion\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "c5932779c6d7141b91fe9955933f00b30e3441ad96bb9decc5d65169d0612aed"
+      },
+      "seed_summary": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2041\\seed_summary.json",
+        "size_bytes": 26630,
+        "sha256": "f08d247af187bbb7e497459dd176f18648922dbe3a1013a09bae97b1b5d29e00"
+      }
+    },
+    "2042": {
+      "focal_checkpoint": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_loss_convergence_audit\\seed_2042\\E2_Focal_36\\best_model.pth",
+        "size_bytes": 1708680,
+        "sha256": "6a2a0f462a109cace1a726e15abea4e9b0d27e0a50954768f9479e184494b39c"
+      },
+      "h1_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_frozen_head_capacity_baselines\\seed_2042\\H1_Linear_BCE\\best_model.pth",
+        "size_bytes": 5053,
+        "sha256": "8683eb7577544c41e3477ec51c5e500ddd48b97ef04ead9ae4dbd81f41ca5423"
+      },
+      "rawsaw": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_unified_rawsaw_vtse_vbf_v3\\seed_2042\\checkpoints\\rawsaw.pth",
+        "size_bytes": 28817,
+        "sha256": "7dad21215e5908261a78ad877c8cfc1c06339054d062066c24fb460348f36363"
+      },
+      "periodicity_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2042\\H_AlignedHGB\\model.joblib",
+        "size_bytes": 821286,
+        "sha256": "761b0fa36267b7263e70d32d3ce3ddb516aae762e973030d2c7690cdbbd0469d"
+      },
+      "periodicity_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2042\\H_AlignedHGB\\normalization.npz",
+        "size_bytes": 2761,
+        "sha256": "f9b26ed02e35fc1c9612eb9ed083efe7be0c620eb89501df06273ec2a5859fb9"
+      },
+      "isrj_fusion_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2042\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "0d640343666844b30c7b5cfd27d658d19bcabf0ae615bf6459dfe40fb18832d0"
+      },
+      "isrj_fusion_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2042\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "7a3ec82afb4ad7384bd7b1bb831496cf1f26745c8135c1efe644498672c17542"
+      },
+      "mft_guard_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2042\\experts\\aligned_model.joblib",
+        "size_bytes": 863,
+        "sha256": "ce9e88e5f796fa1c4f0d72f3a45812079f84925700199cbd80c4515abc22bb36"
+      },
+      "mft_guard_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2042\\experts\\normalization.npz",
+        "size_bytes": 810,
+        "sha256": "ebd6f6c5e6212b479570c20c69b31c54f87b1ff66d55a403c509ed6ab5725484"
+      },
+      "vft_ridge": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_vft_ridge_stft_separability_v3\\seed_2042\\ridge_model.npz",
+        "size_bytes": 3835,
+        "sha256": "551d5ded48a65977979531fb5796d4bcdbf9940171fd43bdf37d135b3aec8e7d"
+      },
+      "vft_aligned_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "127ee7c2224f8cc8c405cde837bd38d6bdd9a9d6fd25780c183c489674969434"
+      },
+      "vft_aligned_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "a67606bcd6c25d2eb28df81691806677ca039a9316a0c8a1d5598ee15e21c940"
+      },
+      "vft_base_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\head_base\\model.joblib",
+        "size_bytes": 863,
+        "sha256": "ea85b658cc9b3895c3668961ea65d7dd35c624ec3bc0eb1a2a29d22499f8c322"
+      },
+      "vft_base_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\head_base\\normalization.npz",
+        "size_bytes": 388,
+        "sha256": "60dc9945059288e3ae3d7bda667522535fb9899b3ed1725111d9b0f406082985"
+      },
+      "vft_shuffled_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\head_shuffled\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "23fdadfa44b7437235e6774c3166b31fe82d5887eb7d47680aa565d47549041f"
+      },
+      "vft_shuffled_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\head_shuffled\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "c8aeced80716fa9bc28f004e5885e0b10ebf570de4b32c22db190f6ef329cae0"
+      },
+      "q0_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q0_H1\\calibration.json",
+        "size_bytes": 675,
+        "sha256": "37d06395e839aec6fea101714aff48c53df13f7ec0a6cca7ff518caf0eb00d77"
+      },
+      "q0_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q0_H1\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "c5fd26c42ed9c579d2e9ae2e0df5b3244ac98586f165ec06b53b8d59fc55c24f"
+      },
+      "q1_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q1_H1B2\\calibration.json",
+        "size_bytes": 676,
+        "sha256": "d5731b0f9990dc3d255a1dce1f3d04df67c6d8ebb55317903e4435b98eb5d12a"
+      },
+      "q1_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q1_H1B2\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "a3a12315c90f2a3c6892c1c8e0f56b379ed5daf9609e64746e733ce7ef10c6a5"
+      },
+      "q2_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q2_H1B2_MFTGuard\\calibration.json",
+        "size_bytes": 678,
+        "sha256": "6dbed0aeadca53871bd3b84e9e24be41bd9adc6eaa501a194179e0533cce801d"
+      },
+      "q2_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q2_H1B2_MFTGuard\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "2d9670baa301c1d5aa93e059e9cf10b23922b274e96c2564798cf31e4385f6ad"
+      },
+      "q3_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q3_VFTBaseOnlyCapacity\\calibration.json",
+        "size_bytes": 678,
+        "sha256": "5bf3251b3cc7fb392540c462bdfb970e976e818fa64955ff6f9e63397be570c2"
+      },
+      "q3_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q3_VFTBaseOnlyCapacity\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "2d9670baa301c1d5aa93e059e9cf10b23922b274e96c2564798cf31e4385f6ad"
+      },
+      "q4_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q4_VFTAlignedRidgeFusion\\calibration.json",
+        "size_bytes": 678,
+        "sha256": "f38da7ed341a9ceecd97ec4ed17cbb06624527f97656c5a09d33c791ad8e41f5"
+      },
+      "q4_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q4_VFTAlignedRidgeFusion\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "2b52dc1f4a12223fb1657c290dc6ab6f14f01c7360716b0be7470b0681c57720"
+      },
+      "q5_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q5_VFTShuffledRidgeFusion\\calibration.json",
+        "size_bytes": 677,
+        "sha256": "cec771fba5533c4319b3b31127e898183da0c2e25a810a557b77d1082c7165b0"
+      },
+      "q5_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\Q5_VFTShuffledRidgeFusion\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "6b0e1a552799696b227ef2a1b9bb68d0f96d3bdfdeb19e680a424685bdc86135"
+      },
+      "seed_summary": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2042\\seed_summary.json",
+        "size_bytes": 26597,
+        "sha256": "a730708cec1d8cc45b7ab31d79cc5fe96f5414f51dcb08de4a888ea835e93496"
+      }
+    },
+    "2043": {
+      "focal_checkpoint": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_loss_convergence_audit\\seed_2043\\E2_Focal_36\\best_model.pth",
+        "size_bytes": 1708680,
+        "sha256": "69b66e0d7538a53c988c024c83de090e00ca87d2e5287c8b29873957966ba892"
+      },
+      "h1_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_frozen_head_capacity_baselines\\seed_2043\\H1_Linear_BCE\\best_model.pth",
+        "size_bytes": 5053,
+        "sha256": "6e2a10b69a0742da61401c9df5cd1bd88a29ddd6044a208715bf5ac39f81fded"
+      },
+      "rawsaw": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_unified_rawsaw_vtse_vbf_v3\\seed_2043\\checkpoints\\rawsaw.pth",
+        "size_bytes": 28817,
+        "sha256": "64a6fb68b7b4b44b2eb81f291b7734f1bdcb2e0d9a887a60ccefd2671de461b1"
+      },
+      "periodicity_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2043\\H_AlignedHGB\\model.joblib",
+        "size_bytes": 821222,
+        "sha256": "e9172f42f2ae5ea461de41ead1faaadf25864dffb9f76dde9a939f239d0c8c48"
+      },
+      "periodicity_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_isrj_joint_periodicity_expert_v3\\seed_2043\\H_AlignedHGB\\normalization.npz",
+        "size_bytes": 2752,
+        "sha256": "a3dd2da88146b28d64a813609ee72fd4093ca8ad62af7656e32f8f71e49b3e9e"
+      },
+      "isrj_fusion_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2043\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "15d199aeeff6a2958132dea65d406a4fd704ad81d24219aaaa023f0ea48c3b0b"
+      },
+      "isrj_fusion_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_h1_periodicity_increment\\seed_2043\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "78c81557f8696dc5a1088881d7f5eed8edc6e722b1207a71f60d9f01b06821df"
+      },
+      "mft_guard_model": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2043\\experts\\aligned_model.joblib",
+        "size_bytes": 863,
+        "sha256": "58bdfa6e7c81e96e79fa466d9604daf4b849e116acefc39837db3a35385afead"
+      },
+      "mft_guard_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_u2_mft_peak_count_negative_guard_v3\\seed_2043\\experts\\normalization.npz",
+        "size_bytes": 810,
+        "sha256": "f42df5f191aa362d93d541ecc0ff56e145ef8b93b734aac1e7e5bfd5856cfdad"
+      },
+      "vft_ridge": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_vft_ridge_stft_separability_v3\\seed_2043\\ridge_model.npz",
+        "size_bytes": 3844,
+        "sha256": "53bd65e92abfc3a613b434462d21d9c37a655547b6b92cfd4530d6dae153ee96"
+      },
+      "vft_aligned_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\head_aligned\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "c3fdf314a13b529127098ba32d3f672eae33382184ffc38ec61c03e249e274e0"
+      },
+      "vft_aligned_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\head_aligned\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "1ab9c2a13d777f0a3daba195ff0a4acabc3a131122536572b8816a680a46431d"
+      },
+      "vft_base_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\head_base\\model.joblib",
+        "size_bytes": 863,
+        "sha256": "96e60b3ab70106d549f1f0ffd6d40aa74151792c4da9242b25d2328f079a5cf8"
+      },
+      "vft_base_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\head_base\\normalization.npz",
+        "size_bytes": 388,
+        "sha256": "b41550624ee5958852607733c7472b2394fdca16faf00aa62ee1a3ce84a97d0a"
+      },
+      "vft_shuffled_head": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\head_shuffled\\model.joblib",
+        "size_bytes": 879,
+        "sha256": "13a4d054b22605c48a6724a138cfa3151776c31a4f500369a0db47cbe3f2f65c"
+      },
+      "vft_shuffled_normalization": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\head_shuffled\\normalization.npz",
+        "size_bytes": 414,
+        "sha256": "dcae4cc49f326bbf17296c8e6c5592915dc00518c3b60b2c784ecf916a3fdc68"
+      },
+      "q0_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q0_H1\\calibration.json",
+        "size_bytes": 675,
+        "sha256": "2c1bba2b75637b6f92ebd0d4b19151aa8a37ecfade377687bfd43c6ec7240000"
+      },
+      "q0_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q0_H1\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "30ea540e22b5910a09a47f8bcf7009814e1b02c845961b5c274efee63bf45dec"
+      },
+      "q1_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q1_H1B2\\calibration.json",
+        "size_bytes": 675,
+        "sha256": "c7c5d04b1214fd74a9a68750d9146306c0c13eb31f7dab1ce30334af13f2ed65"
+      },
+      "q1_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q1_H1B2\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "8a4511ab5b5c57709541f761e1108a3fc02a631166c67b0c2b2a877971bf96c3"
+      },
+      "q2_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q2_H1B2_MFTGuard\\calibration.json",
+        "size_bytes": 676,
+        "sha256": "291c185a84e09836686ceb026e6939b4abf3123bd287d02afc08325213d6f533"
+      },
+      "q2_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q2_H1B2_MFTGuard\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "196344d8ea15094c28f89ec2502acf707b49740c461a8b91138757bc1a785351"
+      },
+      "q3_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q3_VFTBaseOnlyCapacity\\calibration.json",
+        "size_bytes": 675,
+        "sha256": "7d7260342d29baf9104081f1845e28aa4be8130ed5146e82d8c582024ae1513d"
+      },
+      "q3_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q3_VFTBaseOnlyCapacity\\thresholds.json",
+        "size_bytes": 161,
+        "sha256": "196344d8ea15094c28f89ec2502acf707b49740c461a8b91138757bc1a785351"
+      },
+      "q4_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q4_VFTAlignedRidgeFusion\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "e213d93a37679142b0a1938ea2df7a62fa4539ec93b6013b55df0eb534134ae7"
+      },
+      "q4_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q4_VFTAlignedRidgeFusion\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "a26da823c22a66e88c430df905796561f5c396d2293b9efe15f3e77e0ee979c5"
+      },
+      "q5_calibration": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q5_VFTShuffledRidgeFusion\\calibration.json",
+        "size_bytes": 674,
+        "sha256": "2ffa614f485ad25aeb13947e25b0be5dd63acfcbfa64f6d92011cb90f2ca1dc2"
+      },
+      "q5_thresholds": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\Q5_VFTShuffledRidgeFusion\\thresholds.json",
+        "size_bytes": 162,
+        "sha256": "7ee42937c0a95d87319d541fe3d7f11a2b7b70ca35851edc3bd8fed8d73a04e9"
+      },
+      "seed_summary": {
+        "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h1_b2_mft_vft_unified_v3\\seed_2043\\seed_summary.json",
+        "size_bytes": 26621,
+        "sha256": "e8d0ceac46039887d5314a4c49a33f451dcf70930059b97539d78618098210a5"
+      }
+    }
+  },
+  "test_v3_manifest": {
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_test_v3_sealed\\test_v3_sealed_manifest.json",
+    "size_bytes": 2204,
+    "sha256": "248b03ae149eb587345a425e477c32ba78c9415d8ba618e35fd23c479775ab5d"
+  },
+  "test_v3": {
+    "access_authorized": false,
+    "analysis_allowed": false,
+    "used": false
+  }
+}

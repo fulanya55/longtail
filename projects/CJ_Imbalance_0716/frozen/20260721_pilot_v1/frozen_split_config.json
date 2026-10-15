@@ -1,0 +1,24 @@
+{
+  "allow_locked_test": false,
+  "identity_key": "receiver_noise_seed",
+  "labeled_ratios": [
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "roles": [
+    "optimization",
+    "early_stop",
+    "calibration",
+    "threshold_selection"
+  ],
+  "seed_list": [
+    2026,
+    2027,
+    2028,
+    2029,
+    2030
+  ]
+}

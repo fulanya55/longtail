@@ -1,0 +1,34 @@
+{
+  "experiment": "P5c frozen bounded-JNR attachment parameter-OOD atlas",
+  "research_question": "What is the 30-to-50 dB extrapolation boundary of the P5b4 frozen JNR-only attachment, separate from its confirmed 10-30 dB in-range evidence?",
+  "evidence_role": "fresh_external_OOD_characterization_no_selection_no_training",
+  "frozen_candidate": {
+    "p5b4_result": "outputs/p5b4_bounded_jnr_attachment_confirmation_20260801/result.json",
+    "base_model_seeds": [3041, 3042, 3043],
+    "head_checkpoints": [
+      "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3041_head14041.pt",
+      "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3042_head14042.pt",
+      "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3043_head14043.pt"
+    ],
+    "forbidden": ["all training", "normalizer fitting", "threshold calibration", "OOD tuning", "model selection", "router construction"]
+  },
+  "fresh_data": {
+    "generator_seed": 880000000,
+    "powers_db": [30, 35, 40, 45, 50],
+    "samples_per_combination": 60,
+    "identities_per_power": 3780,
+    "paired_identity_key": "receiver_noise_seed",
+    "generated_split": "train only",
+    "zero_overlap_with": ["root_0716", "P4c", "P4d", "P4k", "P5a", "P5a2", "P5b", "P5b1", "P5b2", "P5b3", "P5b4_860", "P5b4_870"]
+  },
+  "metrics": {
+    "primary": "per-target oracle-gated and predicted-gated NMAE delta to frozen P4c at every power",
+    "secondary": "identity-clustered bootstrap CI; 30 dB anchor; per-combination worst deltas",
+    "classification_invariance": "exact by construction; report hashes",
+    "interpretation": "30 dB is in-range anchor; 35-50 dB are parameter OOD and cannot be pooled into an in-range success claim"
+  },
+  "stop_rule": "No P5c outcome authorizes OOD retraining or a new deeper JNR expert. A negative OOD result is an extrapolation boundary, not a prompt to tune on P5c.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

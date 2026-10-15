@@ -1,0 +1,16 @@
+{
+  "experiment": "P3o-A low-power attribution",
+  "status": "formal_development_failed",
+  "frozen_at": "2026-08-01",
+  "candidate": "full_epoch_matched/C_joint/T_safe",
+  "summary_file": "outputs/p3o_low_power_attribution_development_20260801/summary.json",
+  "failure_audit_file": "outputs/p3o_low_power_attribution_development_20260801/failure_audit.json",
+  "implementation_sha256": "CF0A5D765289BCD69D502B36BEFD9E29BEA2E73B48526307661512361139E288",
+  "preregister_sha256": "65B0C88B882228BDFD1C8880A3EA151E9ABE1B648B4CB83BC3356926AB1B0DB7",
+  "generator_sha256": "48C1666D7C62DF74C78F39DF4E1E55D8244AFBD74698DF45D5566A271F0B4D20",
+  "development_seed": 860000000,
+  "decision": "Do not perform any further model selection, recalibration, threshold tuning, checkpoint substitution, or training-budget change on P3o-A. Do not use the reserved confirmation identities 870000000/880000000 because the prerequisite development gates failed. Enter P3o-B only as a new preregistered mechanism on fresh identities.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

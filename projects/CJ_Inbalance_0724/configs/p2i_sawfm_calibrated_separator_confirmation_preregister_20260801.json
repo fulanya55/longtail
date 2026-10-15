@@ -1,0 +1,45 @@
+{
+  "experiment_id": "P2i-frozen-calibrated-SawFM-separator-two-seed-confirmation",
+  "evidence_role": "independent development confirmation; no locked test",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "frozen_candidate": {
+    "separator": "P2f S1 waveform-only checkpoints seeds 2041-2043",
+    "period_expert": "seed-matched frozen SawFM period specialists",
+    "affine_coefficients_source": "P2h fit roles only",
+    "coefficients": {
+      "2041": {"a": 1.0538332944014202, "b_seconds": 0.00000792056473920431},
+      "2042": {"a": 1.0485594935630393, "b_seconds": 0.000005973457154872555},
+      "2043": {"a": 1.1260814638565335, "b_seconds": 0.0000029172537901531955}
+    }
+  },
+  "data_protocol": {
+    "generator_entrypoint": "matlab/generate_p2i_sawfm_calibrated_confirmation_data.m",
+    "identity_seeds": [2100000000, 2200000000],
+    "powers_db": [35, 40, 45, 50],
+    "split_generated": "train only",
+    "samples_per_combination": 10,
+    "SawFM_positive_identities_per_seed": 320,
+    "required_cross_seed_overlap": 0,
+    "required_overlap_with_prior_identities": 0,
+    "test_generated": false
+  },
+  "access": {
+    "training": false,
+    "coefficient_refit": false,
+    "selection": false,
+    "evaluation": "one pass for each of 3 frozen model seeds x 2 data seeds"
+  },
+  "promotion_gates": {
+    "all_6_calibrated_reduction_vs_raw_min": 0.35,
+    "all_6_calibrated_improvement_over_uncalibrated_min": 0.10,
+    "all_6_calibrated_pearson_min": 0.60,
+    "mean_calibrated_reduction_vs_raw_min": 0.40,
+    "both_data_seed_means_positive": true
+  },
+  "interpretation_rules": {
+    "pass": "freeze P2i as confirmed SawFM parameter candidate; next use a separately preregistered fresh dataset for full 12-parameter and predicted-gate attachment",
+    "fail": "do not attach and do not refit coefficients on confirmation data",
+    "no_checkpoint_selection": true
+  },
+  "locked_test_used": false
+}

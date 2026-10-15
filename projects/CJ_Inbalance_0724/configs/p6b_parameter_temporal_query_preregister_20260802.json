@@ -1,0 +1,83 @@
+{
+  "experiment": "P6b class-specific temporal-query pooling for heterogeneous full-12 regression",
+  "registration_date": "2026-08-02",
+  "research_question": "Is the global average-pooled IQ-Grouped parameter vector the full-12 regression bottleneck, such that class-specific temporal query pooling improves parameter estimation beyond an equal-parameter/equal-main-compute global-query control?",
+  "evidence_role": "fresh_identity_three_seed_development_screen",
+  "reference_only": {
+    "P1n": "frozen reference-only classification/risk system; no P1n test predictions may be read",
+    "P4c_P4d": "heterogeneous MLCNN classification plus IQ-Grouped full-12 parameter route",
+    "P6a_r1": "stopped physical-FiLM path; descriptor, FFT cost settings and P6a identities are forbidden",
+    "historical_development_and_test_predictions_may_be_opened": false
+  },
+  "single_changed_axis": {
+    "C1": "replace only the IQ-Grouped global parameter pooling/head with six learned class-specific temporal queries over the final fused IQ-Grouped map",
+    "C2": "same IQ-Grouped temporal adapter, queries, per-class heads, parameter count and score-map compute as C1, but replace local softmax temporal pooling with global query modulation",
+    "held_fixed": ["MLCNN classification path", "IQ-Grouped convolutional stem", "raw I/Q input", "six labels", "12-target schema", "masked SmoothL1", "optimizer", "epochs", "data roles", "calibration procedure"],
+    "forbidden_inputs": ["nominal power", "true composition", "identity", "parameter target at inference", "P6a physical descriptor"]
+  },
+  "models": {
+    "C0_global": "mlcnn_iq_grouped_task_routed",
+    "C1_temporal_query": "mlcnn_iq_grouped_temporal_query_task_routed",
+    "C2_equal_compute_global_control": "mlcnn_iq_grouped_temporal_global_control_task_routed"
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p6b_parameter_temporal_query_data.m",
+    "base_seed": 1170000000,
+    "raw_root": "generated_data/p6b_parameter_temporal_query_seed1170000000",
+    "rechunked_root": "generated_data/p6b_parameter_temporal_query_seed1170000000_rechunked",
+    "data_role": "train only",
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "identity_key": "receiver_noise_seed",
+    "required_overlap_with_root_and_all_prior_consumed_pools": 0,
+    "roles_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5}
+  },
+  "training": {
+    "model_seeds": [17041, 17042, 17043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "parameter_loss": "masked SmoothL1 only on label=1 AND parameter_mask=1 AND finite",
+    "checkpoint_objective": "early parameter macro-NMAE",
+    "threshold_calibration": "per-class F1 grid on calibration only"
+  },
+  "validity_gates": {
+    "identity_overlap_zero": true,
+    "all_12_positive_masked_targets_finite_and_variable": true,
+    "all_roles_disjoint_and_cover_63_combinations": true,
+    "C1_C2_parameter_count_exactly_equal": true,
+    "C1_C2_output_shape_and_inactive_nan_gradient_tests_pass": true,
+    "C1_parameter_loss_has_no_gradient_path_to_MLCNN_classification_branch": true
+  },
+  "promotion_gates": {
+    "each_seed_C1_full12_oracle_macro_nmae_reduction_vs_C0_at_least": 0.02,
+    "mean_C1_full12_oracle_macro_nmae_reduction_vs_C0_at_least": 0.03,
+    "each_seed_C1_full12_oracle_macro_nmae_reduction_vs_C2_at_least": 0.01,
+    "mean_C1_full12_oracle_macro_nmae_reduction_vs_C2_at_least": 0.015,
+    "each_seed_C1_macro_pearson_not_lower_than_C0_and_C2": true,
+    "no_target_worse_in_all_three_C1_vs_C0_by_more_than_absolute_nmae": 0.03,
+    "each_seed_C1_macro_aupr_drop_vs_C0_at_most": 0.003,
+    "each_seed_C1_subset_accuracy_drop_vs_C0_at_most": 0.01,
+    "C1_C2_parameter_count_equal": true,
+    "C1_C2_batch64_median_latency_ratio_at_most": 1.05,
+    "C1_batch64_median_latency_ratio_vs_C0_at_most": 1.25,
+    "C1_batch1_p95_latency_ratio_vs_C0_at_most": 1.35
+  },
+  "reporting": {
+    "required": ["oracle and predicted-gate full-12 NMAE", "miss penalty", "per-target NMAE/Pearson", "worst combination", "macro-AUPR/subset/per-class recall/FPR", "parameter count", "batch1/batch64 latency"],
+    "no_success_claim_from": ["early", "calibration", "tune", "single seed", "loss alone", "one local target"]
+  },
+  "stop_rule": "If any validity or promotion gate fails, stop P6b on this identity pool. Do not alter query width, token adapter, softmax temperature, global-control formulation, loss weight, threshold, batch size or latency tolerance. Do not generate confirmation data.",
+  "next_if_pass": "Freeze candidate/control checkpoints, normalizers, thresholds and code; run two untouched no-training/no-recalibration identity confirmations, then a five-model seed extension before any OOD, LSCO, long-tail or locked-test registration.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

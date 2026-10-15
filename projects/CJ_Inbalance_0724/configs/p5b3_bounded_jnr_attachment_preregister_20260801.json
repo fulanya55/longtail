@@ -1,0 +1,59 @@
+{
+  "experiment": "P5b3 bounded posterior-conditioned swept-JNR attachment",
+  "research_question": "Can a small posterior-conditioned analytic JNR estimator improve only MFT/VFT/ISRJ JNR estimates on new paired-power identities while leaving the frozen P4c classification and other nine parameters bit-identical?",
+  "evidence_role": "new_identity_development_attachment_screen_not_locked_test",
+  "parents": {
+    "P5b1": "oracle physical sufficiency passed",
+    "P5b2": "frozen classifier posterior sufficiency passed",
+    "P5b2_result": "outputs/p5b2_posterior_conditioned_jnr_20260801/result.json",
+    "P5b2_result_sha256": "e683b1420df1e910f89c203d2ead35dcc15b9a7b9958582f7750ab240244e0dd"
+  },
+  "fresh_data": {
+    "generator_seed": 850000000,
+    "powers_db": [10, 15, 20, 25, 30],
+    "identities_per_combination": 60,
+    "combinations": 63,
+    "same_identity_role_at_all_powers": true,
+    "roles_per_combination": {"train": 36, "early": 12, "confirm": 12},
+    "generated_split": "train only",
+    "zero_overlap_required_with": ["root_0716", "P4c", "P4d", "P4k", "P5a", "P5a2", "P5b", "P5b1", "P5b2"]
+  },
+  "frozen_base": {
+    "architecture": "mlcnn_iq_grouped_task_routed",
+    "source_run": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+    "model_seeds": [3041, 3042, 3043],
+    "checkpoint_objective": "parameter",
+    "frozen_weights": true,
+    "frozen_normalizer": true,
+    "frozen_thresholds": true
+  },
+  "candidate": {
+    "input": "P5b1 26-D fixed analytic feature bank plus frozen base six-label sigmoid posterior",
+    "head": "one-hidden-layer MLP, 64 hidden units, three outputs MFT/VFT/ISRJ JNR",
+    "training": "masked SmoothL1, AdamW lr=0.001 wd=0.0001, max 30 epochs, patience 5, model seeds 14041/14042/14043",
+    "attachment": "replace only active target values at MFT.JNR column27, VFT.JNR column48, ISRJ.JNR column52; retain the base prediction for all other entries",
+    "forbidden": ["base weight update", "classification logit update", "threshold recalibration", "routing", "loss tuning", "nominal power input", "true labels input at inference"]
+  },
+  "evaluation": {
+    "oracle_gated": "JNR error where the true label is active and parameter mask is valid",
+    "predicted_gated": "same JNR error restricted by the unchanged frozen base classification decision",
+    "classification_invariance": "logits, probabilities and all thresholded decisions must be exactly equal before/after attachment",
+    "other_parameter_invariance": "all non-target JNR entries and all 9 non-JNR selected parameters must be bit-identical before/after attachment"
+  },
+  "promotion_gates": {
+    "classification_and_other_parameter_invariance": true,
+    "each_of_MFT_and_ISRJ_mean_oracle_gated_nmae_reduction_vs_base_at_least": 0.1,
+    "each_of_MFT_and_ISRJ_three_of_three_model_seeds_positive": true,
+    "each_of_MFT_and_ISRJ_mean_predicted_gated_nmae_not_worse_than_base": true,
+    "VFT_oracle_gated_mean_nmae_not_worse_than_base": true,
+    "each_of_MFT_and_ISRJ_identity_clustered_bootstrap_gain_ci95_low_greater_than": 0.0,
+    "no_target_has_confirm_power_10_or_30_nmae_worse_than_base_by_more_than": 0.03
+  },
+  "decision_rule": {
+    "pass": "Freeze the bounded attachment and perform separately preregistered two-new-identity confirmation before any broader system claim.",
+    "fail": "Retain frozen P4c. Do not tune the head, add a router, change classification thresholds, or extend the attachment."
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,53 @@
+{
+  "experiment_id": "P2k-two-new-identity-seed-full-parameter-confirmation",
+  "registration_date": "2026-08-01",
+  "frozen_candidate": {
+    "development_summary": "outputs/p2j_full_parameter_predicted_gate_attachment_20260801/summary.json",
+    "attachment": "predicted-positive SawFM only",
+    "model_seeds": [2041, 2042, 2043],
+    "separator_checkpoints": "P2f S1 waveform-only seed-matched best.pt files",
+    "period_expert": "P2a seed-matched frozen SawFM specialist",
+    "affine_coefficients": {
+      "2041": [1.0538332944014202, 0.00000792056473920431],
+      "2042": [1.0485594935630393, 0.000005973457154872555],
+      "2043": [1.1260814638565335, 0.0000029172537901531955]
+    },
+    "refit_or_threshold_change_allowed": false,
+    "checkpoint_selection_allowed": false
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p2k_full_parameter_confirmation_data.m",
+    "base_seeds": [2400000000, 2500000000],
+    "split": "train only",
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "combinations": 63,
+    "identities_per_combination_per_seed": 10,
+    "identities_per_seed": 630,
+    "cross_seed_overlap_required": 0
+  },
+  "confirmation_gates": {
+    "both_data_seed_runs_pass_all_P2j_gates": true,
+    "all_six_full_nmae_improvement_vs_safe_route_min": 0.05,
+    "all_six_full_nmae_improvement_vs_old_joint_positive": true,
+    "each_data_seed_mean_high_power_saw_reduction_vs_old_min": 0.30,
+    "all_six_high_power_saw_reduction_vs_old_positive": true,
+    "each_low_power_saw_ratio_vs_old_max": 1.05,
+    "combined_identity_bootstrap_full_nmae_delta_vs_old_ci95_high_max": 0.0,
+    "combined_identity_bootstrap_miss_delta_vs_old_ci95_high_max": 0.0,
+    "classification_and_other_11_outputs_exactly_unchanged": true
+  },
+  "statistics": {
+    "within_seed_bootstrap_replicates": 200,
+    "combined_identity_grouped_bootstrap_replicates": 1000,
+    "report_all_six_runs": true,
+    "report_per_power": true,
+    "report_cost": true
+  },
+  "stop_rule": "Any failed confirmation gate stops promotion. Do not refit coefficients, change thresholds, select a subset of model seeds, or reuse confirmation identities.",
+  "evidence_boundary": {
+    "confirmation_only": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "candidate": "RouteA_VisibilityBalancedFusion_v2",
+  "created_at_utc": "2026-07-31T11:52:54.420386+00:00",
+  "development_v2_sha256": "f05a7e30253b0c0fdf10d5040487cb6a6f089abcd48f9cbd6f9e467624498801",
+  "files": [
+    {
+      "bytes": 8742,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\development_summary.json",
+      "sha256": "dbaad9043731d2bd7e3b0a9db4493c8c55ba4a5832d8f885eb20599c7520e42b",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\route_a_visibility_balanced_fusion_v2_summary.json"
+    },
+    {
+      "bytes": 431,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\six_class_development_v2.yaml",
+      "sha256": "43c0c49afee2ccd6a9120a9345f2d6834ee3be0a5cb1844530ee0e87c4a6eb6b",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\configs\\student_a\\six_class_development_v2.yaml"
+    },
+    {
+      "bytes": 17038,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\run_route_a_visibility_balanced_fusion_v2.py",
+      "sha256": "71ef510569237fcd87daf20d0d2d21c64ab761f47ff2a9a4fd5bf8e910acd9ed",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_visibility_balanced_fusion_v2.py"
+    },
+    {
+      "bytes": 17676,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\run_route_a_visibility_temporal_expert_v2.py",
+      "sha256": "9e778b7adaa97504745b00a765dfbb4c08b940c115151aad877478a55ec07203",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_visibility_temporal_expert_v2.py"
+    },
+    {
+      "bytes": 19941,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\run_route_a_stage23_identifiability_v2.py",
+      "sha256": "7fdd92e833888a4b997bca96a8a8d0c96cd67846110711155e9b7bebd782f2a6",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_stage23_identifiability_v2.py"
+    },
+    {
+      "bytes": 12011,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\run_route_a_visibility_balanced_fusion_test_v2_once.py",
+      "sha256": "e357a497b89c4895e4314d778011cbc12dd1deab9c923c8d449b33012a9c9a2b",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_visibility_balanced_fusion_test_v2_once.py"
+    },
+    {
+      "bytes": 6338,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\freeze_route_a_visibility_balanced_fusion_v2.py",
+      "sha256": "fcd942e7817a4fbb29210223ff73384435bc33bb8b51cfeea9e1d346cfa2aa03",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\freeze_route_a_visibility_balanced_fusion_v2.py"
+    },
+    {
+      "bytes": 1578,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\route_a_visibility_balanced_fusion_v2_plan_20260731.md",
+      "sha256": "29465e06926ce3e36ba3a1957d8d7a1eb6891f6096cf6bb0d551c0b64fbb120d",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\docs\\plans\\route_a_visibility_balanced_fusion_v2_plan_20260731.md"
+    },
+    {
+      "bytes": 1590,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\protocol\\route_a_visibility_balanced_fusion_test_v2_once_plan_20260731.md",
+      "sha256": "d884aa921583a951fff174dade8c93ac29c84e1850034639342dd10783ac7c2f",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\docs\\plans\\route_a_visibility_balanced_fusion_test_v2_once_plan_20260731.md"
+    },
+    {
+      "bytes": 1936422,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\backbone\\best_model.pth",
+      "sha256": "4390ae3cf88c0ac023e399d2bfe6f8357093ef8d23c73fda9c7f4bc78a47e190",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_dfms_iq_structure_screen\\runs\\F2_DFMS_Full\\seed_2039\\best_model.pth"
+    },
+    {
+      "bytes": 6901,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\base\\best_head.pth",
+      "sha256": "d809f74ba758614e109d14811db7f458e75b8d471d3f400ebcb4f3f99b466ee3",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h5_background_ablation_v2\\seed_2039\\C6_PosBCE\\best_head.pth"
+    },
+    {
+      "bytes": 14141,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\expert\\best_probe.pth",
+      "sha256": "695b0b86cf23b101b4a534b1d43ed83fc11b54a45fee94405018579aa4d88438",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_stage23_identifiability_v2\\seed_2039\\T_FinalTemporal\\best_probe.pth"
+    },
+    {
+      "bytes": 2501,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\fusion\\best_fusion.pth",
+      "sha256": "8538fba0bdd5cb09794874cac6c582b684f9d980aba0258723e72d8b7862e8b3",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\best_fusion.pth"
+    },
+    {
+      "bytes": 4050,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\fusion\\history.csv",
+      "sha256": "e2dd268664e329109af209bf047ab5d5c0e3a2eb2fa0465783ed8912ce756ba6",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\history.csv"
+    },
+    {
+      "bytes": 1128,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\fusion\\score_normalization.json",
+      "sha256": "c025a79f4cd228fa186182fedfbe89be3c8a64e97d1cb9326b1c9b81788dd246",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\score_normalization.json"
+    },
+    {
+      "bytes": 169,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\baseline\\calibration.json",
+      "sha256": "6ae8f03b50b4fdce736ccb634c04005007410068f7ad0ee7bcc8f5b51246adb6",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\B0_FrozenC6\\calibration.json"
+    },
+    {
+      "bytes": 150,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\baseline\\thresholds.json",
+      "sha256": "093e4c29199f572e07e3a96feacd504ea7fcbe4a03151aaf63e45b2d59f2a1b5",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\B0_FrozenC6\\thresholds.json"
+    },
+    {
+      "bytes": 169,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\candidate\\calibration.json",
+      "sha256": "01d49bd318665b8bca701328829f5c496f67fd088658ccafe682d00f7db994be",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\E1_VTSE_Bounded\\calibration.json"
+    },
+    {
+      "bytes": 151,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\candidate\\thresholds.json",
+      "sha256": "af988eda8185c0483cdd02e52a6cbd1ae402fbef499ae18d1a7057c1f2266511",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\E1_VTSE_Bounded\\thresholds.json"
+    },
+    {
+      "bytes": 463,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2039\\run_context.json",
+      "sha256": "5d6d17491939f8cc76d710d9e331d48d3a8e1909fa1ec8dd33096969194e50fb",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2039\\run_context.json"
+    },
+    {
+      "bytes": 1936422,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\backbone\\best_model.pth",
+      "sha256": "9537d4ce1f029990d82f127a79bcc46230933308bc045e871fbf9fd0e99adf8d",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_dfms_iq_structure_screen\\runs\\F2_DFMS_Full\\seed_2040\\best_model.pth"
+    },
+    {
+      "bytes": 6965,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\base\\best_head.pth",
+      "sha256": "28690544ca85972059c2cc4765c751c21b3323879ccc66a5dae20d6c0b7693b6",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h5_background_ablation_v2\\seed_2040\\C6_PosBCE\\best_head.pth"
+    },
+    {
+      "bytes": 14141,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\expert\\best_probe.pth",
+      "sha256": "39d6a22783c93c19071828a316b53f4c6a2f831b52c9f5c26df5b021c7a51c89",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_stage23_identifiability_v2\\seed_2040\\T_FinalTemporal\\best_probe.pth"
+    },
+    {
+      "bytes": 2501,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\fusion\\best_fusion.pth",
+      "sha256": "735afd77d7e9489a97d2029ab3c0be2246e75ca7f174d351cf41bd3cb3869bbe",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\best_fusion.pth"
+    },
+    {
+      "bytes": 4050,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\fusion\\history.csv",
+      "sha256": "a3027eac3ce09518d05e138893e3a857cb9c6a13941706e4682b6da433cec1fc",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\history.csv"
+    },
+    {
+      "bytes": 1127,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\fusion\\score_normalization.json",
+      "sha256": "3aad7ee3819a3fc0b6f542e403682175412c7f6cb692f9a6c95e6b03310bfa8b",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\score_normalization.json"
+    },
+    {
+      "bytes": 170,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\baseline\\calibration.json",
+      "sha256": "c7272922dd3c06b3b573b0d1c20f5366dad26ad177735e55ef0e4e908ca1c2ae",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\B0_FrozenC6\\calibration.json"
+    },
+    {
+      "bytes": 149,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\baseline\\thresholds.json",
+      "sha256": "bb603bcde63a53ad98c72bfe6b3281c9ab908400da2e309dc902f8be566955bb",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\B0_FrozenC6\\thresholds.json"
+    },
+    {
+      "bytes": 170,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\candidate\\calibration.json",
+      "sha256": "15677de4624bcd72f646afc5e7531bd016e511c833b3c2b774315398b1d43886",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\E1_VTSE_Bounded\\calibration.json"
+    },
+    {
+      "bytes": 150,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\candidate\\thresholds.json",
+      "sha256": "9fe393c37ca2d4f904a1c1f9adf87b929d3368d541981828a72edc8ac7b294a4",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\E1_VTSE_Bounded\\thresholds.json"
+    },
+    {
+      "bytes": 463,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2040\\run_context.json",
+      "sha256": "bf9237262437a75a0abcc4c10483cb96b03e671f65f8b5578e349d84cc46d448",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2040\\run_context.json"
+    },
+    {
+      "bytes": 1936422,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\backbone\\best_model.pth",
+      "sha256": "b2dc2833a14e95844d1cb5fd03aafd16cdae86c3ee16a2e9649647354ff3fcfc",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_dfms_iq_structure_screen\\runs\\F2_DFMS_Full\\seed_2041\\best_model.pth"
+    },
+    {
+      "bytes": 6965,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\base\\best_head.pth",
+      "sha256": "cf70dc0af33277e5bad0652187741d5eb90657c6e85422f5a1bfeb823172323f",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h5_background_ablation_v2\\seed_2041\\C6_PosBCE\\best_head.pth"
+    },
+    {
+      "bytes": 14141,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\expert\\best_probe.pth",
+      "sha256": "b56fcc62a13f170429f52fe700606fcbca34d8dde20144fd3237f9d0d8ee5861",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_stage23_identifiability_v2\\seed_2041\\T_FinalTemporal\\best_probe.pth"
+    },
+    {
+      "bytes": 2501,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\fusion\\best_fusion.pth",
+      "sha256": "2040267e34c5b5b6f6c3febd8c6670d4c934b6769920f684d4f565787c43cac2",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\best_fusion.pth"
+    },
+    {
+      "bytes": 4042,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\fusion\\history.csv",
+      "sha256": "c62ca12490845356393580b20692c229eb736fa600d7663cf125c4c8a0a84be3",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\history.csv"
+    },
+    {
+      "bytes": 1132,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\fusion\\score_normalization.json",
+      "sha256": "0a163c76a9c7f03dae8d4a946969e35ac7dd67b5efc294ab993ca6d6910ee531",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\score_normalization.json"
+    },
+    {
+      "bytes": 169,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\baseline\\calibration.json",
+      "sha256": "d39a700553e30a168bc7f17eef77970b87e513b9ef29e5da6b1943201ef49ef9",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\B0_FrozenC6\\calibration.json"
+    },
+    {
+      "bytes": 151,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\baseline\\thresholds.json",
+      "sha256": "62082e79de4871a6ccabe339261e7a27849e38fc21a0997ddb7ece3e6b1e9764",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\B0_FrozenC6\\thresholds.json"
+    },
+    {
+      "bytes": 170,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\candidate\\calibration.json",
+      "sha256": "e71aec67b210f3d1689c8f856d4cd4c56511f4d711ec032d1ba4a5ec859f7dde",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\E1_VTSE_Bounded\\calibration.json"
+    },
+    {
+      "bytes": 150,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\candidate\\thresholds.json",
+      "sha256": "e68ca4f8c8e017b8ee5684273e2772085febb164f0dec07a4f7d4c69fce7d0ce",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\E1_VTSE_Bounded\\thresholds.json"
+    },
+    {
+      "bytes": 463,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2041\\run_context.json",
+      "sha256": "d407b0cad63d0c656a18e3532ed6a683fcd5692551d30ac9c26ea31dd3c9a10c",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2041\\run_context.json"
+    },
+    {
+      "bytes": 1936422,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\backbone\\best_model.pth",
+      "sha256": "30dcbe96e18cb8db23972e1016cc543c6fc669243f697a8f82a1645396785fc8",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_dfms_iq_structure_screen\\runs\\F2_DFMS_Full\\seed_2042\\best_model.pth"
+    },
+    {
+      "bytes": 6901,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\base\\best_head.pth",
+      "sha256": "30aafd188705841fb056dc2751dd324db43785c48d24a7d9256e22e35ff4ac58",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h5_background_ablation_v2\\seed_2042\\C6_PosBCE\\best_head.pth"
+    },
+    {
+      "bytes": 14141,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\expert\\best_probe.pth",
+      "sha256": "325f4a4c1a05f3c71444131b922521b47d72fff3c8cce0e50d77ff9aaf7e60a7",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_stage23_identifiability_v2\\seed_2042\\T_FinalTemporal\\best_probe.pth"
+    },
+    {
+      "bytes": 2501,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\fusion\\best_fusion.pth",
+      "sha256": "06201958bb5dd69bff078972c44893b6ff23d2a19feeea5b02d072f90aa9ec80",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\best_fusion.pth"
+    },
+    {
+      "bytes": 37763,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\fusion\\history.csv",
+      "sha256": "0737c6e749460672a175b1783811677a98c57f85298d8403b7057c0bd87fb9b2",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\history.csv"
+    },
+    {
+      "bytes": 1132,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\fusion\\score_normalization.json",
+      "sha256": "3924876b4876d8c7858642abe39882c5ca92ede59886513f27bc59baf524a1d3",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\score_normalization.json"
+    },
+    {
+      "bytes": 170,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\baseline\\calibration.json",
+      "sha256": "156157f0033e62095237f74f6cdb12ea16357d2c48c995b641ae399c2716dbb7",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\B0_FrozenC6\\calibration.json"
+    },
+    {
+      "bytes": 150,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\baseline\\thresholds.json",
+      "sha256": "bdce4a85f62dfc0f5b440aadc980aea101e10df0f837f1734213da04b74bfd90",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\B0_FrozenC6\\thresholds.json"
+    },
+    {
+      "bytes": 171,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\candidate\\calibration.json",
+      "sha256": "0394b17cd2242d1927f5f13a437180e6b3c80310e4345b706d0a758290750550",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\E1_VTSE_Bounded\\calibration.json"
+    },
+    {
+      "bytes": 150,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\candidate\\thresholds.json",
+      "sha256": "81902dcbe0def2f678d00b14121276d7bf3aedefa4527c295cd102c3ecb4221d",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\E1_VTSE_Bounded\\thresholds.json"
+    },
+    {
+      "bytes": 463,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2042\\run_context.json",
+      "sha256": "38ffa4979f9447d8f451067f4dabca226baff88b0af0ee95375837e59c0c8826",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2042\\run_context.json"
+    },
+    {
+      "bytes": 1936422,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\backbone\\best_model.pth",
+      "sha256": "0bc2a7ec449fc2008c0d8600b2fe102788a933f874ec596a20a23d0c1980cc67",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_dfms_iq_structure_screen\\runs\\F2_DFMS_Full\\seed_2043\\best_model.pth"
+    },
+    {
+      "bytes": 6901,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\base\\best_head.pth",
+      "sha256": "e8180bd43aa8119db61a45ef2797be57b8a8c55edc0abcd42da859f74566a29d",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_h5_background_ablation_v2\\seed_2043\\C6_PosBCE\\best_head.pth"
+    },
+    {
+      "bytes": 14141,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\expert\\best_probe.pth",
+      "sha256": "c56897de38c6ad9bb3ac1ac0f0798e34ecbcf80a50e77aeee82d993a5c205e20",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_stage23_identifiability_v2\\seed_2043\\T_FinalTemporal\\best_probe.pth"
+    },
+    {
+      "bytes": 2565,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\fusion\\best_fusion.pth",
+      "sha256": "aa575112eb4889d6448f9b7e7102791ed59b84eeb03db67bfd0ff0d654c753b8",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\best_fusion.pth"
+    },
+    {
+      "bytes": 4239,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\fusion\\history.csv",
+      "sha256": "9a3b4d3820b2ecb37acae50698f9d935a48b9df56ff9af4c746bf81d603e0548",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\history.csv"
+    },
+    {
+      "bytes": 1124,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\fusion\\score_normalization.json",
+      "sha256": "eede06ed35b91d16a466f4cad263803df73758318677a5fe74635981d094d067",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\score_normalization.json"
+    },
+    {
+      "bytes": 168,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\baseline\\calibration.json",
+      "sha256": "4f96d15000fd571b914664ee47b9ad7f35e14a04b0413c43d443de06728b446d",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\B0_FrozenC6\\calibration.json"
+    },
+    {
+      "bytes": 151,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\baseline\\thresholds.json",
+      "sha256": "cdfaff770673d8d504c9163652cf1e523013125f2785fcd99ec2b3b584f789a3",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\B0_FrozenC6\\thresholds.json"
+    },
+    {
+      "bytes": 171,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\candidate\\calibration.json",
+      "sha256": "89b0f7ccc27e8df1269e753ce6c8c4671764e4bf2c3d78a1d3045e0dcc16eca0",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\E1_VTSE_Bounded\\calibration.json"
+    },
+    {
+      "bytes": 151,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\candidate\\thresholds.json",
+      "sha256": "bd315cd3a56ff4c70a2f4a82bd740a670e39a91c1402803f57ebe0e6d0b80ed2",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\E1_VTSE_Bounded\\thresholds.json"
+    },
+    {
+      "bytes": 463,
+      "frozen": "C:\\LJQ_code\\CJ_Imbalance_0716\\frozen\\20260731_route_a_visibility_balanced_fusion_v2\\seed_2043\\run_context.json",
+      "sha256": "56c338f20d4ae7f8c5430b564b83a5aeb4a0d28b428a3abaa830f5cd9d68f111",
+      "source": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_visibility_balanced_fusion_v2\\seed_2043\\run_context.json"
+    }
+  ],
+  "historic_locked_test_used": false,
+  "seeds": [
+    2039,
+    2040,
+    2041,
+    2042,
+    2043
+  ],
+  "status": "frozen",
+  "test_v2": {
+    "authorized_once": true,
+    "expected_sha256": "902e636911e76d6915fe04976f59cc46a588b3d98926bb9a48e2200628617947",
+    "path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0731_v2\\closedset_6class_test.mat",
+    "used": false
+  }
+}

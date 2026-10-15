@@ -1,0 +1,14 @@
+{
+  "experiment": "P3o-N observable resolution-aware abstention for compound MFT target count",
+  "frozen_at": "2026-08-03",
+  "preregister_sha256": "f8d7189732f64b842cd6d16a6340195bce126c36b88d110fd41fb130e1cdf1c8",
+  "implementation_sha256": "59c727a9c2263ffac49c9889087cec1395885416b2997c6c0d9e5cb05b2b682f",
+  "audit_implementation_sha256": "fb317c19a146be414f79c2ffb0f2aa306cef0efb429f9ac8f260084f537216ce",
+  "generator_sha256": "7473ecd6bf3a371f5ee0da09aab318f6d4195b99fdc5f71adf0da324ad2ddb8a",
+  "data": {"prefix": "p3on_resolution_abstention", "train_seed": 1720000000, "development_seed": 1730000000, "reserved_confirmation_seeds": [1740000000, 1750000000], "raw_root": "D:\\CJ0724_generated_data", "rechunk_root": "D:\\CJ0724_rechunked_data", "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers": [25, 35, 50], "samples_per_pattern": 33, "execution": "one regime-power transaction per MATLAB process"},
+  "model": {"seeds": [2301, 2302, 2303], "point_estimator": "P3o-M sparse-peak OrdinalTokenNet", "loss": "ordinal BCE plus 0.05 monotonicity", "selection": "minimum ordinal loss"},
+  "decision": {"coverage_target": 0.8, "threshold_source": "selection only", "C0": "ordinal confidence", "C1": "confidence times selected peak strength and min gap / 0.04", "forbidden_post_freeze_changes": ["resolution formula", "gap scale", "target coverage", "token rule", "network", "loss", "optimizer", "training schedule", "selection", "development identities"]},
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

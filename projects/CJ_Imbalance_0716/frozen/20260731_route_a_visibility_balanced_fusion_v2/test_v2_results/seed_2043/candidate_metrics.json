@@ -1,0 +1,72 @@
+{
+  "calibration_temperature": 2.0148439407348633,
+  "evidence_role": "independent_test_v2",
+  "historic_locked_test_used": false,
+  "macro_aupr": 0.8734027637142707,
+  "macro_f1": 0.7601102742796341,
+  "per_label": {
+    "FMB": {
+      "aupr": 0.8014569287739705,
+      "f1": 0.7046445338698859,
+      "negative_fpr": 0.21379032258064515,
+      "weak_count": 2927,
+      "weak_recall": 0.40997608472839087
+    },
+    "ISRJ": {
+      "aupr": 0.8877501347389231,
+      "f1": 0.7613094522578835,
+      "negative_fpr": 0.2142741935483871,
+      "weak_count": 2881,
+      "weak_recall": 0.33391183616799724
+    },
+    "MFT": {
+      "aupr": 0.9189642057283705,
+      "f1": 0.82515625,
+      "negative_fpr": 0.18048387096774193,
+      "weak_count": 2950,
+      "weak_recall": 0.40644067796610167
+    },
+    "SinFM": {
+      "aupr": 0.9236147070620029,
+      "f1": 0.8192902923245271,
+      "negative_fpr": 0.18596774193548388,
+      "weak_count": 2822,
+      "weak_recall": 0.4574769666902906
+    },
+    "VFT": {
+      "aupr": 0.8352278422680868,
+      "f1": 0.6901508429458739,
+      "negative_fpr": 0.1582258064516129,
+      "weak_count": 2899,
+      "weak_recall": 0.23042428423594344
+    }
+  },
+  "per_label_target_strong_recall": {
+    "ISRJ": 0.8607722552676681,
+    "MFT": 0.9505583756345177,
+    "VFT": 0.7181092818907181
+  },
+  "per_label_target_weak_auroc": {
+    "ISRJ": 0.6033892941518961,
+    "MFT": 0.6744679059595406,
+    "VFT": 0.5761766988616764
+  },
+  "residual_abs_max": 0.4998885691165924,
+  "residual_abs_mean": 0.07906460762023926,
+  "saw_absent_macro_f1": 0.8147747918930989,
+  "saw_present_macro_f1": 0.7095026372595392,
+  "seed": 2043,
+  "target_negative_fpr": 0.1843279569892473,
+  "target_strong_recall": 0.8431466375976346,
+  "target_weak_auroc": 0.6180112996577044,
+  "target_weak_recall": 0.32359226612334746,
+  "test_v2_used": true,
+  "thresholds": [
+    0.63,
+    0.52,
+    0.53,
+    0.47,
+    0.42
+  ],
+  "variant": "E1_VTSE_Bounded"
+}

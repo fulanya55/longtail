@@ -1,0 +1,30 @@
+{
+  "files": {
+    "frozen_calibration_config.json": {
+      "sha256": "9ea500d295f233c7cd145a9adc3aba1b0c0d2b6c72f56b63f3c0490065da653a"
+    },
+    "frozen_data_config.json": {
+      "sha256": "fd0ea5a11963775da1678ed85bbf5b9627aca57b4f8e5bdbd1d2ff889afdb32b"
+    },
+    "frozen_model_config.json": {
+      "sha256": "b2f00cc0c49c93187d022be5145fd54f48e07a3bd638f0daadd009d357d22395"
+    },
+    "frozen_split_config.json": {
+      "sha256": "d581e208735272e7e9571ccbfa5bb21970d6bc0de8b884a487913c4000f78a71"
+    },
+    "frozen_student_a_config.json": {
+      "sha256": "61cb9eee82411a2a258528571c79454c3d44ad68d08f9c4f809eb30b6d1fd992"
+    },
+    "frozen_student_b_config.json": {
+      "sha256": "793b1a2b36522a4efb4f24331116cc9b71c7eb98f9ac72cf1d18474ff12a4a79"
+    },
+    "frozen_threshold_config.json": {
+      "sha256": "776c904b5002f015c4225f6326eb86cc8672b932249d2b7e6016658788fd4f27"
+    },
+    "frozen_training_config.json": {
+      "sha256": "a30d8e686d56070b8767c292e07c5360e52670e9e547f85b84be5d55c25929a7"
+    }
+  },
+  "locked_test_authorized": false,
+  "status": "development_configuration_frozen"
+}

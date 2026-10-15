@@ -1,0 +1,24 @@
+{
+  "experiment": "P5u gate-driven autonomous progression monitor",
+  "status": "monitor_frozen_while_parent_development_is_running",
+  "monitor_manifest": "configs/p5u_autonomous_progression_monitor_20260806.json",
+  "monitor_manifest_sha256": "ab46d56eaef67a12e56c973a07b32cccfdd3ecbc4bea52de37558cfbcdc0be64",
+  "monitor": "cj0724/p5u_autonomous_progression_monitor.py",
+  "monitor_sha256": "47a442e3d4c1cd7317e13b706bfcba34cad34a026150dc6cc1c45662ef1135cb",
+  "test": "tests/test_p5u_autonomous_progression_monitor.py",
+  "test_sha256": "ea0df714198900e35937724294f751b7035ff65bbaca205c7672a199cfae614e",
+  "validation": {
+    "pytest": "3 passed in 3.47s for direct-supervisor, two-pool confirmation and monitor protocol tests.",
+    "real_manifest_once": "The real manifest observed the running parent development execution, created only monitor receipts, and found zero confirmation data directories.",
+    "gpu_process_check": "After hidden monitor launch, nvidia-smi pmon listed only the actual P5s executor Python process as CUDA compute; the monitor Python PID had no compute context."
+  },
+  "frozen_rules": [
+    "The monitor only polls receipts while P5u development is running; it never reads partial analytic checkpoints as a result.",
+    "It may generate confirmation data only after the parent result is passing, all three parent pool gates pass, and the direct terminal PID matches child-started PID.",
+    "Any stopped parent terminal, exception, audit failure, dry-run write, generation failure or confirmation failure writes a stop receipt and never retunes or reruns identities.",
+    "The monitor never generates, opens, scans or selects locked-test data."
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

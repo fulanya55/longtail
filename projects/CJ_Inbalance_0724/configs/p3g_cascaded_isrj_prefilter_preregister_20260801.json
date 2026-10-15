@@ -1,0 +1,31 @@
+{
+  "experiment": "P3g cheap-to-expensive cascaded ISRJ prefilter",
+  "research_question": "Can a cheap raw-physics prefilter identify the samples whose final ISRJ decision may be changed by frozen P1n, so that UNet calls fall below 30 percent while retaining at least 90 percent of P1n recall gain?",
+  "evidence_role": "fresh_identity_safe_development",
+  "data": {
+    "training_identity_seed": 530000000,
+    "development_identity_seed": 540000000,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_grouped_roles": true
+  },
+  "frozen_system": "P2c models, P1n lower-score route, alpha=1, routed thresholds and expert ensemble",
+  "cheap_gate": {
+    "input": "shared raw-physics isrj_periodicity features plus six frozen main probabilities",
+    "target": "full P1n and safe-main final ISRJ binary decisions differ",
+    "model": "balanced HistGradientBoosting leaf7",
+    "selection": "minimum coverage threshold with changed-decision recall >=0.98 and every regime-power recall >=0.90"
+  },
+  "cascade": "run frozen UNet/P1n route only when cheap gate accepts; otherwise use safe main output",
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "each_seed_retain_at_least_90_percent_of_full_p1n_recall_gain": true,
+    "each_seed_unet_call_coverage_at_most": 0.30,
+    "maximum_regime_power_fpr_at_most": 0.10,
+    "each_seed_macro_aupr_delta_vs_full_p1n_at_least": -0.005,
+    "three_of_three_positive_recall_gain_vs_safe_main": true
+  },
+  "next_if_pass": "Freeze and benchmark batch-1/64 latency, FLOPs and memory on two untouched identity seeds.",
+  "stop_rule": "If coverage or retention fails, stop probability-only/shared-physics prefilter tuning and report the UNet cost as intrinsic to the current P1n route.",
+  "locked_test_used": false
+}

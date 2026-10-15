@@ -1,0 +1,52 @@
+{
+  "experiment": "P5r explicit-baseline relocation-safe fine-grained checkpointed shared frozen-forward execution",
+  "status": "stopped_abrupt_termination_during_first_pool_analytic_collection_no_performance_result",
+  "decision": "Do not resume P5r, do not rerun P5r, do not reuse any P5r identity pool, and do not infer output equivalence, latency or model behavior. Do not generate P5r confirmation or test data.",
+  "observed_terminal_state": {
+    "python_process_present_at_audit": false,
+    "last_durable_stage": "pool_000_analytic_started",
+    "analytic_checkpoint_present": false,
+    "model_completed_receipts": 0,
+    "pool_completed_receipts": 0,
+    "result_present": false,
+    "abort_receipt_present": false,
+    "restore_receipt_present": false
+  },
+  "admissible_pre_gpu_evidence": {
+    "three_fresh_pool_audits_valid": true,
+    "explicit_E_drive_baseline_sha256_verified": true,
+    "historical_overlap_files": 0,
+    "historical_unreadable_files": 0,
+    "launch_and_environment_receipts_present": true,
+    "initial_external_python_cuda_compute_processes": []
+  },
+  "attribution": {
+    "classification": "external_or_host_session_associated_abrupt_termination_unattributed",
+    "evidence": "PID 42900 started P5r, wrote launch/environment/pool-start/analytic-start receipts, and later disappeared without a catchable-exception, analytic checkpoint, model receipt, terminal receipt, or concurrent external Python CUDA process.",
+    "boundary": "The interruption is temporally consistent with an interrupted interactive execution session but no operating-system cause is claimed. It is neither an output-equivalence failure nor a latency/model failure."
+  },
+  "frozen_evidence": {
+    "preregister": "configs/p5r_explicit_baseline_audit_preregister_20260805.json",
+    "preregister_sha256": "c5c934c82bfa468bf21709d4a8110665ebe0d00780ba9458f6bf851746019356",
+    "method_freeze": "configs/p5r_explicit_baseline_audit_method_freeze_20260805.json",
+    "method_freeze_sha256": "772d4531b0d69d0c7a6f8e3dbcb7ea6c53291e13cc20734f2176f8f299ef8413",
+    "execution_runner_sha256": "aa1e8b73ac776991e84e2217b40fffe6187e44f137150511a56a7dc20c1143f5",
+    "launch_receipt_sha256": "cf2f12cdb820384fb0552b3516ab6ffa7545fb856cbf1917e99f86e2771908dc",
+    "environment_receipt_sha256": "62be3a15cf5b1d77b1310dbeb3699b05d6771cfdc6e0deb02a7eaefb0e6e0136",
+    "pool_started_receipt_sha256": "e66cc50765817e4fe22eaf2211b4d8af609c815f3df6a8e8c001921750ed1b32",
+    "analytic_started_receipt_sha256": "f8057f1aa6db137753b1a27792f38743ea3630a506fe3ef177e300c9f48bd8b9"
+  },
+  "data_disposition": {
+    "development_seeds": [3610000000, 3620000000, 3630000000],
+    "identity_disposition": "quarantined_for_P5; no rerun, resume, selection, calibration, confirmation or test",
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "failure_analysis": [
+    "P5r repaired P5q's stale C-drive audit baseline and fully passed all three fresh-data audits before GPU execution.",
+    "P5r still relied on a long-lived interactive host process. Its runner was alive through expensive first-pool analytic collection but no terminal supervision receipt existed after the process vanished.",
+    "P5q's analytic checkpoint is durable only after the complete full-pool and benchmark feature extraction, so this interruption again left no recoverable analytic unit."
+  ],
+  "next_allowed_action": "A P5 successor may change only execution durability: launch the unchanged P5q executor from a detached supervising process, record launcher start/child-PID/exit receipts, and create analytic checkpoints in bounded deterministic chunks. It must use wholly new identities and retain the explicit E-drive baseline audit."
+}

@@ -1,0 +1,29 @@
+{
+  "experiment": "P5l fixed-minibatch CUDA-compute-guarded shared frozen-forward and dense bounded-head execution",
+  "research_question": "With the P5g mechanism unchanged, does one shared frozen base forward preserve complete full-pool outputs exactly and reduce guarded per-inference-batch latency relative to two frozen base forwards?",
+  "evidence_role": "fresh_new_identity_three_seed_development_then_two_new_identity_confirmation_no_locked_test",
+  "single_changed_axis": "The only change from P5k is timing unit: exactness remains on every 3,780-example paired-power pool, while latency is measured on the pre-registered first complete 126-example batch. This separates semantic equivalence from the operational per-batch cost and shortens the GPU-exclusive window.",
+  "frozen_parent": {
+    "P5e_confirmation_result": "outputs/p5e_five_model_seed_bounded_jnr_20260801/five_model_confirmation/result.json", "P5e_confirmation_result_sha256": "393dbb413f3f00f4d92226258654cf74a6aacdb6238d79561a4563a646b00b33",
+    "P5e_candidate_freeze": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json", "P5e_candidate_freeze_sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832",
+    "P5g_preregister": "configs/p5g_shared_dense_execution_preregister_20260802.json", "P5g_preregister_sha256": "55cd056c03af395b5755a9e681fd7e4b35c2593fd24cbba366c28f5e74a82ed8",
+    "P5g_outcome_freeze": "configs/p5g_shared_dense_execution_outcome_freeze_20260802.json", "P5g_outcome_freeze_sha256": "42fb689355b5e987525f769b59f5b04f380ea45904afd5afc4d0dd08e43e7525",
+    "P5h_preregister": "configs/p5h_shared_dense_exclusive_gpu_preregister_20260802.json", "P5h_preregister_sha256": "9ee964ac7bbe574ed45159c58da8560ac85128749507de47fb1fb684dfcb8891",
+    "P5h_outcome_freeze": "configs/p5h_shared_dense_execution_outcome_freeze_20260803.json", "P5h_outcome_freeze_sha256": "bb631cd5bd1aa50a937d110b24714e8935399b8cc7b544ed7f032ea034f5823b",
+    "P5i_preregister": "configs/p5i_shared_dense_exclusive_gpu_preregister_20260803.json", "P5i_preregister_sha256": "64c0e4755d21507e77d99090557379ffc9344c45669f1d12bb54d4355129e431",
+    "P5i_outcome_freeze": "configs/p5i_shared_dense_execution_outcome_freeze_20260803.json", "P5i_outcome_freeze_sha256": "3e889558ba1eb1e1fdd8a56b8cafd0240d06d3c1ac02471e8f274950f4d0697c",
+    "P5j_preregister": "configs/p5j_shared_dense_exclusive_gpu_preregister_20260803.json", "P5j_preregister_sha256": "22fa7f5daabe455488518a11be378f824c590a90aa1daa8576f3c60377c1fe5b",
+    "P5j_outcome_freeze": "configs/p5j_shared_dense_execution_outcome_freeze_20260803.json", "P5j_outcome_freeze_sha256": "58b5e3727d3492f91762a27e26e8c7183e1dc96194269b0dfb6406171f6f3c78",
+    "P5k_preregister": "configs/p5k_shared_dense_compute_guard_preregister_20260803.json", "P5k_preregister_sha256": "c917a125729448a6791fc81c2605e2fa2a5bb439ec810f817b09022b044e5cfa",
+    "P5k_outcome_freeze": "configs/p5k_shared_dense_execution_outcome_freeze_20260803.json", "P5k_outcome_freeze_sha256": "14ee585e42c8f9202984681f1253e28ba5cfb58e978b1200234e6e4c7936de37",
+    "source_model_seeds": [3041, 3042, 3043, 3044, 3045],
+    "forbidden_changes": ["base/head weights", "thresholds", "normalizer", "analytic feature definition", "head width", "loss", "router", "power input", "first-batch identity selection", "P5f/P5g/P5h/P5i/P5j/P5k identities"]
+  },
+  "execution": {"full_pool_examples": 3780, "batch_size": 126, "benchmark_batch": "first complete index-ordered batch, indices 0 through 125, no data-dependent sampling", "reference": "two frozen base forwards plus unchanged dense attachment", "candidate": "one frozen base forward plus identical unchanged dense attachment", "warmup_runs": 5, "timed_repetitions": 15, "timing": "CUDA synchronize before and after each run; before and after full-equivalence calls and every warmup/repeat reject any external Python PID whose nvidia-smi pmon process type contains C"},
+  "pre_generation_amendment": {"reason": "The initial draft used seeds larger than the unsigned 32-bit MATLAB RNG domain. No P5l data, model inference, test data or result was created with that draft. Before generation, all seeds are replaced by unused in-domain values; no scientific mechanism, gate, split role, model or benchmark definition changes.", "superseded_unexecuted_generator_seeds": [5150000000, 5160000000, 5170000000], "superseded_unexecuted_confirmation_seeds": [5180000000, 5190000000]},
+  "development_data": {"generator_seeds": [4180000000, 4190000000, 4210000000], "powers_db": [10, 15, 20, 25, 30], "samples_per_combination": 60, "generated_split": "train only", "paired_identity_key": "receiver_noise_seed", "roles": "evaluation-only; no training, selection, calibration or threshold adjustment"},
+  "development_gates": {"all_full_pool_outputs_and_metrics_exact": true, "all_fixed_benchmark_batch_outputs_exact": true, "all_data_seeds_and_models_median_latency_ratio_shared_dense_over_reference_at_most": 0.85, "all_guard_receipts_have_no_external_python_cuda_compute_pid": true},
+  "stop_rule": "Any exception or external Python CUDA-compute PID at a guard checkpoint freezes accessed P5l identities without result. Any equivalence or latency failure stops P5l with no threshold, head, weight, feature, batch, scheduling, compiler or quantization change and no confirmation.",
+  "confirmation_if_and_only_if_development_passes": {"generator_seeds": [4220000000, 4230000000], "same_execution_and_compute_guard_gates": true, "decision": "Only a pass supports a narrow frozen-execution per-batch cost claim, never a new architecture or classification claim."},
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

@@ -1,0 +1,38 @@
+{
+  "experiment": "P3o-U deployable local time-frequency phase-dynamics conditional ISRJ calibration",
+  "status": "stopped_after_three_seed_development_gate_failure_no_confirmation",
+  "decision": "Do not generate the reserved confirmation identities, do not retune thresholds/features/residuals, and do not use P3o-U as a deployable ISRJ route.",
+  "hypothesis_result": "not supported: fixed local phase dynamics did not add the preregistered source-FPR reduction beyond the posterior-only capacity control and the time-bin-shuffled control.",
+  "evidence": {
+    "preregister": "configs/p3ou_local_phase_dynamics_preregister_20260803.json",
+    "preregister_sha256": "2f64e9e1e398bbd41f037ad8c020ae6b864d402a3c563cb5eb40d789909fc97e",
+    "runner": "cj0724/run_p3ou_local_phase_dynamics.py",
+    "runner_sha256": "4557d4a54c362a02da4a07b8baa91cdd2dbed2279edb720672c0c43ed12779af",
+    "development_summary": "outputs/p3ou_local_phase_dynamics_development_20260803/summary.json",
+    "development_summary_sha256": "c0ba6be329d9052adbcda94c58247d5d9c5eb37af9d86fb07b0f35ab9683f1cf",
+    "base_model_seeds": [2041, 2042, 2043],
+    "residual_seeds": [2501, 2502, 2503]
+  },
+  "failed_primary_gates": {
+    "U2_vs_U0_source_fpr_reduction_minimum_per_seed": 0.02,
+    "observed_U2_vs_U0_source_fpr_reduction": [0.013383838383838373, 0.017045454545454544, 0.015025252525252525],
+    "U2_vs_U1_source_fpr_reduction_minimum_per_seed": 0.01,
+    "observed_U2_vs_U1_source_fpr_reduction": [0.007828282828282823, 0.013762626262626268, 0.001515151515151511],
+    "U2_vs_U3_source_fpr_reduction_minimum_per_seed": 0.01,
+    "observed_U2_vs_U3_source_fpr_reduction": [-0.0003787878787878812, -0.0005050505050505083, 0.0006313131313131215],
+    "isrj_recall_delta_minimum": -0.02,
+    "observed_U2_vs_U0_isrj_recall_delta": [-0.03080808080808073, -0.030492424242424265, -0.0299873737373737]
+  },
+  "failure_mechanism": "U2 can reduce some source false positives versus U0, but it does so with an approximately three-point ISRJ recall loss and cannot exceed the posterior-only or shuffled-phase capacity controls. Thus the evidence is consistent with a response/suppression trade-off, not a phase-specific separability mechanism. The no-harm gates also fail for recall and worst-combination protection.",
+  "data_disposition": {
+    "train_seed": 2010000000,
+    "selection_seed": 2020000000,
+    "development_seed": 2030000000,
+    "confirmation_seeds_reserved_not_generated": [2040000000, 2050000000],
+    "all_consumed_roles": "frozen_for_P3oU; no retuning or re-analysis for selection",
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "next_allowed_action": "Do not deepen or broaden local phase dynamics. Any future ISRJ proposal must start from a new preregistered observable with an oracle-sufficiency check and an equal-capacity shuffled/control comparison on wholly new identities."
+}

@@ -1,0 +1,310 @@
+{
+  "data": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\closedset_6class_train.mat",
+  "identities": {
+    "count": 25200,
+    "unique": 25200,
+    "minimum": 218938459,
+    "maximum": 218963658,
+    "sha256": "3ddc040acb60074409bcff22d4ab250bf7c1bc4154d021ffb50139fe109dd4d1"
+  },
+  "combinations": {
+    "count": 63,
+    "minimum_samples": 400,
+    "maximum_samples": 400,
+    "all_counts": {
+      "1": 400,
+      "2": 400,
+      "3": 400,
+      "4": 400,
+      "5": 400,
+      "6": 400,
+      "7": 400,
+      "8": 400,
+      "9": 400,
+      "10": 400,
+      "11": 400,
+      "12": 400,
+      "13": 400,
+      "14": 400,
+      "15": 400,
+      "16": 400,
+      "17": 400,
+      "18": 400,
+      "19": 400,
+      "20": 400,
+      "21": 400,
+      "22": 400,
+      "23": 400,
+      "24": 400,
+      "25": 400,
+      "26": 400,
+      "27": 400,
+      "28": 400,
+      "29": 400,
+      "30": 400,
+      "31": 400,
+      "32": 400,
+      "33": 400,
+      "34": 400,
+      "35": 400,
+      "36": 400,
+      "37": 400,
+      "38": 400,
+      "39": 400,
+      "40": 400,
+      "41": 400,
+      "42": 400,
+      "43": 400,
+      "44": 400,
+      "45": 400,
+      "46": 400,
+      "47": 400,
+      "48": 400,
+      "49": 400,
+      "50": 400,
+      "51": 400,
+      "52": 400,
+      "53": 400,
+      "54": 400,
+      "55": 400,
+      "56": 400,
+      "57": 400,
+      "58": 400,
+      "59": 400,
+      "60": 400,
+      "61": 400,
+      "62": 400,
+      "63": 400
+    }
+  },
+  "excluded_overlap": [],
+  "all_excluded_overlap_zero": true,
+  "alignment": {
+    "rows": [
+      {
+        "class_name": "FMB",
+        "parameter": "JNR",
+        "column_index": 0,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "FMB",
+        "parameter": "interference_bandwidth",
+        "column_index": 2,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "SawFM",
+        "parameter": "JNR",
+        "column_index": 11,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "SawFM",
+        "parameter": "sweep_period",
+        "column_index": 14,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "SinFM",
+        "parameter": "JNR",
+        "column_index": 16,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "SinFM",
+        "parameter": "frequency_deviation",
+        "column_index": 18,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "MFT",
+        "parameter": "JNR",
+        "column_index": 27,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "MFT",
+        "parameter": "num_targets",
+        "column_index": 28,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "VFT",
+        "parameter": "JNR",
+        "column_index": 48,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "VFT",
+        "parameter": "Doppler",
+        "column_index": 49,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "ISRJ",
+        "parameter": "JNR",
+        "column_index": 52,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      },
+      {
+        "class_name": "ISRJ",
+        "parameter": "sample_width",
+        "column_index": 53,
+        "positive_samples": 12800,
+        "valid_positive": 12800,
+        "mask_on_negative": 0,
+        "nonfinite_valid_positive": 0
+      }
+    ],
+    "all_valid_positive_finite": true,
+    "all_masks_label_aligned": true
+  },
+  "targets": [
+    {
+      "class_name": "FMB",
+      "parameter": "JNR",
+      "count": 12800,
+      "finite": true,
+      "minimum": 10.000407218933105,
+      "maximum": 29.998916625976562,
+      "range": 19.99850845336914
+    },
+    {
+      "class_name": "FMB",
+      "parameter": "interference_bandwidth",
+      "count": 12800,
+      "finite": true,
+      "minimum": 7500000.0,
+      "maximum": 9993333.0,
+      "range": 2493333.0
+    },
+    {
+      "class_name": "SawFM",
+      "parameter": "JNR",
+      "count": 12800,
+      "finite": true,
+      "minimum": 10.000789642333984,
+      "maximum": 29.99928855895996,
+      "range": 19.998498916625977
+    },
+    {
+      "class_name": "SawFM",
+      "parameter": "sweep_period",
+      "count": 12800,
+      "finite": true,
+      "minimum": 2.0003271856694482e-05,
+      "maximum": 7.999339140951633e-05,
+      "range": 5.999011773383245e-05
+    },
+    {
+      "class_name": "SinFM",
+      "parameter": "JNR",
+      "count": 12800,
+      "finite": true,
+      "minimum": 10.000429153442383,
+      "maximum": 29.998558044433594,
+      "range": 19.99812889099121
+    },
+    {
+      "class_name": "SinFM",
+      "parameter": "frequency_deviation",
+      "count": 12800,
+      "finite": true,
+      "minimum": 1000415.375,
+      "maximum": 2999724.5,
+      "range": 1999309.125
+    },
+    {
+      "class_name": "MFT",
+      "parameter": "JNR",
+      "count": 12800,
+      "finite": true,
+      "minimum": 10.000506401062012,
+      "maximum": 29.998517990112305,
+      "range": 19.99801254272461
+    },
+    {
+      "class_name": "MFT",
+      "parameter": "num_targets",
+      "count": 12800,
+      "finite": true,
+      "minimum": 3.0,
+      "maximum": 8.0,
+      "range": 5.0
+    },
+    {
+      "class_name": "VFT",
+      "parameter": "JNR",
+      "count": 12800,
+      "finite": true,
+      "minimum": 10.003217697143555,
+      "maximum": 29.999216079711914,
+      "range": 19.99599838256836
+    },
+    {
+      "class_name": "VFT",
+      "parameter": "Doppler",
+      "count": 12800,
+      "finite": true,
+      "minimum": 1000.7691040039062,
+      "maximum": 6999.3154296875,
+      "range": 5998.54638671875
+    },
+    {
+      "class_name": "ISRJ",
+      "parameter": "JNR",
+      "count": 12800,
+      "finite": true,
+      "minimum": 10.002336502075195,
+      "maximum": 29.997577667236328,
+      "range": 19.995241165161133
+    },
+    {
+      "class_name": "ISRJ",
+      "parameter": "sample_width",
+      "count": 12800,
+      "finite": true,
+      "minimum": 4.999999873689376e-06,
+      "maximum": 1.9999999494757503e-05,
+      "range": 1.4999999621068127e-05
+    }
+  ],
+  "all_targets_finite_and_variable": true,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

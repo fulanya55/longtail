@@ -1,0 +1,8 @@
+{
+  "experiment": "P3o-E invariant frozen frequency delay residual",
+  "preregister_sha256": "aa68200f75fdfe1aab8198e84998c6e8555609ac86fe5222c6616f9367ec6ef0",
+  "implementation_sha256": "f0d6f89936e3be4d8bc936387d8edb341896f354e363b9da234eac0d7a5c97a1",
+  "wrapper_sha256": "b40a8c61fa2ada38c8c86de5810f12385e638d0f9933b8803b653a1137e68def",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "prohibition": "No changes after development output creation. 1130M/1140M and all tests remain closed unless all preregistered gates pass."
+}

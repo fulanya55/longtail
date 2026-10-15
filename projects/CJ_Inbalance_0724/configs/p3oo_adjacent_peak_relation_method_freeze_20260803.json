@@ -1,0 +1,12 @@
+{
+  "experiment": "P3o-O adjacent-peak relation ordinal MFT-count screen",
+  "frozen_at": "2026-08-03",
+  "preregister_sha256": "82af5038b2d4b11528151e6eabc7dd7320d1d6a9270d637f4fb65fbcef616b78",
+  "implementation_sha256": "532474179f627b75d81dfac412a664977b4adc358a386600d62ddad9d2a34f07",
+  "audit_implementation_sha256": "fb317c19a146be414f79c2ffb0f2aa306cef0efb429f9ac8f260084f537216ce",
+  "generator_sha256": "e3b39e9a22ab9e86dad594c8b158546c6e8ebb85dd6ecb11172c3803748e4915",
+  "data": {"prefix": "p3oo_adjacent_peak_relation", "train_seed": 1760000000, "development_seed": 1770000000, "reserved_confirmation_seeds": [1780000000, 1790000000], "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers": [25, 35, 50], "samples_per_pattern": 33, "execution": "one regime-power transaction per MATLAB process"},
+  "model": {"seeds": [2311, 2312, 2313], "C0": "sparse peaks plus zero relation channels", "C1": "sparse peaks plus adjacent peak relations", "parameter_count": "exactly equal", "loss": "ordinal BCE plus 0.05 monotonicity"},
+  "forbidden_post_freeze_changes": ["relation channels", "peak rule", "network width", "loss", "optimizer", "training schedule", "selection", "development identities"],
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

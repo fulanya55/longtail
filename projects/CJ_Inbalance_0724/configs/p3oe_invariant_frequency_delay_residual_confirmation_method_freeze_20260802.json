@@ -1,0 +1,8 @@
+{
+  "experiment": "P3o-E invariant frozen-frequency delay residual two-identity confirmation",
+  "preregister_sha256": "2c006781a40a4d52979ab427178275612bca43322b16b68ffd9e296bc88701af",
+  "implementation_sha256": "439a23a896f0b7a8f0e4ff0a71fbdbe25ccb807e293423244c9ced9563cfeb44",
+  "source_development_summary_sha256": "61a3305bc76fb5227f9e93fbad27a370ef25ac6b1d361a411213c1c6d442b914",
+  "frozen_evaluation": "Load only each selected base/side checkpoint recorded in the passed 1120M development summary. Reconstruct normalizer and threshold from 1110M full-fit/calibration roles only. Evaluate 1130M and 1140M without training, checkpoint selection, threshold fitting on confirmation, or any 1120M access.",
+  "prohibition": "No edits to this protocol, source, checkpoints, generator, data roles, thresholds, gates, or model weights after confirmation output creation. Do not generate/open test or locked test."
+}

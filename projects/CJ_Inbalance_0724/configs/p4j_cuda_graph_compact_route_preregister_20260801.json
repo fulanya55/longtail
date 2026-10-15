@@ -1,0 +1,63 @@
+{
+  "experiment": "P4j matched CUDA Graph deployment for compact heterogeneous route",
+  "research_question": "When both the shared MLCNN baseline and compact heterogeneous route use the same fixed-shape CUDA Graph deployment protocol, does the compact route convert its near-equal MAC count into acceptable batch-one latency without changing outputs?",
+  "evidence_role": "architecture_only_fixed_shape_deployment_mechanism_screen",
+  "frozen_parent": {
+    "p4h": "width-4 compact route has 0.34 percent MAC overhead but eager batch-one latency gate failed",
+    "p4i": "two-stream execution preserved outputs but worsened batch-one latency by 5.89 percent versus compact serial",
+    "compact_model": "mlcnn_iq_grouped_task_routed_w4"
+  },
+  "single_mechanism": {
+    "baseline": "ordinary eager execution",
+    "candidate": "fixed-shape CUDA Graph capture and replay",
+    "fairness": "CUDA Graph is applied separately to both legacy_mlcnn_global and mlcnn_iq_grouped_task_routed_w4",
+    "input_copy_included_in_timing": true,
+    "architecture_changed": false,
+    "weights_changed": false,
+    "outputs_changed_by_design": false
+  },
+  "benchmark_protocol": {
+    "device": "NVIDIA GeForce RTX 5080",
+    "dtype": "float32",
+    "amp": false,
+    "model_initialization_seed": 8040,
+    "input_length": 3000,
+    "batch_sizes": [1, 64],
+    "modes": [
+      "legacy_mlcnn_global_eager",
+      "legacy_mlcnn_global_graph",
+      "compact_route_eager",
+      "compact_route_graph"
+    ],
+    "capture_warmup": 30,
+    "measurement_warmup_per_block": 50,
+    "repeats_per_block": 200,
+    "measurement_blocks": 5,
+    "block_order_seed": 20260801,
+    "timing": "CUDA events including copy into the static graph input and graph replay",
+    "reported_latency": ["pooled_median", "pooled_p95", "block_median_mean", "block_median_std"],
+    "memory": "peak CUDA allocated bytes including graph-private pools"
+  },
+  "validity_gates": {
+    "eager_and_graph_logits_max_abs_difference_at_most": 0.000001,
+    "eager_and_graph_parameters_max_abs_difference_at_most": 0.000001,
+    "same_model_instance_and_input_per_comparison": true,
+    "all_modes_measured_in_every_block": true,
+    "no_data_generation_or_training": true
+  },
+  "promotion_gates": {
+    "batch1_compact_graph_median_latency_increase_vs_global_graph_at_most": 0.20,
+    "batch1_compact_graph_p95_latency_increase_vs_global_graph_at_most": 0.30,
+    "batch1_compact_graph_latency_reduction_vs_compact_eager_at_least": 0.15,
+    "batch64_compact_graph_throughput_retention_vs_global_graph_at_least": 0.85,
+    "compact_graph_peak_memory_increase_vs_compact_eager_at_most": 0.50
+  },
+  "deployment_boundary": "CUDA Graph evidence applies only to fixed input shapes and stable memory addresses. Dynamic batch or signal length requires separate capture buckets or eager fallback.",
+  "stop_rule": "Do not alter graph capture mode, warmup, replay protocol or gates after reading results. If matched CUDA Graphs fail either batch-one latency gate, stop launch-overhead-only optimization and move to a genuinely shared or fused front end. Do not train the compact route until a deployment mechanism passes.",
+  "next_if_pass": "Freeze the graph runner and preregister fresh-identity three-seed compact-route accuracy training, followed by two new-seed confirmation and five-seed statistics.",
+  "data_generated": false,
+  "training_started": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,236 @@
+{
+  "artifacts": [
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_gradient_contrast_test_v2_once.py",
+      "role": "frozen_test_runner",
+      "sha256": "3c0b7749a3433e666f1e13df638bff4b40a68029424f2d3f5655185d93b584bc",
+      "size_bytes": 15773
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\docs\\plans\\route_a_gradient_contrast_test_v2_once_plan_20260731.md",
+      "role": "test_preregistration",
+      "sha256": "4fb3a86bcdbc586fbc591f0b631913d7ec03a5de3079c77d40c37d908a14b48c",
+      "size_bytes": 2924
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\configs\\student_a\\six_class_development_v3.yaml",
+      "role": "development_v3_config",
+      "sha256": "59fb6f197da701812c1c3404fa84b707adf0ce7474226ca99ec0aeae4df69111",
+      "size_bytes": 573
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\route_a_development_v3_label_selective_projection_summary.json",
+      "role": "development_v3_summary",
+      "sha256": "eabeb6e9112ce2265b3abdc8905bd9a88763702dfef4ba97056d00edcda65174",
+      "size_bytes": 1577320
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_generation\\identity_audit.json",
+      "role": "development_v3_identity_audit",
+      "sha256": "3e9073e8f4b747ce5d2ccf108bd07649d5397e1c8a024565361beac1d2a20fa1",
+      "size_bytes": 775
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2039\\C6_Joint\\best_model.pth",
+      "role": "C6_Joint_seed_2039_model",
+      "sha256": "91f0f69888914a6ea1a49f8205418d4d7135d6b9694e86934804573d3d2ac6bd",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2039\\C6_Joint\\calibration.json",
+      "role": "C6_Joint_seed_2039_calibration",
+      "sha256": "45b4b2cf555968fc346aabde406d228b9869c341bd7140eeb3ddbd23354907a9",
+      "size_bytes": 175
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2039\\C6_Joint\\thresholds.json",
+      "role": "C6_Joint_seed_2039_thresholds",
+      "sha256": "e93297f82972f87d7eaa60231fc22714bd456b3b74ded2ed8862cd15c3edfb00",
+      "size_bytes": 151
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2039\\GradientContrastFixed1p5\\best_model.pth",
+      "role": "GradientContrastFixed1p5_seed_2039_model",
+      "sha256": "6685cabfe2aaf2bc6ed463f467efeb465409a1982b64877ca54843a0802f2296",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2039\\GradientContrastFixed1p5\\calibration.json",
+      "role": "GradientContrastFixed1p5_seed_2039_calibration",
+      "sha256": "955c4fb159ed7ff71fa9389cb7a53584719977366d25dfd42e149cd3f6f18f8c",
+      "size_bytes": 189
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2039\\GradientContrastFixed1p5\\thresholds.json",
+      "role": "GradientContrastFixed1p5_seed_2039_thresholds",
+      "sha256": "98e8eaf05f848b6c1ca890f72ab4df8383ba1628f9421ead6c3dad1fb8efc43a",
+      "size_bytes": 150
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2040\\C6_Joint\\best_model.pth",
+      "role": "C6_Joint_seed_2040_model",
+      "sha256": "65fe2079a4dfa58320c8950724f2fb98252319168e44337b8ad36d6fa22f07f2",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2040\\C6_Joint\\calibration.json",
+      "role": "C6_Joint_seed_2040_calibration",
+      "sha256": "a03ff9c93cb254788ac263c5ba01a10471a50f3445e6740794c81ec7eeac5611",
+      "size_bytes": 174
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2040\\C6_Joint\\thresholds.json",
+      "role": "C6_Joint_seed_2040_thresholds",
+      "sha256": "e85d0d094ccd2b7cc5237f9c376f2db5880bdfe1df5de716404886bdddbfc1ad",
+      "size_bytes": 151
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2040\\GradientContrastFixed1p5\\best_model.pth",
+      "role": "GradientContrastFixed1p5_seed_2040_model",
+      "sha256": "28a1907903d3f5d244faa6bf349263048d9d42e04c286bf265e227e7093f1a9c",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2040\\GradientContrastFixed1p5\\calibration.json",
+      "role": "GradientContrastFixed1p5_seed_2040_calibration",
+      "sha256": "7f3f2706af707c715acf3a5a3ffc851e25c7f6fb240e0c0ae9171c249e3a0bc7",
+      "size_bytes": 192
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2040\\GradientContrastFixed1p5\\thresholds.json",
+      "role": "GradientContrastFixed1p5_seed_2040_thresholds",
+      "sha256": "bc8e81a56fc48f24017e20ca1f602c6ff5a6eec8aa7b0983c351273d29e7485e",
+      "size_bytes": 150
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2041\\C6_Joint\\best_model.pth",
+      "role": "C6_Joint_seed_2041_model",
+      "sha256": "37bf8f2e7f6426d4e04c50242a3b045c6339de8087566e356a429a88625a14fe",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2041\\C6_Joint\\calibration.json",
+      "role": "C6_Joint_seed_2041_calibration",
+      "sha256": "a4785b163b3f495dda78015503e263f0ff2d601293fbed3448f8f46f15713d04",
+      "size_bytes": 174
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2041\\C6_Joint\\thresholds.json",
+      "role": "C6_Joint_seed_2041_thresholds",
+      "sha256": "151e4167b07979d0fb77ab754c4e00cb32723b9e6c6b855773034d960174be36",
+      "size_bytes": 150
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2041\\GradientContrastFixed1p5\\best_model.pth",
+      "role": "GradientContrastFixed1p5_seed_2041_model",
+      "sha256": "a53bcbe88bc712a6937d8a092e0d00d6bccbc19499d0816710e676aae9c3c2a1",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2041\\GradientContrastFixed1p5\\calibration.json",
+      "role": "GradientContrastFixed1p5_seed_2041_calibration",
+      "sha256": "46e9162faad2d4612ebea6de099944a8dae232470eb322ca79ca9941fb5a162f",
+      "size_bytes": 192
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2041\\GradientContrastFixed1p5\\thresholds.json",
+      "role": "GradientContrastFixed1p5_seed_2041_thresholds",
+      "sha256": "43f37432eefeee3adbf016dbf157b6e3cfdedaa6fd0431eeddd6049ee9ce4b9a",
+      "size_bytes": 150
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2042\\C6_Joint\\best_model.pth",
+      "role": "C6_Joint_seed_2042_model",
+      "sha256": "707d73e1af21979409f3f65e45cbe3e9d3067ceaa1696a511e8a4829077b7fdc",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2042\\C6_Joint\\calibration.json",
+      "role": "C6_Joint_seed_2042_calibration",
+      "sha256": "cae406b238773a290be980bfeef58704a9d873306e1512439df3c348cd7985e1",
+      "size_bytes": 175
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2042\\C6_Joint\\thresholds.json",
+      "role": "C6_Joint_seed_2042_thresholds",
+      "sha256": "cc02c0d7e36501a1dc6f1c6bfd244040b2fea01df02276357b2f3ee93c0c7034",
+      "size_bytes": 151
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2042\\GradientContrastFixed1p5\\best_model.pth",
+      "role": "GradientContrastFixed1p5_seed_2042_model",
+      "sha256": "1966e24c4e5bbeee6a9fe65e278f21ac1b2ff345f4ed11f105805d1c8b14afc1",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2042\\GradientContrastFixed1p5\\calibration.json",
+      "role": "GradientContrastFixed1p5_seed_2042_calibration",
+      "sha256": "d2737015ccbf1965fea226d4e63897348624aa99e342dbef374543f5ab5296fa",
+      "size_bytes": 192
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2042\\GradientContrastFixed1p5\\thresholds.json",
+      "role": "GradientContrastFixed1p5_seed_2042_thresholds",
+      "sha256": "b7d1aee16c7a635385b64ef5f8aed323d95abbcb73dd8f0c3470235886cff5dd",
+      "size_bytes": 151
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2043\\C6_Joint\\best_model.pth",
+      "role": "C6_Joint_seed_2043_model",
+      "sha256": "4f1bc6b4657c973262b3bf33c8d01bd5e56941323f26264d96744b3e06f4fa98",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2043\\C6_Joint\\calibration.json",
+      "role": "C6_Joint_seed_2043_calibration",
+      "sha256": "65400ca82b7e0e8a25d190c99f15e9c745208eafaffddb5ef882fab3495dbbf7",
+      "size_bytes": 175
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2043\\C6_Joint\\thresholds.json",
+      "role": "C6_Joint_seed_2043_thresholds",
+      "sha256": "8438777c017e2b51e986af26142c39429d46eb1812f7db0e2841d83c0f19299a",
+      "size_bytes": 149
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2043\\GradientContrastFixed1p5\\best_model.pth",
+      "role": "GradientContrastFixed1p5_seed_2043_model",
+      "sha256": "111d987c755db6c622d9b51a32d48667e30cb91092f5bc5de046432d195a0657",
+      "size_bytes": 1708360
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2043\\GradientContrastFixed1p5\\calibration.json",
+      "role": "GradientContrastFixed1p5_seed_2043_calibration",
+      "sha256": "36b3701bc7fb59ea4baa5feff38b981f194c2075231186aeb4a7e0156cd9479a",
+      "size_bytes": 191
+    },
+    {
+      "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_development_v3_label_selective_projection\\seed_2043\\GradientContrastFixed1p5\\thresholds.json",
+      "role": "GradientContrastFixed1p5_seed_2043_thresholds",
+      "sha256": "d8792dbd6fc7eaef012d93a0bfd2225d0393103d5a00804c78bb56c3fc443775",
+      "size_bytes": 151
+    }
+  ],
+  "baseline": "C6_Joint",
+  "bundle_version": 1,
+  "candidate": "GradientContrastFixed1p5",
+  "development_v3_gate_passed": true,
+  "fit_or_selection_on_test_v2": false,
+  "fixed_alpha": 1.5,
+  "locked_test_used": false,
+  "rerun_or_retuning_allowed": false,
+  "seeds": [
+    2039,
+    2040,
+    2041,
+    2042,
+    2043
+  ],
+  "status": "frozen",
+  "test_v2": {
+    "content_opened_during_freeze": false,
+    "expected_sha256": "902e636911e76d6915fe04976f59cc46a588b3d98926bb9a48e2200628617947",
+    "path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0731_v2\\closedset_6class_test.mat"
+  },
+  "test_v2_used": false
+}

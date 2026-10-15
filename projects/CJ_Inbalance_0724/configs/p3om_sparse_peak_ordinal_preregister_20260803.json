@@ -1,0 +1,87 @@
+{
+  "experiment": "P3o-M resolution-aware sparse-delay-event ordinal MFT-count screen",
+  "registration_date": "2026-08-03",
+  "research_question": "On fresh compound I/Q identities, does explicitly selecting sparse, reference-deconvolved local delay events improve MFT target-count ordinal estimation beyond an equal-token fixed-delay-bin control?",
+  "evidence_role": "fresh_identity_oracle_positive_three_seed_development",
+  "prior_boundary": {
+    "P3c": "exact MFT component plus correct reference is physically sufficient; raw compound threshold counting saturates",
+    "P3d": "a dense inverse-delay CNN ordinal head failed in ultra-close and did not satisfy all-regime gates; its identities and hyperparameters are frozen",
+    "forbidden": ["P3d identities", "P3d development predictions for selection", "classification loss", "predicted-label-gated attachment", "locked test"]
+  },
+  "data": {
+    "generator": "matlab/generate_p3om_sparse_peak_ordinal_data.m",
+    "generator_wrapper": "matlab/generate_p3o_low_power_attribution_data.m",
+    "train_receiver_noise_seed": 1570000000,
+    "development_receiver_noise_seed": 1580000000,
+    "reserved_confirmation_receiver_noise_seeds": [1590000000, 1610000000],
+    "output_root": "D:\\CJ0724_generated_data",
+    "rechunk_root": "D:\\CJ0724_rechunked_data",
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "samples_per_pattern": 33,
+    "all_63_combinations": true,
+    "identity_key": "receiver_noise_seed",
+    "paired_power_views_are_not_independent": true,
+    "test_generation": "disabled"
+  },
+  "parameter_contract": {
+    "class": "MFT",
+    "class_index_zero_based": 3,
+    "target_name": "num_targets",
+    "target_column_zero_based": 28,
+    "valid_samples": "label[MFT]=1 AND parameter_mask[28]=1 AND finite(parameter_values[28])",
+    "classification_loss_used": false,
+    "oracle_positive_only": true
+  },
+  "roles": {
+    "within_train_identity_split_per_combination": {"fit": 25, "selection": 4, "unused": 4},
+    "split_seed": 20260803,
+    "normalization": "fit only",
+    "constant_baseline": "median count fitted on fit identities only",
+    "development": "all 33 identities per combination; read exactly once after method freeze"
+  },
+  "front_end": {
+    "reference": "known 10 MHz, 100 us LFM",
+    "inverse_filter_regularizer": "1e-6 times maximum reference spectral power",
+    "delay_search_samples_inclusive": [350, 1100],
+    "token_count": 16,
+    "token_channels": ["normalized inverse magnitude", "positive local-background contrast", "local sharpness", "normalized delay position"],
+    "candidate_C1": "strict local maxima, rank by contrast, retain up to 16, then restore temporal order and zero-pad",
+    "equal_information_control_C0": "partition the same delay window into 16 fixed bins and retain the maximum-contrast point per bin",
+    "forbidden": ["adaptive thresholds", "post-development peak distance changes", "true delay/amplitude/count input"]
+  },
+  "models": {
+    "C0_fixed_bin": "identical four-channel, 16-token ordinal CNN; fixed-bin tokenization",
+    "C1_sparse_peak": "identical four-channel, 16-token ordinal CNN; sparse local-peak tokenization",
+    "ordinal_output": "seven cumulative logits decoded to count 1 through 8",
+    "model_seeds": [2201, 2202, 2203]
+  },
+  "training": {
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "early_stop_patience": 5,
+    "batch_size": 64,
+    "loss": "ordinal BCE plus 0.05 monotonicity penalty",
+    "selection": "lowest selection ordinal loss only"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "all_power_and_regime_contracts_hold": true,
+    "C0_C1_parameter_count_exactly_equal": true,
+    "each_seed_C1_overall_and_compound_mae_reduction_vs_C0_at_least": 0.05,
+    "each_seed_C1_overall_and_compound_pearson_delta_vs_C0_at_least": 0.05,
+    "each_seed_C1_ID_control_and_low_count_mae_reduction_vs_constant_at_least": 0.1,
+    "each_seed_C1_ID_control_and_low_count_pearson_at_least": 0.3,
+    "no_C1_regime_worse_than_C0_in_all_three_seeds_by_mae_over": 0.02,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "stop_rule": "If any promotion gate fails, stop P3o-M. Do not tune token count, peak rule, network width, loss, training schedule, or attach the expert on seeds 1570M/1580M. Do not generate confirmation identities.",
+  "next_if_pass": "Freeze code/checkpoints/normalizer and evaluate a predicted-label-gated MFT-only attachment on the two untouched confirmation identities; it must preserve classification logits and improve worst-combination predicted-gate risk before any all-12 claim.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

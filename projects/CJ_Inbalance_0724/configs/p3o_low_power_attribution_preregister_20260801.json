@@ -1,0 +1,97 @@
+{
+  "experiment": "P3o-A low-power attribution: coverage, joint checkpoint, and CP-safe calibration",
+  "evidence_role": "fresh_identity_safe_formal_development",
+  "purpose": "Separate training-identity coverage, parameter-first checkpoint conflict, and finite-sample safety calibration before introducing a new physical representation.",
+  "identity_amendment": {
+    "original_v5_reservation": [780000000, 790000000, 810000000, 820000000],
+    "reason": "780000000 was consumed by P5b1 and 840000000/850000000 by P5b2/P5b3 before P3o-A generation. This amendment is made before P3o-A data generation or development access.",
+    "p3o_train_pool_seed": 830000000,
+    "p3o_development_seed": 860000000,
+    "p3o_confirmation_seeds": [870000000, 880000000]
+  },
+  "data_contract": {
+    "generator": "matlab/generate_p3o_low_power_attribution_data.m",
+    "samples_per_pattern": 33,
+    "combinations": 63,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_key": "receiver_noise_seed",
+    "all_regime_power_views_grouped": true,
+    "roles_per_combination": {
+      "full_fit": 27,
+      "small_fit_nested_within_full_fit": 7,
+      "early": 2,
+      "calibration": 2,
+      "selection": 2
+    },
+    "full_fit_view_count": 25515,
+    "small_fit_view_count": 6615,
+    "development_view_count": 31185,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "model": {
+    "name": "mlcnn_iq_grouped_task_routed",
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "input_contract": "[B,2,3000]",
+    "outputs": "6 multilabel logits plus [B,6,2] parameters"
+  },
+  "training": {
+    "classification_loss": "BCEWithLogitsLoss",
+    "parameter_loss": "0.1 * masked SmoothL1 over label=1 AND parameter_mask=1 AND finite(target)",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "warmup_epochs": 2,
+    "scheduler": "cosine",
+    "batch_size": 63,
+    "gradient_clip_norm": 5.0,
+    "model_seeds": [2041, 2042, 2043],
+    "full_epochs": 20,
+    "small_epoch_matched_epochs": 20,
+    "small_step_matched_epochs": "ceil(full_epochs * ceil(full_fit_views/batch_size) / ceil(small_fit_views/batch_size))",
+    "forbidden_mechanisms": ["hard_negative", "conditional_margin", "router", "distillation", "new_expert"]
+  },
+  "checkpoint_rules": {
+    "C_param": "minimum early-role oracle parameter macro-NMAE",
+    "C_joint": "among epochs with early oracle parameter macro-NMAE <= 1.01 * C_param value, maximum early macro-AUPR",
+    "development_selection_forbidden": true
+  },
+  "threshold_rules": {
+    "T_F1": "per-class F1 grid on calibration identities only",
+    "T_safe": "replace only ISRJ threshold by the lowest calibration score threshold for which every regime x power negative cell has one-sided 95% Clopper-Pearson FPR upper bound <= 0.10",
+    "infeasible_rule": "report infeasible; do not relax cap or substitute empirical FPR"
+  },
+  "formal_matrix": {
+    "training_coverage": ["small_epoch_matched", "full_epoch_matched"],
+    "checkpoint": ["C_param", "C_joint"],
+    "threshold": ["T_F1", "T_safe"],
+    "additional_budget_control": "small_step_matched evaluated with the same checkpoint and threshold matrix"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "candidate": "full_epoch_matched/C_joint/T_safe",
+    "three_of_three_maximum_cell_isrj_fpr_at_most": 0.10,
+    "three_of_three_overall_isrj_recall_at_least": 0.85,
+    "candidate_recall_drop_vs_full_C_param_T_F1_at_most": 0.02,
+    "three_of_three_25db_isrj_recall_at_least": 0.78,
+    "three_of_three_25db_each_regime_isrj_fpr_at_most": 0.10,
+    "oracle_parameter_nmae_ratio_vs_full_C_param_at_most": 1.01,
+    "predicted_gate_parameter_nmae_ratio_vs_full_C_param_T_safe_at_most": 1.01,
+    "miss_penalty_and_worst_combination_nonworse_vs_full_C_param_T_safe": true,
+    "full_vs_small_epoch_matched_25db_aupr_positive_all_seeds": true,
+    "C_joint_macro_aupr_nonnegative_vs_C_param_all_seeds": true,
+    "safe_calibration_feasible_all_seeds": true,
+    "full_pytest_passes": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "post_development_rule": "No model, loss, data-role, training-budget, checkpoint, threshold, CP-cap or gate change after seed860000000 development predictions are opened. If a gate fails, freeze P3o-A and enter P3o-B only if the attribution rule identifies representation insufficiency.",
+  "expected_artifacts": ["identity_audit.json", "identity_roles.npz", "protocol.json", "history.json", "checkpoint files", "calibration audits", "per-sample predictions", "summary.json", "failure_audit.json", "markdown report"],
+  "locked_test_used": false
+}

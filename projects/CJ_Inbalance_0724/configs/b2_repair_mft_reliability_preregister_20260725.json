@@ -1,0 +1,56 @@
+{
+  "status": "preregistered_not_started",
+  "objective": "Recover cross-power MFT routing while retaining the frozen and power-stable ISRJ branch",
+  "trigger": "B2 failed mean Macro-AUPR and MFT FPR-level gates",
+  "frozen_components": {
+    "E5": "permanently read-only",
+    "ISRJ_expert": "retain current isrj_periodicity expert and threshold",
+    "MFT_expert": "retain current combined-feature classifier as evidence source; do not refit on development"
+  },
+  "diagnostic_facts": {
+    "ISRJ_FPR_reduced_levels": 9,
+    "MFT_FPR_reduced_levels": 6,
+    "MFT_target_AUPR_turns_negative_from_dB": 20,
+    "MFT_FPR_increases_at_dB": [40, 45, 50]
+  },
+  "data_roles": {
+    "router_fit": "first identity-safe half of existing early_stop identities",
+    "threshold_calibration": "second identity-safe half of existing early_stop identities",
+    "development": "existing development identities, read once after router and thresholds freeze",
+    "power_pairing": "all nine receiver_noise_seed views remain together"
+  },
+  "MFT_reliability_features": [
+    "E5_MFT_probability",
+    "MFT_physics_probability",
+    "absolute_probability_disagreement",
+    "delay_only_vs_combined_expert_disagreement",
+    "autocorrelation_delay_peak",
+    "delay_peak_prominence",
+    "spectral_consistency",
+    "training_feature_OOD_distance"
+  ],
+  "forbidden_inputs": ["explicit_JNR", "development_labels", "power_specific_threshold"],
+  "variants": [
+    "E5_plus_ISRJ_only",
+    "B2_Hard",
+    "MFT_agreement_rule_plus_ISRJ",
+    "MFT_OOD_keep_E5_plus_ISRJ",
+    "MFT_bounded_three_state_plus_ISRJ"
+  ],
+  "MFT_states": {
+    "positive_rescue": "physics evidence and delay-spectrum consistency both strong",
+    "negative_protection": "E5 positive but physical evidence consistently absent and in-distribution",
+    "unknown_keep_E5": "OOD, disagreement, or insufficient evidence"
+  },
+  "promotion_gate": {
+    "mean_nine_power_macro_aupr_gain_vs_E5_min": 0.015,
+    "mean_nine_power_hamming_reduction_vs_E5_min": 0.015,
+    "MFT_FPR_reduced_levels_min": 7,
+    "ISRJ_FPR_reduced_levels_min": 7,
+    "worst_power_macro_aupr_delta_min": -0.01,
+    "mean_weak_recall_delta_min": -0.01,
+    "MFT_recall_drop_max": 0.01
+  },
+  "stop_rule": "if no input-derived reliability variant passes on at least two of three new development seeds, remove MFT from the routed model and continue Route B with ISRJ only",
+  "locked_test_used": false
+}

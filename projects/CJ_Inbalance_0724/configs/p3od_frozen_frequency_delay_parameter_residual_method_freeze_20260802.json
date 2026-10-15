@@ -1,0 +1,10 @@
+{
+  "experiment": "P3o-D frozen frequency delay parameter residual",
+  "preregister_sha256": "958a2711750c77de9e97483ffc9c6a7fcb5bdd926d8777125fad1f55a7b8c5d3",
+  "implementation_sha256": "df67c479713b51c3bdac4fe26240018ca1a8e896472bc6239b597bde8d8546ef",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "frozen_method": "Train the local time-frequency base with BCEWithLogits plus 0.1 masked SmoothL1. Select C_joint using only early identities. Freeze the complete base. Train only a posterior-conditioned delay-peak parameter residual. Reuse the base calibration threshold exactly; do not recalibrate the side branch or select from development.",
+  "seeds": {"train": 1070000000, "development": 1080000000, "reserved_confirmation": [1090000000, 1100000000], "model": [2041, 2042, 2043]},
+  "mechanical_correction_before_development": "Attempt 0 failed before data loading because the default method-freeze filename had 20260801 instead of the actual 20260802 file. Attempt 1 created its output directory but failed during the first training epoch because the inherited trainer requires contrast_weight and the parser omitted its fixed zero value. No development metric, calibration, checkpoint selection, threshold selection, or result was produced. The retry only adds contrast_weight=0 and a new output root; model, losses, data, roles, seeds, thresholds, checkpoint rules and gates are unchanged.",
+  "prohibition": "No changes to this code, preregistration, data generator, widths, losses, thresholds, checkpoint rules, optimization, or gates after development output creation. No test or locked-test use."
+}

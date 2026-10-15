@@ -1,0 +1,9 @@
+{
+  "authorized": true,
+  "completed_receipt": "test_v2_execution_receipt.json",
+  "one_shot": true,
+  "rerun_allowed": false,
+  "started_guard": "test_v2_execution_started.json",
+  "test_v2_path": "C:\\LJQ_code\\干扰数据\\复合干扰数据0731_v2\\closedset_6class_test.mat",
+  "test_v2_sha256": "902e636911e76d6915fe04976f59cc46a588b3d98926bb9a48e2200628617947"
+}

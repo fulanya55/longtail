@@ -1,0 +1,13 @@
+{
+  "stage": "R0",
+  "status": "verified",
+  "data_audit": "E:\\LJQ_code\\CJ_Inbalance_0724\\docs\\route_b_r0_data_audit.json",
+  "terminal_receipt": "E:\\LJQ_code\\CJ_Inbalance_0724\\docs\\receipts\\route_b_terminal_receipt.json",
+  "active_data_role": "development_train_source_only",
+  "locked_test_used": false,
+  "test_mat_opened": false,
+  "mask_rule": "label=1 AND parameter_mask=1 AND target finite",
+  "inactive_nan_zero_filled": false,
+  "identity_unique": true,
+  "paired_power_views": true
+}

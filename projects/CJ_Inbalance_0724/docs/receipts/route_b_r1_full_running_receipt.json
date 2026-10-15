@@ -1,0 +1,10 @@
+{
+  "stage": "R1",
+  "status": "running",
+  "run_dir": "E:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\route_b_r1_full_development\\r1_20260826_122730",
+  "command": "scripts\\route_b_r1_train.py --authorize-training --variants B0 B1 B2 B3 B4 --seeds 2041 2042 2043 2044 2045 --epochs 12 --patience 4 --batch-size 64 --width 16 --head-dim 256 --parameter-hidden-dim 64 --learning-rate 3e-4 --weight-decay 1e-4 --parameter-weight 0.1 --split-seed 20260826 --device auto",
+  "development_only": true,
+  "locked_test_used": false,
+  "test_generated": false,
+  "performance_claim": "not_validated_until_complete_and_aggregated"
+}

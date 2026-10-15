@@ -1,0 +1,25 @@
+{
+  "stage": "Route_B_final",
+  "status": "verified_development_with_stopped_branches",
+  "r0_status": "verified",
+  "r1_status": "verified_development_parameter_gate_failed",
+  "r1_gate_pass": false,
+  "r1_stopped_variants": [
+    "B2",
+    "B3",
+    "B4"
+  ],
+  "r2_status": "verified_smoke_only_not_performance_validated",
+  "r3_status": "verified_development",
+  "r4_status": "not_run_prerequisite_failed",
+  "locked_test_used": false,
+  "test_mat_opened": false,
+  "development_seed_count": 5,
+  "r3_rows": {
+    "per_parameter": 240,
+    "visibility": 120,
+    "paired_power": 180,
+    "ablation": 20
+  },
+  "claim_scope": "development_only_no_locked_test_or_test_v2_claim"
+}

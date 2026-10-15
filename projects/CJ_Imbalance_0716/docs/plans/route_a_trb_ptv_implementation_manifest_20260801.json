@@ -1,0 +1,71 @@
+{
+  "experiment": "route_a_development_v14_trb_ptv",
+  "status": "preimplementation_frozen_no_data_generated",
+  "mechanism": "Target-Risk-Balanced Paired Task Vector",
+  "candidate": "TRB_PTV",
+  "endpoint_contract": {
+    "anchor": "C6_Joint",
+    "direction": "M5_GradientIsolated - C6_Joint",
+    "m5_rule": "retain all samples and SawFM co-occurrence; mask SawFM output loss only",
+    "allowed_nonzero_blocks": [
+      "temporal_backbone.0.*",
+      "classifier.*"
+    ]
+  },
+  "optimization": {
+    "q0": [1.5, 1.5],
+    "bounds": "0 <= q_shared <= q_classifier <= 1.5",
+    "target_labels": ["MFT", "VFT", "ISRJ"],
+    "risk_role": "fit",
+    "risk_loss": "mean BCEWithLogits on positive weak-mask samples; fixed label weight 1",
+    "constraint": "R_t(q) <= R_t(0,0) for every target label",
+    "solver": "scipy.optimize.minimize(method=SLSQP)",
+    "solver_start": [1.5, 1.5],
+    "maxiter": 200,
+    "ftol": 1e-12,
+    "random_restarts": 0,
+    "postsolve_constraint_tolerance": 1e-7,
+    "activation_norm_min": 0.05,
+    "activation_min_seeds": 4
+  },
+  "roles": {
+    "fit": "endpoint training and q solve only",
+    "validation": "early-stop only",
+    "calibration": "temperature only",
+    "threshold": "threshold selection only",
+    "early": "sole development evaluation",
+    "test": "forbidden"
+  },
+  "identity_reservation": {
+    "name": "development-v14",
+    "sample_seed_range": [144000001, 144025200],
+    "receiver_noise_seed_range": [342677743, 342702942],
+    "expected_samples": 25200,
+    "expected_unique_receiver_noise_seed": 25200,
+    "generated": false
+  },
+  "seeds": [2039, 2040, 2041, 2042, 2043],
+  "formal_variants": [
+    "C6_Joint",
+    "M5_GradientIsolated",
+    "FullAlpha1p5",
+    "TRB_PTV",
+    "ParameterNormOnly",
+    "ClassifierOnlyAlpha2p0",
+    "ModelAverage0p5",
+    "CAGrad0p4TwoTask",
+    "OrthogonalTaskSubspaceRiskMatched"
+  ],
+  "forbidden": [
+    "alpha_or_q_grid_search",
+    "selection_on_validation_early_calibration_threshold_or_test",
+    "FC_PTV_modification_or_revival",
+    "historical_test_access",
+    "same_identity_reuse_after_method_or_data_change"
+  ],
+  "statistics": {
+    "paired_seed_bootstrap_draws": 10000,
+    "bootstrap_seed": 20260801,
+    "simultaneous_method": "family-wise max-stat lower bounds"
+  }
+}

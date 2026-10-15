@@ -1,0 +1,16 @@
+{
+  "experiment": "P3o-J posterior-component-conditioned bounded parameter residual method freeze",
+  "preregister": "configs/p3oj_component_conditioned_residual_preregister_20260802.json",
+  "implementation": "cj0724/p3og_bounded_combo_cvar.py",
+  "model": "cj0724/p3oj_component_conditioned_residual.py",
+  "wrapper": "cj0724/p3oj_component_conditioned_residual_seed.py",
+  "collector": "cj0724/p3oj_component_conditioned_residual_collect.py",
+  "data_generator": "matlab/generate_p3o_low_power_attribution_data.m",
+  "preregister_sha256": "74d3e22489a5300de6a7dc873b24b0bb7a3ea83c7b43e8566fd57cf12fad9481",
+  "implementation_sha256": "294e019ec5f15b5780dd07ca775ad118d3b88aac8e4dcf5f2d6d0a49d549fc00",
+  "model_sha256": "c8a1bcffaac69fe4cf1d5d9bad9148b25e1e9b0167eadf39cd8b1e7c66f7b939",
+  "wrapper_sha256": "4a78b2ab68e5f1f8ad842f4cd297cbf52d793937cffb220fff4afb3c3a314e9c",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "frozen_mechanism": "J0 has a zero, frozen 6x12 component table; J1 alone learns that table from detached six-label posterior probabilities. Both retain the finite-valid shared residual, frozen classifier, F-only calibration and identical side objective.",
+  "locked_test_used": false
+}

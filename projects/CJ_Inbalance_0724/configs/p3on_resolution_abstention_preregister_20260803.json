@@ -1,0 +1,79 @@
+{
+  "experiment": "P3o-N observable resolution-aware abstention for compound MFT target count",
+  "registration_date": "2026-08-03",
+  "research_question": "When the same sparse-peak ordinal MFT-count predictor is held fixed, does an observable peak-resolution score provide lower matched-coverage count risk than ordinary ordinal-confidence gating on fresh compound identities?",
+  "evidence_role": "fresh_identity_oracle_positive_three_seed_development",
+  "prior_boundary": {
+    "P3oM": "sparse peak tokenization improved point MAE over a fixed-bin control but failed the 3/3 low-count Pearson gate; P3o-M identities, peak rule, token count and loss are forbidden for selection",
+    "mechanism_change": "decision reliability, not a change to the point estimator: C0 and C1 share exactly the same trained sparse-peak ordinal checkpoint and point predictions",
+    "forbidden": ["classification loss", "predicted-label-gated attachment", "test generation", "locked test", "P3o-M identities for calibration or tuning"]
+  },
+  "data": {
+    "generator": "matlab/generate_p3on_resolution_abstention_level.m",
+    "train_receiver_noise_seed": 1720000000,
+    "development_receiver_noise_seed": 1730000000,
+    "reserved_confirmation_receiver_noise_seeds": [1740000000, 1750000000],
+    "output_root": "D:\\CJ0724_generated_data",
+    "rechunk_root": "D:\\CJ0724_rechunked_data",
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "samples_per_pattern": 33,
+    "all_63_combinations": true,
+    "identity_key": "receiver_noise_seed",
+    "paired_power_views_are_not_independent": true,
+    "test_generation": "disabled"
+  },
+  "parameter_contract": {
+    "class": "MFT",
+    "class_index_zero_based": 3,
+    "target": "num_targets",
+    "column_zero_based": 28,
+    "valid_samples": "label[MFT]=1 AND parameter_mask[28]=1 AND finite(parameter_values[28])",
+    "classification_loss_used": false,
+    "oracle_positive_only": true
+  },
+  "roles": {
+    "within_train_identity_split_per_combination": {"fit": 25, "selection": 4, "unused": 4},
+    "split_seed": 20260803,
+    "point_estimator_selection": "minimum selection ordinal loss",
+    "gate_calibration": "selection only; exactly top 80 percent per score, deterministic stable rank",
+    "development": "all 33 identities per combination; read once after method freeze"
+  },
+  "shared_point_estimator": {
+    "input": "P3o-M frozen four-channel sparse local-peak tokens, 16 tokens",
+    "network": "P3o-M OrdinalTokenNet, seven cumulative logits",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "early_stop_patience": 5,
+    "batch_size": 64,
+    "loss": "ordinal BCE plus 0.05 monotonicity penalty",
+    "model_seeds": [2301, 2302, 2303]
+  },
+  "decision_controls": {
+    "C0_ordinal_confidence": "maximum normalized mass induced by monotone cumulative ordinal probabilities",
+    "C1_resolution_aware": "C0 confidence times mean contrast of the top predicted-count local peaks times min(1, minimum selected-peak position gap / 0.04); one predicted peak uses gap factor one",
+    "held_identical": ["input tokens", "point checkpoint", "point predictions", "selection data", "target coverage", "accepted-set metric"],
+    "forbidden": ["true count", "true delays", "true amplitudes", "nominal power", "regime name", "identity"]
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "power_and_parameter_contracts_hold": true,
+    "same_point_predictions_C0_C1_bitwise": true,
+    "each_seed_each_method_development_coverage_between": [0.7, 0.9],
+    "each_seed_C1_accepted_overall_and_compound_mae_reduction_vs_C0_at_least": 0.05,
+    "each_seed_C1_accepted_overall_and_compound_pearson_delta_vs_C0_at_least": 0.05,
+    "each_seed_C1_accepted_low_count_pearson_at_least": 0.3,
+    "each_seed_C1_ultra_close_coverage_at_most_C0_minus": 0.03,
+    "each_seed_C1_accepted_ultra_close_mae_not_worse_than_C0": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "stop_rule": "If any promotion gate fails, stop P3o-N. Do not tune the resolution formula, gap scale, target coverage, token rule, network, loss, training, or calibration on 1720M/1730M. Do not generate confirmation identities or attach to the full system.",
+  "next_if_pass": "Freeze scores, thresholds, checkpoints and code; evaluate two untouched identity confirmations using the same 80 percent selection-role threshold rule before any predicted-label-gated MFT-only attachment.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,69 @@
+{
+  "experiment": "P8c VFT hard-negative logit-cap development",
+  "hypothesis": "Keeping the EfficientNet-B1, fixed views, ordinary replacement mini-batches, BCE term, optimization budget, checkpoint rule and calibration unchanged, a bounded training-only penalty on VFT logits of the pre-specified SinFM+MFT+ISRJ, VFT-negative composition will improve difficult-negative separation without the response-amplification pattern observed in P8b.",
+  "single_changed_axis": "C1 adds only the VFT hard-negative logit-cap term; C0 and C1 use exactly the same deterministic replacement batches for each model seed.",
+  "failure_attribution": {
+    "parent": "P8b axis-stratified BCE development stop",
+    "observed_failure": "VFT positive exposure increased but VFT 10 dB AUPR decreased and worst-power VFT FPR increased, hence the failure was response amplification rather than positive-negative separation.",
+    "mechanistic_target": "Suppress excessive VFT evidence only on the fixed false-positive composition while retaining ordinary BCE for every label and every row."
+  },
+  "forbidden_revivals": ["axis-stratified sampling", "ASL", "global class reweighting", "power consistency loss", "pseudo labels", "composition prototypes", "relation loss", "threshold tuning on development", "expert expansion", "quota changes"],
+  "fresh_data": {
+    "generator": "matlab/generate_p8c_vft_hard_negative_logit_cap_data.m",
+    "receiver_noise_seed": 1325000000,
+    "samples_per_combination": 400,
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "generated_split": "train only",
+    "identity_contract": "all nine power views of one receiver_noise_seed remain in exactly one role",
+    "confirmation_receiver_noise_seeds_reserved_only": [1326000000, 1327000000],
+    "must_not_overlap": ["all previously generated train identity pools under generated_data", "P8a", "P8b", "P1n", "P3o-E", "P4c-P7a", "P5b-P5l"]
+  },
+  "roles": {
+    "per_combination": {"optimization": 280, "early_stop": 40, "calibration": 40, "development": 40},
+    "split_seed": 1325000000,
+    "training_manifest": {
+      "sample_count": 2400,
+      "label_targets": [1200, 1200, 1200, 1200, 400, 1200],
+      "combination_tail": "even-cardinality nonempty combinations target 10 samples each; odd-cardinality combinations absorb remaining mass under exact label constraints",
+      "visibility_tail": "VFT-positive identities coexisting with any fixed component receive one deterministic 10/15/20 dB view; all other identities use 30 dB"
+    }
+  },
+  "models": {
+    "C0_random_BCE": "efficientnet_b1_1d with ordinary replacement random mini-batches and BCEWithLogitsLoss",
+    "C1_random_BCE_plus_vft_hard_negative_logit_cap": "same initial weights, same replacement random mini-batches, same BCE term and only the pre-specified cap penalty on VFT=0 and SinFM=MFT=ISRJ=1 rows",
+    "architecture": "efficientnet_b1_1d, 6 logits, dropout=0.2, head_dim=256",
+    "loss": {"base": "BCEWithLogitsLoss", "target_label": "VFT", "hard_negative_definition": "VFT=0 AND SinFM=1 AND MFT=1 AND ISRJ=1", "cap_max_logit": 0.0, "penalty_weight": 0.05, "formula": "BCE + 0.05 * mean(relu(logit_VFT - 0.0)^2) over hard-negative rows; zero extra term if a mini-batch has none"},
+    "optimization": {"optimizer": "AdamW", "lr": 0.0003, "weight_decay": 0.0001, "epochs": 30, "batch_size": 64, "steps_per_epoch": 38, "optimizer_steps": 1140},
+    "model_seeds_development": [18201, 18202, 18203],
+    "model_seeds_extension_if_development_passes": [18204, 18205]
+  },
+  "selection_and_calibration": {
+    "checkpoint": "highest early-stop macro-AUPR; ties resolve by VFT AUPR then lowest epoch",
+    "threshold": "per-class F1 grid on calibration role only; one frozen threshold set per model; no development retuning",
+    "development": "all nine powers, all 2520 held-out identities; paired views cluster by receiver_noise_seed"
+  },
+  "metrics": {
+    "ranking": ["VFT AUPR at 10 dB", "VFT AUPR across all powers", "macro AUPR"],
+    "response_risk": ["VFT FPR at 10 dB", "VFT FPR by power and combination", "VFT hard-negative FPR for VFT=0 and SinFM=MFT=ISRJ=1", "Hamming loss", "weak-component recall"],
+    "separation": "mean VFT probability on positives minus mean VFT probability on fixed hard negatives",
+    "reporting": ["six-class AUPR/FPR/Recall", "per-power", "per-combination", "cardinality", "tail/non-tail", "identity-clustered paired bootstrap"]
+  },
+  "development_promotion_gates": {
+    "all_three_seeds_vft_10db_aupr_nonnegative_vs_C0": true,
+    "mean_vft_10db_aupr_gain_vs_C0_min": 0.01,
+    "all_three_seeds_macro_aupr_delta_vs_C0_min": -0.005,
+    "all_three_seeds_hamming_delta_vs_C0_max": 0.005,
+    "all_three_seeds_vft_hard_negative_fpr_delta_vs_C0_max": 0.0,
+    "mean_vft_hard_negative_fpr_delta_vs_C0_max": -0.005,
+    "all_three_seeds_worst_power_vft_fpr_delta_vs_C0_max": 0.0,
+    "all_three_seeds_vft_separation_delta_vs_C0_min": 0.0,
+    "no_non_vft_label_has_systemic_fpr_increase_over_0p02": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "stop_rule": "If any development gate fails, permanently stop this exact cap mechanism on these identities. Do not alter penalty weight, cap, hard-negative definition, data roles, loss, thresholds, backbone, training budget or gates; do not generate confirmation identities. If it passes, freeze code and checkpoints, run the two pre-specified additional model seeds, then require two fresh identity-pool no-retuning confirmations before any locked-test request.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

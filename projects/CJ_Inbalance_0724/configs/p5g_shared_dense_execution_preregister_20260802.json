@@ -1,0 +1,32 @@
+{
+  "experiment": "P5g shared frozen-forward and dense bounded-head execution",
+  "research_question": "After P5f showed that a selected-row lazy attachment head is not numerically equivalent, can the frozen five-model P5e JNR-only attachment share one frozen base forward while retaining the original dense full-batch attachment head, with exact outputs and a pre-registered end-to-end latency reduction?",
+  "evidence_role": "new_identity_three_seed_development_then_two_new_identity_confirmation_no_locked_test",
+  "single_changed_axis": "execution scheduling only: the candidate obtains classification logits and full 12-parameter base output from one frozen model(iq) call; both reference and candidate evaluate the unchanged attachment head densely over every row using the same batching",
+  "frozen_parent": {
+    "P5e_confirmation_result": "outputs/p5e_five_model_seed_bounded_jnr_20260801/five_model_confirmation/result.json",
+    "P5e_confirmation_result_sha256": "393dbb413f3f00f4d92226258654cf74a6aacdb6238d79561a4563a646b00b33",
+    "P5e_candidate_freeze": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "P5e_candidate_freeze_sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832",
+    "P5f_stop_result": "outputs/p5f_shared_execution_lazy_head_20260801/development/result.json",
+    "P5f_stop_result_sha256": "7b79167bb195d966c3546c113fe43761017b4cce653df7cb2313b358be035df3",
+    "source_model_seeds": [3041, 3042, 3043, 3044, 3045],
+    "forbidden_changes": ["base/head weights", "thresholds", "normalizer", "analytic feature definition", "head width", "loss", "router", "power input", "batch-size selection", "lazy selected-row head", "P5f identities"]
+  },
+  "reference_execution": {"base_execution": "collect frozen posterior then collect full base parameter output", "head_execution": "unchanged dense frozen attachment on every sample", "attachment": "write only frozen positive MFT/VFT/ISRJ JNR cells"},
+  "candidate_execution": {"base_execution": "one frozen model(iq) forward returns logits and normalized all-12 parameters", "head_execution": "the identical frozen attachment is evaluated densely on every sample", "forbidden": "No selected-row/lazy head, quantization, compilation, batch alteration or architecture claim."},
+  "development_data": {"generator_seeds": [3650000000, 3660000000, 3670000000], "powers_db": [10, 15, 20, 25, 30], "samples_per_combination": 60, "generated_split": "train only", "paired_identity_key": "receiver_noise_seed", "roles": "evaluation-only; no training, selection, calibration or threshold adjustment"},
+  "development_gates": {
+    "all_data_seeds_and_models_logits_probabilities_decisions_base_parameters_dense_head_and_final_parameters_exactly_equal": true,
+    "all_data_seeds_and_models_oracle_and_predicted_gated_nmae_abs_difference_exactly_zero": true,
+    "all_data_seeds_and_models_non_target_parameter_values_exactly_equal": true,
+    "all_data_seeds_and_models_median_latency_ratio_shared_dense_over_reference_at_most": 0.85,
+    "all_data_seeds_report_base_forward_calls_dense_head_rows_and_cuda_synchronized_timings": true
+  },
+  "benchmark": {"device": "same CUDA device, fixed batch size 126, inference_mode", "warmup_runs": 5, "timed_repetitions": 15, "timing": "CUDA synchronize before and after every timed repeat; report median, P10, P90 and candidate/reference ratio"},
+  "stop_rule": "If any exact-equivalence or latency gate fails, retain P5e only as dense bounded-attachment evidence. Do not change batch size, timing loop, thresholds, head, feature, weights, normalizer, compiler, quantization or scheduling on P5g development identities; do not generate/use confirmation identities.",
+  "confirmation_if_and_only_if_development_passes": {"generator_seeds": [3680000000, 3690000000], "same_frozen_execution_and_gates": true, "decision": "Only a pass may support the narrow claim that a shared frozen base forward preserves P5e dense-head outputs while lowering measured inference cost; it is not a new trained backbone or classification claim."},
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

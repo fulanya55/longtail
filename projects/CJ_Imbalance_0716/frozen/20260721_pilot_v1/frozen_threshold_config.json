@@ -1,0 +1,10 @@
+{
+  "allow_locked_test": false,
+  "methods": [
+    "global",
+    "shrinkage_per_label"
+  ],
+  "pseudo_tau_neg": 0.05,
+  "pseudo_tau_pos": 0.95,
+  "source_role": "threshold_selection"
+}

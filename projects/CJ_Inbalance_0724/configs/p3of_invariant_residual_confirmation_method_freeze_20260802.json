@@ -1,0 +1,9 @@
+{
+  "experiment": "P3o-F fixed independent confirmation",
+  "preregister_sha256": "9db2050034ab2ce7e63a3ffd598b272ae6f965526fc4906c0b03d7ceb2b057b8",
+  "implementation_sha256": "f0d6f89936e3be4d8bc936387d8edb341896f354e363b9da234eac0d7a5c97a1",
+  "wrapper_sha256": "ec5c6a8f2d17d91c6454a1635bad3f1845a345676fd57cd411cdcc0d3320239a",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "method": "Unchanged P3o-E method; independent confirmation identities are evaluation only.",
+  "prohibition": "Do not alter method, seed, threshold, checkpoint selection rule, optimization, or gates after either confirmation output is created. Do not access locked test."
+}

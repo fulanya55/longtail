@@ -1,0 +1,9 @@
+{
+  "incident": "P3o-J/P3o-K incomplete MATLAB generation",
+  "root_cause": "C: reached 0 free bytes; HDF5 save returned errno=28 No space left on device and MATLAB R2024b then faulted in HDF5 shutdown with 0xc0000005.",
+  "repair": "generate_p3o_low_power_attribution_data now accepts outputBase and uses the verified generator root C:/LJQ_code/干扰数据/干扰信号生成程序/可配置组合干扰数据生成. New data must write to D:/CJ0724_generated_data.",
+  "generator_sha256": "ebace24ed18583760027e3a1e95c1801447a402fe09b091a039dafa671b59ceb",
+  "preflight": "MATLAB executeGeneration=false, seed 1520000000, explicit D output root; passed 5 regimes x 3 powers without sample files.",
+  "identity_rule": "1450M and 1490M remain frozen. The preflight did not generate samples and does not consume 1520M.",
+  "locked_test_used": false
+}

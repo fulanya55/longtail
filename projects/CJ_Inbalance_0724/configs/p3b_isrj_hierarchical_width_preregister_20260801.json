@@ -1,0 +1,47 @@
+{
+  "experiment": "P3b hierarchical ISRJ width-band and local-regression expert",
+  "research_question": "Can a hierarchical width-band gate remove the rare cross-band errors that caused P3a ACF ordinal failure while preserving within-band ordering?",
+  "evidence_role": "fresh_identity_safe_mechanism_development",
+  "data": {
+    "training_identity_seed": 200000000,
+    "development_identity_seed": 250000000,
+    "powers_db": [25, 35, 50],
+    "width_support_us": [1, 50],
+    "all_63_combinations": true,
+    "classification_loss": "interference classification disabled; only parameter width-band supervision is used"
+  },
+  "features": {
+    "input": "P3a complex ACF real and magnitude residual sequences plus lag position",
+    "discarded_channels": ["envelope ACF", "phase-curvature ACF"],
+    "reason": "both caused 3-of-3 negative transfer in frozen P3a"
+  },
+  "variants": {
+    "B0_flat_acf_ordinal": "P3a flat cumulative ordinal head retrained on seed200",
+    "B1_hierarchical": "five-band classifier plus five band-conditional local sigmoid regression heads"
+  },
+  "bands_samples": [[10, 19], [20, 49], [50, 199], [200, 299], [300, 500]],
+  "training": {
+    "model_seeds": [2041, 2042, 2043],
+    "optimizer": "AdamW",
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "epochs": 20,
+    "patience": 5,
+    "batch_size": 64,
+    "loss": "band cross-entropy + band-conditional SmoothL1",
+    "decode": "hard argmax band followed by selected local head"
+  },
+  "promotion_gates": {
+    "B1_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "B1_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "B1_compound_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "B1_compound_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "B1_all_3_seeds_each_regime_mae_better_than_hard_acf": true,
+    "B1_each_seed_mean_mae_reduction_vs_B0_at_least": 0.02,
+    "B1_mean_mae_reduction_vs_B0_at_least": 0.05,
+    "B1_cross_band_error_fraction_each_regime_at_most": 0.10,
+    "identity_overlap_with_all_prior_roles": 0
+  },
+  "stop_rule": "Do not tune bands, loss weights or architecture on seed250. If B1 fails, stop learned ISRJ-width development and retain only the P2x oracle sufficiency result.",
+  "locked_test_used": false
+}

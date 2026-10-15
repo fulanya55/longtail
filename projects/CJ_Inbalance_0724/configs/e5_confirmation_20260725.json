@@ -1,0 +1,46 @@
+{
+  "objective": "Confirm E5 VFT matched-filter replacement on two untouched development seeds",
+  "confirmation_seeds": [271828, 314159],
+  "baseline": {
+    "model": "efficientnet_b1_1d",
+    "loss": "bce",
+    "cell": "D11",
+    "target_label": "VFT",
+    "epochs": 30,
+    "batch_size": 64,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0001,
+    "train_levels_dB": [10, 15, 20],
+    "primary_level_dB": 10
+  },
+  "physics_branch": {
+    "frequency_start_hz": -8000,
+    "frequency_stop_hz": 8000,
+    "frequency_step_hz": 500,
+    "feature_dimension": 72,
+    "classifier": "HistGradientBoostingClassifier",
+    "max_iter": 200,
+    "learning_rate": 0.05,
+    "max_leaf_nodes": 7,
+    "l2_regularization": 1.0
+  },
+  "selection": {
+    "physics_model_role": "early_stop",
+    "fusion_weight_role": "calibration",
+    "fusion_weights": [0.0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1.0],
+    "threshold_role": "calibration",
+    "development_used_for_selection": false
+  },
+  "confirmation_gates": {
+    "new_seed_vft_aupr_positive": "2_of_2",
+    "new_seed_mean_delta_vft_aupr_min": 0.02,
+    "new_seed_mean_delta_macro_aupr_min": -0.005,
+    "new_seed_mean_delta_hamming_max": 0.005,
+    "new_seed_mean_delta_weak_recall_min": -0.05,
+    "new_seed_mean_delta_vft_fpr_max": 0.0,
+    "combined_five_seed_vft_aupr_positive": "5_of_5"
+  },
+  "locked_test_used": false,
+  "locked_test_authorized": false,
+  "rule": "No hyperparameter or feature changes are allowed after this file is created."
+}

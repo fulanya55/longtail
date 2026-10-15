@@ -1,0 +1,84 @@
+{
+  "experiment": "P5b2 posterior-conditioned in-range swept-JNR deployability screen",
+  "research_question": "After P5b1 established raw-I/Q JNR sufficiency under oracle composition, can a frozen P4c multi-label classifier's soft six-label posterior replace that oracle context without using nominal power, true labels or a new backbone?",
+  "evidence_role": "new-identity_development_screen_not_end_to_end_deployment_confirmation",
+  "parent_evidence": {
+    "p5b1_result": "outputs/p5b1_inrange_jnr_physical_sufficiency_20260801/result.json",
+    "p5b1_result_sha256": "cce2196c08c04e07cd50a2429e14fe7f0028792c028386293ea50a29503a0c01",
+    "permitted_inference": "Physical JNR information exists under oracle composition.",
+    "not_permitted": "P5b1 does not establish a deployable posterior-conditioned estimator or a classification/threshold improvement."
+  },
+  "fresh_data": {
+    "generator_seed": 840000000,
+    "powers_db": [10, 15, 20, 25, 30],
+    "combinations": 63,
+    "identities_per_combination": 60,
+    "identities_per_power": 3780,
+    "paired_identity_key": "receiver_noise_seed",
+    "generated_split": "train only",
+    "same_identity_role_at_all_powers": true,
+    "identity_roles_per_combination": {"train": 36, "early": 12, "confirm": 12},
+    "must_have_zero_overlap_with": [
+      "root_0716", "P4c", "P4d_seed670000000", "P4d_seed680000000", "P4k", "P5a", "P5a2", "P5b_seed770000000", "P5b1_seed780000000"
+    ]
+  },
+  "frozen_sources": {
+    "classifier_architecture": "P4c mlcnn_iq_grouped_task_routed classification branch",
+    "source_run": "outputs/p4c_heterogeneous_route_variable_jnr_20260801/tuned_multitask_20260801_063924",
+    "model_seeds": [3041, 3042, 3043],
+    "checkpoint_objective": "parameter",
+    "normalizer_or_threshold_recalibration": false,
+    "classifier_is_never_updated": true
+  },
+  "targets": ["MFT.JNR", "VFT.JNR", "ISRJ.JNR"],
+  "input_contract": {
+    "analytic_feature_bank": "P5b1 fixed time/FFT/autocorrelation bank (26 dimensions)",
+    "posterior_context": "six sigmoid probabilities from the frozen P4c classification branch",
+    "oracle_context": "six true active labels; upper bound only, never a candidate",
+    "nominal_power_input": false,
+    "true_labels_input_for_candidate": false,
+    "raw_iq_deep_expert": false
+  },
+  "comparators": [
+    {"name": "D0_constant", "input": "target-specific train median", "trainable": false},
+    {"name": "D1_analytic_posterior", "input": "analytic feature bank plus frozen classifier posterior", "model": "one-hidden-layer MLP, 64 hidden units"},
+    {"name": "D2_analytic_oracle", "input": "same analytic feature bank plus true six-bit composition", "model": "one-hidden-layer MLP, 64 hidden units", "role": "upper_bound_only"}
+  ],
+  "training": {
+    "probe_seeds": [13041, 13042, 13043],
+    "loss": "masked SmoothL1 on finite active target only",
+    "batch_size": 256,
+    "optimizer": "AdamW lr=0.001 weight_decay=0.0001",
+    "maximum_epochs": 30,
+    "early_stopping_patience": 5,
+    "checkpoint_role": "early",
+    "conclusion_role": "confirm",
+    "hyperparameter_search": "none",
+    "power_balanced_batches": true
+  },
+  "promotion_gates_for_D1": {
+    "each_of_MFT_and_ISRJ_mean_confirm_nmae_reduction_vs_D0_at_least": 0.5,
+    "each_of_MFT_and_ISRJ_three_of_three_probe_seeds_positive": true,
+    "each_of_MFT_and_ISRJ_mean_confirm_pearson_at_least": 0.7,
+    "each_of_MFT_and_ISRJ_10db_confirm_nmae_reduction_vs_D0_at_least": 0.35,
+    "D1_mft_and_isrj_mean_nmae_no_more_than_oracle_D2_times": 1.6,
+    "VFT_control_mean_confirm_nmae_not_worse_than_D0": true,
+    "no_target_has_confirm_worst_combination_nmae_worse_than_D0_by_more_than": 0.03,
+    "each_of_MFT_and_ISRJ_identity_clustered_bootstrap_gain_ci95_low_greater_than": 0.0
+  },
+  "decision_rule": {
+    "pass": "The posterior is sufficiently informative to allow one separately preregistered, bounded estimator-attachment study on new identities. It still does not authorize threshold or router changes.",
+    "fail": "Do not build a posterior-conditioned deep expert or attach any JNR estimator. Record posterior-versus-oracle information loss and retain P4c unchanged."
+  },
+  "stop_rules": [
+    "Do not select architecture, checkpoint, calibration or threshold from P5b1 confirmation outputs.",
+    "Do not expose nominal power or true labels to D1.",
+    "Do not train or fine-tune the frozen classifier.",
+    "Do not use 35-50 dB or claim parameter OOD behavior.",
+    "Do not construct a raw-I/Q deep expert in P5b2.",
+    "Do not generate, read or reopen any test or locked test."
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

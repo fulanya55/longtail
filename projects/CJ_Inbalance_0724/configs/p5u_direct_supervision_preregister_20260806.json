@@ -1,0 +1,27 @@
+{
+  "experiment": "P5u direct-child-supervised hash-pinned legacy-source-portable shared frozen-forward execution",
+  "status": "preregistered_before_any_P5u_data_generation",
+  "research_question": "With the P5t E-drive hash-pinned legacy source fix unchanged, can a supervisor directly track the actual P5s executor and complete the output-equivalent frozen-forward cost protocol?",
+  "single_changed_axis": "Detached supervision topology only. P5u runs the P5t no-data source/checkpoint preflight inside its supervisor before spawning the unchanged P5s executor directly; the supervisor child PID and terminal receipt therefore refer to the actual executor.",
+  "frozen_artifacts": [
+    {"path": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json", "sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832"},
+    {"path": "configs/p5t_legacy_portable_preregister_20260806.json", "sha256": "00004670009f6de5167e060ff72b6a776756c613339845bec1b5d2b1af9e0560"},
+    {"path": "configs/p5t_legacy_portable_outcome_freeze_20260806.json", "sha256": "bb04f167ff44db8f380f03963c3592c939a6a56db5a517a981d1a3920f31419e"},
+    {"path": "configs/p5t_legacy_source_manifest_20260806.json", "sha256": "5db230543518e8bf4eac2817537179e51c8dba92925b9888449caa462c2ddd7f"},
+    {"path": "cj0724/models.py", "sha256": "28bb3565497920f546c72afa4ceaf8566cbadb0ba61bd24e0d70b466923e72b3"},
+    {"path": "cj0724/p5s_detached_chunked_execution.py", "sha256": "62dcb19a9ed1f748e1b16062cadab8fc891ff113bda7bd41b84a4375b3d9f8f2"},
+    {"path": "cj0724/audit_p5r_relocation_safe_data.py", "sha256": "ad32d5a8bde24090bca0d33059d6957de78cc75553dbd692172fc9cc25866885"}
+  ],
+  "base_candidate": {"freeze_path": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json", "freeze_sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832", "source_model_seeds": [3041, 3042, 3043, 3044, 3045]},
+  "legacy_source_contract": {"manifest_path": "configs/p5t_legacy_source_manifest_20260806.json", "manifest_sha256": "5db230543518e8bf4eac2817537179e51c8dba92925b9888449caa462c2ddd7f", "required_by_P5e": ["model.py"], "forbid_historical_drive_roots": true, "prelaunch_requirement": "P5t self-test-frozen-models runs inside the direct supervisor before it creates the actual executor child."},
+  "historical_baseline_audit": {"path": "E:/LJQ_code/干扰数据/复合干扰数据0716/closedset_6class_train.mat", "sha256": "2e9afdf1999452b6635038c52457f2b44b28f98aec422d87576e5ad76135d50e", "audit_runner": "cj0724/audit_p5r_relocation_safe_data.py", "rule": "explicit baseline and every locally retained generated train MAT must be readable; overlap and unreadable counts must be zero"},
+  "development_data": {"generator": "matlab/generate_p5u_direct_supervision_development_data.m", "generator_seeds": [3310000000, 3320000000, 3330000000], "powers_db": [10, 15, 20, 25, 30], "samples_per_combination": 60, "generated_split": "train only", "paired_identity_key": "receiver_noise_seed", "roles": "evaluation-only", "identity_rule": "zero overlap with explicit baseline and every local generated train identity, including quarantined P5p/P5q/P5r/P5s/P5t"},
+  "execution": {"full_pool_examples": 3780, "batch_size": 126, "benchmark_batch": "first complete index-ordered batch, indices 0 through 125", "reference": "two frozen base forwards plus unchanged dense attachment", "candidate": "one frozen base forward plus identical unchanged dense attachment", "warmup_runs": 5, "timed_repetitions": 15, "timing": "unchanged P5h guarded CUDA timing"},
+  "detached_chunk_contract": {"supervisor_schema": "P5s-detached-supervisor-v1", "analytic_chunk_positions": 630, "analytic_chunk_rule": "unchanged P5s chunk order and hashes", "recovery_rule": "unchanged P5s rule", "supervisor_rule": "P5u supervisor records source preflight then directly spawns and waits for the actual P5s executor PID"},
+  "checkpoint_contract": {"schema": "P5q-v1", "selection_prohibition": "No completed timing/model unit may be selectively rerun.", "self_test": "P5u synthetic preflight+direct-child terminal test, P5t frozen-model self-test, and P5s chunk tests pass before generation."},
+  "authorized_environment": {"user_authorized_exclusive_window": true, "requested_compute_mode": "EXCLUSIVE_PROCESS", "fallback_if_windows_driver_rejects_mode_change": "unchanged P5h guards", "restore_compute_mode_after_each_attempt": "Default"},
+  "development_gates": {"all_full_pool_outputs_and_metrics_exact": true, "all_fixed_benchmark_batch_outputs_exact": true, "all_data_seeds_and_models_median_latency_ratio_shared_dense_over_reference_at_most": 0.85, "all_guard_receipts_have_no_external_python_cuda_compute_pid": true, "environment_window_receipt_complete": true, "checkpoint_receipts_complete": true, "supervisor_terminal_tracks_actual_executor": true, "test_generated": false, "test_opened": false, "locked_test_used": false},
+  "stop_rule": "Any source preflight failure, direct-child receipt mismatch, audit failure, external CUDA Python process, missing terminal receipt, output non-equivalence or latency failure stops P5u with no identity reuse or tuning.",
+  "confirmation_if_and_only_if_development_passes": {"generator_seeds": [3340000000, 3350000000], "same_execution_and_audit_gates": true, "decision": "Only fresh confirmation supports the narrow output-equivalent execution claim."},
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

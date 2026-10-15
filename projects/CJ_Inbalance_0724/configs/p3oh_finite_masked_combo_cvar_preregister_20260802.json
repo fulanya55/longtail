@@ -1,0 +1,41 @@
+{
+  "experiment": "P3o-H finite-valid bounded compound-CVaR residual",
+  "research_question": "After P3o-G's invalid NaN loss is excluded, can a finite-valid, bounded delay residual with compound-group CVaR reduce cross-identity predicted-gate worst-combination error relative to both F_base and its equal-capacity mean-loss control without changing the F recognizer?",
+  "identity_protocol": {
+    "train_seed": 1270000000,
+    "development_seed": 1280000000,
+    "reserved_confirmation_seeds": [1290000000, 1320000000],
+    "samples_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_pairing": "receiver_noise_seed grouped across every regime and power view",
+    "forbidden": ["all prior P3o identities including P3o-G 1230M/1240M", "test generation", "test opening", "locked test"]
+  },
+  "methods": {
+    "F_base": "Selected local STFT plus adjacent-frame phase-increment ParameterMatchedMultiView, with BCEWithLogits plus 0.1 masked SmoothL1.",
+    "H0_bounded_mean": "Frozen state-preserving F plus the P3o-G bounded posterior-gated delay residual. Per-sample SmoothL1 first boolean-indexes valid finite positive targets, so inactive NaNs never enter the loss operator.",
+    "H1_bounded_combo_cvar": "Exactly H0 capacity, F state, initialization, data order, optimizer, training budget and checkpoint rule, with upper-tail equal-weight compound-label-group CVaR added to the finite-valid per-sample mean loss.",
+    "causal_scope": "Only the parameter residual may change. F state/buffers/logits, thresholds and predicted labels must be bitwise invariant."
+  },
+  "training": {
+    "base": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "parameter_weight": 0.1, "contrast_weight": 0.0, "gradient_clip_norm": 5.0, "checkpoint": "C_joint: maximum early macro-AUPR among epochs within 1.01 of minimum early oracle macro NMAE"},
+    "side": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "residual_bound_normalized": 0.25, "cvar_fraction": 0.25, "H0_cvar_weight": 0.0, "H1_cvar_weight": 1.0, "gradient_clip_norm": 5.0, "checkpoint": "minimum early oracle worst-compound-group NMAE, applied identically to H0/H1"},
+    "calibration": "Fit the F threshold vector only on calibration identities and reuse it verbatim for H0/H1."
+  },
+  "model_seeds": [2071, 2072, 2073],
+  "development_promotion_gates": {
+    "finite_valid_loss_gradients_and_optimizer_step_before_data_generation": true,
+    "identity_overlap_zero": true,
+    "F_state_buffers_and_logits_bitwise_unchanged_after_each_side_training": true,
+    "base_safe_calibration_feasible_and_development_maximum_cell_fpr_at_most_0p10": true,
+    "base_overall_isrj_recall_at_least_0p85_and_25db_recall_at_least_0p78": true,
+    "H1_oracle_and_predicted_gate_nmae_ratio_vs_F_base_at_most_0p98_all_seeds": true,
+    "H1_miss_penalty_nonworse_vs_F_base_all_seeds": true,
+    "H1_worst_combo_predicted_gate_nmae_ratio_vs_F_base_at_most_0p98_all_seeds": true,
+    "H1_worst_combo_predicted_gate_nmae_ratio_vs_H0_at_most_0p99_all_seeds": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "decision_rule": "Any P3o-H development failure freezes H1 and consumes 1270M/1280M. No hyperparameter, checkpoint, threshold, scale, CVaR weight or identity result may be tuned. Only all-gate pass permits the single pre-registered 1290M confirmation; locked test remains forbidden until two unchanged-method confirmations pass."
+}

@@ -1,0 +1,44 @@
+{
+  "status": "locked_test_configuration_frozen",
+  "locked_test_authorized": true,
+  "authorization": {
+    "source": "explicit_user_instruction",
+    "instruction": "保持网络、校准器和阈值完全冻结，进行一次 locked-test 验证",
+    "date": "2026-07-26",
+    "one_shot": true
+  },
+  "frozen_candidate": {
+    "name": "RawSawCrossSeedFPR15+H2Others",
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\outputs\\tapc\\route_a_raw_saw_cross_seed_locked_test_preflight\\frozen_inference_bundle.json",
+    "sha256": "14d3667dd545f5eaa8d1d69881050fa05da529ddec7b2a48d7af724c65fb3cea"
+  },
+  "runner": {
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\experiments\\run_route_a_raw_cross_seed_locked_test_once.py",
+    "sha256": "2a8f2e63ddb829858a73153a54ec7be772e12d56abea6ce6276297634a7af8ca"
+  },
+  "plan": {
+    "path": "C:\\LJQ_code\\CJ_Imbalance_0716\\docs\\plans\\route_a_raw_cross_seed_locked_test_plan_20260726.md",
+    "sha256": "99a2d7ffbf52945688ee3acf3829a6a3b6516e9d983452fdec61ed7de372b1df"
+  },
+  "protocol": {
+    "scope": "closedset_6class_test.mat only",
+    "seeds": [2039, 2040, 2041, 2042, 2043],
+    "ensemble": false,
+    "network_calibrator_threshold_frozen": true,
+    "fit_or_selection_on_locked_test": false,
+    "weak_threshold_db": 10.0,
+    "rerun_or_retuning_allowed": false
+  },
+  "promotion_gate": {
+    "five_seed_and_hash_audit": true,
+    "other_five_labels_exactly_invariant": true,
+    "each_seed_saw_fpr_0p20": true,
+    "mean_macro_aupr_not_down": true,
+    "mean_macro_f1_not_down": true,
+    "mean_exact_match_delta_minus_0p01": true,
+    "mean_saw_recall_gain_0p20": true,
+    "mean_saw_weak_recall_gain_0p20": true,
+    "no_fit_or_selection_on_locked_test": true,
+    "one_shot_artifacts_complete": true
+  }
+}

@@ -1,0 +1,60 @@
+{
+  "experiment": "P7a fresh-identity equal-MAC generic-control audit of heterogeneous task routing",
+  "research_question": "Does the frozen MLCNN classification plus IQ-Grouped parameter route retain a full-12 advantage when compared with a generic non-grouped raw-I/Q parameter branch matched in both Conv/Linear MACs and parameters?",
+  "single_changed_axis": "C2 replaces IQ grouping with a static-selected generic raw-I/Q Conv1d parameter branch; C0 and C1 remain their original definitions.",
+  "data": {
+    "generator": "generate_p7a_heterogeneous_equal_mac_data",
+    "generator_seed": 1220000000,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "role_counts_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5},
+    "identity_key": "receiver_noise_seed",
+    "required_overlap_with_root_and_all_prior_generated_pools": 0,
+    "test_generation": "train split only"
+  },
+  "models": {
+    "C0_shared_global": "legacy_mlcnn_global",
+    "C1_iq_grouped_route": "mlcnn_iq_grouped_task_routed",
+    "C2_equal_mac_generic_control": "legacy_mlcnn_global_compute_matched_control"
+  },
+  "static_selection": {
+    "screen_result": "outputs/p7a_heterogeneous_equal_mac_static_screen_20260802/result.json",
+    "selected_generic_branch_channels": 67,
+    "C2_vs_C1_mac_ratio": 0.9991520542690839,
+    "C2_vs_C1_parameter_ratio": 1.0007254018490417,
+    "selection_was_predata": true
+  },
+  "training": {
+    "model_seeds": [18041, 18042, 18043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter",
+    "threshold_role": "calibration only",
+    "evaluation_role": "confirm only"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero_and_all_12_targets_finite_variable": true,
+    "C2_C1_macs_and_parameters_within_2_percent": true,
+    "each_seed_C1_full12_oracle_nmae_reduction_vs_C0_at_least": 0.04,
+    "mean_C1_full12_oracle_nmae_reduction_vs_C0_at_least": 0.05,
+    "each_seed_C1_full12_oracle_nmae_reduction_vs_C2_at_least": 0.02,
+    "mean_C1_full12_oracle_nmae_reduction_vs_C2_at_least": 0.03,
+    "each_seed_C1_pearson_not_lower_than_C2": true,
+    "each_seed_C1_macro_aupr_drop_vs_C2_at_most": 0.003,
+    "each_seed_C1_subset_accuracy_drop_vs_C2_at_most": 0.03,
+    "no_target_C1_worse_than_C2_in_all_3_seeds_by_absolute_nmae_over": 0.03,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "stop_rule": "If C1 fails to beat C2, conclude that the historical heterogeneous-route gain is not uniquely attributable to IQ grouping under a matched generic parameter branch. Do not alter C2 channels, kernels, optimizer, loss, checkpoint, thresholds, or the 1220M roles. If any safety gate fails, stop without generating confirmation identities."
+}

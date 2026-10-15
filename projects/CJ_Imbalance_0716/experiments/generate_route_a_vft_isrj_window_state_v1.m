@@ -1,0 +1,10 @@
+function receipt = generate_route_a_vft_isrj_window_state_v1(executeGeneration)
+if nargin<1; executeGeneration=false; end
+projectRoot=fileparts(fileparts(mfilename('fullpath'))); generatorRoot='C:\LJQ_code\干扰数据\干扰信号生成程序\可配置组合干扰数据生成'; outputRoot='C:\LJQ_code\干扰数据\复合干扰数据0802_vft_isrj_windowstate_v1'; auditRoot=fullfile(projectRoot,'outputs','tapc','route_a_vft_isrj_window_state_v1_generation'); addpath(generatorRoot,fullfile(generatorRoot,'core'),fullfile(generatorRoot,'generators'));
+names={'W10_15_R3_4','W22_30_R3_4','W10_15_R6_8','W22_30_R6_8'}; widths={[10e-6,15e-6],[22e-6,30e-6],[10e-6,15e-6],[22e-6,30e-6]}; replicas={[3,4],[3,4],[6,8],[6,8]}; results=cell(4,1);
+for i=1:4
+ cfg=create_closedset_6class_config(); cfg.seed=179000000; cfg.output_dir=fullfile(outputRoot,names{i}); cfg.output.save_legacy=false; cfg.dataset.samples_per_pattern=20; cfg.dataset.num_samples=1260; cfg.params.ISRJ.sample_width_s=widths{i}; cfg.params.ISRJ.num_replicas=replicas{i}; cfg=normalize_and_validate_config(cfg,'balanced'); registry=build_jamming_registry(cfg); schema=build_parameter_schema(registry); results{i}=run_closedset_splits(cfg,registry,schema,logical(executeGeneration),'train','error');
+end
+receipt=struct('status','completed','executed',logical(executeGeneration),'experiment','RouteA_VFTISRJ_WindowStateV1','evidence_role','fresh_paired_window_state_identifiability','base_seed',179000000,'regimes',{names},'samples_per_pattern',20,'sample_count_per_regime',1260,'test_split_generated',false,'locked_test_used',false,'test_v2_used',false,'test_v3_used',false); if executeGeneration; receipt.train_paths=cellfun(@(r)r.train_path,results,'UniformOutput',false); end
+if ~isfolder(auditRoot); mkdir(auditRoot); end; prefix='dry_run'; if executeGeneration; prefix='formal'; end; fid=fopen(fullfile(auditRoot,[prefix '_generation_receipt.json']),'w','n','UTF-8'); cleaner=onCleanup(@()fclose(fid)); fwrite(fid,jsonencode(receipt,PrettyPrint=true),'char'); fprintf('ROUTE_A_WINDOWSTATE_RECEIPT=%s\n',fullfile(auditRoot,[prefix '_generation_receipt.json']));
+end

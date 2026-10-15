@@ -1,0 +1,66 @@
+{
+  "experiment": "P8b axis-stratified mixed-long-tail BCE development",
+  "hypothesis": "With the same EfficientNet-B1, BCE loss, batch size and optimizer-step budget as a random-sampling control, deterministic mini-batch quotas over VFT label tail, even-cardinality combination tail and VFT weak-visibility rows improve VFT ranking rather than merely amplifying positive responses.",
+  "single_changed_axis": "mini-batch membership only",
+  "parent_protocol": {
+    "p8a_result": "outputs/p8a_multi_axis_longtail_atlas_20260802/result.json",
+    "p8a_is_protocol_only": true,
+    "forbidden_revivals": ["ASL", "global class reweighting", "power consistency loss", "pseudo labels", "composition prototypes", "relation loss", "threshold tuning on development", "expert expansion"]
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p8b_axis_stratified_longtail_data.m",
+    "receiver_noise_seed": 1310000000,
+    "samples_per_combination": 400,
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "generated_split": "train only",
+    "identity_contract": "all nine power views of one receiver_noise_seed remain in exactly one role",
+    "must_not_overlap": ["P8a root identities", "P1n", "P3o-E", "P4c-P7a", "P5b-P5f"]
+  },
+  "roles": {
+    "per_combination": {"optimization": 280, "early_stop": 40, "calibration": 40, "development": 40},
+    "split_seed": 1310000000,
+    "training_manifest": {
+      "sample_count": 2400,
+      "label_targets": [1200, 1200, 1200, 1200, 400, 1200],
+      "combination_tail": "even-cardinality nonempty combinations target 10 samples each; odd-cardinality combinations absorb remaining mass under exact label constraints",
+      "visibility_tail": "VFT-positive identities coexisting with any fixed component receive one deterministic 10/15/20 dB view; all other identities use 30 dB"
+    }
+  },
+  "models": {
+    "C0_random_BCE": "efficientnet_b1_1d with ordinary replacement random mini-batches",
+    "C1_axis_stratified_BCE": "same efficientnet_b1_1d weights, same BCE, same fixed-view examples and same update budget; each batch has 16 VFT-positive weak rows, 4 other VFT-positive rows, 16 VFT-negative SinFM+MFT+ISRJ hard-negative rows and 28 remaining rows, sampled with deterministic replacement",
+    "architecture": "efficientnet_b1_1d, 6 logits, dropout=0.2, head_dim=256",
+    "loss": "BCEWithLogitsLoss only",
+    "optimization": {"optimizer": "AdamW", "lr": 0.0003, "weight_decay": 0.0001, "epochs": 30, "batch_size": 64, "steps_per_epoch": 38, "optimizer_steps": 1140},
+    "model_seeds_development": [18101, 18102, 18103],
+    "model_seeds_extension_if_development_passes": [18104, 18105]
+  },
+  "selection_and_calibration": {
+    "checkpoint": "highest early-stop macro-AUPR; ties resolve by VFT AUPR then lowest epoch",
+    "threshold": "per-class F1 grid on calibration role only; one frozen threshold set per model; no development retuning",
+    "development": "all nine powers, all 2520 held-out identities; paired views cluster by receiver_noise_seed"
+  },
+  "metrics": {
+    "ranking": ["VFT AUPR at 10 dB", "VFT AUPR across all powers", "macro AUPR"],
+    "response_risk": ["VFT FPR at 10 dB", "VFT FPR by power and combination", "VFT hard-negative FPR for VFT=0 and SinFM=MFT=ISRJ=1", "Hamming loss", "weak-component recall"],
+    "separation": "mean VFT probability on positives minus mean VFT probability on fixed hard negatives",
+    "reporting": ["six-class AUPR/FPR/Recall", "per-power", "per-combination", "cardinality", "tail/non-tail", "identity-clustered paired bootstrap"]
+  },
+  "development_promotion_gates": {
+    "all_three_seeds_vft_10db_aupr_nonnegative_vs_C0": true,
+    "mean_vft_10db_aupr_gain_vs_C0_min": 0.02,
+    "all_three_seeds_macro_aupr_delta_vs_C0_min": -0.005,
+    "all_three_seeds_hamming_delta_vs_C0_max": 0.005,
+    "all_three_seeds_vft_hard_negative_fpr_delta_vs_C0_max": 0.02,
+    "all_three_seeds_worst_power_vft_fpr_delta_vs_C0_max": 0.02,
+    "all_three_seeds_vft_separation_delta_vs_C0_min": 0.0,
+    "no_non_vft_label_has_systemic_fpr_increase_over_0p02": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "stop_rule": "If any development gate fails, stop axis-stratified sampling permanently on these identities. Do not change quotas, steps, loss, thresholds, backbone, target label, tail definition or gates; do not generate confirmation identities. If it passes, freeze code and checkpoints, run the two pre-specified additional model seeds, then require two fresh identity-pool no-retuning confirmations before any locked-test request.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

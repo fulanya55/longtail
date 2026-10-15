@@ -1,0 +1,70 @@
+{
+  "experiment_id": "P2c-SawFM-frozen-residual-isolation-development-v3",
+  "registered_at_local": "2026-08-01T00:00:00+08:00",
+  "evidence_role": "fresh development-only mechanism screen",
+  "antecedent": {
+    "P2b": "E4 failed because two of three seeds did not reach 10% high-power reduction versus the constant baseline",
+    "diagnosis": "pure SawFM is identifiable, while compound combinations containing SinFM/MFT/VFT/ISRJ dominate the worst errors; E3 and E4 are nearly tied",
+    "stopping_rule_carried_forward": "do not deepen the period regression network before testing mixture isolation"
+  },
+  "question": "Can the already-frozen swept-component separator remove variable-power interference so that the unchanged SawFM period expert recovers high-power physical sufficiency?",
+  "data_protocol": {
+    "generator_seed": 1400000000,
+    "generator_entrypoint": "matlab/generate_p2c_sawfm_residual_isolation_data.m",
+    "powers_db": [30, 35, 40, 45, 50],
+    "split_generated": "train only",
+    "samples_per_combination": 40,
+    "identities_per_power": 2520,
+    "pairing_key": "receiver_noise_seed",
+    "required_overlap_with_all_prior_identity_sets": 0,
+    "roles_per_combination": {"fit": 20, "selection": 10, "calibration": 10},
+    "positive_subset": "SawFM-positive with finite sweep-period target",
+    "test_generated": false
+  },
+  "frozen_models": {
+    "separator": "outputs/conditional_unet_separator_full_20260725/unet_wave/seed_{2041,2042,2043}/best.pt",
+    "period_expert": "outputs/physics_parameter_specialists/sawfm_period_sequence/seed_{2041,2042,2043}/best.pt",
+    "trainable_parameters": 0,
+    "classification_and_other_parameters": "not invoked and unchanged"
+  },
+  "variants": {
+    "R0": "raw RMS-normalized I/Q into frozen SawFM period expert",
+    "R1": "separator estimated variable-power component alone into period expert; negative control",
+    "R2": "RMS-normalized residual raw - alpha*estimated_component into period expert; primary candidate"
+  },
+  "alpha_selection": {
+    "grid": [0.25, 0.5, 0.75, 1.0],
+    "role": "selection only",
+    "criterion": "minimum equal-power MAE over 35,40,45,50 dB",
+    "tie_break": "smallest alpha",
+    "calibration_access": "once after alpha is frozen"
+  },
+  "model_seeds": [2041, 2042, 2043],
+  "primary_metrics": {
+    "overall_high_power": "35-50 dB MAE and Pearson",
+    "variable_competitor_subset": "SawFM plus at least one of MFT/VFT/ISRJ",
+    "no_variable_competitor_subset": "SawFM without MFT/VFT/ISRJ"
+  },
+  "promotion_gates_R2": {
+    "each_seed_overall_high_reduction_vs_R0_min": 0.02,
+    "each_seed_variable_competitor_high_reduction_vs_R0_min": 0.05,
+    "each_seed_overall_high_reduction_vs_fit_constant_min": 0.10,
+    "each_seed_overall_high_pearson_min": 0.30,
+    "each_seed_no_variable_competitor_degradation_floor": -0.01,
+    "negative_control_R1_must_not_outperform_R2_mean": true,
+    "same_direction": "3/3 seeds"
+  },
+  "interpretation_rules": {
+    "pass": "advance residual isolation to a trainable shared-frontend ablation on another fresh development seed",
+    "R1_beats_R2": "separator output semantics are incompatible with subtraction; stop residual reuse",
+    "R2_fails_variable_subset": "existing separator does not isolate the contamination relevant to SawFM period; require dedicated component supervision or a mixture-robust reset/ridge estimator",
+    "no_gate_change_after_results": true
+  },
+  "prohibited": [
+    "P2a or P2b test access",
+    "reuse of P2b calibration for promotion",
+    "separator or period-expert fine-tuning",
+    "threshold or gate relaxation"
+  ],
+  "locked_test_used": false
+}

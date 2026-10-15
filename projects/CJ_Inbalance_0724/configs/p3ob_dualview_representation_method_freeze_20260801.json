@@ -1,0 +1,26 @@
+{
+  "experiment": "P3o-B dual-view representation method freeze",
+  "preregister": "configs/p3ob_dualview_representation_preregister_20260801.json",
+  "preregister_sha256": "413a1a0a490d257cad7f034236fc3d57db7a04cd74299a9585e16b62ff1eebe0",
+  "implementation": "cj0724/p3ob_dualview_representation.py",
+  "implementation_sha256": "0d290c0e58630bcd7f11011b7078dc77ca77236ef034c087e189739da6aded02",
+  "data_generator": "matlab/generate_p3o_low_power_attribution_data.m",
+  "data_generator_sha256": "48c1666d7c62df74c78f39df4e1e55d8244afbd74698df45d5566a271f0b4d20",
+  "immutable_before_development": {
+    "identity_seeds": [910000000, 920000000],
+    "roles_per_combination": {"full_fit": 27, "early": 2, "calibration": 2, "selection": 2},
+    "views": ["T_time", "D_delay", "F_time_frequency", "DF_no_contrast", "DF_exclusive_contrast"],
+    "delay_view": "lags 1..1024 plus fixed 7/31 smoothing",
+    "time_frequency_view": "n_fft=128 hop=64 log magnitude plus adjacent-frame phase increment",
+    "contrast": "weight 0.05; only MFT-only and ISRJ-only; co-occurrences excluded",
+    "optimizer": "AdamW lr=1e-4 wd=1e-4 warmup=2 cosine epochs=20 batch=63 clip=5",
+    "checkpoint": "C_joint with 1.01 parameter tolerance",
+    "safety": "per-cell 95% Clopper-Pearson cap 0.10",
+    "development_selection_forbidden": true
+  },
+  "post_development_rule": "After seed920000000 predictions are opened, no representation, contrast, loss, width, STFT, ACF, optimizer, checkpoint, threshold, cap, or gate adjustment is permitted. A failed development gate prohibits 930M/940M confirmation and requires a new identity-safe hypothesis.",
+  "attempt1_mechanical_correction": "Attempt 1 failed before result serialization because collect_outputs omitted classification_loss and parameter_loss required by the inherited evaluator. Before retrying, these two accounting fields were added without changing any data, representation, model, loss, loss weight, optimizer, checkpoint, threshold, cap, gate, or selection rule. Attempt-1 artifacts remain at outputs/p3ob_dualview_representation_development_20260801/.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

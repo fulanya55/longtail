@@ -1,0 +1,75 @@
+{
+  "experiment": "P5q relocation-safe fine-grained checkpointed shared frozen-forward and dense bounded-head execution",
+  "status": "preregistered_before_any_P5q_data_generation",
+  "research_question": "With the P5e five-model bounded-JNR candidate and the P5p timing contract unchanged, can the output-equivalent shared-forward cost comparison be executed reproducibly after project relocation, with recoverable analytic and per-model units?",
+  "single_changed_axis": "Execution durability and path portability only: resolve the project from the installed runner instead of the shell working directory, resolve the MATLAB generator from the relocated E-drive tree, and checkpoint analytic arrays plus every model result. No scientific mechanism, model, feature, input, batch, timing or gate changes.",
+  "frozen_artifacts": [
+    {"path": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json", "sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832"},
+    {"path": "configs/p5p_checkpointed_idle_window_preregister_20260804.json", "sha256": "a5c76048b69409ca0c7b31bca973f5797c6ce8213d72cc2615b9b9e0a22f6941"},
+    {"path": "configs/p5p_checkpointed_idle_window_method_freeze_20260804.json", "sha256": "c2d5c284df9db60ff5bd0987c57d6911ca42af209173721ae157d3b01d657e53"},
+    {"path": "configs/p5p_checkpointed_idle_window_outcome_freeze_20260805.json", "sha256": "9b5e3ddcc0c8155148d5cac237d0c10caa77f11d8e82e1b1be53f48724a1493e"},
+    {"path": "cj0724/p5p_checkpointed_idle_window_execution.py", "sha256": "1cdb9d9a2278532379c862847a21a2e32b8d80683e363f68d8475f286779b462"},
+    {"path": "cj0724/audit_p5g_shared_dense_data.py", "sha256": "8a11475432d93636c3746c36ae562ffbb5eeab912c942228d8184a240c388620"}
+  ],
+  "base_candidate": {
+    "freeze_path": "configs/p5e_five_model_seed_confirmation_freeze_20260801.json",
+    "freeze_sha256": "e8fdf3bebc52dc53831005dc9b30663675dba4ef890ef93e1d9e659ccef4e832",
+    "source_model_seeds": [3041, 3042, 3043, 3044, 3045]
+  },
+  "authorized_environment": {
+    "user_authorized_exclusive_window": true,
+    "requested_compute_mode": "EXCLUSIVE_PROCESS",
+    "fallback_if_windows_driver_rejects_mode_change": "Proceed only under the unchanged P5h no-external-Python-CUDA guard before launch, after analytic collection, before and after every timing call, and after execution. Record every guard receipt.",
+    "launch_precondition": "No external Python CUDA process may exist. Protocol validation, relocation test and no-data/no-CUDA checkpoint recovery self-test must pass before generation.",
+    "restore_compute_mode_after_each_attempt": "Default"
+  },
+  "development_data": {
+    "generator": "matlab/generate_p5q_relocation_safe_checkpoint_development_data.m",
+    "generator_seeds": [3710000000, 3720000000, 3730000000],
+    "powers_db": [10, 15, 20, 25, 30],
+    "samples_per_combination": 60,
+    "generated_split": "train only",
+    "paired_identity_key": "receiver_noise_seed",
+    "roles": "evaluation-only; no training, selection, calibration or threshold adjustment",
+    "identity_rule": "All five power views remain together; every pool must have zero overlap with every locally retained historical train identity, including quarantined P5p identities."
+  },
+  "execution": {
+    "full_pool_examples": 3780,
+    "batch_size": 126,
+    "benchmark_batch": "first complete index-ordered batch, indices 0 through 125, no data-dependent sampling",
+    "reference": "two frozen base forwards plus unchanged dense attachment",
+    "candidate": "one frozen base forward plus identical unchanged dense attachment",
+    "warmup_runs": 5,
+    "timed_repetitions": 15,
+    "timing": "CUDA synchronize before and after every call. Retain all P5h guards and reject any external Python PID whose nvidia-smi pmon type contains C."
+  },
+  "checkpoint_contract": {
+    "schema": "P5q-v1",
+    "project_root": "Path(__file__).resolve().parents[1]; correctness must not depend on current working directory or drive",
+    "immutable_units": ["per-attempt launch/environment/restore/terminal receipts", "per-pool analytic NPZ plus hash receipt", "per-source-model completed JSON receipt", "per-pool completed JSON receipt", "final result.json"],
+    "atomic_write": "write-fsync-replace; never silently replace a completed receipt",
+    "recovery_rule": "A completed unit may be reused only after preregistration hash, unit identity and payload/checkpoint hash validation. A started but incomplete analytic unit may use an already atomic and schema-valid NPZ or otherwise recompute. A started but incomplete model unit may recompute only without a completed result and without inspecting unavailable metrics. Recovery may not change code, configuration, data, identities, order, model, thresholds, repetitions or gates.",
+    "selection_prohibition": "No completed timing/model unit may be selectively rerun. A failed gate is final for that identity pool.",
+    "self_test": "From an unrelated current working directory and without opening project data or CUDA, validate the protocol, round-trip a synthetic FeatureRole checkpoint exactly, and classify a started incomplete model as recoverable_unobserved_unit."
+  },
+  "development_gates": {
+    "all_full_pool_outputs_and_metrics_exact": true,
+    "all_fixed_benchmark_batch_outputs_exact": true,
+    "all_data_seeds_and_models_median_latency_ratio_shared_dense_over_reference_at_most": 0.85,
+    "all_guard_receipts_have_no_external_python_cuda_compute_pid": true,
+    "environment_window_receipt_complete": true,
+    "checkpoint_receipts_complete": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "stop_rule": "Any failed protocol/relocation/checkpoint test, invalid/overlapping pool audit, external CUDA Python PID, hash mismatch, output non-equivalence, missing terminal receipt or latency-gate failure stops P5q. Do not tune or regenerate on these identities.",
+  "confirmation_if_and_only_if_development_passes": {
+    "generator_seeds": [3740000000, 3750000000],
+    "same_execution_and_compute_guard_gates": true,
+    "decision": "Only a two-new-identity-pool confirmation pass supports the narrow output-equivalent frozen-execution per-batch cost claim. It is not a classification, architecture, all-parameter or OOD claim."
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

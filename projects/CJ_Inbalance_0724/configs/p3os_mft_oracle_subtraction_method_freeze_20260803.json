@@ -1,0 +1,28 @@
+{
+  "experiment": "P3o-S oracle MFT subtraction causal diagnosis",
+  "status": "amended_after_data_generation_before_first_development_prediction",
+  "preregister": "configs/p3os_mft_oracle_subtraction_preregister_20260803.json",
+  "preregister_sha256": "0b8e653193e554e0d0feac7e2367e1ed0f31001a1a4f464b79a091dfccb044ac",
+  "implementation": "cj0724/p3os_mft_oracle_subtraction.py",
+  "implementation_sha256": "b3e9c58b31942a2b1f2db1addb36dddae357de42ef6d52eb6e8311122b6a6be1",
+  "generator": "matlab/generate_p3os_mft_oracle_subtraction_level.m",
+  "generator_sha256": "cdb5a4499d5342e3f244f45a8b35a8c555a3fe941a6664dd2c694d8535b491ed",
+  "data_seeds": [1920000000, 1930000000],
+  "model_seeds": [2041, 2042, 2043],
+  "conditions": ["C0_raw", "C1_exact_mft_subtraction", "C2_energy_matched_non_mft_control"],
+  "bootstrap_resamples": 2000,
+  "pre_prediction_implementation_amendment": {
+    "reason": "The generic rechunk cache intentionally omits MATLAB config metadata, while the P3o-S audit needs generator noise_power for the already specified exact-power reconstruction.",
+    "change": "Read config/radar/noise_power from the cache when present; otherwise follow the cache source_path receipt and read the same field from the immutable raw MAT file.",
+    "unchanged": ["hypothesis", "data seeds", "regimes", "powers", "sample count", "conditions", "component scaling", "control construction", "frozen checkpoints", "thresholds", "bootstrap procedure", "gates"],
+    "development_predictions_before_amendment": false,
+    "locked_test_used": false
+  },
+  "storage_decision_required_before_executeGeneration_true": true,
+  "forbidden_after_first_development_prediction": [
+    "implementation", "generator", "data seeds", "regimes", "powers", "sample count", "conditions", "component scaling", "control construction", "frozen checkpoints", "thresholds", "bootstrap procedure", "gates"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

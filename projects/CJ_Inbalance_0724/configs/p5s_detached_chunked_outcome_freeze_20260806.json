@@ -1,0 +1,49 @@
+{
+  "experiment": "P5s detached-supervised deterministic-chunk checkpointed shared frozen-forward execution",
+  "status": "stopped_after_first_pool_analytic_completion_before_first_model_output_due_legacy_source_path",
+  "decision": "Do not resume or rerun P5s. Do not reuse any P5s identity pool. Do not infer output equivalence, latency, classification or parameter behavior. Do not generate confirmation or test data.",
+  "observed_terminal_state": {
+    "supervisor_terminal_returncode": 1,
+    "last_durable_stage": "pool_000_model_3041_started",
+    "analytic_chunks_completed": 30,
+    "analytic_chunks_expected_for_first_pool": 30,
+    "analytic_checkpoint_rows": 18900,
+    "model_completed_receipts": 0,
+    "pool_completed_receipts": 0,
+    "result_present": false,
+    "abort_present": true,
+    "restore_present": true
+  },
+  "admissible_execution_evidence": {
+    "detached_supervisor_start_and_child_pid_receipts_present": true,
+    "supervisor_terminal_receipt_present": true,
+    "all_completed_analytic_chunks_are_individually_checkpointed": true,
+    "initial_external_python_cuda_compute_processes": [],
+    "explicit_E_drive_baseline_audit_passed_before_launch": true
+  },
+  "attribution": {
+    "classification": "legacy_model_source_path_portability_failure",
+    "exception": "FileNotFoundError: Legacy model source is missing: C:/LJQ_code/pythonProject/新建文件夹/model.py",
+    "root_cause": "cj0724/models.py hard-coded LEGACY_SOURCE_ROOT to the removed C-drive location. The corresponding E-drive source exists but was not resolved at runtime.",
+    "boundary": "P5s proves detached supervision and 630-position analytic checkpoints reached a recoverable model-start boundary. It provides no model-forward, output-equivalence, latency or scientific-performance evidence."
+  },
+  "frozen_evidence": {
+    "preregister": "configs/p5s_detached_chunked_preregister_20260805.json",
+    "preregister_sha256": "1753026950cef68b506a871c3c05ab598bcdc9b5129a5e32ab302127e1a509da",
+    "method_freeze": "configs/p5s_detached_chunked_method_freeze_20260805.json",
+    "method_freeze_sha256": "c837453d0ef915af288d22f55e7c2da6e6829eae364bef1c36ca6cb54e79f5ea",
+    "launch_manifest_sha256": "3cad259638947501ec44e7a575033aad94aef05b1c80737901bbbd02451803d1",
+    "chunked_runner_sha256": "62dcb19a9ed1f748e1b16062cadab8fc891ff113bda7bd41b84a4375b3d9f8f2",
+    "supervisor_sha256": "d317b051b38d72000f8b80ecd49f8d06c89efd96843ead4f8f0109831d8fdf81",
+    "abort_receipt_sha256": "d2c84ec32223ab03ef698410b77dfd585434330b17f895ba0d22812c4f328915",
+    "supervisor_terminal_sha256": "d0c09e4ae4539d76965f472e402f66a92c0a87c36f24e8ac10154b0767c0b24e"
+  },
+  "data_disposition": {
+    "development_seeds": [3510000000, 3520000000, 3530000000],
+    "identity_disposition": "quarantined_for_P5; no rerun, resume, selection, calibration, confirmation or test",
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "next_allowed_action": "P5t may change only legacy source path portability: dynamically resolve the E-drive legacy root from package location, pin actual required source hashes in a manifest, verify construction and state_dict loading for all five frozen models without data/CUDA, then use wholly new identities with P5s supervision and chunks unchanged."
+}

@@ -1,0 +1,192 @@
+{
+  "stage": "R2_R3_preflight",
+  "status": "verified_audit_and_smoke",
+  "active_train_contract": {
+    "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\closedset_6class_train.mat",
+    "data_legacy_shape": [
+      6000,
+      25200
+    ],
+    "labels_shape": [
+      25200,
+      6
+    ],
+    "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+    "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34",
+    "class_counts": [
+      12800,
+      12800,
+      12800,
+      12800,
+      12800,
+      12800
+    ]
+  },
+  "class_names": [
+    "FMB",
+    "SawFM",
+    "SinFM",
+    "MFT",
+    "VFT",
+    "ISRJ"
+  ],
+  "auxiliary_branches": {
+    "physical_film": {
+      "feature_shape": [
+        2,
+        26
+      ],
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true,
+      "parameter_input_has_no_label_or_target": true
+    },
+    "spectral_film": {
+      "feature_shape": [
+        2,
+        19
+      ],
+      "logit_shape": [
+        2,
+        6
+      ],
+      "parameter_shape": [
+        2,
+        6,
+        2
+      ],
+      "finite": true,
+      "parameter_input_has_no_label_or_target": true
+    }
+  },
+  "power_train_views": [
+    {
+      "jnr_dB": 10,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_01__jnr_10dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 15,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_02__jnr_15dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 20,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_03__jnr_20dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 25,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_04__jnr_25dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 30,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_05__jnr_30dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 35,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_06__jnr_35dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 40,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_07__jnr_40dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 45,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_08__jnr_45dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    },
+    {
+      "jnr_dB": 50,
+      "path": "E:\\LJQ_code\\\u5e72\u6270\u6570\u636e\\\u590d\u5408\u5e72\u6270\u6570\u636e0716\\power_sweep_9level_v1\\level_09__jnr_50dB\\closedset_6class_train.mat",
+      "exists": true,
+      "labels_shape": [
+        25200,
+        6
+      ],
+      "labels_equal_to_first_train_view": true,
+      "receiver_noise_seed_equal_to_first_train_view": true,
+      "label_sha256": "5fe0a4e2b969c9bfe664718452ddde868a9d712c1cacf8ee12f105fbccaf86d6",
+      "receiver_noise_seed_sha256": "145efb3ded1c4414aa8fc0400a2fb811e5f2779f3acae410ed539123494e4b34"
+    }
+  ],
+  "test_mat_opened": false,
+  "locked_test_used": false,
+  "performance_claim": "not_validated",
+  "next": "R2 multi-seed branch comparison and R3 per-parameter/visibility/power evaluation remain pending"
+}

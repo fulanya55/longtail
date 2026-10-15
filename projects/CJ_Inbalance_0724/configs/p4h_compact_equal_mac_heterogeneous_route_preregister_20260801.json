@@ -1,0 +1,97 @@
+{
+  "experiment": "P4h compact near-equal-MAC heterogeneous task route",
+  "research_question": "Can the heterogeneous MLCNN-classification plus IQ-Grouped-parameter route retain a reproducible full-12-parameter advantage when the parameter branch is compressed until total MAC and parameter count are nearly identical to the shared MLCNN baseline?",
+  "evidence_role": "fresh_identity_single_mechanism_equal_compute_development",
+  "frozen_parent_evidence": {
+    "p4a": "five optimization seeds on the prior within-root confirm role; mean relative NMAE reduction 8.91 percent, but route MAC was 11.12 percent higher",
+    "p4c": "three fresh-identity variable-JNR seeds; mean relative NMAE reduction 6.52 percent",
+    "p4d": "two wholly new data seeds, six frozen pairs; mean relative NMAE reduction 7.28 percent",
+    "p4g": "SawFM target reweighting failed and is not carried into P4h",
+    "prior_sample_predictions_reused": false,
+    "prior_checkpoints_reused": false
+  },
+  "single_mechanism": {
+    "baseline": "legacy_mlcnn_global",
+    "full_route_reference": "mlcnn_iq_grouped_task_routed",
+    "candidate": "mlcnn_iq_grouped_task_routed_w4",
+    "only_architecture_change_vs_full_route": "IQ-Grouped parameter-backbone base width is reduced from 24 to 4; the MLCNN classification path, common heads, loss, optimizer, role protocol, threshold calibration and checkpoint objective are unchanged",
+    "candidate_parameter_count": 12813306,
+    "baseline_parameter_count": 12806642,
+    "candidate_parameter_increase_fraction_vs_baseline": 0.0005203549648584935,
+    "candidate_macs_per_sample": 414892224,
+    "baseline_macs_per_sample": 413472128,
+    "candidate_mac_increase_fraction_vs_baseline": 0.003434567560352355,
+    "full_route_macs_per_sample": 459432704,
+    "static_costs_measured_before_training": true
+  },
+  "data": {
+    "generator": "create_closedset_6class_config",
+    "generator_seed": 720000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "identity_key": "receiver_noise_seed",
+    "split_seed": 20260801,
+    "role_counts_per_combination": {
+      "train": 75,
+      "early": 10,
+      "calibration": 5,
+      "tune": 5,
+      "confirm": 5
+    },
+    "required_overlap_with_root_and_all_p4a_through_p4g_identity_pools": 0,
+    "test_generation": "train split only"
+  },
+  "training": {
+    "model_seeds": [7041, 7042, 7043],
+    "models": [
+      "legacy_mlcnn_global",
+      "mlcnn_iq_grouped_task_routed",
+      "mlcnn_iq_grouped_task_routed_w4"
+    ],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "external_width_argument": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter",
+    "paired_batch_order": "same model seed and independently seeded DataLoader generator"
+  },
+  "validity_gates": {
+    "all_12_confirm_targets_finite_and_variable": true,
+    "confirm_contains_all_63_combinations": true,
+    "identity_overlap_zero": true,
+    "candidate_parameter_increase_vs_baseline_at_most": 0.001,
+    "candidate_mac_increase_vs_baseline_at_most": 0.005,
+    "classification_path_identical_between_full_and_compact_routes": true
+  },
+  "promotion_gates": {
+    "each_seed_compact_relative_macro_nmae_reduction_vs_global_at_least": 0.025,
+    "mean_compact_relative_macro_nmae_reduction_vs_global_at_least": 0.04,
+    "compact_parameter_improvement_direction": "3_of_3_positive",
+    "mean_compact_retention_of_full_route_absolute_nmae_gain_at_least": 0.65,
+    "each_seed_compact_retention_of_full_route_absolute_nmae_gain_at_least": 0.40,
+    "each_seed_compact_parameter_macro_pearson_not_lower_than_global": true,
+    "each_seed_compact_macro_aupr_drop_vs_global_at_most": 0.003,
+    "each_seed_compact_subset_accuracy_drop_vs_global_at_most": 0.03,
+    "no_target_worse_in_3_of_3_seeds_vs_global_by_more_than_absolute_nmae": 0.03,
+    "batch1_median_latency_increase_vs_global_at_most": 0.20,
+    "batch64_throughput_retention_vs_global_at_least": 0.85
+  },
+  "statistics_if_pass": {
+    "combine_with_existing_five_seed_claim": false,
+    "required_next_step": "freeze P4h and add two new optimization seeds on a new data seed, then report bootstrap 95 percent CI, exact paired sign-flip test and effect size",
+    "reason": "P4h is a new compact architecture and must earn its own five-seed evidence"
+  },
+  "stop_rule": "Do not change compact width, losses, epochs, thresholds or gates after reading seed720000000 results. If the compact route misses a primary benefit or cost gate, stop P4h on this identity pool and do not sweep width 6, 8, 10 or 12 on the same data. Use the failure to choose at most one preregistered compactness level on wholly new identities, or retain the full route with an explicit 11.12 percent MAC cost.",
+  "next_if_pass": "Freeze width 4, confirm on two new optimization seeds and a wholly new data generator seed, then proceed to nine-power and weak-component stress testing.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,72 @@
+{
+  "experiment": "P2v reference-aligned phase-increment VFT Doppler physical sufficiency",
+  "registration_date": "2026-08-01",
+  "research_question": "Can a fixed-lag phase-increment estimator remove wide-grid multiple-comparison bias while preserving signed VFT Doppler OOD generalization?",
+  "evidence_role": "fresh_mechanism_development_only",
+  "failed_parent": {
+    "experiment": "P2u range-agnostic signed wide-grid VFT Doppler",
+    "summary": "outputs/p2u_vft_wide_grid_ood_development_20260801/summary.json",
+    "reused_for_threshold_selection": false,
+    "failure_mechanism": "Global argmax over a much wider grid improved negative OOD but introduced extreme-value false peaks and destroyed positive ID performance."
+  },
+  "single_mechanism_change": {
+    "name": "reference-aligned fixed-lag complex phase increment",
+    "delay_search_samples": [100, 500],
+    "delay_candidates": 32,
+    "phase_lag_samples": 64,
+    "unambiguous_frequency_hz": [-78125, 78125],
+    "delay_selection_score": "phase_coherence multiplied by normalized gathered-pulse energy; reference correlation is used only to propose 32 delay candidates",
+    "frequency_formula": "angle(sum(z[n+64]*conj(z[n]))) * Fs / (2*pi*64)",
+    "trainable_parameters_added": 0,
+    "fitted_thresholds": 0
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p2u_vft_doppler_ood_data.m",
+    "identity_seed": 3600000000,
+    "output_prefix": "p2v_vft_phase_increment_seed3600000000",
+    "split": "train only",
+    "powers_db": [25, 35, 50],
+    "identities": 630,
+    "all_63_combinations": true,
+    "regimes_hz": {
+      "ID_control": [1000, 7000],
+      "near_low": [100, 1000],
+      "near_high": [7000, 7400],
+      "far_negative": [-10000, -1000],
+      "far_negative_high": [-30000, -10000]
+    }
+  },
+  "controls": {
+    "C0_constant": "fixed 4000 Hz",
+    "C1_frozen_positive_grid": "reference-aligned 1-7 kHz grid",
+    "C2_phase_increment": "correct reference, delay search, lag 64",
+    "C3_wrong_reference": "C2 with chirp rate multiplied by 0.8",
+    "C4_no_delay_alignment": "C2 with delay fixed to zero"
+  },
+  "promotion_gates": {
+    "identity_overlap_with_prior_data": 0,
+    "C2_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C2_each_regime_pearson_at_least": 0.30,
+    "C2_each_regime_each_power_positive_direction": true,
+    "C2_ID_mae_ratio_vs_C1_at_most": 1.05,
+    "C2_ID_pearson_delta_vs_C1_at_least": -0.02,
+    "C2_each_OOD_mae_reduction_vs_C1_at_least": 0.20,
+    "C2_compound_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C2_compound_each_regime_pearson_at_least": 0.30,
+    "C2_mean_mae_at_most_0p8_of_C3_and_C4": true,
+    "C2_prediction_finite_rate": 1.0
+  },
+  "stop_rule": "Any failed physical gate stops P2v. Do not train a deeper VFT router or attach to the 12-parameter system. Diagnose saved predictions and use another fresh seed for a different mechanism.",
+  "next_roles": {
+    "if_development_passes": {
+      "no_tuning_validation_seeds": [3700000000, 3800000000],
+      "confirmation_seeds": [4100000000, 4200000000]
+    }
+  },
+  "evidence_boundary": {
+    "development_only": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  }
+}

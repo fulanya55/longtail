@@ -1,0 +1,31 @@
+{
+  "experiment": "P5m user-authorized exclusive-window shared frozen-forward and dense bounded-head execution",
+  "status": "stopped_environment_interference_no_performance_result",
+  "decision": "Do not rerun P5m on any of its three development identity pools. Do not report latency, speedup, output equivalence, or a P5 cost conclusion from this attempt.",
+  "cause": {
+    "stage": "after the first pool analytic-role collection, before any model result row was committed",
+    "guard": "P5h exclusive-GPU timing guard",
+    "external_cuda_python_pid": 54480,
+    "external_command": "python -m cj0724.run_p3ou_local_phase_dynamics --device cuda",
+    "compute_mode_attempt": "EXCLUSIVE_PROCESS denied by nvidia-smi due to insufficient permissions; compute mode remained Default"
+  },
+  "evidence": {
+    "preregister": "configs/p5m_authorized_window_shared_dense_preregister_20260803.json",
+    "preregister_sha256": "f58aa667e5c8042f1af5225b5d6e4308fd42ce31477a72dcf9b33147702bea2d",
+    "method_freeze": "configs/p5m_authorized_window_shared_dense_method_freeze_20260803.json",
+    "method_freeze_sha256": "8b9d0fd0bc2c3a24c02e8274d9cc79a9cdca41715e18c975972996901e76d9be",
+    "abort_receipt": "outputs/p5m_authorized_window_shared_dense_development_20260803/pre_result_abort.json",
+    "abort_receipt_sha256": "5c19dff2683c31e8575b8493295775b755c700c5fac902b08bc9aa669b4ef0ce"
+  },
+  "data_disposition": {
+    "development_identity_roots": [
+      "generated_data/p5m_authorized_window_dev_seed4240000000",
+      "generated_data/p5m_authorized_window_dev_seed4250000000",
+      "generated_data/p5m_authorized_window_dev_seed4260000000"
+    ],
+    "identity_disposition": "quarantined_for_P5; no repeat or retuning on these identities",
+    "independent_or_locked_test_generated": false,
+    "independent_or_locked_test_opened": false
+  },
+  "next_allowed_action": "Only a newly pre-registered P5 successor with entirely new identities, an actual exclusive compute-mode session or an externally verified no-other-CUDA-job window may attempt cost measurement."
+}

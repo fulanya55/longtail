@@ -1,0 +1,39 @@
+{
+  "experiment": "P5u direct-child-supervised hash-pinned legacy-source-portable shared frozen-forward execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5u_direct_supervision_preregister_20260806.json",
+  "preregister_sha256": "f49519a2dc9554c2d9996f13b48b8aa7d46fdf98f4020828334df939a075481c",
+  "implementation": {
+    "direct_supervisor": "cj0724/p5u_preflight_supervisor.py",
+    "direct_supervisor_sha256": "5b4f0e986cf7e646a0095bfc4c26b56a0066b99485b63fa9940354aee3244230",
+    "unchanged_executor": "cj0724/p5s_detached_chunked_execution.py",
+    "unchanged_executor_sha256": "62dcb19a9ed1f748e1b16062cadab8fc891ff113bda7bd41b84a4375b3d9f8f2",
+    "legacy_source_portability": "cj0724/models.py",
+    "legacy_source_portability_sha256": "28bb3565497920f546c72afa4ceaf8566cbadb0ba61bd24e0d70b466923e72b3",
+    "source_preflight": "cj0724/p5t_legacy_portable_execution.py",
+    "source_preflight_sha256": "40163d3beda90b37818643c918fd0f40726ac503a6a51f934100b1373e65f6a6",
+    "generator": "matlab/generate_p5u_direct_supervision_development_data.m",
+    "generator_sha256": "f871a1c17754514f650f080b3054500e5d0b61753ed0e6f86ae7ae79a93a6df8",
+    "integration_test": "tests/test_p5u_direct_supervisor_protocol.py",
+    "integration_test_sha256": "fe19026a6d14b7e5dc4d18dbd50e99e50e47db536922edbdf411124320af888a"
+  },
+  "pre_generation_validation": {
+    "pytest_result": "19 passed in 22.42s",
+    "direct_supervisor_synthetic_test": "A no-data preflight and a direct child completed; the terminal receipt child PID equalled the recorded actual executor PID.",
+    "p5s_protocol_validation": "The unchanged P5s executor accepted the P5u preregistration contract.",
+    "legacy_source_self_test": "The P5t source preflight verified the hash-pinned E-drive source and CPU-loaded all five frozen P5e models without opening data or CUDA.",
+    "matlab_dry_run": "P5u generation dry-run returned three pools and created zero P5u directories/files.",
+    "p5u_generated_directories_before_freeze": 0,
+    "p5u_generated_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "Only the external supervision topology changed from stopped P5t: P5u runs the no-data P5t source/checkpoint preflight and directly spawns the unchanged P5s executor.",
+    "The P5t E-drive legacy source portability repair is retained unchanged; no source, model, weight, threshold, normalizer, analytic feature, data audit, batch size, warmup count, timing repetition, chunk size or latency gate was changed.",
+    "The supervisor must write its preflight receipt, actual executor PID receipt and terminal receipt; the terminal receipt must name the same actual executor PID.",
+    "P5u uses three new train-only paired-power identity pools; all P5p/P5q/P5r/P5s/P5t identities remain quarantined.",
+    "No P5u confirmation or locked-test data may be generated, opened, selected or read before the three development pools pass all preregistered gates."
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

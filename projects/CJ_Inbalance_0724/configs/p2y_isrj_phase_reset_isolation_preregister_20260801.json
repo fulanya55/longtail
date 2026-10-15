@@ -1,0 +1,45 @@
+{
+  "experiment": "P2y frozen separator preservation of ISRJ phase-reset width",
+  "research_question": "Does the already-frozen generic swept-component U-Net preserve the P2x ISRJ phase-reset sequence on fresh compound-waveform identities?",
+  "evidence_role": "fresh_oracle_positive_component_isolation_development",
+  "data": {
+    "identity_seed": 4200000000,
+    "powers_db": [25, 35, 50],
+    "regimes_us": {
+      "ID_control": [5, 20],
+      "near_low": [2, 5],
+      "near_high": [20, 30],
+      "far_low": [1, 2],
+      "far_high": [30, 50]
+    },
+    "identities": 630,
+    "isrj_positive_identities": 320,
+    "all_63_combinations": true
+  },
+  "frozen_models": {
+    "separator": "conditional_unet_separator_full_20260725/unet_wave",
+    "separator_seeds": [2041, 2042, 2043],
+    "separator_training": false,
+    "width_expert": "P2x phase-reset-sequence estimator",
+    "width_expert_training": false
+  },
+  "comparisons": {
+    "C0_constant": "12.5 microseconds fixed from original support",
+    "C1_exact_phase_reset": "oracle physical upper bound",
+    "C2_raw_phase_reset": "phase-reset expert directly on compound IQ",
+    "C3_frozen_separator_phase_reset": "phase-reset expert on frozen U-Net output"
+  },
+  "promotion_gates": {
+    "C1_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C1_each_regime_pearson_at_least": 0.30,
+    "C3_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C3_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "C3_compound_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "C3_compound_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "C3_all_3_seeds_each_regime_mae_better_than_C2": true,
+    "C3_all_3_seeds_each_regime_waveform_cosine_at_least": 0.30,
+    "identity_overlap_with_all_prior_roles": 0
+  },
+  "stop_rule": "No separator or phase-reset tuning on seed420. If any frozen 3-of-3 gate fails, do not attach this width expert; diagnose and move to a separately preregistered mechanism on new identities.",
+  "locked_test_used": false
+}

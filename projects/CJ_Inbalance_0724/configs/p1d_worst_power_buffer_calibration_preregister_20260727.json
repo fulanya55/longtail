@@ -1,0 +1,65 @@
+{
+  "experiment": "P1d independent-data worst-power buffered calibration",
+  "status": "preregistered_before_data_generation",
+  "date": "2026-07-27",
+  "frozen_candidate": "P1c hierarchical NP risk-benefit router",
+  "data_generation": {
+    "generator_root": "C:\\LJQ_code\\干扰数据\\干扰信号生成程序\\可配置组合干扰数据生成",
+    "base_function": "create_power_sweep_6class_config",
+    "generator_protocol_change": "seed and sample count only",
+    "seed": 100000000,
+    "seed_amendment": "Dry-run audit found seed 20260727 would overlap the original sequential seed interval; amended before any data were written.",
+    "power_levels_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "samples_per_combination": 20,
+    "combinations": 63,
+    "samples_per_split_per_power": 1260,
+    "splits": {
+      "train": "threshold calibration only",
+      "test": "one-time independent development evaluation"
+    },
+    "pairing_key": "receiver_noise_seed",
+    "required_audits": [
+      "all nine views in each split share identities",
+      "new train and test identities are disjoint",
+      "new identities are disjoint from original 0716 train identities",
+      "labels and physical parameter protocol match 0716"
+    ]
+  },
+  "frozen_model": {
+    "main": "three P1c MLCNN best_parameter checkpoints",
+    "experts": "unchanged U-Net/MFT, VFT stack_trajectory_leaf15, ISRJ stack_all_periodicity",
+    "router_models": "deterministically reconstructed from original P1c fit identities",
+    "route_selections": "exact selected_per_target entries from P1c run1",
+    "no_route_reselection_on_new_data": true
+  },
+  "calibration": {
+    "input": "new independent train split",
+    "single_threshold_per_target": true,
+    "power_feature": false,
+    "candidate_grid": "0.001 probability grid plus 0 and 1",
+    "constraint_per_target_per_power": {
+      "observed_fpr_max": 0.08,
+      "one_sided_clopper_pearson_95_upper_max": 0.10
+    },
+    "objective": "maximize mean recall at 10 and 50 dB",
+    "base_and_p1c_calibrated_separately": true,
+    "non_target_thresholds": "frozen main thresholds"
+  },
+  "evaluation": {
+    "input": "new independent test split",
+    "one_time": true,
+    "promotion": {
+      "mean_extreme_three_class_recall_gain_min": 0.10,
+      "same_direction_seeds": "3/3",
+      "every_target_power_observed_fpr_max": 0.10,
+      "mean_six_class_macro_aupr_delta_min": -0.005,
+      "mean_miss_penalty_parameter_nmae_delta_max": 0.0
+    }
+  },
+  "forbidden": [
+    "existing root confirm",
+    "existing power test files",
+    "0716 locked test",
+    "threshold or route adjustment after new test is read"
+  ]
+}

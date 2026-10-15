@@ -1,0 +1,18 @@
+{
+  "experiment": "P5j clean exclusive-GPU guarded shared frozen-forward and dense bounded-head execution",
+  "status": "execution_frozen_before_any_complete_model-comparison_result",
+  "reason": "The first reference timing loop was stopped because the initial process guard rejected p3om_data_audit. Source inspection and nvidia-smi pmon establish that this external process imported h5py only and held no CUDA compute context. The guard definition was therefore overconservative, not evidence of GPU cost contamination.",
+  "execution_record": {
+    "p5j_process_id": 74216,
+    "exception": "external Python p3om_data_audit rejected by process-level guard",
+    "result_json_written": false,
+    "model_comparison_completed": false,
+    "pmon_external_python_compute_pid_observed": false,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "consumed_data": {"development_generator_seeds": [4010000000, 4020000000, 4030000000], "all_three_pools_generated_train_only": true, "reuse_for_rerun_selection_confirmation_or_test": false},
+  "allowed_claims": ["P5j has no equivalence, latency, or performance result."],
+  "forbidden_actions": ["Restart P5j on 4010M/4020M/4030M identities.", "Generate/use P5j 4040M/4050M confirmation identities.", "Use partial timing or the guard rejection as a performance result."]
+}

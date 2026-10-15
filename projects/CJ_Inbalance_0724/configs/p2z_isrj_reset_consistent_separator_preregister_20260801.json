@@ -1,0 +1,64 @@
+{
+  "experiment": "P2z dedicated ISRJ separator with phase-reset consistency",
+  "research_question": "Does a differentiable phase-curvature consistency loss make a dedicated supervised ISRJ separator preserve sample-width information better than waveform-only separation?",
+  "evidence_role": "fresh_identity_safe_development_and_ablation",
+  "data": {
+    "training_identity_seed": 3700000000,
+    "training_width_support_us": [5, 20],
+    "development_identity_seed": 3800000000,
+    "development_regimes_us": {
+      "ID_control": [5, 20],
+      "near_low": [2, 5],
+      "near_high": [20, 30],
+      "far_low": [1, 2],
+      "far_high": [30, 50]
+    },
+    "powers_db": [25, 35, 50],
+    "all_63_combinations": true,
+    "training_and_development_identity_overlap": 0
+  },
+  "training": {
+    "labels_used": "oracle-positive ISRJ only",
+    "classification_loss": 0,
+    "target": "exact normalized ISRJ component reconstructed from finite active parameters",
+    "model_seeds": [2041, 2042, 2043],
+    "epochs": 12,
+    "patience": 4,
+    "batch_size_identities": 8,
+    "identity_roles_per_combination": {
+      "fit": 6,
+      "selection": 2,
+      "unused_calibration": 2
+    },
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "gradient_clip_norm": 5.0
+  },
+  "variants": {
+    "S0_waveform_only": "cosine + 0.2 time-L1 + 0.25 multi-resolution spectral loss",
+    "S1_waveform_plus_reset": "S0 + 0.5 weighted complex phase-curvature consistency"
+  },
+  "reset_loss": {
+    "representation": "unit complex phase increment followed by unit complex second difference",
+    "active_target_amplitude_ratio": 0.001,
+    "reset_emphasis": "1 + 4*(1-real(target curvature))",
+    "trainable_width_head": false,
+    "evaluation_expert": "frozen P2x reset-gap mode estimator"
+  },
+  "promotion_gates": {
+    "exact_control_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "exact_control_each_regime_pearson_at_least": 0.30,
+    "S1_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "S1_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "S1_compound_all_3_seeds_each_regime_mae_reduction_vs_constant_at_least": 0.10,
+    "S1_compound_all_3_seeds_each_regime_pearson_at_least": 0.30,
+    "S1_all_3_seeds_each_regime_mae_better_than_raw": true,
+    "S1_each_seed_mean_mae_reduction_vs_S0_at_least": 0.05,
+    "S1_mean_mae_reduction_vs_S0_at_least": 0.10,
+    "S1_all_3_seeds_each_regime_waveform_cosine_at_least": 0.30,
+    "identity_overlap_with_prior_roles": 0
+  },
+  "stop_rule": "No hyperparameter, loss-weight or architecture tuning on seed380. If S1 fails, do not promote reset-consistency; report whether S0 alone passed and move to a new preregistered mechanism.",
+  "locked_test_used": false
+}

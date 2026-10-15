@@ -1,0 +1,62 @@
+{
+  "experiment": "P4i concurrent execution for compact heterogeneous route",
+  "research_question": "Can two CUDA streams execute the independent MLCNN classification and width-4 IQ-Grouped parameter branches concurrently, preserving exact outputs while removing the batch-one scheduling latency that stopped P4h?",
+  "evidence_role": "architecture_only_deployment_mechanism_screen",
+  "frozen_parent": {
+    "p4h_preregister_sha256": "8528e7b9b2b6e304ccc8a832f37c6a7d69c5edb1bc5e863c88f22cdd2149462f",
+    "compact_model": "mlcnn_iq_grouped_task_routed_w4",
+    "p4h_batch1_latency_increase_vs_global": 0.807377424575311,
+    "p4h_batch64_throughput_retention_vs_global": 0.9211848371620595,
+    "p4h_training_started": false
+  },
+  "single_mechanism": {
+    "baseline_execution": "the two task branches execute serially on the current CUDA stream",
+    "candidate_execution": "classification and parameter branches execute on two persistent CUDA streams; the caller stream waits for both before returning",
+    "weights_changed": false,
+    "architecture_changed": false,
+    "loss_changed": false,
+    "outputs_changed_by_design": false
+  },
+  "benchmark_protocol": {
+    "device": "NVIDIA GeForce RTX 5080",
+    "dtype": "float32",
+    "amp": false,
+    "model_initialization_seed": 7040,
+    "input_length": 3000,
+    "batch_sizes": [1, 64],
+    "modes": [
+      "legacy_mlcnn_global_serial",
+      "compact_route_serial",
+      "compact_route_two_stream"
+    ],
+    "warmup_per_block": 50,
+    "repeats_per_block": 200,
+    "measurement_blocks": 5,
+    "block_order_seed": 20260801,
+    "timing": "CUDA events with synchronization after the end event",
+    "reported_latency": ["pooled_median", "pooled_p95", "block_median_mean", "block_median_std"],
+    "memory": "peak CUDA allocated bytes after warmup",
+    "macs": "unchanged from P4h architecture audit"
+  },
+  "validity_gates": {
+    "sequential_and_concurrent_logits_max_abs_difference_at_most": 0.000001,
+    "sequential_and_concurrent_parameters_max_abs_difference_at_most": 0.000001,
+    "same_model_instance_and_input_per_batch": true,
+    "all_modes_measured_in_every_block": true,
+    "no_data_generation_or_training": true
+  },
+  "promotion_gates": {
+    "batch1_concurrent_median_latency_increase_vs_global_at_most": 0.20,
+    "batch1_concurrent_p95_latency_increase_vs_global_at_most": 0.30,
+    "batch1_concurrent_latency_reduction_vs_compact_serial_at_least": 0.20,
+    "batch64_concurrent_throughput_retention_vs_global_at_least": 0.85,
+    "batch64_concurrent_peak_memory_increase_vs_compact_serial_at_most": 0.10
+  },
+  "stop_rule": "Do not alter stream count, batch protocol, warmup, repeats or gates after reading timing results. If concurrent execution fails output equivalence or either batch-one latency gate, stop the two-stream deployment line and move to a shared or fused front end on a new preregistration. Do not train the compact route merely because MACs are matched.",
+  "next_if_pass": "Freeze the two-stream runner and preregister a fresh-identity three-seed compact-route accuracy experiment; the accuracy candidate must use the same width-4 architecture and deployment runner.",
+  "data_generated": false,
+  "training_started": false,
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

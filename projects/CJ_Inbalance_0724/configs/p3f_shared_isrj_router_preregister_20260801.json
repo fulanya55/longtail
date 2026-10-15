@@ -1,0 +1,31 @@
+{
+  "experiment": "P3f shared raw-physics ISRJ router",
+  "research_question": "Can the direct shared ACF/envelope/spectrum front end replace the expensive UNet ISRJ branch while preserving a useful recall gain under bounded false-positive risk?",
+  "evidence_role": "fresh_identity_safe_development",
+  "data": {
+    "training_identity_seed": 480000000,
+    "development_identity_seed": 490000000,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "all_63_combinations": true,
+    "identity_grouped_roles": true
+  },
+  "frozen_main": "P2c MLCNN IQ-Grouped task-routed checkpoints, seeds 2041/2042/2043",
+  "candidate": {
+    "features": "raw-IQ complex ACF, envelope ACF and spectrum pooled into frozen isrj_periodicity vector",
+    "classifier": "HistGradientBoostingClassifier(max_iter=200, learning_rate=0.05, max_leaf_nodes=7, l2=1.0)",
+    "routing": "replace only ISRJ class probability; all other class and parameter outputs unchanged",
+    "threshold_selection": "training-selection identities only; maximize mean recall subject to every regime-power observed FPR<=0.08 and CP95 upper<=0.15"
+  },
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "each_seed_mean_isrj_recall_gain_vs_safe_main_at_least": 0.05,
+    "three_of_three_recall_gain_positive": true,
+    "maximum_development_regime_power_fpr_at_most": 0.10,
+    "each_seed_macro_aupr_delta_vs_safe_main_at_least": -0.005,
+    "each_seed_worst_regime_mean_recall_gain_at_least": 0.0
+  },
+  "next_if_pass": "Freeze the shared router and perform batch-1/64 latency, FLOPs, memory and predicted-gate end-to-end attachment confirmation on another new identity seed.",
+  "stop_rule": "If performance gates fail, do not replace P1n UNet and retain the 1.5x deployment gap as unresolved.",
+  "locked_test_used": false
+}

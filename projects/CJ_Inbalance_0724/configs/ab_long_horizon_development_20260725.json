@@ -1,0 +1,59 @@
+{
+  "objective": "Develop A1/A6 VFT physics evidence and B0/B1 MFT-ISRJ physics specialists without changing frozen E5",
+  "status": "development_preregistered",
+  "frozen_reference": {
+    "bundle": "C:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\vft_physics_e5_frozen_candidate_20260725\\bundle_manifest.json",
+    "bundle_sha256_file": "C:\\LJQ_code\\CJ_Inbalance_0724\\outputs\\vft_physics_e5_frozen_candidate_20260725\\bundle_manifest.sha256",
+    "rule": "read-only reference; never overwrite models, features, thresholds or checkpoints"
+  },
+  "development_seeds": [20260724, 20260725, 20260726],
+  "confirmation_seeds": [271828, 314159],
+  "primary_power_dB": 10,
+  "power_sweep_dB": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+  "a1": {
+    "target": "VFT",
+    "correct_template": {"pulse_samples": 1000, "chirp_rate_hz_per_s": 50000000000.0},
+    "controls": [
+      "generic_spectral_statistics",
+      "zero_chirp_tone_template",
+      "wrong_chirp_rate_0p8",
+      "wrong_chirp_rate_1p2",
+      "wrong_pulse_length_0p8",
+      "wrong_pulse_length_1p2",
+      "deterministic_random_phase_template"
+    ],
+    "selection_role": "early_stop",
+    "development_role": "development",
+    "mechanism_gate": "correct template must exceed all wrong/random controls on development AUPR and shuffled-label AUPR must return near prevalence"
+  },
+  "b0": {
+    "targets": ["MFT", "ISRJ"],
+    "slices": ["power", "label_combination", "cardinality", "target_parameter", "relative_power", "weak_component_mask"],
+    "metrics": ["AUPR", "F1", "recall", "FPR", "exact_accuracy"]
+  },
+  "b1": {
+    "targets": ["MFT", "ISRJ"],
+    "mft_features": ["complex_autocorrelation_delay_peaks", "peak_count", "peak_prominence", "peak_spacing", "spectral_statistics"],
+    "isrj_features": ["complex_autocorrelation_periodicity", "envelope_autocorrelation", "comb_spectrum", "peak_spacing", "spectral_statistics"],
+    "classifier": "HistGradientBoostingClassifier(max_iter=200,learning_rate=0.05,max_leaf_nodes=7,l2=1)",
+    "screen_gate": {
+      "target_aupr_gain_vs_e0_min": 0.05,
+      "or_target_fpr_reduction_min": 0.10,
+      "macro_aupr_degradation_max": 0.01,
+      "hamming_degradation_max": 0.005,
+      "same_direction_confirmation": "4/5 seeds before neural integration"
+    }
+  },
+  "e6": {
+    "allowed_only_after_a1": true,
+    "changes": ["FFT matched filtering", "template mismatch evaluation"],
+    "performance_gate": {
+      "throughput_vs_e5_min": 2.0,
+      "vft_aupr_drop_max": 0.005,
+      "weak_recall_drop_max": 0.02,
+      "vft_fpr_increase_max": 0.02
+    }
+  },
+  "locked_test_used": false,
+  "locked_test_authorized": false
+}

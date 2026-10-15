@@ -1,0 +1,13 @@
+{
+  "experiment": "P3o-B dual-view representation",
+  "status": "formal_development_failed",
+  "summary_file": "outputs/p3ob_dualview_representation_development_20260801_retry1/summary.json",
+  "failure_audit_file": "outputs/p3ob_dualview_representation_development_20260801_retry1/failure_audit.json",
+  "attempt1_failure_file": "outputs/p3ob_dualview_representation_development_20260801/attempt1_codepath_failure.json",
+  "preregister_sha256": "413a1a0a490d257cad7f034236fc3d57db7a04cd74299a9585e16b62ff1eebe0",
+  "implementation_sha256": "0d290c0e58630bcd7f11011b7078dc77ca77236ef034c087e189739da6aded02",
+  "decision": "P3o-B cannot be tuned or independently confirmed. 930M/940M remain unused. A next experiment must be a newly preregistered, identity-safe, parameter-matched representation hypothesis.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

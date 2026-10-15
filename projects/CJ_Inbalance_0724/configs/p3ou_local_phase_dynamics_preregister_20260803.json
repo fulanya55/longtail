@@ -1,0 +1,23 @@
+{
+  "experiment": "P3o-U deployable local time-frequency phase-dynamics conditional ISRJ calibration",
+  "status": "preregistered_before_data_generation",
+  "hypothesis": "fixed local phase dynamics add source-FPR reduction beyond posterior-only capacity and time-bin-shuffled controls",
+  "frozen_base": {"model": "mlcnn_iq_grouped_task_routed", "seeds": [2041, 2042, 2043], "only_modified_logit": "ISRJ", "all_other_logits_bitwise_equal": true},
+  "roles": {"train_seed": 2010000000, "selection_seed": 2020000000, "development_seed": 2030000000, "confirmation_seeds_reserved_not_generated": [2040000000, 2050000000]},
+  "views": {"regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"], "powers_db": [25, 35, 50], "samples_per_view": 2079, "views_per_role": 15},
+  "conditions": {
+    "U0_base": "frozen base logits and original safe thresholds",
+    "U1_posterior_only_capacity_control": "detached p(MFT|x) through equal-capacity residual; no local features",
+    "U2_local_phase_dynamics": "U1 plus fixed local STFT and instantaneous-phase-dynamics features",
+    "U3_timebin_shuffled_phase_control": "U2 feature dimensions with deterministic time-bin permutation before the residual"
+  },
+  "feature_contract": {"signal_length": 3000, "instantaneous_phase_windows": [9, 33, 129], "stft": {"n_fft": 128, "hop_length": 32, "window": "hann", "time_bins": 16}, "normalization": "per-sample RMS before phase/STFT; fixed per-feature LayerNorm in residual", "forbidden": ["oracle component", "label", "parameter", "input subtraction", "global FFT", "ACF", "inverse delay support", "MLCNN global feature"]},
+  "residual": {"hidden_dim": 32, "bounded_negative_isrj_logit_delta": true, "mft_posterior_detached": true},
+  "optimization": {"optimizer": "AdamW", "learning_rate": 0.0003, "weight_decay": 0.0001, "epochs": 15, "warmup_epochs": 2, "batch_size": 128, "gradient_clip_norm": 5.0, "conditional_source_weight": 0.25, "residual_seeds": [2501, 2502, 2503], "checkpoint_selection": "minimum selection ISRJ BCE"},
+  "evaluation": {"primary_thresholds": "frozen P2c safe thresholds", "secondary_thresholds": "same selection-only CP threshold routine for every condition", "bootstrap": {"unit": "receiver_noise_seed", "resamples": 2000, "ci": "two-sided 95%"}, "parameter_gate": "predicted labels primary; oracle-positive diagnostic only"},
+  "promotion_gates": {"U2_vs_U0_source_fpr_reduction_each_seed": 0.02, "U2_vs_U1_source_fpr_reduction_each_seed": 0.01, "U2_vs_U3_source_fpr_reduction_each_seed": 0.01, "all_bootstrap_ci_low_gt": 0.0, "isrj_recall_delta_min": -0.02, "worst_source_cell_nonworse": true, "mft_ap_bitwise_equal": true, "macro_aupr_delta_min": -0.005, "macro_f1_delta_min": -0.005, "predicted_gate_nmae_ratio_max": 1.01, "miss_penalty_nonworse": true, "worst_combo_nonworse": true, "at_least_four_regimes_nonnegative": true, "all_power25_nonnegative": true, "three_seeds_same_direction": true},
+  "stop_rule": "Any failed gate freezes P3o-U data/code/output; no confirmation generation and no retuning on these identities.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

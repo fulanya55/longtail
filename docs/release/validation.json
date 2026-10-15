@@ -1,0 +1,85 @@
+{
+  "date": "2026-10-16",
+  "source_inventory_files": 2690,
+  "source_hash_mismatches": [],
+  "syntax_and_config_counts": {
+    ".py": 1178,
+    ".json": 325,
+    ".yaml": 25,
+    ".toml": 1
+  },
+  "unexpected_parse_errors": [],
+  "preserved_known_exceptions": [
+    {
+      "path": "projects/CJ_Inbalance_0724/configs/p3ok_durable_generation_outcome_freeze_20260802.json",
+      "reason": "Source file is empty; preserved verbatim; not a runnable config."
+    }
+  ],
+  "cli": [
+    {
+      "name": "route_a_help",
+      "args": [
+        "experiments/run_tapc.py",
+        "--help"
+      ],
+      "cwd": "projects\\CJ_Imbalance_0716",
+      "exit_code": 0
+    },
+    {
+      "name": "route_b_help",
+      "args": [
+        "-m",
+        "cj0724.train",
+        "--help"
+      ],
+      "cwd": "projects\\CJ_Inbalance_0724",
+      "exit_code": 0
+    },
+    {
+      "name": "visualization_help",
+      "args": [
+        "visualize_0716_closedset_train_test.py",
+        "--help"
+      ],
+      "cwd": ".",
+      "exit_code": 0
+    },
+    {
+      "name": "planner_help",
+      "args": [
+        "data_generation/paper/可配置组合干扰数据生成/longtail6/solve_pure_label_longtail.py",
+        "--help"
+      ],
+      "cwd": ".",
+      "exit_code": 0
+    }
+  ],
+  "existing_tests": [
+    {
+      "project": "CJ_Imbalance_0716",
+      "command": "python -m pytest -q tests/test_registry.py tests/test_metrics.py tests/test_classification_loss.py tests/test_configuration_freeze.py tests/test_run_manager.py tests/test_student_a_model.py",
+      "passed": 34,
+      "exit_code": 0,
+      "seconds": 9.7
+    },
+    {
+      "project": "CJ_Inbalance_0724",
+      "command": "python -m pytest -q tests/test_evaluation.py tests/test_models.py",
+      "passed": 8,
+      "exit_code": 0,
+      "seconds": 6.24
+    }
+  ],
+  "environment": {
+    "python": "3.10.20 | packaged by Anaconda, Inc. | (main, Jun 11 2026, 15:13:20) [MSC v.1942 64 bit (AMD64)]",
+    "torch": "2.11.0+cu128",
+    "numpy": "1.23.5",
+    "h5py": "3.10.0",
+    "scipy": "1.10.1",
+    "scikit_learn": "1.2.2"
+  },
+  "training_executed": false,
+  "locked_test_read": false,
+  "matlab_tests_executed": false,
+  "full_historical_test_suite_executed": false
+}

@@ -1,0 +1,47 @@
+{
+  "experiment": "P3o-J posterior-component-conditioned bounded parameter residual",
+  "research_question": "Can an explicitly posterior-component-conditioned bounded residual reduce cross-identity predicted-gate worst-combination NMAE more reliably than the frozen shared mean residual, without changing recognition?",
+  "scientific_rationale": "P3o-I falsified a global equal-weight compound-CVaR loss: it improved the selected hard group versus F but was consistently worse than the shared mean residual. P3o-J changes the information pathway rather than the CVaR weight: detached six-label posterior components select an additive 6x12 residual correction on top of the same shared delay residual.",
+  "identity_protocol": {
+    "train_seed": 1450000000,
+    "development_seed": 1460000000,
+    "reserved_confirmation_seeds": [1470000000, 1480000000],
+    "samples_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "forbidden": ["all previous P3o identities", "test generation", "test opening", "locked test"]
+  },
+  "methods": {
+    "J0_shared_mean": "P3o-I finite-valid state-preserving bounded shared delay residual, trained with mean masked Smooth-L1 only.",
+    "J1_component_conditioned": "Exactly J0 plus a learned 6x12 correction selected by the detached six-label sigmoid posterior. The correction is bounded jointly with the shared residual; no true label, target, threshold, or development statistic enters inference. Classification base is frozen and remains in eval mode."
+  },
+  "training": {
+    "epochs": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "parameter_weight": 0.1,
+    "residual_bound_normalized": 0.25,
+    "gradient_clip_norm": 5.0,
+    "base_checkpoint": "C_joint",
+    "side_checkpoint": "minimum early oracle worst-combination NMAE",
+    "calibration": "F-only calibration and threshold reused verbatim by J0/J1"
+  },
+  "model_seeds": [2091, 2092, 2093],
+  "primary_comparison": "J1 versus J0; F-base is retained as an external anchor. No CVaR fraction or weight is present.",
+  "promotion_gates": {
+    "identity_overlap_zero": true,
+    "finite_valid_loss_gradients_and_optimizer_step_before_data_generation": true,
+    "all_side_runs_preserve_F_state_and_logits_bitwise": true,
+    "all_seeds_F_base_safe_and_retrieval_gates": true,
+    "all_seeds_J1_oracle_and_predicted_gate_nmae_ratio_vs_J0_at_most_0p98": true,
+    "all_seeds_J1_worst_combo_predicted_gate_nmae_ratio_vs_J0_at_most_0p98": true,
+    "all_seeds_J1_miss_penalty_nonworse_vs_J0": true,
+    "all_seeds_J1_worst_combo_predicted_gate_nmae_ratio_vs_F_base_at_most_0p98": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "decision_rule": "Only all gates across the three fixed seeds permit generation of exactly the 1470M confirmation. Any exception, non-finite result, missing receipt, or gate failure freezes P3o-J. No rerun, tune, recalibration, threshold selection, checkpoint selection, or confirmation may use 1450M/1460M after development access."
+}

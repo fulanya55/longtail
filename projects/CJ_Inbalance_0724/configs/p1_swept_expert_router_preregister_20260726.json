@@ -1,0 +1,59 @@
+{
+  "experiment": "P1 six-class bounded swept-expert routing",
+  "status": "preregistered_before_execution",
+  "date": "2026-07-26",
+  "hypothesis": "Frozen swept experts improve low-visibility MFT/VFT/ISRJ recall only when a learned advantage gate predicts lower per-sample log loss than the frozen six-class MLCNN.",
+  "label_mapping_correction": {
+    "global_class_order": ["FMB", "SawFM", "SinFM", "MFT", "VFT", "ISRJ"],
+    "swept_dataset_slice": "labels[:, 3:6]",
+    "actual_expert_targets": ["MFT", "VFT", "ISRJ"],
+    "global_indices": [3, 4, 5],
+    "reason": "Legacy swept-isolation reports called output 0 SawFM, but the executable dataset selects global columns 3:6. Routing output 0 to SawFM would be invalid."
+  },
+  "frozen_components": {
+    "main": "mlcnn_iq_grouped_task_routed, best_parameter.pt, seeds 2041/2042/2043",
+    "separator": "conditional_unet_separator_full_20260725/unet_wave, unchanged checkpoints",
+    "mft_expert": "U-Net classifier output 0",
+    "vft_expert": "fixed stack_trajectory_leaf15 reconstruction",
+    "isrj_expert": "fixed stack_all_periodicity reconstruction"
+  },
+  "roles": {
+    "expert_fit": "frozen original train/early roles at 10 dB",
+    "router_fit": "first identity-disjoint half of calibration, all nine paired power views",
+    "router_safety_selection": "second identity-disjoint half of calibration, all nine paired power views",
+    "development_evaluation": "tune identities, all nine paired power views",
+    "forbidden": ["confirm", "locked test"]
+  },
+  "router": {
+    "family": "per-target StandardScaler plus balanced LogisticRegression(C=1.0)",
+    "power_feature": false,
+    "advantage_target": "expert binary log loss + 0.05 < main binary log loss",
+    "blend": "p_final = p_main + alpha * I(route_probability >= route_threshold) * (p_expert - p_main)",
+    "alpha_grid": [0.25, 0.5, 0.75],
+    "route_threshold_grid": [0.5, 0.6, 0.7, 0.8],
+    "main_thresholds": "frozen; never recalibrated",
+    "non_target_outputs": "bitwise unchanged"
+  },
+  "selection": {
+    "objective": "maximize mean MFT/VFT/ISRJ recall at 10 and 50 dB",
+    "constraints": {
+      "six_class_macro_aupr_delta_min": -0.005,
+      "each_routed_class_fpr_max": 0.10
+    },
+    "fallback": "alpha=0 (frozen main model) when no candidate is eligible"
+  },
+  "promotion": {
+    "extreme_power_three_class_recall_gain_min": 0.10,
+    "six_class_macro_aupr_delta_min": -0.005,
+    "each_routed_class_fpr_max": 0.10,
+    "same_direction_seeds": "3/3"
+  },
+  "required_outputs": [
+    "per-sample main/expert/router/final probabilities",
+    "sample index, receiver_noise_seed, power, labels and thresholds",
+    "nine-power six-class metrics",
+    "parameter-gating metrics",
+    "identity overlap audit",
+    "runtime and model-size audit"
+  ]
+}

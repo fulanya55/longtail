@@ -1,0 +1,51 @@
+{
+  "experiment": "P5d six-class leave-set-of-compositions heterogeneous-route screen",
+  "research_question": "When complete six-label combinations are absent from training, does MLCNN-classification plus IQ-Grouped-parameter heterogeneous routing retain an advantage over a MAC-unmatched shared MLCNN baseline without relying on unseen-combination threshold calibration?",
+  "evidence_role": "fresh_identity_three_seed_development_composition_disjoint",
+  "single_changed_axis": "composition-disjoint train/evaluation protocol relative to P4c; C0 shared and C1 heterogeneous architecture/training profile are fixed from P4c",
+  "fresh_data": {
+    "generator_seed": 890000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "identities_per_combination": 100,
+    "total_identities": 6300,
+    "generated_split": "train only",
+    "identity_key": "receiver_noise_seed",
+    "zero_overlap_required_with": ["root_0716", "P4c", "P4d", "P4k", "P5a", "P5a2", "P5b", "P5b1", "P5b2", "P5b3", "P5b4", "P5c"]
+  },
+  "composition_roles": {
+    "folds": {
+      "0_unseen_cardinality_1_2": "all combinations with 1 or 2 active labels",
+      "1_unseen_cardinality_3": "all combinations with 3 active labels",
+      "2_unseen_cardinality_4_5_6": "all combinations with 4, 5 or 6 active labels"
+    },
+    "seen_combo_identity_roles": {"train": 70, "early": 15, "seen_confirm": 15},
+    "unseen_combinations": "all 100 identities evaluation-only; never train, early-stop, calibrate or select on them",
+    "threshold": 0.5,
+    "threshold_calibration": false
+  },
+  "models": {
+    "C0_shared": "legacy_mlcnn_global",
+    "C1_heterogeneous": "mlcnn_iq_grouped_task_routed",
+    "fixed_training": "P4c cos_lr1e4_wd1e4, width24, head256, param head64, dropout0.2, BCE + 0.1 masked SmoothL1, 20 epochs, model seeds 15041/15042/15043"
+  },
+  "metrics": {
+    "classification": ["unseen subset accuracy", "macro-AUPR", "per-class recall", "per-class FPR", "Hamming"],
+    "parameter": ["all-12 oracle NMAE", "per-target NMAE", "MFT/VFT/ISRJ JNR", "worst unseen combination"],
+    "contrast": "seen-confirm versus unseen-combination gaps for each model",
+    "forbidden_claim": "No result may be called a P5b attachment result: the attachment is not used in P5d."
+  },
+  "promotion_gates": {
+    "heterogeneous_unseen_parameter_macro_nmae_reduction_vs_shared_mean_at_least": 0.03,
+    "heterogeneous_unseen_parameter_macro_nmae_reduction_vs_shared_positive_in_3_of_3_seeds": true,
+    "heterogeneous_unseen_macro_aupr_drop_vs_shared_at_most": 0.005,
+    "heterogeneous_unseen_subset_accuracy_drop_vs_shared_at_most": 0.03,
+    "no_class_has_recall_gain_with_fpr_increase_more_than": 0.02,
+    "no_parameter_target_worse_in_3_of_3_seeds_by_more_than_absolute_nmae": 0.03
+  },
+  "stop_rule": "If any promotion gate fails, retain P4c/P5b4 only for seen-composition evidence. Do not add composition prototypes, relations, margins, threshold fitting or experts on P5d unseen combinations.",
+  "next_if_pass": "Freeze one fixed LSCO fold and conduct two-new-identity confirmation with two fresh generator seeds; only then run a separate long-tail manifest study.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

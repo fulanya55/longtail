@@ -1,0 +1,58 @@
+{
+  "experiment": "P6a-r1 observable-physical-FiLM heterogeneous full-12 development",
+  "registration_date": "2026-08-01",
+  "supersedes": "P6a-v1 data-invalid only; no model was trained or evaluated",
+  "unchanged_from": "configs/p6a_physical_film_full12_preregister_20260801.json",
+  "only_changed_axis_vs_P6a_v1": "fresh generator identity seed and data paths, changed before any P6a model execution because the v1 pool failed identity-overlap validity.",
+  "research_question": "Can bounded conditioning of the IQ-Grouped parameter representation by fixed raw-IQ physical statistics and detached six-label MLCNN posterior improve end-to-end full-12 parameter estimation without changing the classification optimization path?",
+  "candidate_contract": {
+    "raw_iq_input": "RMS-normalized [B,2,3000] I/Q only",
+    "physical_descriptor": "fixed 26-D time, complex-FFT-band and complex-ACF statistic; no label, target, nominal power or identity input",
+    "classification_context": "detach(sigmoid(classification logits))",
+    "modulation": "zero-initialized bounded affine FiLM on post-IQ-Grouped 256-D parameter feature",
+    "classification_gradient_from_parameter_loss": false,
+    "classification_logit_replacement": false
+  },
+  "fresh_data": {
+    "generator": "matlab/generate_p6a_r1_physical_film_full12_data.m",
+    "base_seed": 1160000000,
+    "raw_root": "generated_data/p6a_r1_physical_film_full12_seed1160000000",
+    "rechunked_root": "generated_data/p6a_r1_physical_film_full12_seed1160000000_rechunked",
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "identity_key": "receiver_noise_seed",
+    "data_role": "train only",
+    "required_identity_overlap_with_root_and_all_prior_consumed_pools": 0,
+    "roles_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5}
+  },
+  "comparators": {"C0": "mlcnn_iq_grouped_task_routed", "C1": "mlcnn_iq_grouped_physical_film_task_routed"},
+  "training": {
+    "model_seeds": [16041, 16042, 16043], "profile": "cos_lr1e4_wd1e4", "epochs": 20, "patience": 20,
+    "warmup_epochs": 2, "batch_size": 63, "width": 24, "head_dim": 256, "parameter_hidden_dim": 64,
+    "dropout": 0.2, "parameter_loss_weight": 0.1,
+    "parameter_loss": "masked SmoothL1 only on label=1 AND parameter_mask=1 AND finite",
+    "checkpoint_objective": "early parameter macro-NMAE", "threshold_calibration": "per-class F1 grid using calibration role only"
+  },
+  "validity_gates": {
+    "identity_overlap_with_every_prior_consumed_pool_zero": true,
+    "all_12_positive_masked_targets_finite_and_variable": true,
+    "roles_disjoint_and_all_63_combinations_present": true,
+    "classification_branch_receives_no_parameter_loss_gradient_through_conditioning": true,
+    "inactive_nan_loss_safety_and_output_contract_tests_pass": true
+  },
+  "development_promotion_gates": {
+    "each_seed_full12_oracle_macro_nmae_reduction_vs_C0_at_least": 0.02,
+    "mean_full12_oracle_macro_nmae_reduction_vs_C0_at_least": 0.03,
+    "each_seed_full12_macro_pearson_not_lower_than_C0": true,
+    "no_target_worse_in_all_3_seeds_by_more_than_absolute_nmae": 0.03,
+    "each_seed_macro_aupr_drop_vs_C0_at_most": 0.003,
+    "each_seed_subset_accuracy_drop_vs_C0_at_most": 0.01,
+    "candidate_parameter_count_relative_increase_vs_C0_at_most": 0.02,
+    "candidate_batch64_median_latency_relative_to_C0_at_most": 1.25,
+    "candidate_batch1_p95_latency_relative_to_C0_at_most": 1.35
+  },
+  "stop_rule": "If a validity or promotion gate fails, P6a-r1 stops on this identity pool. Do not alter descriptor, FiLM scale, loss, threshold, batch size or latency tolerance. Retain only a failure atlas.",
+  "next_if_pass": "Freeze code/checkpoints/normalizers/calibration, then perform two new untouched train-only no-training/no-recalibration confirmations before OOD, long-tail, LSCO or locked-test registration.",
+  "test_generated": false, "test_opened": false, "locked_test_used": false
+}

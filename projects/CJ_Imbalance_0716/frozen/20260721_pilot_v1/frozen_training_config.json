@@ -1,0 +1,12 @@
+{
+  "allow_locked_test": false,
+  "checkpoint_order": [
+    "subset_accuracy",
+    "hamming_loss",
+    "earlier_epoch"
+  ],
+  "classification_loss": "CB-ASL",
+  "learning_rate": 0.0003,
+  "optimizer": "AdamW",
+  "weight_decay": 0.0001
+}

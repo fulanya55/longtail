@@ -1,0 +1,52 @@
+{
+  "experiment": "P3o-S oracle MFT subtraction causal diagnosis",
+  "research_question": "On fresh identity-paired compound I/Q, is MFT structure a causal source of ISRJ false positives for the frozen main classifier?",
+  "evidence_role": "fresh_train_free_two_identity_development_only_no_locked_test",
+  "single_changed_axis": "The frozen main classifier receives raw compound I/Q (C0), compound I/Q minus the exact power-calibrated MFT component (C1), or compound I/Q minus an equal-energy deterministic non-MFT phase-scrambled control (C2).",
+  "frozen_classifier": {
+    "run_root": "outputs/paper_mechanism_fullscale/tuned_multitask_20260725_165156",
+    "model": "mlcnn_iq_grouped_task_routed",
+    "checkpoint_objective": "parameter",
+    "model_seeds": [2041, 2042, 2043],
+    "threshold_source": "outputs/p2c_lazy_joint_confirmation_20260801/method_freeze.json: seed_freezes[].safe_thresholds",
+    "forbidden_changes": ["weights", "architecture", "normalizer", "thresholds", "router", "parameter heads", "loss", "calibration", "retraining"]
+  },
+  "conditions": {
+    "C0_raw": "RMS-normalized raw compound I/Q",
+    "C1_exact_mft_subtraction": "subtract exact MFT waveform reconstructed from delay_01..08 and amplitude_01..08, then scale to 10^((10log10(noise_power)+MFT.JNR_dB)/20), then apply the unchanged per-view RMS normalization",
+    "C2_energy_matched_non_mft_control": "subtract a deterministic FFT-phase-scrambled version of the same exact scaled MFT waveform; its per-sample energy equals C1's subtracted waveform"
+  },
+  "data": {
+    "candidate_generator_seeds": [1920000000, 1930000000],
+    "roles": "two independent train-free diagnostic identity sets; no fit, early-stop, calibration, selection or test role",
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "samples_per_combination": 33,
+    "samples_per_view": 2079,
+    "paired_identity_key": "receiver_noise_seed",
+    "identity_rule": "zero overlap between the two new seeds and every prior identity file; power and regime views must retain the exact same identities and labels",
+    "storage_status": "not_authorized_for_generation: D: has insufficient capacity; C: output root requires explicit user approval"
+  },
+  "metrics": {
+    "primary": "ISRJ FPR on source subset MFT=1 and ISRJ=0, per regime-power cell and worst source cell",
+    "safety": ["ISRJ recall", "overall ISRJ FPR", "macro-AUPR"],
+    "inference": "paired receiver_noise_seed bootstrap, 2000 resamples, reporting C0-C1 and C2-C1 FPR reductions"
+  },
+  "development_gates": {
+    "identity_audit_zero_overlap": true,
+    "C1_each_data_seed_and_model_seed_source_fpr_reduction_vs_C0_at_least": 0.02,
+    "C1_each_data_seed_and_model_seed_source_fpr_reduction_vs_C2_at_least": 0.01,
+    "C1_each_data_seed_and_model_seed_isrj_recall_drop_vs_C0_at_most": 0.02,
+    "C1_each_data_seed_and_model_seed_macro_AUPR_delta_vs_C0_at_least": -0.005,
+    "paired_bootstrap_C0_minus_C1_source_fpr_reduction_ci95_low_greater_than": 0.0,
+    "paired_bootstrap_C2_minus_C1_source_fpr_reduction_ci95_low_greater_than": 0.0,
+    "all_six_data_model_replicates_same_direction": true
+  },
+  "decision_rule": {
+    "pass": "Only a pass establishes that exact MFT structure, rather than arbitrary equal-energy removal, is a causal source of the frozen classifier's ISRJ false positives. The result remains a non-deployable oracle diagnosis.",
+    "fail": "If C1 fails any gate or does not beat C2, do not develop a support-aware MFT subtractor for this Level-4 claim; do not tune C1/C2, thresholds or the frozen classifier on these identities."
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

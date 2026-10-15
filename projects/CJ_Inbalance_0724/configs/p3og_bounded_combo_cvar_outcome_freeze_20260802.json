@@ -1,0 +1,18 @@
+{
+  "experiment": "P3o-G bounded compound-CVaR residual",
+  "status": "frozen implementation-contract failure",
+  "output": "outputs/p3og_bounded_combo_cvar_development_20260802_retry1",
+  "identity_seeds_consumed": [1230000000, 1240000000],
+  "reserved_confirmation_not_generated": [1250000000, 1260000000],
+  "failure_mechanism": "_per_sample_parameter_loss computed smooth_l1_loss over tensors that include inactive NaN targets before applying the validity mask. IEEE NaN times zero remains NaN, so each side loss and all side parameter metrics became NaN from epoch 1.",
+  "evidence": {
+    "summary": "outputs/p3og_bounded_combo_cvar_development_20260802_retry1/summary.json",
+    "side_checkpoint_selection": "all six G0/G1 runs selected epoch 1 and their oracle/predicted-gate/miss/worst metrics are NaN",
+    "frozen_base_invariance": "all_side_runs_preserve_F_state_and_logits_bitwise=true",
+    "identity_overlap_zero": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false
+  },
+  "decision": "Do not interpret P3o-G as evidence for or against the risk objective. Do not rerun, repair, tune, calibrate, or select on 1230M/1240M. Do not generate 1250M/1260M for this invalid method. A successor must use a distinct implementation and fresh identities, with a finite-valid masked-loss unit test and an optimizer-step finite-parameter regression test before development generation."
+}

@@ -1,0 +1,23 @@
+{
+  "allow_locked_test": false,
+  "method": "LCPT-CJNet",
+  "power_levels": [
+    10,
+    15,
+    20,
+    25,
+    30,
+    35,
+    40,
+    45,
+    50
+  ],
+  "power_weight": 0.2,
+  "prototype_weight": 0.2,
+  "variants": [
+    "A0",
+    "A2",
+    "A3",
+    "A4"
+  ]
+}

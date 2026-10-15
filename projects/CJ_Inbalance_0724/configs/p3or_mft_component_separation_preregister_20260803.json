@@ -1,0 +1,53 @@
+{
+  "experiment": "P3o-R MFT component separability before count extraction",
+  "research_question": "Can a supervised, waveform-only separator recover enough of the exact normalized MFT component from compound I/Q that the frozen P3c inverse-filter count estimator improves on raw compound I/Q across all five regimes?",
+  "hypothesis": "P3c proved count is physically sufficient on the exact MFT component. P3o-M/N/O/P/Q only tested count features directly on compound I/Q. A component separator is therefore a distinct, falsifiable information-preservation hypothesis rather than another count-token variant.",
+  "evidence_role": "fresh_identity_supervised_component_separability_development",
+  "data": {
+    "train_receiver_noise_seed": 1880000000,
+    "development_receiver_noise_seed": 1890000000,
+    "confirmation_reserved_receiver_noise_seeds": [1900000000, 1910000000],
+    "powers_db": [25, 35, 50],
+    "regimes": {
+      "ID_control": {"count": [3, 8], "delay_us": [30, 50], "amplitude": [0.5, 1.5]},
+      "low_count": {"count": [1, 2], "delay_us": [30, 50], "amplitude": [0.5, 1.5]},
+      "close_spacing": {"count": [3, 8], "delay_us": [30, 34], "amplitude": [0.5, 1.5]},
+      "ultra_close": {"count": [3, 8], "delay_us": [30, 31], "amplitude": [0.5, 1.5]},
+      "weak_target": {"count": [3, 8], "delay_us": [30, 50], "amplitude": [0.05, 1.5]}
+    },
+    "samples_per_pattern": 33,
+    "identity_rule": "All powers and all regimes for a receiver_noise_seed remain in the same role. Train and development roles must have zero overlap with each other and every prior data receipt audited before training."
+  },
+  "teacher_and_estimator": {
+    "teacher": "MFT-only signal reconstructed from finite delay_01_s..delay_08_s and amplitude_01..amplitude_08, then RMS normalized. It is available only while training/evaluating separability and is never an inference input.",
+    "separator": "ConditionalComplexUNetSeparator(width=12, classifier_width=12, condition=false); input is per-view RMS-normalized compound I/Q; output is RMS-normalized estimated MFT component.",
+    "waveform_loss": "1 - complex-IQ cosine + 0.2 L1 + 0.25 multi-resolution spectral loss; no count, ordinal, classification, routing, contrast, threshold, or parameter-regression loss.",
+    "downstream_estimator": "Frozen P3c correct-reference sparse inverse filter, delay search 0..1500, relative support threshold 0.02, clipped count 0..8; trainable_parameters=0.",
+    "controls": ["C0_raw_compound_inverse", "C1_learned_MFT_separator_then_frozen_inverse", "C2_exact_MFT_component_oracle_then_frozen_inverse"]
+  },
+  "optimization": {
+    "model_seeds": [2341, 2342, 2343],
+    "role_split": "per 63 label combination (33 paired identities): fit=25, selection=4, unused holdout=4; only fit updates parameters and selection chooses waveform-loss checkpoint; development is never used for checkpoint, threshold, or hyperparameter selection.",
+    "optimizer": "AdamW",
+    "learning_rate": 0.0001,
+    "weight_decay": 0.0001,
+    "epochs": 12,
+    "patience": 4,
+    "batch_size": 8,
+    "gradient_clip_norm": 5.0
+  },
+  "promotion_gates": {
+    "each_seed_mean_development_waveform_cosine_at_least": 0.50,
+    "each_seed_each_regime_overall_mae_reduction_C1_vs_C0_at_least": 0.10,
+    "each_seed_each_regime_compound_mae_reduction_C1_vs_C0_at_least": 0.10,
+    "each_seed_each_regime_overall_pearson_C1_at_least": 0.30,
+    "each_seed_each_regime_compound_pearson_C1_at_least": 0.30,
+    "each_seed_ultra_close_mae_C1_not_worse_than_C0": true,
+    "all_three_seeds_directionally_consistent": true,
+    "identity_overlap_zero": true,
+    "locked_test_used": false
+  },
+  "stop_rule": "After opening development seed 1890000000, do not change architecture, teacher normalization, loss, estimator, split, gates, checkpoint criterion, or hyperparameters. If any gate fails, freeze P3o-R; do not use 1900M/1910M confirmation and do not attach MFT count to C2/P1n.",
+  "next_if_pass": "Freeze the separator and run a two-identity confirmation before considering a predicted-label-gated end-to-end parameter integration.",
+  "locked_test_used": false
+}

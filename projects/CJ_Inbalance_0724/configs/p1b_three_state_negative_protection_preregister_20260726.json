@@ -1,0 +1,73 @@
+{
+  "experiment": "P1b matched-hard-negative three-state router",
+  "status": "preregistered_before_execution",
+  "date": "2026-07-26",
+  "inherits": "p1_swept_expert_router_preregister_20260726.json",
+  "frozen_components": [
+    "mlcnn_iq_grouped_task_routed best_parameter checkpoints",
+    "unet_wave checkpoints",
+    "MFT unet output 0",
+    "VFT stack_trajectory_leaf15",
+    "ISRJ stack_all_periodicity",
+    "global target indices 3,4,5"
+  ],
+  "roles": {
+    "router_fit": "same first identity-disjoint calibration half, all nine paired views",
+    "safety_selection_and_recalibration": "same second calibration half, all nine paired views",
+    "final_development_evaluation": "tune identities, all nine paired views",
+    "forbidden": ["confirm", "locked test"]
+  },
+  "states": {
+    "keep_main": "expert has no material advantage and the sample is not ambiguous",
+    "accept_expert": "expert binary log loss plus 0.05 is lower than main binary log loss",
+    "abstain": "non-advantage difficult negative or ambiguous positive near/disagreeing across the fixed target threshold"
+  },
+  "matched_difficult_negatives": {
+    "candidate": "target-negative and either main or expert probability crosses the frozen main threshold",
+    "matching_space": ["main target probability", "expert target probability", "absolute disagreement", "sum of other main probabilities"],
+    "matching": "nearest target-negative to each positive accept-expert example, unique union",
+    "sample_weight": 4.0,
+    "other_abstain_weight": 2.0
+  },
+  "router": {
+    "family": "per-target standardized multinomial LogisticRegression(C=1.0, class_weight=balanced)",
+    "power_feature": false,
+    "accept_rule": "P(accept)>=accept_threshold and P(accept)-P(abstain)>=veto_margin",
+    "alpha_grid": [0.25, 0.5, 0.75],
+    "accept_threshold_grid": [0.5, 0.6, 0.7, 0.8, 0.9],
+    "veto_margin_grid": [0.0, 0.1, 0.2, 0.3],
+    "non_target_outputs": "unchanged",
+    "fallback": "alpha=0"
+  },
+  "track_a_fixed_threshold": {
+    "selection_objective": "maximize 10/50 dB MFT/VFT/ISRJ recall",
+    "constraints": {
+      "each_target_fpr_delta_vs_base_max": 0.005,
+      "six_class_macro_aupr_delta_min": -0.005
+    },
+    "mechanism_promotion": {
+      "mean_extreme_recall_gain_min": 0.10,
+      "same_direction_seeds": "3/3",
+      "maximum_target_fpr_delta": 0.005,
+      "mean_macro_aupr_delta_min": -0.005
+    }
+  },
+  "track_b_recalibrated": {
+    "threshold_source": "safety-selection identities only",
+    "method": "separately calibrate base and selected final target thresholds to FPR cap 0.10; keep non-target thresholds frozen",
+    "deployment_promotion": {
+      "mean_extreme_recall_gain_vs_recalibrated_base_min": 0.10,
+      "same_direction_seeds": "3/3",
+      "maximum_target_mean_fpr": 0.10,
+      "mean_macro_aupr_delta_min": -0.005
+    }
+  },
+  "overall_gate": "both mechanism and deployment promotion must pass before P2",
+  "required_outputs": [
+    "state prevalence and matched-negative counts",
+    "per-sample three-state probabilities and final probabilities",
+    "fixed-threshold and recalibrated nine-power metrics",
+    "identity overlap audit",
+    "runtime and locked-test receipt"
+  ]
+}

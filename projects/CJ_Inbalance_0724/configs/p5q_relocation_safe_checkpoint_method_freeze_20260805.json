@@ -1,0 +1,36 @@
+{
+  "experiment": "P5q relocation-safe fine-grained checkpointed shared frozen-forward and dense bounded-head execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5q_relocation_safe_checkpoint_preregister_20260805.json",
+  "preregister_sha256": "b6d6b0bb547b5126dd246a39acfd3cb16d33462301795a1c47fd1087a6ddc3c4",
+  "implementation": {
+    "execution_runner": "cj0724/p5q_relocation_safe_checkpoint_execution.py",
+    "execution_runner_sha256": "aa1e8b73ac776991e84e2217b40fffe6187e44f137150511a56a7dc20c1143f5",
+    "generator": "matlab/generate_p5q_relocation_safe_checkpoint_development_data.m",
+    "generator_sha256": "2524b014b2d4737250c1f06c6f3a07277081f05c9a9497fb9a67b7a34210de6e",
+    "integration_test": "tests/test_p5q_relocation_safe_checkpoint_protocol.py",
+    "integration_test_sha256": "de4285833a3edee3e7fac3e92d4a32158e5ffbd2b82707966432a5795a6e96c5"
+  },
+  "pre_generation_validation": {
+    "pytest_command": "D:\\anaconda3\\envs\\PY10\\python.exe -m pytest tests\\test_p5q_relocation_safe_checkpoint_protocol.py tests\\test_p5p_checkpointed_protocol.py tests\\test_p5o_protocol_generic_integration.py tests\\test_p5n_verified_idle_window_protocol.py tests\\test_p5m_authorized_window_protocol.py tests\\test_p5l_minibatch_protocol.py tests\\test_p5h_exclusive_gpu_guard.py tests\\test_p5g_data_audit.py -q",
+    "pytest_result": "15 passed in 17.41s",
+    "relocation_validation": "The P5q integration test invoked protocol validation and the checkpoint self-test from an unrelated current working directory. The runner resolved E:/LJQ_code/CJ_Inbalance_0724 from __file__ and verified the relocated P5e roots and heads.",
+    "checkpoint_validation": "The no-data/no-CUDA self-test atomically round-tripped every FeatureRole array including NaN and classified a started model lacking a completed result as recoverable_unobserved_unit.",
+    "matlab_dry_run": "From outside the project, generate_p5q_relocation_safe_checkpoint_development_data(false) completed all 15 train manifests in memory and returned three pools.",
+    "p5q_generated_directories_before_freeze": 0,
+    "p5q_generated_files_before_freeze": 0,
+    "p5q_generated_mat_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "P5e five-model candidate, all model/head weights, thresholds, normalizers, analytic features and routing are unchanged",
+    "full-pool exactness, first fixed batch 126, five warmups, 15 timed repetitions and latency ratio 0.85 gate are unchanged",
+    "project path is derived from the runner/generator location and is independent of the shell current directory",
+    "analytic arrays and each source-model result are immutable recoverable units with SHA-256 validation",
+    "completed timing/model units may never be selectively rerun; failed gates stop the route on those identities",
+    "P5q uses only fresh train-only paired-power identities and must audit zero overlap, including quarantined P5p identities",
+    "no confirmation or test data may be generated before all three development pools pass"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

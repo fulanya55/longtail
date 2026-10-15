@@ -1,0 +1,37 @@
+{
+  "experiment": "P5b4 two-new-identity confirmation of frozen bounded JNR attachment",
+  "evidence_role": "independent_confirmation_no_training_no_selection",
+  "frozen_candidate": {
+    "P5b3_result": "outputs/p5b3_bounded_jnr_attachment_20260801/result.json",
+    "P5b3_result_sha256": "f798c4038c3860a73000e61bc91651726eb31a3431c83073e6a746ff4a2bbeb7",
+    "base_model_seeds": [3041, 3042, 3043],
+    "head_checkpoints": [
+      "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3041_head14041.pt",
+      "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3042_head14042.pt",
+      "outputs/p5b3_bounded_jnr_attachment_20260801/frozen_candidate_heads/source3043_head14043.pt"
+    ],
+    "forbidden_changes": ["head training", "base training", "normalizer refit", "threshold calibration", "architecture change", "power feature", "router"]
+  },
+  "fresh_confirmation_data": {
+    "generator_seeds": [860000000, 870000000],
+    "powers_db": [10, 15, 20, 25, 30],
+    "samples_per_combination": 60,
+    "generated_split": "train only",
+    "paired_identity_key": "receiver_noise_seed",
+    "must_have_zero_overlap_with": ["root_0716", "P4c", "P4d", "P4k", "P5a", "P5a2", "P5b", "P5b1", "P5b2", "P5b3"]
+  },
+  "confirmation_gates": {
+    "classification_and_other_parameter_invariance_each_data_seed": true,
+    "MFT_and_ISRJ_oracle_gated_nmae_improve_each_data_seed_and_each_model_seed": true,
+    "MFT_and_ISRJ_predicted_gated_nmae_not_worse_each_data_seed_and_each_model_seed": true,
+    "MFT_and_ISRJ_identity_clustered_bootstrap_ci95_low_greater_than": 0.0,
+    "no_target_power_10_or_30_nmae_worse_than_base_by_more_than": 0.03
+  },
+  "decision_rule": {
+    "pass": "Promote only the JNR-only attachment claim to five-model-seed and parameter-OOD confirmation; classification remains a separate frozen claim.",
+    "fail": "Freeze P5b3 as development-only and do not attach it to any final system or locked test."
+  },
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,57 @@
+{
+  "status": "preregistered_before_execution",
+  "stage": "B5-R",
+  "objective": "Test whether bounded reliability routing can convert B4 ISRJ hard-negative separability into seed-stable gains without recall loss",
+  "reference": "frozen B2-RC with B3-R implementation",
+  "legacy_screen_seeds": [20260724, 20260725, 20260726, 271828, 314159],
+  "powers_dB": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+  "frozen": [
+    "EfficientNet-B1 E5 checkpoints",
+    "VFT E5 expert",
+    "B2-RC MFT router and threshold",
+    "B2-RC ISRJ expert and threshold",
+    "B3-R physical feature definition",
+    "all B4 hard-negative expert checkpoints"
+  ],
+  "router": {
+    "target": "ISRJ only",
+    "states": ["positive_rescue", "negative_protection", "unknown_keep_B2RC"],
+    "fit_role": "first half of early-stop identities across nine paired powers",
+    "selection_role": "second half of early-stop identities across nine paired powers",
+    "development_used_for_selection": false,
+    "explicit_JNR_feature": false,
+    "classifier": "HistGradientBoostingClassifier(max_iter=150, learning_rate=0.05, max_leaf_nodes=7, l2=2.0)",
+    "alpha_grid": [0.5, 1.0],
+    "confidence_grid": [0.4, 0.6, 0.8]
+  },
+  "expert_candidates": [
+    "random",
+    "neural_high_confidence",
+    "physics_similar",
+    "power_cardinality_composition_matched"
+  ],
+  "ablations": [
+    "hard_replace",
+    "fixed_blend",
+    "unbounded_sigmoid_gate",
+    "bounded_two_state",
+    "bounded_three_state",
+    "without_physics_reliability",
+    "without_E5_uncertainty"
+  ],
+  "selection": {
+    "eligibility": "ISRJ AUPR delta >= 0 and recall drop <= 0.005 relative to B2-RC",
+    "objective": "maximum ISRJ FPR reduction, then maximum ISRJ AUPR delta",
+    "fallback": "keep B2-RC ISRJ"
+  },
+  "development_gate": {
+    "mean_macro_AUPR_gain_vs_B2RC_min": 0.005,
+    "mean_hamming_increase_max": 0.0,
+    "mean_weak_component_recall_drop_max": 0.005,
+    "max_power_mean_ISRJ_recall_drop": 0.005,
+    "same_direction_seeds_min": 4
+  },
+  "stop_rule": "If the gate fails, stop the B4/B5 hard-negative branch and proceed to B6 cross-domain consistency",
+  "forbidden": ["per-power thresholds", "development selection", "explicit JNR input", "locked test access"],
+  "locked_test_used": false
+}

@@ -1,0 +1,41 @@
+{
+  "experiment": "P3o-G bounded posterior-conditioned residual with compound-combination CVaR",
+  "research_question": "Can a bounded delay-peak residual trained to reduce the worst compound-label group error remove the cross-identity worst-combination instability observed in P3o-E/F, without changing the frozen local time-frequency recognizer?",
+  "motivation": "P3o-E/F improved average oracle and predicted-gate parameter NMAE but only one of two fresh identity confirmations preserved worst-combination risk. The new mechanism changes neither recognition features nor side-branch capacity; it changes only the parameter objective from a sample mean to an equal-weight upper-tail mean over observed compound-label groups.",
+  "identity_protocol": {
+    "train_seed": 1230000000,
+    "development_seed": 1240000000,
+    "reserved_confirmation_seeds": [1250000000, 1260000000],
+    "samples_per_combination": 33,
+    "regimes": ["ID_control", "low_count", "close_spacing", "ultra_close", "weak_target"],
+    "powers_db": [25, 35, 50],
+    "identity_pairing": "receiver_noise_seed grouped across every regime and power view",
+    "forbidden": ["P3o-D 1070M/1080M/1090M/1100M", "P3o-E/F 1110M/1120M/1130M/1140M", "P3o state-preserving 1180M/1190M/1200M/1210M", "test generation", "test opening", "locked test"]
+  },
+  "methods": {
+    "F_base": "The selected local STFT plus adjacent-frame phase-increment ParameterMatchedMultiView backbone. It is trained exactly once per seed with BCEWithLogits plus 0.1 masked SmoothL1, selected on early identities, and calibrated only on calibration identities.",
+    "G0_bounded_mean": "Freeze the complete selected F state, force it to eval mode in every side train call, encode only delay-peak sequences, and add detached-posterior-gated 0.25*tanh residuals. Train with masked per-sample SmoothL1 mean only.",
+    "G1_bounded_combo_cvar": "Exactly G0 architecture, initialization, data order, optimizer, checkpoints and F state. Add a CVaR term equal to the mean of the largest ceil(25% of present compound-label-group mean losses) in each minibatch. Compound group is the six-label bit mask, computed only from the observed label vector.",
+    "causal_scope": "G1 can alter parameter predictions only. F parameters, F buffers, F mode, recognition logits, thresholds and predicted labels must remain bitwise identical to F_base."
+  },
+  "training": {
+    "base": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "parameter_weight": 0.1, "contrast_weight": 0.0, "gradient_clip_norm": 5.0, "checkpoint": "C_joint: maximum early macro-AUPR among epochs within 1.01 of minimum early oracle macro NMAE"},
+    "side": {"epochs": 20, "warmup_epochs": 2, "batch_size": 63, "learning_rate": 0.0001, "weight_decay": 0.0001, "residual_bound_normalized": 0.25, "cvar_fraction": 0.25, "G0_cvar_weight": 0.0, "G1_cvar_weight": 1.0, "gradient_clip_norm": 5.0, "checkpoint": "minimum early oracle worst-compound-group NMAE; the same rule is applied to G0 and G1 without development labels or thresholds"},
+    "calibration": "Fit the F threshold vector solely on calibration identities, apply the CP-safe ISRJ threshold, and reuse it verbatim for G0 and G1."
+  },
+  "model_seeds": [2061, 2062, 2063],
+  "development_promotion_gates": {
+    "identity_overlap_zero": true,
+    "F_state_buffers_and_logits_bitwise_unchanged_after_each_side_training": true,
+    "base_safe_calibration_feasible_and_development_maximum_cell_fpr_at_most_0p10": true,
+    "base_overall_isrj_recall_at_least_0p85_and_25db_recall_at_least_0p78": true,
+    "G1_oracle_and_predicted_gate_nmae_ratio_vs_F_base_at_most_0p98_all_seeds": true,
+    "G1_miss_penalty_nonworse_vs_F_base_all_seeds": true,
+    "G1_worst_combo_predicted_gate_nmae_ratio_vs_F_base_at_most_0p98_all_seeds": true,
+    "G1_worst_combo_predicted_gate_nmae_ratio_vs_G0_at_most_0p99_all_seeds": true,
+    "test_generated_false": true,
+    "test_opened_false": true,
+    "locked_test_used_false": true
+  },
+  "decision_rule": "Only an all-gate development pass permits one pre-registered confirmation run on 1250M. Any development failure freezes this exact method; no scale, CVaR fraction, weight, checkpoint rule, threshold, base architecture, or 1240M outcome may be tuned. A later locked test remains forbidden until two independently generated confirmations pass under the unchanged method."
+}

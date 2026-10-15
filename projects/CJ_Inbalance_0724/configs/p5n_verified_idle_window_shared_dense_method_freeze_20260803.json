@@ -1,0 +1,33 @@
+{
+  "experiment": "P5n verified-idle-window shared frozen-forward and dense bounded-head execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5n_verified_idle_window_shared_dense_preregister_20260803.json",
+  "preregister_sha256": "bcfd7c4a6a0dc35c9b18e9b2cd827837ca62a458feceb193301e12771ec61451",
+  "implementation": {
+    "execution_runner_reused_bitwise": "cj0724/p5m_authorized_window_shared_dense_execution.py",
+    "execution_runner_sha256": "5bb0566ddec2f284f5148a075c086ae2670f61d93364b36be96da9986393b1c4",
+    "generator": "matlab/generate_p5n_verified_idle_window_shared_dense_development_data.m",
+    "generator_sha256": "243864b5b8ed20b694800fa821ea87917eb4a8016505ee514afcdb84565a1982",
+    "audit_runner": "cj0724/audit_p5g_shared_dense_data.py",
+    "audit_runner_sha256": "8a11475432d93636c3746c36ae562ffbb5eeab912c942228d8184a240c388620",
+    "protocol_test": "tests/test_p5n_verified_idle_window_protocol.py",
+    "protocol_test_sha256": "ff9801cf901ba432185556cab023c66bac5d9c76df11ca98b13be2c4ad39b07f"
+  },
+  "pre_generation_validation": {
+    "pytest_command": "D:\\anaconda3\\envs\\PY10\\python.exe -m pytest tests\\test_p5n_verified_idle_window_protocol.py tests\\test_p5m_authorized_window_protocol.py tests\\test_p5l_minibatch_protocol.py tests\\test_p5h_exclusive_gpu_guard.py tests\\test_p5g_data_audit.py -q",
+    "pytest_result": "12 passed in 1.89s",
+    "matlab_dry_run": "generate_p5n_verified_idle_window_shared_dense_development_data(false) completed; 15 train manifests only",
+    "p5n_generated_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "P5e model/head weights, thresholds, normalizer, analytic features, head width and routing are unchanged",
+    "P5m runner is reused byte-for-byte",
+    "full-pool exactness, first-index batch 126, five warmups, 15 timed repetitions and latency ratio 0.85 gate are unchanged",
+    "P5n uses only fresh uint32 identity seeds and train-only paired power views",
+    "P3o-U and every external CUDA Python task must be absent before P5n formal generation/execution begins",
+    "no confirmation or test data may be generated before all three P5n development pools pass"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

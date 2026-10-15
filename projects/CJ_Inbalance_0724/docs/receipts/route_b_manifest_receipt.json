@@ -1,0 +1,25 @@
+{
+  "project_root": "E:\\LJQ_code\\CJ_Inbalance_0724",
+  "code_version": "local_active_route_b_20260826",
+  "files": {
+    "cj0724/__init__.py": "552fdfded35c6fb8d3c09c970f5e3cf96393e779c229a717f02ae4e185ce91c6",
+    "cj0724/data.py": "1fb1dc381c4ccf243e6fee2a5ef2dcc79fe20e16a3fd4cd11da04c189f83a5db",
+    "cj0724/models.py": "28bb3565497920f546c72afa4ceaf8566cbadb0ba61bd24e0d70b466923e72b3",
+    "cj0724/multitask.py": "31b8bbc542faf21f5d928b472177d7736ec1baedbd8217f4e5d2737e2e723d16",
+    "cj0724/multitask_benchmark.py": "59406e184657538c5ab0c0614cdf6f8c1e76ec69e08d3ba009f4daf3b4b31be8",
+    "scripts/route_b_r1_train.py": "b6a884f88c97040e3fd03736838d88cf9cde2c86a978bd6af416d172845009ce",
+    "scripts/route_b_r1_aggregate.py": "74ea05372b296cb6f001da03316020806b30a6d50e71a1ff48588824b71e8417",
+    "scripts/route_b_r2_r3_preflight.py": "c34a405cdabd2619b5ffab9585720ed9dec6ed95e7e38caff70f27b687e3e5de",
+    "scripts/route_b_r3_evaluate.py": "6d115736b23da26bc593870da96c9019d47a933b47cc11ef29de1f3ab4bcad59",
+    "scripts/route_b_r4_preflight.py": "7e7f5493550fcfe453a68ca8606e5315e39d6cf1658840990c4b0c3f1fd20c62",
+    "scripts/route_b_resource_benchmark.py": "a053ba20e82de530f1343d02267df449428ac30da645c21f63e6772ea8f75479",
+    "scripts/route_b_finalize_report.py": "26b59c6a2a80e9b8e1104831e783e3088219fea7d4421eeb1b63fed5175d64af",
+    "scripts/route_b_write_stop_receipt.py": "b920bd19a991a3e3af74659250200a5175258e21e68dd5c70e2b05aab3e0a709",
+    "scripts/route_b_r0_readiness.py": "66bbacb90b33373a3552d5da020e1f72788ed2af203237f79c70ca7d822ddd4a",
+    "configs/route_b_r1_preregister.json": "9788be01b6ab9293f64a6a9a1e75903060599de73bd03f28c4c4fed27bfdc510",
+    "configs/route_b_r4_preregister.json": "c74047805066719c3b63ae64332e401a39e1ec3117aaa6c061c887f383605597"
+  },
+  "config_hash": "20efe67eeab21be75907c8bb3e54c2e750171459d6814bab783203c619126205",
+  "manifest_hash": "b576a2f89dfaa67f3373618a3fceb6b239c6c51e07609b1da1b95a0996292839",
+  "locked_test_used": false
+}

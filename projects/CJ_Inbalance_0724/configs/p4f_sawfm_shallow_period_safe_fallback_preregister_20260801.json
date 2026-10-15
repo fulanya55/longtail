@@ -1,0 +1,63 @@
+{
+  "experiment": "P4f detached shallow-multiscale SawFM-period safe fallback",
+  "research_question": "Do local MLCNN stages 1--3 contain enough period texture to correct SawFM sweep-period negative transfer without modifying the classifier or the other 11 routed parameters?",
+  "evidence_role": "fresh_identity_single_mechanism_development",
+  "mechanism": {
+    "baseline": "mlcnn_iq_grouped_task_routed",
+    "candidate": "mlcnn_iq_grouped_task_routed_saw_shallow_safe",
+    "single_change_vs_baseline": "replace only SawFM sweep-period with a compact scalar head over detached pooled I/Q outputs from MLCNN stages 1--3",
+    "single_change_vs_failed_p4e": "move the safe head input from the final classification embedding to shallow multi-scale local features",
+    "token_dim": 16,
+    "safe_hidden_dim": 32,
+    "gradient_contract": "the fallback cannot update any MLCNN convolution or classification parameter",
+    "other_parameter_contract": "the other 11 outputs remain on the IQ-Grouped parameter route"
+  },
+  "prior_evidence_boundary": {
+    "p4e_seed690000000": "failure attribution only; not used for training or threshold selection",
+    "p4d_seeds": "external confirmation and failure attribution only; not reused",
+    "older_shallow_screen": "supports feature sufficiency hypothesis only; no checkpoint or threshold is reused"
+  },
+  "data": {
+    "generator_seed": 700000000,
+    "jnr_range_db": [10, 30],
+    "all_63_combinations": true,
+    "samples_per_combination": 100,
+    "total_identities": 6300,
+    "split_seed": 20260801,
+    "role_counts_per_combination": {"train": 75, "early": 10, "calibration": 5, "tune": 5, "confirm": 5},
+    "required_overlap_with_all_p4b_through_p4e_and_root": 0,
+    "test_generation": "train split only"
+  },
+  "training": {
+    "model_seeds": [5041, 5042, 5043],
+    "profile": "cos_lr1e4_wd1e4",
+    "epochs": 20,
+    "patience": 20,
+    "warmup_epochs": 2,
+    "batch_size": 63,
+    "width": 24,
+    "head_dim": 256,
+    "parameter_hidden_dim": 64,
+    "dropout": 0.2,
+    "parameter_loss_weight": 0.1,
+    "checkpoint_objective": "parameter",
+    "paired_batch_order": "same model seed uses an independently seeded DataLoader generator"
+  },
+  "promotion_gates": {
+    "each_seed_sawfm_period_absolute_nmae_improvement_vs_route_at_least": 0.015,
+    "mean_sawfm_period_absolute_nmae_improvement_vs_route_at_least": 0.025,
+    "each_seed_sawfm_period_pearson_not_lower_than_route": true,
+    "each_seed_full12_macro_nmae_worsening_at_most": 0.003,
+    "mean_full12_macro_nmae_not_worse": true,
+    "each_seed_macro_aupr_drop_at_most": 0.003,
+    "each_seed_subset_accuracy_drop_at_most": 0.03,
+    "no_other_target_worse_in_3_of_3_seeds_by_more_than_absolute_nmae": 0.02,
+    "parameter_count_increase_at_most_fraction": 0.0015,
+    "measured_inference_time_increase_at_most_fraction": 0.03
+  },
+  "stop_rule": "Do not tune on seed700000000. Failure stops detached learned fallback variants; success requires two new no-tuning generator seeds before promotion.",
+  "next_if_pass": "Freeze P4f and perform two external generator-seed confirmations, then strict MAC matching.",
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

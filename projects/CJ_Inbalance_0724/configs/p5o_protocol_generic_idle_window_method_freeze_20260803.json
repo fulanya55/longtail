@@ -1,0 +1,32 @@
+{
+  "experiment": "P5o protocol-generic verified-idle shared frozen-forward and dense bounded-head execution",
+  "status": "method_frozen_before_fresh_data_generation",
+  "preregister": "configs/p5o_protocol_generic_idle_window_preregister_20260803.json",
+  "preregister_sha256": "be160fa4c8f27f2f7810a23f1bbd3d6966603641938e5edccacc82e3c4699138",
+  "implementation": {
+    "execution_runner": "cj0724/p5o_protocol_generic_idle_window_execution.py",
+    "execution_runner_sha256": "c7f9b0c5b043ee2e8a460461c304d5b2ef8fb5a251582cdc192f32365d6bddfd",
+    "generator": "matlab/generate_p5o_protocol_generic_idle_window_development_data.m",
+    "generator_sha256": "6d9f1f9529374864896cdf3e1e7165c46562581bd763d5fa87dcaf9631c62bbc",
+    "integration_test": "tests/test_p5o_protocol_generic_integration.py",
+    "integration_test_sha256": "d790ae872f62f33e7c653f554c79476ee0db3277d19210b336a44437878703a9"
+  },
+  "pre_generation_validation": {
+    "pytest_command": "D:\\anaconda3\\envs\\PY10\\python.exe -m pytest tests\\test_p5o_protocol_generic_integration.py tests\\test_p5n_verified_idle_window_protocol.py tests\\test_p5m_authorized_window_protocol.py tests\\test_p5l_minibatch_protocol.py tests\\test_p5h_exclusive_gpu_guard.py tests\\test_p5g_data_audit.py -q",
+    "pytest_result": "13 passed in 3.33s",
+    "explicit_runner_validation": "python -m cj0724.p5o_protocol_generic_idle_window_execution --validate-protocol completed inside the integration test without CUDA, data opening or output directory creation",
+    "matlab_dry_run": "generate_p5o_protocol_generic_idle_window_development_data(false) completed; 15 train manifests only",
+    "p5o_generated_files_before_freeze": 0
+  },
+  "frozen_invariants": [
+    "P5e candidate, all model/head weights, thresholds, normalizer, analytic features and routing are unchanged",
+    "full-pool exactness, first-index batch 126, five warmups, 15 timed repetitions and latency ratio 0.85 gate are unchanged",
+    "generic provenance validation must execute before CUDA and before output-root creation",
+    "P5o uses only fresh uint32 identity seeds and train-only paired power views",
+    "no external CUDA Python process may exist at launch or any guard checkpoint",
+    "no confirmation or test data may be generated before all three P5o development pools pass"
+  ],
+  "test_generated": false,
+  "test_opened": false,
+  "locked_test_used": false
+}

@@ -1,0 +1,86 @@
+{
+  "experiment_id": "P2j-full-12-parameter-predicted-gate-SawFM-attachment-development",
+  "registration_date": "2026-08-01",
+  "question": "Does the frozen calibrated SawFM separator convert its oracle-positive period gain into a reliable end-to-end 12-parameter gain under the frozen P2a predicted-label gates?",
+  "reference_only": {
+    "system": "outputs/p2a_nine_power_generalization_20260731",
+    "sawfm_confirmation": "outputs/p2i_sawfm_calibrated_separator_confirmation_20260801/summary.json",
+    "historical_test_predictions_may_be_opened": false,
+    "reference_models_thresholds_routes_may_be_loaded": true
+  },
+  "fresh_data": {
+    "root": "generated_data/p2j_full_parameter_attachment_seed2300000000_rechunked",
+    "raw_root": "generated_data/p2j_full_parameter_attachment_seed2300000000",
+    "generator": "matlab/generate_p2j_full_parameter_attachment_data.m",
+    "base_seed": 2300000000,
+    "split": "train only",
+    "powers_db": [10, 15, 20, 25, 30, 35, 40, 45, 50],
+    "combinations": 63,
+    "identities_per_combination": 20,
+    "identities": 1260,
+    "paired_identity_key": "receiver_noise_seed"
+  },
+  "frozen_components": {
+    "classification_and_base_parameter_model": "MLCNN plus IQ-Grouped task-routed checkpoints from the P2a reference",
+    "isrj_route": "P2a seed-matched lower-confidence ensemble, selection rule and routed thresholds",
+    "vft_parameter": "P2a frozen aligned Doppler expert",
+    "old_sawfm_parameter": "P2a frozen raw-IQ SawFM period specialist",
+    "candidate_separator": "P2f S1 waveform-only seed-matched checkpoints",
+    "candidate_period_expert": "same frozen SawFM period specialist",
+    "candidate_calibration": {
+      "2041": [1.0538332944014202, 0.00000792056473920431],
+      "2042": [1.0485594935630393, 0.000005973457154872555],
+      "2043": [1.1260814638565335, 0.0000029172537901531955]
+    },
+    "refitting_allowed": false,
+    "threshold_adjustment_allowed": false,
+    "checkpoint_selection_allowed": false
+  },
+  "variants": {
+    "R0_safe_isrj_route": "frozen predicted labels and original IQ-Grouped parameter outputs",
+    "R1_old_joint": "R0 plus frozen old SawFM period and VFT Doppler replacements",
+    "R2_uncalibrated_separator": "R1 with old SawFM period replaced by the P2f S1 separated estimate on predicted-positive SawFM samples",
+    "R3_calibrated_separator": "R2 plus the frozen P2h affine coefficient"
+  },
+  "primary_metrics": [
+    "full 12-parameter predicted-gate macro NMAE",
+    "miss-penalty parameter NMAE",
+    "worst-combination predicted-gate NMAE",
+    "SawFM period predicted-gate NMAE by power",
+    "paired identity bootstrap delta",
+    "candidate coverage and latency"
+  ],
+  "promotion_gates": {
+    "mean_full_nmae_improvement_vs_safe_route_min": 0.05,
+    "all_three_full_nmae_improvement_vs_safe_route_min": 0.05,
+    "all_three_full_nmae_improvement_vs_old_joint_positive": true,
+    "paired_bootstrap_full_nmae_delta_vs_old_ci95_high_max": 0.0,
+    "mean_miss_penalty_delta_vs_old_joint_max": 0.0,
+    "mean_worst_combo_delta_vs_old_joint_max": 0.0,
+    "mean_high_power_sawfm_period_nmae_reduction_vs_old_min": 0.30,
+    "all_model_seeds_high_power_sawfm_period_reduction_positive": true,
+    "each_low_power_sawfm_period_nmae_ratio_vs_old_max": 1.05,
+    "classification_arrays_unchanged": true,
+    "other_11_parameter_outputs_unchanged": true
+  },
+  "failure_branches": {
+    "high_power_pass_low_power_fail": "Do not use external power labels. On a new seed, develop a bounded reliability selector from inference-available separator diagnostics and old/new disagreement.",
+    "saw_period_pass_full_metric_fail": "Quantify parameter weighting and predicted-gate coverage; do not claim end-to-end benefit.",
+    "full_mean_pass_worst_combo_fail": "Construct matched hard-combination protection before confirmation.",
+    "calibration_ablation_fails": "Discard affine calibration and retain the uncalibrated candidate only if it independently passes all system gates."
+  },
+  "statistics": {
+    "model_seeds": [2041, 2042, 2043],
+    "identity_grouped_bootstrap_replicates": 1000,
+    "report_per_power": true,
+    "report_per_combination": true,
+    "report_per_parameter": true
+  },
+  "evidence_boundary": {
+    "development_only": true,
+    "test_generated": false,
+    "test_opened": false,
+    "locked_test_used": false,
+    "next_if_passed": "Freeze P2j candidate and confirm it without refitting on two new train-only identity seeds."
+  }
+}
